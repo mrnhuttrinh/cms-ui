@@ -1,8 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
+import store, { history } from './store';
+import ReduxToastr from 'react-redux-toastr';
+import App from './containers';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// import css
+import './styles';
+import registerServiceWorker from './registerServiceWorker'; 
+
+render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <div>
+        <ReduxToastr
+          timeOut={5000}
+          newestOnTop
+          preventDuplicates
+          position="top-right"
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          progressBar
+        />
+        <App history={history} />
+      </div>
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();
