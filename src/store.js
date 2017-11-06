@@ -5,6 +5,7 @@ import promiseMiddleware from 'redux-promise';
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from './reducers';
+import { fetchMiddleware } from './utils';
 
 export const history = createHistory();
 
@@ -13,6 +14,7 @@ const middleware = [
   thunk,
   promiseMiddleware,
   createLogger,
+  fetchMiddleware,
   routerMiddleware(history)
 ];
 

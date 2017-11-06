@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from './store';
 import ReduxToastr from 'react-redux-toastr';
-import App from './containers';
 
 // import css
 import './styles';
-import registerServiceWorker from './registerServiceWorker'; 
+import registerServiceWorker from './registerServiceWorker';
+import App from './routes';
 
 render(
   <Provider store={store}>
