@@ -1,0 +1,66 @@
+.ecash-outside {
+  width: 100%;
+  min-height: 100%;
+  display: block;
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  height: 100%;
+}
+
+.ecash-outside > .row {
+  width: 100%;
+  min-height: 100%;
+  padding: 0px;
+  margin: 0px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ecash-outside .ecash-outside-form {
+  height: 100%;
+  display: block;
+  padding: 0px;
+  margin: 0px;
+  flex: 1;
+}
+
+.ecash-outside .ecash-outside-picture {
+  min-height: 100%;
+  display: block;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  flex: 1;
+  background: url(/assets/images/background-outside.jpg) repeat 0 0;
+  background-color: transparent;
+}
+
+.ecash-outside .ecash-outside-picture .wrap-content {
+  background-color: rgba(255, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+
+.ecash-outside .ecash-outside-picture .wrap-content .content {
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  top: calc(50% - 35px);
+  position: relative;
+  color: white;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.ecash-outside .ecash-outside-picture .wrap-content .large-title {
+  font-size: 30px;
+}
+
+.ecash-outside .ecash-outside-picture .wrap-content .long-description {
+  margin-top: 30px;
+}
+
