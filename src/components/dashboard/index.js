@@ -1,97 +1,192 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import TextField from 'material-ui/TextField';
-import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
-import Checkbox from 'material-ui/Checkbox';
-import SelectField from 'material-ui/SelectField';
+import AppBar from 'material-ui/AppBar';
 import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+  TableFooter,
+} from 'material-ui/Table';
+import { Pagination } from '../../components';
 
-const validate = values => {
-  const errors = {}
-  const requiredFields = [ 'firstName', 'lastName', 'email', 'favoriteColor', 'notes' ]
-  requiredFields.forEach(field => {
-    if (!values[ field ]) {
-      errors[ field ] = 'Required'
-    }
-  })
-  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
+class Dashboard extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      currentPage: 20,
+      totalPages: 228,
+      boundaryPagesRange: 1,
+      siblingPagesRange: 1,
+      hidePreviousAndNextPageLinks: false,
+      hideFirstAndLastPageLinks: true,
+      hideEllipsis: false
+    };
+    this.onPageChangeFromPagination = this.onPageChangeFromPagination.bind(this);
   }
-  return errors
+  onPageChangeFromPagination(newPage) {
+    this.setState({currentPage: newPage});
+  }
+  render() {
+    return (
+      <div>
+        <AppBar
+          title={<span style={{
+              color: 'rgba(0, 0, 0, 0.4)',
+            }}>Danh sách khách hàng</span>}
+          iconStyleLeft={{display: 'none'}}
+          style={{
+            backgroundColor: '#e8e8e8',
+            border: 'rgba(0, 0, 0, 0.12) 1px'
+          }}
+          iconElementRight={
+            <MenuItem
+              style={{
+                color: '#009688',
+                letterSpacing: '0px'
+              }}
+              leftIcon={
+                <FontIcon
+                  style={{
+                    color: '#009688',
+                  }}
+                  className="material-icons"
+                >refresh</FontIcon>}>
+                REFRESH
+            </MenuItem>
+          }
+        />
+        <Table style={{color: 'rgba(0, 0, 0, 0.87)'}}>
+          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+            <TableRow>
+              <TableHeaderColumn style={{paddingRight: '0px'}}>
+                <span style={{float: 'left', lineHeight: '58px'}}>TÊN</span>
+                <FontIcon style={{float: 'right', lineHeight: '58px'}} className="material-icons">keyboard_arrow_up</FontIcon>
+              </TableHeaderColumn>
+              <TableHeaderColumn>HỌ</TableHeaderColumn>
+              <TableHeaderColumn>NHÓM</TableHeaderColumn>
+              <TableHeaderColumn>KHOA | PHÒNG BAN</TableHeaderColumn>
+              <TableHeaderColumn>CHỨC VỤ</TableHeaderColumn>
+              <TableHeaderColumn>NGÀY KHỞI TẠO</TableHeaderColumn>
+              <TableHeaderColumn>TRẠNG THÁI</TableHeaderColumn>
+              <TableHeaderColumn style={{width: '30px'}}></TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody displayRowCheckbox={false} stripedRows>
+            <TableRow>
+              <TableRowColumn>1</TableRowColumn>
+              <TableRowColumn>John Smith</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>1</TableRowColumn>
+              <TableRowColumn>John Smith</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn style={{width: '30px'}}><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>2</TableRowColumn>
+              <TableRowColumn>Randal White</TableRowColumn>
+              <TableRowColumn>Unemployed</TableRowColumn>
+              <TableRowColumn>1</TableRowColumn>
+              <TableRowColumn>John Smith</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>3</TableRowColumn>
+              <TableRowColumn>Stephanie Sanders</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>1</TableRowColumn>
+              <TableRowColumn>John Smith</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>4</TableRowColumn>
+              <TableRowColumn>Steve Brown</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>1</TableRowColumn>
+              <TableRowColumn>John Smith</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>5</TableRowColumn>
+              <TableRowColumn>Christopher Nolan</TableRowColumn>
+              <TableRowColumn>Unemployed</TableRowColumn>
+              <TableRowColumn>1</TableRowColumn>
+              <TableRowColumn>John Smith</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>2</TableRowColumn>
+              <TableRowColumn>Randal White</TableRowColumn>
+              <TableRowColumn>Unemployed</TableRowColumn>
+              <TableRowColumn>1</TableRowColumn>
+              <TableRowColumn>John Smith</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>3</TableRowColumn>
+              <TableRowColumn>Stephanie Sanders</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>1</TableRowColumn>
+              <TableRowColumn>John Smith</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>4</TableRowColumn>
+              <TableRowColumn>Steve Brown</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>1</TableRowColumn>
+              <TableRowColumn>John Smith</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>5</TableRowColumn>
+              <TableRowColumn>Christopher Nolan</TableRowColumn>
+              <TableRowColumn>Unemployed</TableRowColumn>
+              <TableRowColumn>1</TableRowColumn>
+              <TableRowColumn>John Smith</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn>Employed</TableRowColumn>
+              <TableRowColumn><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
+            </TableRow>
+          </TableBody>
+        </Table>
+        <div style={{backgroundColor: '#fff', padding: '7px', fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)'}}>
+          <span style={{float: 'left', lineHeight: '50px'}}>200-210 of 2580</span>
+          <div style={{float: 'right', display: 'inline-block', lineHeight: '50px'}}>
+            <Pagination
+              currentPage={this.state.currentPage}
+              totalPages={this.state.totalPages}
+              boundaryPagesRange={this.state.boundaryPagesRange}
+              siblingPagesRange={this.state.siblingPagesRange}
+              hidePreviousAndNextPageLinks={this.state.hidePreviousAndNextPageLinks}
+              hideFirstAndLastPageLinks={this.state.hideFirstAndLastPageLinks}
+              hideEllipsis={this.state.hideEllipsis}
+              onChange={this.onPageChangeFromPagination}
+            />
+          </div>
+          <div style={{clear: 'both'}} />
+        </div>
+      </div>
+    );
+  }
 }
 
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
-  <TextField hintText={label}
-    floatingLabelText={label}
-    errorText={touched && error}
-    {...input}
-    {...custom}
-  />
-)
-
-const renderCheckbox = ({ input, label }) => (
-  <Checkbox label={label}
-    checked={input.value ? true : false}
-    onCheck={input.onChange}/>
-)
-
-const renderRadioGroup = ({ input, ...rest }) => (
-  <RadioButtonGroup {...input} {...rest}
-    valueSelected={input.value}
-    onChange={(event, value) => input.onChange(value)}/>
-)
-
-const renderSelectField = ({ input, label, meta: { touched, error }, children }) => (
-  <SelectField
-    floatingLabelText={label}
-    errorText={touched && error}
-    {...input}
-    onChange={(event, index, value) => input.onChange(value)}
-    children={children}/>
-)
-
-const MaterialUiForm = props => {
-  const { pristine, reset, submitting } = props
-  return (
-    <form>
-      <div>
-        <Field name="firstName" component={renderTextField} label="First Name"/>
-      </div>
-      <div>
-        <Field name="lastName" component={renderTextField} label="Last Name"/>
-      </div>
-      <div>
-        <Field name="email" component={renderTextField} label="Email"/>
-      </div>
-      <div>
-        <Field name="sex" component={renderRadioGroup}>
-          <RadioButton value="male" label="male"/>
-          <RadioButton value="female" label="female"/>
-        </Field>
-      </div>
-      <div>
-        <Field name="favoriteColor" component={renderSelectField} label="Favorite Color">
-          <MenuItem value={'ff0000'} primaryText="Red"/>
-          <MenuItem value={'00ff00'} primaryText="Green"/>
-          <MenuItem value={'0000ff'} primaryText="Blue"/>
-        </Field>
-      </div>
-      <div>
-        <Field name="employed" component={renderCheckbox} label="Employed"/>
-      </div>
-      <div>
-        <Field name="notes" component={renderTextField} label="Notes" multiLine={true} rows={2}/>
-      </div>
-      <div>
-        <FlatButton label="Submit" primary disabled={pristine || submitting} />
-        <FlatButton label="Clear Values" primary disabled={pristine || submitting} onClick={reset}/>
-      </div>
-    </form>
-  )
-}
-
-export default reduxForm({
-  form: 'MaterialUiForm',
-  validate,
-})(MaterialUiForm);
+export default Dashboard;

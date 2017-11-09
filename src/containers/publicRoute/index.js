@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import "./publicRoute.css";
+import "./index.css";
 
 class PublicRoute extends React.Component {
   render() {
