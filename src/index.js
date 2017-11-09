@@ -10,6 +10,9 @@ import './styles';
 import registerServiceWorker from './registerServiceWorker';
 import App from './routes';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
