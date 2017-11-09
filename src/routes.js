@@ -8,6 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {
   PrivateRoute,
   PublicRoute,
+  ComponentsDemoRoute,
   NotFound
 } from './containers';
 
@@ -23,6 +24,7 @@ const AppRoutes = () => (
     <MuiThemeProvider>
       <Switch>
         <PublicRoute path="/login" component={Login} />
+        <ComponentsDemoRoute path="/components-demo" />
         <PrivateRoute exact path="/" component={Dashboard} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <Route component={NotFound}/>

@@ -12,7 +12,7 @@ import {
 import { PATTERN_EMAIL } from '../../constants';
 import * as actions from './actions';
 
-import './styles.css';
+import './styles.scss';
 
 const validate = values => {
   const errors = {};
@@ -83,7 +83,7 @@ class Login extends React.Component{
                 this.props.requesting ? <CircularProgress /> : (
                   <FlatButton
                     style={{borderRadius: '25px'}}
-                    labelStyle={{ 
+                    labelStyle={{
                       textTransform: 'none',
                       color: "#fff",
                       fontWeight: 'bold'
