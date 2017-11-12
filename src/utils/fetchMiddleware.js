@@ -12,7 +12,7 @@ const fetchMiddleware = store => next => async action => {
   const config = action.fetchConfig;
   const type = action.type;
   const path = config.path;
-  const params = config.params;
+  const params = { ...config.params, credentials: 'include' };
 
   // can be add authenticate to fetch
 

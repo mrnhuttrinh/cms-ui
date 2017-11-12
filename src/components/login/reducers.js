@@ -12,14 +12,10 @@ export default (state = initialState, action = {}) => {
       newState = state.set('requesting', true).delete('data').delete('error');
       break;
     case `${SUBMIT_LOGIN}_COMPLETED`:
-      // for sample authenticate
-      newState = state.set('requesting', false).set('data', action.data);
+      newState = state.set('requesting', false).set('data', {credential: true});
       break;
     case `${SUBMIT_LOGIN}_FAILED`:
-      // for sample authenticate
-      // newState = state.set('requesting', true).delete('data').delete('error');
-      newState = state.set('requesting', false).set('data', {credential: true});
-      // newState = state.set('requesting', false).set('error', action.error);
+      newState = state.set('requesting', false).set('data', {credential: false}); 
       break;
     default:
       newState = state;

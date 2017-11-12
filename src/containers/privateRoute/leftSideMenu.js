@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
+import { Link } from 'react-router-dom';
 
 export default class LeftSideMenu extends React.Component {
 
@@ -14,7 +15,7 @@ export default class LeftSideMenu extends React.Component {
         open={this.props.openLeftSideMenu}
       >
         <MenuItem leftIcon={<FontIcon className="material-icons">dashboard</FontIcon>}>Bảng điều khiển</MenuItem>
-        <MenuItem leftIcon={<FontIcon className="material-icons">people</FontIcon>}>Khách hàng</MenuItem>
+        <MenuItem leftIcon={<FontIcon className="material-icons">people</FontIcon>}><Link to="/customer">Khách hàng</Link></MenuItem>
         <MenuItem leftIcon={<FontIcon className="material-icons">store</FontIcon>}>Đại lí</MenuItem>
         <MenuItem leftIcon={<FontIcon className="material-icons">credit_card</FontIcon>}>Hệ thống thẻ</MenuItem>
         <MenuItem leftIcon={<FontIcon className="material-icons">account_balance_wallet</FontIcon>}>Tài khoản</MenuItem>

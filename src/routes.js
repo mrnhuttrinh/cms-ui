@@ -15,6 +15,8 @@ import {
 import {
   Login,
   Dashboard,
+  Customer,
+  CustomerList,
 } from './components';
 
 // https://reacttraining.com/react-router/web/example/auth-workflow
@@ -27,6 +29,8 @@ const AppRoutes = () => (
         <ComponentsDemoRoute path="/components-demo" />
         <PrivateRoute exact path="/" component={Dashboard} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/customer/:customerId" component={Customer} />
+        <PrivateRoute path="/customer" isExact component={CustomerList} />
         <Route component={NotFound}/>
       </Switch>
     </MuiThemeProvider>
