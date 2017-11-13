@@ -1,0 +1,44 @@
+.ec-main-container {
+  width: 100%;
+  height: 100%;
+  background-color: #e8e8e8;
+  min-height: 100vh;
+  
+  > header {
+    // min-width: 100%;
+    margin: 0 -9999rem;
+    padding: 0 9999rem;
+  }
+  
+  .main-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    min-height: 100vh;
+
+    .column-left {
+      width: 256px;
+      flex: 0 0 256px;
+      
+       > div {
+         height: 100%;
+       }
+    }
+    
+    .column-left-none-width {
+      display: none;
+    }
+    
+    .column-right {
+      width: calc(100% - 256px - 40px);
+      flex: 0 0 calc(100% - 256px - 40px);
+      padding: 20px;
+    }
+    
+    .column-right-full-width {
+      width: calc(100% - 40px);
+      flex: 0 0 calc(100% - 40px);
+      padding: 20px;
+    }
+  }
+}
