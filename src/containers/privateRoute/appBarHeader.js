@@ -31,10 +31,6 @@ class AppBarHeader extends Component {
           title="CMS"
           iconElementRight={<Logged />}
           onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
-          style={{
-            backgroundColor: '#80cbc4',
-            boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12)'
-          }}
         />
       </header>
     );
