@@ -5,14 +5,14 @@ import { reducer as formReducer } from 'redux-form';
 
 // the section import the reducer of components
 import dashboardReducer from '../components/dashboard/reducers';
-import loginReducer from '../components/login/reducers';
+import { reducers as componentsReducers } from '../components';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
   toastr: toastrReducer,
   form: formReducer,
   dashboard: dashboardReducer,
-  loginReducer,
+  ...componentsReducers,
 });
 
 export default rootReducer;

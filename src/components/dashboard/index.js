@@ -9,7 +9,6 @@ import {
   TableHeaderColumn,
   TableRow,
   TableRowColumn,
-  TableFooter,
 } from 'material-ui/Table';
 import { Pagination } from '../../components';
 

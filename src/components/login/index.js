@@ -12,6 +12,8 @@ import {
 import { PATTERN_EMAIL } from '../../constants';
 import * as actions from './actions';
 
+import loginReducer from './reducers';
+
 import './styles.scss';
 
 const validate = values => {
@@ -124,3 +126,7 @@ export default reduxForm({
   mapStateToProps,
   mapDispatchToProps,
 )(withRouter(Login)));
+
+export const reducers = {
+  loginReducer,
+};
