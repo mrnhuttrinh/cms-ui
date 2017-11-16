@@ -1,3 +1,3 @@
 // The constants store the api name
 
-export const LOGIN_API = '/api/authenticate';
+export const LOGIN_API = '/authenticate';
