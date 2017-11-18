@@ -11,4 +11,5 @@ build:
         code: export NODE_ENV='production'
     - npm-install@1.1.4:
       strict-ssl: false
+      use-cache: false
     - npm-test
