@@ -9,9 +9,13 @@ import ReduxToastr from 'react-redux-toastr';
 import './styles';
 import registerServiceWorker from './registerServiceWorker';
 import App from './routes';
+import { refreshLogin } from './components/login/actions'; 
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+
+// always refresh token when user reload page 
+store.dispatch(refreshLogin());
 
 render(
   <Provider store={store}>

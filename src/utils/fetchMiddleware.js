@@ -19,7 +19,7 @@ const fetchMiddleware = store => next => async action => {
   try {
     // dispatch start fetch
     dispatch({ type: `${type}_START` });
-    const data = await fetch(path, params).then((res) => {
+    const data = await fetch(path, params).then(async (res) => {
       // handle common
       if (res.status >= 400) {
         throw new Error('Bad response from server');
