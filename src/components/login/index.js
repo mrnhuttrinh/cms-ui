@@ -68,6 +68,7 @@ class Login extends React.Component{
             <div className="password">
               <Field
                 name="password"
+                type="password"
                 component={TextField}
                 label="Password"
                 fullWidth

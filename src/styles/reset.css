@@ -13,3 +13,11 @@ body {
 .ecash-container > div {
   min-height: 100vh;
 }
+
+.ecash-app-loading {
+  height: 100%;
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding-top: 15%;
+}
