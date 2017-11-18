@@ -1,4 +1,5 @@
-box: alpine:3.6
+box:
+  id: node:alpine
 build:
   steps:
     - script:
@@ -6,7 +7,9 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
-    - npm-install:
+    - script:
+        code: export NODE_ENV='production'
+    - npm-install@1.1.4:
       strict-ssl: false
       use-cache: false
     - npm-test
