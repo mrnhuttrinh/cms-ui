@@ -18,7 +18,7 @@ export default class LeftSideMenu extends React.Component {
         <MenuItem leftIcon={<FontIcon className="material-icons">people</FontIcon>}><Link to="/customer">Khách hàng</Link></MenuItem>
         <MenuItem leftIcon={<FontIcon className="material-icons">store</FontIcon>}>Đại lí</MenuItem>
         <MenuItem leftIcon={<FontIcon className="material-icons">credit_card</FontIcon>}>Hệ thống thẻ</MenuItem>
-        <MenuItem leftIcon={<FontIcon className="material-icons">account_balance_wallet</FontIcon>}>Tài khoản</MenuItem>
+        <MenuItem leftIcon={<FontIcon className="material-icons">account_balance_wallet</FontIcon>}><Link to="/account">Tài khoản</Link></MenuItem>
         <MenuItem leftIcon={<FontIcon className="material-icons">assignment</FontIcon>}>Báo cáo thống kê</MenuItem>
         <MenuItem leftIcon={<FontIcon className="material-icons">settings</FontIcon>}>Cài đặt</MenuItem>
         <MenuItem leftIcon={<FontIcon className="material-icons">exit_to_app</FontIcon>}>Đăng xuất</MenuItem>

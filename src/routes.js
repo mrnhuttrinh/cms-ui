@@ -17,9 +17,9 @@ import {
 import {
   Login,
   Dashboard,
-  Customer,
-  CustomerList,
 } from './components';
+
+import App from './app';
 
 // https://reacttraining.com/react-router/web/example/auth-workflow
 
@@ -36,10 +36,8 @@ const AppRoutes = ({refreshTokenRequesting}) => {
             <Switch>
               <PublicRoute path="/login" component={Login} />
               <ComponentsDemoRoute path="/components-demo" />
-              <PrivateRoute exact path="/" component={Dashboard} />
+              <Route path="/" isExact component={App} />
               <PrivateRoute path="/dashboard" component={Dashboard} />
-              <PrivateRoute path="/customer/:customerId" component={Customer} />
-              <PrivateRoute path="/customer" isExact component={CustomerList} />
               <Route component={NotFound}/>
             </Switch>
           )

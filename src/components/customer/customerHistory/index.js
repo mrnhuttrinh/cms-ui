@@ -64,17 +64,4 @@ class CustomerAccountHistory  extends React.Component  {
   }
 }
 
-const mapStateToProps = (state) => ({
-  accountHistory: state.CustomerHistoryReducer.get('accountHistory'),
-  requesting: state.CustomerHistoryReducer.get('requesting'),
-  error: state.CustomerHistoryReducer.get('error'),
-});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CustomerAccountHistory);
+export default CustomerAccountHistory;

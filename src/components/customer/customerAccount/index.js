@@ -8,13 +8,16 @@ import {
   CardTitle,
   CardText
 } from 'material-ui/Card';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import moment from 'moment';
 
 import * as actions from './actions';
-import { STATUS } from './constants';
+
+const STATUS = {
+  ACTIVE: 'ĐANG HOẠT ĐỘNG',
+  INACTIVE: 'KHÔNG HOẠT ĐỘNG',
+};
+
 
 const style = {
   width: '100%',
@@ -34,7 +37,15 @@ const formatText = (value) => (value || ' ');
 
 class CustomerAccount  extends React.Component  {
   componentWillMount() {
-    this.props.actions.getAccountByCustomerId(this.props.customerId);
+    actions.getAccountByCustomerId(this.props.record.id).then((data) => {
+      this.setState({
+        data,
+      });
+    }).catch((error) => {
+      this.setState({
+        error,
+      });
+    });
   }
   renderCard(account, key) {
     return (<Card key={key}>
@@ -93,8 +104,8 @@ class CustomerAccount  extends React.Component  {
     </Card>)
   }
   render () {
-    if (this.props.data && this.props.data._embedded) {
-      const accountsCard = _.map(this.props.data._embedded.accounts, this.renderCard);
+    if (this.state && this.state.data && this.state.data._embedded) {
+      const accountsCard = _.map(this.state.data._embedded.accounts, this.renderCard);
       return (
         <Paper style={style} zDepth={1} rounded={false}>
           {accountsCard}
@@ -113,17 +124,9 @@ CustomerAccount.defaultProps = {
   ],
 }
 
-const mapStateToProps = (state) => ({
-  data: state.CustomerAccountReducer.get('accounts'),
-  requesting: state.CustomerAccountReducer.get('requesting'),
-  error: state.CustomerAccountReducer.get('error'),
-});
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(CustomerAccount);
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CustomerAccount);
+export default CustomerAccount;

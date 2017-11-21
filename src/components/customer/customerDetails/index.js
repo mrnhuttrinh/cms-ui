@@ -15,7 +15,6 @@ import {
 
 import { GridList } from 'material-ui/GridList';
 
-import * as actions from './actions';
 import { GENDER, STATUS } from './constants';
 
 const style = {
@@ -35,18 +34,17 @@ const formatDate = (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A');
 const formatText = (value) => (value || ' ');
 
 class CustomerDetails  extends React.Component  {
-  componentWillMount() {
-    this.props.actions.getCustomer(this.props.customerId);
-  }
+  render() {
+    if (!this.props.record) {
+      return null;
+    }
+    const  address = _.filter(this.props.record.addresses, (address) =>
+      (address.addressType.typeCode === 'DEFAULT'))[0] || this.props.record.addresses[0] || {};
 
-  renderCard() {
-    const  address = _.filter(this.props.customer.addresses, (address) =>
-      (address.addressType.typeCode === 'DEFAULT'))[0] || this.props.customer.addresses[0] || {};
-
-    const  indetifyCard = _.filter(this.props.customer.identifyDocuments, (identifyDocument) =>
+    const  indetifyCard = _.filter(this.props.record.identifyDocuments, (identifyDocument) =>
       (identifyDocument.identifyDocumentType.typeCode === 'IDENTIFY_CARD'))[0] || {};
 
-    const  passportCard = _.filter(this.props.customer.identifyDocuments, (identifyDocument) =>
+    const  passportCard = _.filter(this.props.record.identifyDocuments, (identifyDocument) =>
         (identifyDocument.identifyDocumentType.typeCode === 'PASSPORT_CARD'))[0] || {};
 
     return (<Card>
@@ -58,48 +56,48 @@ class CustomerDetails  extends React.Component  {
           <Subheader style={titleStyle}>Thông tin cá nhân</Subheader>
           <TextField
             floatingLabelText="Họ"
-            value={formatText(this.props.customer.lastName)}
+            value={formatText(this.props.record.lastName)}
           />
           <TextField
             floatingLabelText="Tên"
-            value={formatText(this.props.customer.firstName)}
+            value={formatText(this.props.record.firstName)}
           /><br/>
           <TextField
             floatingLabelText="Ngày sinh"
-            value={formatDate(this.props.customer.dateOfBirth)}
+            value={formatDate(this.props.record.dateOfBirth)}
           />
           <TextField
             floatingLabelText="Giới tính"
-            value={formatText(GENDER[this.props.customer.gender])}
+            value={formatText(GENDER[this.props.record.gender])}
           />
           <TextField
             floatingLabelText="Quốc tịch"
-            value={formatText(this.props.customer.countryCode)}
+            value={formatText(this.props.record.countryCode)}
           /><br />
           <TextField
             floatingLabelText="Nhóm"
-            value={formatText(this.props.customer.occupation)}
+            value={formatText(this.props.record.occupation)}
           />
           <TextField
             floatingLabelText="Khoa | Phòng ban"
-            value={formatText(this.props.customer.position)}
+            value={formatText(this.props.record.position)}
           />
           <TextField
             floatingLabelText="Chức vụ"
-            value={this.props.customer.title}
+            value={this.props.record.title}
             hintText=" "
           /><br />
           <TextField
             floatingLabelText="Email"
-            value={formatText(this.props.customer.email)}
+            value={formatText(this.props.record.email)}
           /><br />
           <TextField
             floatingLabelText="SDT di động"
-            value={formatText(this.props.customer.phone1)}
+            value={formatText(this.props.record.phone1)}
           />
           <TextField
             floatingLabelText="SDT khac"
-            value={formatText(this.props.customer.phone2)}
+            value={formatText(this.props.record.phone2)}
           />
           <Subheader style={titleStyle}>Địa chỉ thường trú</Subheader>
           <TextField
@@ -153,44 +151,22 @@ class CustomerDetails  extends React.Component  {
           <Subheader style={titleStyle}>Thông tin tài khoản</Subheader>
           <TextField
             floatingLabelText="Trạng thái"
-            value={formatText(STATUS[this.props.customer.status])}
+            value={formatText(STATUS[this.props.record.status])}
           /><br />
           <TextField
             floatingLabelText="Thời gian cập nhật gần nhất"
-            value={formatDate(this.props.customer.updatedAt)}
+            value={formatDate(this.props.record.updatedAt)}
           />
         </CardText>
       </GridList>
     </Card>)
   }
-  render () {
+  render1 () {
     return (
       <Paper style={style} zDepth={1} rounded={false}>
-        {this.props.customer ? this.renderCard() : null}
+        {this.props.record ? this.renderCard() : null}
       </Paper>);
   }
 }
 
-CustomerDetails.defaultProps = {
-  data: [
-    {
-      account: {},
-      card: {}
-    }
-  ],
-}
-
-const mapStateToProps = (state) => ({
-  customer: state.CustomerDetailReducer.get('customer'),
-  requesting: state.CustomerDetailReducer.get('requesting'),
-  error: state.CustomerDetailReducer.get('error'),
-});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CustomerDetails);
+export default CustomerDetails;
