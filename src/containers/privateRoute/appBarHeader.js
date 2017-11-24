@@ -36,7 +36,7 @@ class AppBarHeader extends Component {
   signOut() {
     this.props.actions.signOut().then(() => {
       // redirect if sign out success
-      this.props.history.push('/login');
+      window.location.href = '/login';
     });
   }
   render() {

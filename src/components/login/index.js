@@ -45,66 +45,77 @@ class Login extends React.Component{
     this.props.actions.submitLogin(values.email, values.password);
   }
   render() {
+    const errorTextLoginFailed = 'Sorry, that login was invalid. Please try again.';
     return (
-      <div className="ecash-login">
-        <div className="ecash-login-logo">
-          <div>
-            <img alt="Ecash" src="/assets/images/logo-128x128.png"/>
+      <form onSubmit={this.onClickSignIn}>
+        <div className="ecash-login">
+          <div className="ecash-login-logo">
+            <div>
+              <img alt="Ecash" src="/assets/images/logo-128x128.png"/>
+            </div>
           </div>
-        </div>
-        <div className="ecash-login-form">
-          <div>
-            <p className="title">
-              Sign In To Admin
-            </p>
-            <div className="email">
-              <Field
-                name="email"
-                component={TextField}
-                label="Email"
-                fullWidth
-              />
-            </div>
-            <div className="password">
-              <Field
-                name="password"
-                type="password"
-                component={TextField}
-                label="Password"
-                fullWidth
-              />
-            </div>
-            <div className="remember-me">
-              <div className="pull-left">
-                <Field name="rememberMe" component={Checkbox} label="Remember me" />
+          <div className="ecash-login-form">
+            <div>
+              <p className="title">
+                Sign In To Admin
+              </p>
+              <div className="email">
+                <Field
+                  name="email"
+                  component={TextField}
+                  label="Email"
+                  fullWidth
+                />
               </div>
-              <div className="pull-right">Forgot Password ?</div>
-              <div className="clearfix" />
-            </div>
-            <div className="button-sign-in">
-              {
-                this.props.requesting ? <CircularProgress /> : (
-                  <FlatButton
-                    style={{borderRadius: '25px'}}
-                    labelStyle={{
-                      textTransform: 'none',
-                      color: "#fff",
-                      fontWeight: 'bold'
-                    }}
-                    label={"Sign In"}
-                    icon={this.props.requesting ? <CircularProgress size={20} /> : null}
-                    backgroundColor="#9817F4"
-                    onClick={this.onClickSignIn}
+              <div className="password">
+                <Field
+                  name="password"
+                  type="password"
+                  component={TextField}
+                  label="Password"
+                  fullWidth
+                  errorText={this.props.errorLogin ? errorTextLoginFailed : null}
+                />
+              </div>
+              <div className="remember-me">
+                <div className="pull-left">
+                  <Field
+                    name="rememberMe"
+                    component={Checkbox}
+                    label="Remember me"
                   />
-                )
-              }
+                </div>
+                <div className="pull-right">Forgot Password?</div>
+                <div className="clearfix" />
+              </div>
+              <div className="button-sign-in">
+                {
+                  this.props.requesting ? <CircularProgress /> : (
+                    <FlatButton
+                      type="submit"
+                      fullWidth
+                      style={{
+                        boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12)'
+                      }}
+                      labelStyle={{
+                        textTransform: 'none',
+                        color: "#fff",
+                        fontWeight: 'bold',
+                        fontSize: '14px',
+                        letterSpacing: '0px',
+                      }}
+                      label={"SIGN IN"}
+                      icon={this.props.requesting ? <CircularProgress size={20} /> : null}
+                      backgroundColor="#009688"
+                      onClick={this.onClickSignIn}
+                    />
+                  )
+                }
+              </div>
             </div>
           </div>
         </div>
-        <div className="ecash-login-bottom-control">
-          Don't have an account yet?  <span>Sign Up</span>
-        </div>
-      </div>
+      </form>
     );
   }
 }
@@ -112,7 +123,7 @@ class Login extends React.Component{
 const mapStateToProps = (state) => ({
   requesting: state.loginReducer.get('requesting'),
   data: state.loginReducer.get('data'),
-  error: state.loginReducer.get('error'),
+  errorLogin: state.loginReducer.get('errorLogin'),
   values: getFormValues('loginForm')(state),
 });
 

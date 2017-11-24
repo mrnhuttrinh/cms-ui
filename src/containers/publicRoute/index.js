@@ -28,16 +28,7 @@ class PublicRoute extends React.Component {
             <Component {...props}/>
           </Col>
           <Col xs={12} sm={6} md={6} lg={8} className="ecash-outside-picture">
-            <div className="wrap-content">
-              <div className="content">
-                <div className="large-title">
-                  Join Our Community
-                </div>
-                <div className="long-description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                </div>
-              </div>
-            </div>
+            <div className="wrap-content" />
           </Col>
         </Row>
       </Grid>

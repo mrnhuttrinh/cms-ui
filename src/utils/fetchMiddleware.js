@@ -20,6 +20,11 @@ const fetchMiddleware = store => next => async action => {
     // dispatch start fetch
     dispatch({ type: `${type}_START` });
     const data = await fetch(path, params).then(async (res) => {
+      // authenticate error
+      if (res.status === 403) {
+        // force redirect login
+        window.location.push('/login');
+      }
       // handle common
       if (res.status >= 400) {
         throw new Error('Bad response from server');
