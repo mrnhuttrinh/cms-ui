@@ -41,7 +41,7 @@ class CustomerDetails  extends React.Component  {
 
   renderCard() {
     const  address = _.filter(this.props.customer.addresses, (address) =>
-      (address.addressType.typeCode === 'DEFAULT'))[0] || this.props.customer.addresses[0] || {};
+      (address.addressType.typeCode === 'RESIDENT'))[0] || this.props.customer.addresses[0] || {};
 
     const  indetifyCard = _.filter(this.props.customer.identifyDocuments, (identifyDocument) =>
       (identifyDocument.identifyDocumentType.typeCode === 'IDENTIFY_CARD'))[0] || {};

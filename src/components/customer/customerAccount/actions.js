@@ -3,12 +3,12 @@ import {
 } from '../../../constants';
 
 import {
-  GET_CUSTOMER_HISTORY,
+  GET_CUSTOMER_ACCOUNT,
 } from './constants';
 
 export const getAccountByCustomerId = id => {
   return {
-    type: GET_CUSTOMER_HISTORY,
+    type: GET_CUSTOMER_ACCOUNT,
     fetchConfig: {
       path: ACCOUNT_BY_CUSTOMER_API.replace('{id}', id),
       params: {
