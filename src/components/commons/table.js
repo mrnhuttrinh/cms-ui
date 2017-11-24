@@ -9,6 +9,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import FlatButton from 'material-ui/FlatButton';
 import { Pagination } from '../../components';
 import _ from 'lodash';
 
@@ -28,8 +29,8 @@ class DataTable extends React.Component {
     if (!this.props.sort) {
       return;
     }
-    if (this.props.columns[index.target.id]) {
-      const sortKey = this.props.columns[index.target.id].key;
+    if (this.props.columns[index]) {
+      const sortKey = this.props.columns[index].key;
       let sortType = 'ASC'
       if (this.props.sort.key === sortKey && this.props.sort.type === sortType) {
         sortType = 'DESC';
@@ -41,7 +42,7 @@ class DataTable extends React.Component {
     if (this.props.data) {
       const fromElement = this.props.data.page.number
         * this.props.data.page.size + 1;
-      const toElement = fromElement + this.props.data._embedded.customers.length - 1;
+      const toElement = fromElement + this.props.dataAccesser(this.props.data).length - 1;
       const totalElements = this.props.data.page.totalElements;
       const pageDescrition = (fromElement === toElement) ? `${fromElement} of ${totalElements}` : `${fromElement}-${toElement} of ${totalElements}`;
       return (<div style={{backgroundColor: '#fff', padding: '7px', fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)'}}>
@@ -67,18 +68,29 @@ class DataTable extends React.Component {
     if (this.props.data) {
       const tableColumns = _.map(this.props.columns, (column, index) =>
         (this.props.sort && (this.props.sort.key === column.key)) ?
-            (<TableHeaderColumn
-                key={column.key}
-                id={index}
-              >
-                <span style={{float: 'left', lineHeight: '58px'}}>{column.text}</span>
-                <FontIcon style={{float: 'right', lineHeight: '58px'}} className="material-icons">
-                  {this.props.sort.type==='ASC'?'keyboard_arrow_down':'keyboard_arrow_up'}
-                </FontIcon>
+            (<TableHeaderColumn key={column.key}>
+                <FlatButton
+                  id={index}
+                  label={column.text}
+                  labelPosition="before"
+                  primary={false}
+                  icon={<FontIcon className="material-icons">
+                    {this.props.sort.type==='ASC'?'keyboard_arrow_down':'keyboard_arrow_up'}
+                  </FontIcon>}
+                  onClick={() => {this.handleSortChange(index);}}
+                />
             </TableHeaderColumn>) :
-            <TableHeaderColumn key={column.key} id={index}><span>{column.text}</span></TableHeaderColumn>
+            <TableHeaderColumn key={column.key} id={index}>
+              <FlatButton
+                id={index}
+                label={column.text}
+                labelPosition="before"
+                primary={false}
+                onClick={() => {this.handleSortChange(index);}}
+              />
+            </TableHeaderColumn>
       );
-      const tableRows = _.map(this.props.data._embedded.customers, (customer) => (
+      const tableRows = _.map(this.props.dataAccesser(this.props.data), (customer) => (
         <TableRow>
           {_.map(this.props.columns, (column) => (
             <TableRowColumn>
@@ -89,7 +101,7 @@ class DataTable extends React.Component {
       ));
       return (<Table style={{color: 'rgba(0, 0, 0, 0.87)'}} onCellClick={this.props.handleCellClick} >
         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-          <TableRow onCellClick={this.handleSortChange}>
+          <TableRow>
             {tableColumns}
             <TableHeaderColumn style={{width: '30px'}}></TableHeaderColumn>
           </TableRow>
@@ -117,6 +129,7 @@ DataTable.propsType = {
     type: PropsType.string,
   }),
   getData: PropsType.func.isRequired,
+  dataAccesser: PropsType.func,
   handleCellClick: PropsType.func,
 }
 
@@ -131,6 +144,7 @@ DataTable.defaultProps = {
   hideFirstAndLastPageLinks: true,
   hideEllipsis: false,
   data: null,
+  dataAccesser: (data) => (data._embedded[Object.keys(data._embedded)[0]]),
 };
 
 export default DataTable;
