@@ -1,16 +1,16 @@
 import {
-  CUSTOMER_API,
+  ACCOUNT_API,
 } from '../../../constants';
 
 import {
-  GET_CUSTOMER,
+  GET_ACCOUNT,
 } from './constants';
 
 export const getCustomer = id => {
   return {
-    type: GET_CUSTOMER,
+    type: GET_ACCOUNT,
     fetchConfig: {
-      path: CUSTOMER_API.replace('{id}', id),
+      path: ACCOUNT_API.replace('{id}', id),
       params: {
         method: 'GET'
       },

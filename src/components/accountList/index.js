@@ -5,11 +5,11 @@ import FontIcon from 'material-ui/FontIcon';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import CustomerListReducer from './reducers';
+import AccountListReducer from './reducers';
 import * as actions from './actions';
 import DataTable from '../commons/table';
 
-const CUSTOMER_STATUS = {
+const ACCOUNT_STATUS = {
   ACTIVE: 'ĐANG HOẠT ĐỘNG',
   INACTIVE: 'BỊ KHÓA',
 }
@@ -18,13 +18,9 @@ class CustomerList extends React.Component {
   constructor() {
     super();
     this.handleCellClick = this.handleCellClick.bind(this);
-    this.refreshData = this.refreshData.bind(this);
   }
   handleCellClick(indexRow, column, event) {
-    this.props.history.push(`/customer/${this.props.dataAccesser(this.props.data)[indexRow].id}`);
-  }
-  refreshData() {
-    this.props.actions.getData({size: this.props.size, page: this.props.page }, this.props.sort, this.props.search);
+    this.props.history.push(`/account/${this.props.dataAccesser(this.props.data)[indexRow].id}`);
   }
   render() {
     return (
@@ -40,7 +36,6 @@ class CustomerList extends React.Component {
           }}
           iconElementRight={
             <MenuItem
-              onClick={this.refreshData}
               style={{
                 color: '#009688',
                 letterSpacing: '0px'
@@ -75,51 +70,52 @@ class CustomerList extends React.Component {
 CustomerList.defaultProps = {
   columns: [
     {
-      key: 'firstName',
-      text: 'TÊN',
+      key: 'id',
+      text: 'STK',
       sort: 'ASC',
     }, {
-      key: 'lastName',
-      text: 'HỌ',
+      key: 'accountName',
+      text: 'TÊN KHOẢN',
     }, {
-      key: 'scmsMemberCode',
-      text: 'Mã SV/GV',
+      key: 'accountType.description',
+      text: 'LOẠI',
     }, {
-      key: 'title',
-      text: 'KHOA | PHÒNG BAN',
+      key: 'customer',
+      text: 'KHÁCH HÀNG',
+      formater: (customer) => (`${customer.lastName} ${customer.firstName}`),
     }, {
-      key: 'position',
-      text: 'CHỨC VỤ',
+      key: 'accountType.description',
+      text: 'HẠNG VÍ',
     }, {
-      key: 'dateBecameCustomer',
-      text: 'NGÀY KHỞI TẠO',
+      key: 'dateOpened',
+      text: 'NGÀY MỞ',
       formater: (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A'),
     }, {
       key: 'status',
       text: 'TRẠNG THÁI',
-      formater: (status) => (CUSTOMER_STATUS[status]),
+      formater: (status) => (ACCOUNT_STATUS[status]),
     }
   ],
   sort: {
-    key: 'firstName',
+    key: 'id',
     type: 'ASC',
-  },
-  search: {
-    key: 'firstName',
   },
   data: null,
   size: 10,
   dataAccesser: (data) => (data.content),
   pageAccesser: (data) => (data),
+  search: {
+    key: 'id',
+  },
 }
 
 const mapStateToProps = (state) => ({
-  page: state.CustomerListReducer.get('page'),
-  sort: state.CustomerListReducer.get('sort'),
-  search: state.CustomerListReducer.get('search'),
-  data: state.CustomerListReducer.get('data'),
-  requesting: state.CustomerListReducer.get('requesting'),
-  error: state.CustomerListReducer.get('error'),
+  page: state.AccountListReducer.get('page'),
+  sort: state.AccountListReducer.get('sort'),
+  search: state.AccountListReducer.get('search'),
+  data: state.AccountListReducer.get('data'),
+  requesting: state.AccountListReducer.get('requesting'),
+  error: state.AccountListReducer.get('error'),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -132,5 +128,5 @@ export default connect(
 )(CustomerList);
 
 export const reducers = {
-  CustomerListReducer,
+  AccountListReducer,
 }

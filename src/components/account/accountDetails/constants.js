@@ -1,5 +1,4 @@
-export const GET_CUSTOMER = 'account/GET_CUSTOMER';
-export const GET_ACCOUNTS_BY_CUSTOMER = 'account/GET_ACCOUNTS_BY_CUSTOMER';
+export const GET_ACCOUNT = 'account/GET_ACCOUNT';
 export const GENDER = {
   1: 'Nam',
   2: 'Nữ',

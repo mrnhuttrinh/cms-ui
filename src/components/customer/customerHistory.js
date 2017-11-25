@@ -1,7 +1,4 @@
 import React from 'react';
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import moment from 'moment';
 import 'moment/locale/vi';
@@ -15,7 +12,6 @@ import {
   CardText
 } from 'material-ui/Card';
 
-import * as actions from './actions';
 import { propertyName } from './constants';
 
 const style = {
@@ -85,9 +81,6 @@ const getDelectedInformation = (details) => {
 }
 
 class CustomerAccountHistory  extends React.Component  {
-  componentWillMount() {
-    this.props.actions.getAccountHistoryByCustomerId(this.props.customerId);
-  }
   renderCard(r, key) {
     const Icon = historyType[r.type.type].icon;
     const Title = historyType[r.type.type].title;
@@ -111,10 +104,10 @@ class CustomerAccountHistory  extends React.Component  {
     </Card>)
   }
   render () {
-    if (!this.props.data) {
+    if (!this.props.customer) {
       return null;
     }
-    const customerHistories = _.sortBy(this.props.data._embedded.customerHistories, (e) => (new Date(e.createdAt))).reverse();
+    const customerHistories = _.sortBy(this.props.customer.customerHistory, (e) => (new Date(e.createdAt))).reverse();
     const timeLine = {};
     _.forEach(customerHistories, (e) => {
       const key = moment(e.createdAt).locale('vi').fromNow();
@@ -127,22 +120,9 @@ class CustomerAccountHistory  extends React.Component  {
     });
     return (
       <Paper style={style} zDepth={1} rounded={false} >
-        {historyDetail}
+        {historyDetail.length ? historyDetail : 'Không có thông tin lịch sử khách hàng!'}
     </Paper>);
   }
 }
 
-const mapStateToProps = (state) => ({
-  data: state.CustomerHistoryReducer.get('accountHistory'),
-  requesting: state.CustomerHistoryReducer.get('requesting'),
-  error: state.CustomerHistoryReducer.get('error'),
-});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CustomerAccountHistory);
+export default CustomerAccountHistory;
