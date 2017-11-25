@@ -1,0 +1,2 @@
+export const GET_CUSTOMER_LIST = 'managePrivilege/GET_CUSTOMER_LIST';
+export const UPDATE_PAGE_SORT_CUSTOMER_LIST = 'managePrivilege/UPDATE_PAGE_SORT_CUSTOMER_LIST';

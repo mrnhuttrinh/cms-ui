@@ -1,4 +1,4 @@
-import PrivateRoute from './privateRoute';
+import PrivateRoute, { reducers as privateRouteReducers } from './privateRoute';
 import PublicRoute from './publicRoute';
 import ComponentsDemoRoute from './components-demo';
 import NotFound from './notFound';
@@ -9,3 +9,7 @@ export {
   PublicRoute,
   NotFound
 };
+
+export const reducers = {
+  ...privateRouteReducers,
+}

@@ -6,6 +6,7 @@ import { reducer as formReducer } from 'redux-form';
 // the section import the reducer of components
 import dashboardReducer from '../components/dashboard/reducers';
 import { reducers as componentsReducers } from '../components';
+import { reducers as containerReducers } from '../containers';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   form: formReducer,
   dashboard: dashboardReducer,
   ...componentsReducers,
+  ...containerReducers,
 });
 
 export default rootReducer;

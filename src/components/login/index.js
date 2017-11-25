@@ -51,7 +51,7 @@ class Login extends React.Component{
         <div className="ecash-login">
           <div className="ecash-login-logo">
             <div>
-              <img alt="Ecash" src="/assets/images/logo-128x128.png"/>
+              <img alt="Ecash" src="/assets/images/swt_logo.png"/>
             </div>
           </div>
           <div className="ecash-login-form">

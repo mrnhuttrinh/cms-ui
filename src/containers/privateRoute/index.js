@@ -4,33 +4,23 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 import AppBarHeader from './appBarHeader';
 import LeftSideMenu from './leftSideMenu';
 
+import privateRouteReducers from './reducers';
+
 import "./index.scss"; 
 
 class PrivateRoute extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      openLeftSideMenu: false
-    };
-    this.handleToggleLeftSideMenu = this.handleToggleLeftSideMenu.bind(this);
-  }
-  handleToggleLeftSideMenu() {
-    this.setState({
-      openLeftSideMenu: !this.state.openLeftSideMenu
-    });
-  }
   render() {
-    const { component: Component, ...rest } = this.props;
+    const { component: Component, leftMenuState, ...rest } = this.props;
     if (this.props.data && this.props.data.credential) {
-      const leftSidebarClassName = this.state.openLeftSideMenu ? 'column-left' : 'column-left-none-width';
-      const rightContentClassName = this.state.openLeftSideMenu ? 'column-right' : 'column-right-full-width';
+      const leftSidebarClassName = leftMenuState ? 'column-left' : 'column-left-none-width';
+      const rightContentClassName = leftMenuState ? 'column-right' : 'column-right-full-width';
       return (
         <Route {...rest} render={props => (
           <div className="ec-main-container">
-            <AppBarHeader onLeftIconButtonTouchTap={this.handleToggleLeftSideMenu} />
+            <AppBarHeader />
             <div className="main-body">
               <div className={leftSidebarClassName}>
-                <LeftSideMenu openLeftSideMenu={this.state.openLeftSideMenu} />
+                <LeftSideMenu />
               </div> 
               <div className={rightContentClassName}>
                 <Component {...props}/> 
@@ -55,6 +45,7 @@ class PrivateRoute extends React.Component{
 
 const mapStateToProps = (state) => ({
   data: state.loginReducer.get('data'),
+  leftMenuState: state.privateRouteReducers.get('leftMenuState'),
 });
 
 export default withRouter(connect(
@@ -62,3 +53,8 @@ export default withRouter(connect(
     pure: false,
   }
 )(PrivateRoute));
+
+
+export const reducers = {
+  privateRouteReducers
+};

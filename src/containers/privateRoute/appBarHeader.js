@@ -6,9 +6,11 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
+import { Link } from 'react-router-dom';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
-import * as actions from '../../components/login/actions';
+import * as actionsLogin from '../../components/login/actions';
+import * as actions from './actions';
 
 const Logged = (props) => (
   <IconMenu
@@ -43,9 +45,16 @@ class AppBarHeader extends Component {
     return (
       <header>
         <AppBar
-          title="CMS"
+          style={{
+            fontSize: '20px',
+            fontWeight: 500,
+            color: '#ffffff',
+            backgroundColor: '#80cbc4',
+            boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12)'
+          }}
+          title={<Link style={{textDecoration: 'none', color: '#fff'}} to="/">CMS</Link>}
           iconElementRight={<Logged signOut={this.signOut} />}
-          onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
+          onLeftIconButtonTouchTap={this.props.actions.toggleLeftMenu}
         />
       </header>
     );
@@ -55,7 +64,7 @@ class AppBarHeader extends Component {
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(Object.assign({}, actions), dispatch)
+  actions: bindActionCreators(Object.assign({}, actions, actionsLogin), dispatch)
 });
 
 export default connect(

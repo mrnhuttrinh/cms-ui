@@ -36,10 +36,11 @@ const AppRoutes = ({refreshTokenRequesting}) => {
             <Switch>
               <PublicRoute path="/login" component={Login} />
               <ComponentsDemoRoute path="/components-demo" />
-              <PrivateRoute exact path="/" component={Dashboard} />
-              <PrivateRoute path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/" component={CustomerList} />
+              <PrivateRoute path="/dashboard" component={CustomerList} />
               <PrivateRoute path="/customer/:customerId" component={Customer} />
               <PrivateRoute path="/customer" isExact component={CustomerList} />
+              <PrivateRoute path="/permission" isExact component={CustomerList} />
               <Route component={NotFound}/>
             </Switch>
           )
