@@ -1,16 +1,16 @@
 import {
-  ACCOUNT_HISTORY_BY_CUSTOMER_API,
+  CUSTOMER_HISTORY_API,
 } from '../../../constants';
 
 import {
-  GET_ACCOUNT_HISTORY_BY_CUSTOMER,
+  GET_CUSTOMER_HISTORY,
 } from './constants';
 
 export const getAccountHistoryByCustomerId = id => {
   return {
-    type: GET_ACCOUNT_HISTORY_BY_CUSTOMER,
+    type: GET_CUSTOMER_HISTORY,
     fetchConfig: {
-      path: ACCOUNT_HISTORY_BY_CUSTOMER_API.replace('{id}', id),
+      path: CUSTOMER_HISTORY_API.replace('{id}', id),
       params: {
         method: 'GET'
       },
