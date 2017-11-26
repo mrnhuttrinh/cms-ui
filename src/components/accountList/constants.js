@@ -1,0 +1,2 @@
+export const GET_ACCOUNT_LIST = 'account/GET_ACCOUNT_LIST';
+export const UPDATE_PAGE_SORT_ACCOUNT_LIST = 'account/UPDATE_PAGE_SORT_ACCOUNT_LIST';

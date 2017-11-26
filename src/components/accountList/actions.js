@@ -1,16 +1,16 @@
 import URLSearchParams from 'url-search-params';
 import {
-  CUSTOMER_LIST_API,
+  ACCOUNT_LIST_API,
 } from '../../constants';
 
 import {
-  GET_CUSTOMER_LIST,
-  UPDATE_PAGE_SORT_CUSTOMER_LIST,
+  GET_ACCOUNT_LIST,
+  UPDATE_PAGE_SORT_ACCOUNT_LIST,
 } from './constants';
 
-const updatePageSortSearch = (pageable, sort, search) => {
+const updatePageAndSort = (pageable, sort, search) => {
   return {
-    type: UPDATE_PAGE_SORT_CUSTOMER_LIST,
+    type: UPDATE_PAGE_SORT_ACCOUNT_LIST,
     pageable,
     sort,
     search,
@@ -19,16 +19,16 @@ const updatePageSortSearch = (pageable, sort, search) => {
 
 export const getCustomer = (pageable, sort, search) =>
   (dispatch) => {
-    dispatch(updatePageSortSearch(pageable, sort, search));
+    dispatch(updatePageAndSort(pageable, sort));
     const params = {...pageable, sort:`${sort.key},${sort.type}`};
     if(search.value) {
       params[search.key] = search.value;
     }
     const searchParams = new URLSearchParams(params);
     dispatch({
-      type: GET_CUSTOMER_LIST,
+      type: GET_ACCOUNT_LIST,
       fetchConfig: {
-        path: `${CUSTOMER_LIST_API}&${searchParams.toString()}`,
+        path: `${ACCOUNT_LIST_API}?${searchParams.toString()}`,
         params: {
           method: 'GET'
         },

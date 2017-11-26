@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import moment from 'moment';
 
@@ -15,7 +13,6 @@ import {
 
 import { GridList } from 'material-ui/GridList';
 
-import * as actions from './actions';
 import { GENDER, STATUS } from './constants';
 
 const style = {
@@ -35,9 +32,6 @@ const formatDate = (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A');
 const formatText = (value) => (value || ' ');
 
 class CustomerDetails  extends React.Component  {
-  componentWillMount() {
-    this.props.actions.getCustomer(this.props.customerId);
-  }
 
   renderCard() {
     const  address = _.filter(this.props.customer.addresses, (address) =>
@@ -172,25 +166,8 @@ class CustomerDetails  extends React.Component  {
 }
 
 CustomerDetails.defaultProps = {
-  data: [
-    {
-      account: {},
-      card: {}
-    }
-  ],
+  customer: null,
 }
 
-const mapStateToProps = (state) => ({
-  customer: state.CustomerDetailReducer.get('customer'),
-  requesting: state.CustomerDetailReducer.get('requesting'),
-  error: state.CustomerDetailReducer.get('error'),
-});
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CustomerDetails);
+export default CustomerDetails;

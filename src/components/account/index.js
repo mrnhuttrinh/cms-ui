@@ -7,17 +7,12 @@ import {
   Tabs,
   Tab,
 } from 'material-ui/Tabs';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import * as actions from './actions';
-import CustomerDetails from './customerDetails';
-import CustomerAccount from './customerAccount';
-import CustomerHistory from './customerHistory';
+import CustomerDetails from './accountDetails';
 
 
-import CustomerDetailReducer from './reducers';
-import CustomerAccountReducer from './customerAccount/reducers';
+import AccountDetailReducer from './accountDetails/reducers';
+
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)'
@@ -26,11 +21,9 @@ const indicatorStyle = {
   backgroundColor: '#009688'
 }
 
-class Customer extends React.Component {
-  componentWillMount() {
-    this.props.actions.getCustomer(this.props.match.params.customerId);
-  }
+class Dashboard extends React.Component {
   render() {
+    const accountId = this.props.match.params.accountId;
     return (
       <div>
         <AppBar
@@ -61,13 +54,16 @@ class Customer extends React.Component {
         />
         <Tabs style={tabStyle} inkBarStyle={indicatorStyle}>
           <Tab style={tabStyle} label="THÔNG TIN CHUNG" >
-            <CustomerDetails customer={this.props.customer} />
+            <CustomerDetails accountId={accountId} />
           </Tab>
-          <Tab style={tabStyle} label="TÀI KHOẢN VÍ ĐIỆN TỬ" >
-            <CustomerAccount customerId={this.props.match.params.customerId} />
+          <Tab style={tabStyle} label="THẺ" >
+
           </Tab>
           <Tab style={tabStyle} label="LỊCH SỬ" >
-            <CustomerHistory customer={this.props.customer} />
+
+          </Tab>
+          <Tab style={tabStyle} label="GIAO DỊCH" >
+
           </Tab>
         </Tabs>
       </div>
@@ -75,24 +71,8 @@ class Customer extends React.Component {
   }
 }
 
-
-const mapStateToProps = (state) => ({
-  customer: state.CustomerDetailReducer.get('customer'),
-  requesting: state.CustomerDetailReducer.get('requesting'),
-  error: state.CustomerDetailReducer.get('error'),
-});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Customer);
-
+export default Dashboard;
 
 export const reducers = {
-  CustomerDetailReducer,
-  CustomerAccountReducer,
+  AccountDetailReducer,
 };

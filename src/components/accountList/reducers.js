@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import {
-  GET_CUSTOMER_LIST,
-  UPDATE_PAGE_SORT_CUSTOMER_LIST,
+  GET_ACCOUNT_LIST,
+  UPDATE_PAGE_SORT_ACCOUNT_LIST,
 } from './constants';
 
 const initialState = new Map({});
@@ -9,16 +9,16 @@ const initialState = new Map({});
 export default (state = initialState, action = {}) => {
   let newState;
   switch (action.type) {
-    case UPDATE_PAGE_SORT_CUSTOMER_LIST:
+    case UPDATE_PAGE_SORT_ACCOUNT_LIST:
       newState = state.set('page', action.pageable.page).set('sort',action.sort).set('search',action.search);
       break;
-    case `${GET_CUSTOMER_LIST}_START`:
+    case `${GET_ACCOUNT_LIST}_START`:
       newState = state.set('requesting', true).delete('error');
       break;
-    case `${GET_CUSTOMER_LIST}_COMPLETED`:
+    case `${GET_ACCOUNT_LIST}_COMPLETED`:
       newState = state.set('requesting', false).set('data', action.data);
       break;
-    case `${GET_CUSTOMER_LIST}_FAILED`:
+    case `${GET_ACCOUNT_LIST}_FAILED`:
       newState = state.set('requesting', false).delete('data').set('error', action.error);
       break;
     default:

@@ -35,6 +35,7 @@ const UI_ROUTES_LEFT_SIDE_MENU = {
     value: 'account',
     text: 'Tài khoản',
     icon: 'account_balance_wallet',
+    url: '/account',
   },
   REPORT: {
     value: 'report',

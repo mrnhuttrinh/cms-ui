@@ -5,6 +5,8 @@ import Customer, { reducers as CustomerReducers } from './customer';
 import CustomerList, { reducers as CustomerListReducers } from './customerList';
 import ManagePrivilegeList, {reducers as ManagePrivilegeListReducer } from './managePrivilege';
 import PrivilegeDetail from './privilegeDetail';
+import Account, { reducers as AccountReducers } from './account';
+import AccountList, { reducers as AccountListReducers } from './accountList';
 
 // export view
 export {
@@ -15,6 +17,8 @@ export {
   CustomerList,
   ManagePrivilegeList,
   PrivilegeDetail,
+  AccountList,
+  Account,
 };
 
 export const reducers = {
@@ -22,6 +26,8 @@ export const reducers = {
   ...CustomerReducers,
   ...CustomerListReducers,
   ...ManagePrivilegeListReducer,
+  ...AccountListReducers,
+  ...AccountReducers,
 }
 
 // export commons control
