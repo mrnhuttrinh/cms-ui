@@ -41,8 +41,16 @@ class Login extends React.Component{
     this.onClickSignIn = this.onClickSignIn.bind(this);
   }
   onClickSignIn() {
-    const values = this.props.values || {};
-    this.props.actions.submitLogin(values.email, values.password);
+    const {
+      values = {},
+      location: {
+        state = {}
+      },
+      history,
+    } = this.props;
+    this.props.actions.submitLogin(values.email, values.password).then(() => {
+      history.push(state.from);
+    });
   }
   render() {
     const errorTextLoginFailed = 'Sorry, that login was invalid. Please try again.';

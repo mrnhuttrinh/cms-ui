@@ -2,17 +2,17 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import CustomerListReducer from './reducers';
+import TextField from 'material-ui/TextField';
+import ManagePrivilegeListReducer from './reducers';
 import * as actions from './actions';
 import DataTable from '../commons/table';
 
-const CUSTOMER_STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'BỊ KHÓA',
-}
+import {
+  ENUM_USER_STATUS,
+  ENUM_ROLE_TYPE
+} from '../../constants';
 
 class ManagePrivilegeList extends React.Component {
   constructor() {
@@ -20,15 +20,15 @@ class ManagePrivilegeList extends React.Component {
     this.handleCellClick = this.handleCellClick.bind(this);
   }
   handleCellClick(indexRow, column, event) {
-    this.props.history.push(`/customer/${this.props.data._embedded.customers[indexRow].id}`);
+    this.props.history.push(`/permission/${this.props.data._embedded.users[indexRow].id}`);
   }
   render() {
     return (
-      <div>
+      <div style={{background: '#fff'}}>
         <AppBar
           title={<span style={{
               color: 'rgba(0, 0, 0, 0.4)',
-            }}>Danh sách khách hàng</span>}
+            }}>Danh sách người dùng</span>}
           iconStyleLeft={{display: 'none'}}
           style={{
             backgroundColor: '#e8e8e8',
@@ -51,6 +51,15 @@ class ManagePrivilegeList extends React.Component {
             </MenuItem>
           }
         />
+        <div style={{ padding: '20px 20px 20px 0px'}}>
+          <TextField
+            style={{float: 'right'}}
+            hintText="Search"
+            floatingLabelText="Search"
+            floatingLabelFixed={true}
+          />
+          <div style={{clear: 'both'}} />
+        </div>
         <DataTable
           columns={this.props.columns}
           sort={this.props.sort}
@@ -74,22 +83,25 @@ ManagePrivilegeList.defaultProps = {
       key: 'lastName',
       text: 'HỌ',
     }, {
-      key: 'scmsMemberCode',
-      text: 'Mã SV/GV',
+      key: 'roles',
+      text: 'NHÓM',
+      formater: (roles) => {
+        const firstRole = roles[0] || {};
+        return ENUM_ROLE_TYPE[firstRole.name];
+      },
     }, {
-      key: 'title',
-      text: 'KHOA | PHÒNG BAN',
+      key: 'email',
+      text: 'EMAIL',
     }, {
-      key: 'position',
-      text: 'CHỨC VỤ',
+      key: 'username',
+      text: 'TÊN ĐĂNG NHẬP',
     }, {
-      key: 'dateBecameCustomer',
-      text: 'NGÀY KHỞI TẠO',
-      formater: (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A'),
-    }, {
-      key: 'status',
+      key: 'enabled',
       text: 'TRẠNG THÁI',
-      formater: (status) => (CUSTOMER_STATUS[status]),
+      formater: (enabled) => {
+        const status = enabled ? 'ACTIVE' : 'INACTIVE';
+        return ENUM_USER_STATUS[status];
+      },
     }
   ],
   sort: {
@@ -101,11 +113,11 @@ ManagePrivilegeList.defaultProps = {
 }
 
 const mapStateToProps = (state) => ({
-  page: state.CustomerListReducer.get('page'),
-  sort: state.CustomerListReducer.get('sort'),
-  data: state.CustomerListReducer.get('data'),
-  requesting: state.CustomerListReducer.get('requesting'),
-  error: state.CustomerListReducer.get('error'),
+  page: state.ManagePrivilegeListReducer.get('page'),
+  sort: state.ManagePrivilegeListReducer.get('sort'),
+  data: state.ManagePrivilegeListReducer.get('data'),
+  requesting: state.ManagePrivilegeListReducer.get('requesting'),
+  error: state.ManagePrivilegeListReducer.get('error'),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -118,5 +130,5 @@ export default connect(
 )(ManagePrivilegeList);
 
 export const reducers = {
-  CustomerListReducer,
+  ManagePrivilegeListReducer,
 }

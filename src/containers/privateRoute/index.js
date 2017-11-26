@@ -20,7 +20,7 @@ class PrivateRoute extends React.Component{
             <AppBarHeader />
             <div className="main-body">
               <div className={leftSidebarClassName}>
-                <LeftSideMenu />
+                <LeftSideMenu location={props.location} />
               </div> 
               <div className={rightContentClassName}>
                 <Component {...props}/> 
@@ -30,9 +30,13 @@ class PrivateRoute extends React.Component{
         )} />
       );
     }
+    const {
+      path = '/',
+    } = this.props;
     return (
       <Route {...rest} render={props => (
         <Redirect
+          from={path}
           to={{
             pathname: '/login',
             state: { from: this.props.location }

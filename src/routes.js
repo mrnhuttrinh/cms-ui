@@ -16,9 +16,10 @@ import {
 
 import {
   Login,
-  Dashboard,
   Customer,
   CustomerList,
+  ManagePrivilegeList,
+  PrivilegeDetail,
 } from './components';
 
 // https://reacttraining.com/react-router/web/example/auth-workflow
@@ -40,7 +41,8 @@ const AppRoutes = ({refreshTokenRequesting}) => {
               <PrivateRoute path="/dashboard" component={CustomerList} />
               <PrivateRoute path="/customer/:customerId" component={Customer} />
               <PrivateRoute path="/customer" isExact component={CustomerList} />
-              <PrivateRoute path="/permission" isExact component={CustomerList} />
+              <PrivateRoute path="/permission/:accountId" component={PrivilegeDetail} />
+              <PrivateRoute path="/permission" isExact component={ManagePrivilegeList} />
               <Route component={NotFound}/>
             </Switch>
           )

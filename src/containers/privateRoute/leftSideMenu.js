@@ -2,10 +2,16 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { bindActionCreators } from 'redux';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
-import { Link } from 'react-router-dom';
+import _ from 'lodash';
+
+import * as actionsLogin from '../../components/login/actions';
+import * as actions from './actions';
+
+import { UI_ROUTES_LEFT_SIDE_MENU } from '../../constants';
 
 let SelectableList = makeSelectable(List);
 
@@ -16,23 +22,17 @@ function wrapState(ComposedComponent) {
       defaultValue: PropTypes.number.isRequired,
     };
 
-    componentWillMount() {
-      this.setState({
-        selectedIndex: this.props.defaultValue,
-      });
-    }
-
     handleRequestChange = (event, index) => {
-      this.setState({
-        selectedIndex: index,
-      });
+      if (this.props.onClick) {
+        this.props.onClick(index);
+      }
     };
 
     render() {
       return (
         <ComposedComponent
           style={{padding: 0}}
-          value={this.state.selectedIndex}
+          value={this.props.defaultValue}
           onChange={this.handleRequestChange}
         >
           {this.props.children}
@@ -45,18 +45,72 @@ function wrapState(ComposedComponent) {
 SelectableList = wrapState(SelectableList);
 
 class LeftSideMenu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedMenu: this.selectMenuClassName(props),
+    };
+    this.signOut = this.signOut.bind(this);
+    this.onChangeMenu = this.onChangeMenu.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      selectedMenu: this.selectMenuClassName(nextProps),
+    });
+  }
   
-  selectMenuClassName(path = '') {
-    const { location: {
+  onChangeMenu(path) {
+    this.setState({
+      selectedMenu: this.selectMenuClassName(this.props),
+    });
+  }
+  
+  onClickMenu(path) {
+    this.props.history.push(path);
+  }
+
+  signOut() {
+    this.props.actions.signOut().then(() => {
+      // redirect if sign out success
+      window.location.href = '/login';
+    });
+  }
+  
+  selectMenuClassName(props) {
+    const {
+      location: {
         pathname = '',
-      }
-    } = this.props;
-    if (path === pathname) {
-      return {
-        background: 'green'
-      };
+      },
+    } = props;
+    const chooseMenu = _.find(UI_ROUTES_LEFT_SIDE_MENU, routeUI => {
+      return pathname.indexOf(routeUI.value) === 1;
+    });
+    if (chooseMenu) {
+      return chooseMenu.value;
     }
-    return {};
+    return UI_ROUTES_LEFT_SIDE_MENU.DASHBOARD.value;
+  }
+
+  generateMenu(routeUI) {
+    if (routeUI.value === UI_ROUTES_LEFT_SIDE_MENU.LOGOUT.value) {
+     return (
+        <ListItem
+          value={routeUI.value}
+          primaryText={routeUI.text}
+          onClick={this.signOut}
+          leftIcon={<FontIcon className="material-icons">{routeUI.icon}</FontIcon>}
+        />
+      );
+    }
+    return (
+      <ListItem
+        value={routeUI.value}
+        primaryText={routeUI.text}
+        onClick={() => this.onClickMenu(routeUI.url || '')}
+        leftIcon={<FontIcon className="material-icons">{routeUI.icon}</FontIcon>}
+      />
+    );
   }
 
   render() {
@@ -66,47 +120,12 @@ class LeftSideMenu extends React.Component {
         containerStyle={{ position: 'relative', height: '100%' }}
         open={this.props.leftMenuState}
       >
-        <SelectableList defaultValue={3}>
-          <ListItem
-            value={1}
-            primaryText="Bảng điều khiển"
-            leftIcon={<FontIcon className="material-icons">dashboard</FontIcon>}
-          />
-          <ListItem
-            value={2}
-            primaryText={<Link to="/customer">Khách hàng</Link>}
-            leftIcon={<FontIcon className="material-icons">people</FontIcon>}
-          />
-          <ListItem
-            value={3}
-            primaryText="Đại lí"
-            leftIcon={<FontIcon className="material-icons">store</FontIcon>}
-          />
-          <ListItem
-            value={4}
-            primaryText="Hệ thống thẻ"
-            leftIcon={<FontIcon className="material-icons">credit_card</FontIcon>}
-          />
-          <ListItem
-            value={5}
-            primaryText="Tài khoản"
-            leftIcon={<FontIcon className="material-icons">account_balance_wallet</FontIcon>}
-          />
-          <ListItem
-            value={6}
-            primaryText="Báo cáo thống kê"
-            leftIcon={<FontIcon className="material-icons">assignment</FontIcon>}
-          />
-          <ListItem
-            value={7}
-            primaryText="Cài đặt"
-            leftIcon={<FontIcon className="material-icons">settings</FontIcon>}
-          />
-          <ListItem
-            value={8}
-            primaryText="Đăng xuất"
-            leftIcon={<FontIcon className="material-icons">exit_to_app</FontIcon>}
-          />
+        <SelectableList defaultValue={this.state.selectedMenu} onClick={this.onChangeMenu}>
+          {
+            _.map(UI_ROUTES_LEFT_SIDE_MENU, routeUI => {
+              return this.generateMenu(routeUI);
+            })
+          }
         </SelectableList>
       </Drawer>
     );
@@ -116,7 +135,9 @@ const mapStateToProps = (state) => ({
   leftMenuState: state.privateRouteReducers.get('leftMenuState'),
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(Object.assign({}, actions, actionsLogin), dispatch)
+});
 
 export default connect(
   mapStateToProps,
