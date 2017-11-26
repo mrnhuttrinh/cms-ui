@@ -2,6 +2,7 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
+import FlatButton from 'material-ui/FlatButton';
 import {
   Table,
   TableBody,
@@ -10,6 +11,8 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import TextField from 'material-ui/TextField';
+import ContentSort from 'material-ui/svg-icons/content/sort';
 import { Pagination } from '../../components';
 
 class Dashboard extends React.Component {
@@ -31,7 +34,7 @@ class Dashboard extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div style={{backgroundColor: 'white'}}>
         <AppBar
           title={<span style={{
               color: 'rgba(0, 0, 0, 0.4)',
@@ -58,6 +61,13 @@ class Dashboard extends React.Component {
             </MenuItem>
           }
         />
+        <div style={{width: '100%', textAlign: 'right'}}>
+          <TextField
+            style={{margin: '16px 18px 16px 0px'}}
+            hintText="Search"
+            floatingLabelText="Search"
+          />
+        </div>
         <Table style={{color: 'rgba(0, 0, 0, 0.87)'}}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
@@ -65,7 +75,22 @@ class Dashboard extends React.Component {
                 <span style={{float: 'left', lineHeight: '58px'}}>TÊN</span>
                 <FontIcon style={{float: 'right', lineHeight: '58px'}} className="material-icons">keyboard_arrow_up</FontIcon>
               </TableHeaderColumn>
-              <TableHeaderColumn>HỌ</TableHeaderColumn>
+              <TableHeaderColumn>
+                <FlatButton
+                  onClick={() => alert("asdfasdf")} labelPosition="before" label="HỌ"
+                  icon={
+
+                            <ContentSort
+                                style={
+
+                                        { transform: 'rotate(180deg)' }
+
+                                }
+                            />
+
+                    }
+                />
+              </TableHeaderColumn>
               <TableHeaderColumn>NHÓM</TableHeaderColumn>
               <TableHeaderColumn>KHOA | PHÒNG BAN</TableHeaderColumn>
               <TableHeaderColumn>CHỨC VỤ</TableHeaderColumn>

@@ -5,6 +5,7 @@ import TextField from './textField';
 import Address from './address/';
 import IdentifyDocument from './identify-document/';
 import Pagination from './pagination';
+import DataTables from './dataTables';
 
 export {
   Checkbox,
@@ -14,4 +15,5 @@ export {
   Address,
   IdentifyDocument,
   Pagination,
+  DataTables,
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import { About } from '../../components';
 
 import "./index.css";
 
