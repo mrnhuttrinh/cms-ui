@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AccountListReducer from './reducers';
 import * as actions from './actions';
-import DataTable from '../commons/table';
+import DataTable, { dataAccesser, TYPE } from '../commons/table';
 
 const ACCOUNT_STATUS = {
   ACTIVE: 'ĐANG HOẠT ĐỘNG',
@@ -20,7 +20,7 @@ class CustomerList extends React.Component {
     this.handleCellClick = this.handleCellClick.bind(this);
   }
   handleCellClick(indexRow, column, event) {
-    this.props.history.push(`/account/${this.props.dataAccesser(this.props.data)[indexRow].id}`);
+    this.props.history.push(`/account/${dataAccesser(this.props.data)[indexRow].id}`);
   }
   render() {
     return (
@@ -82,18 +82,19 @@ CustomerList.defaultProps = {
     }, {
       key: 'customer',
       text: 'KHÁCH HÀNG',
-      formater: (customer) => (`${customer.lastName} ${customer.firstName}`),
+      formater: (customer) => (customer ? `${customer.lastName} ${customer.firstName}` : ''),
     }, {
       key: 'accountType.description',
       text: 'HẠNG VÍ',
     }, {
       key: 'dateOpened',
       text: 'NGÀY MỞ',
-      formater: (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A'),
+      type: TYPE.date,
     }, {
       key: 'status',
       text: 'TRẠNG THÁI',
-      formater: (status) => (ACCOUNT_STATUS[status]),
+      type: TYPE.option,
+      options: ACCOUNT_STATUS,
     }
   ],
   sort: {
@@ -102,11 +103,11 @@ CustomerList.defaultProps = {
   },
   data: null,
   size: 10,
-  dataAccesser: (data) => (data.content),
-  pageAccesser: (data) => (data),
   search: {
     key: 'id',
   },
+  dataAccesser: (data) => (data.content),
+  pageAccesser: (data) => (data),
 }
 
 const mapStateToProps = (state) => ({

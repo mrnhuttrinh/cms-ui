@@ -10,9 +10,24 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
+import _ from 'lodash';
+import moment from 'moment';
 import { Pagination } from '../../components';
 import SearchField from './search';
-import _ from 'lodash';
+
+
+export const dataAccesser = (data) => (data._embedded[Object.keys(data._embedded)[0]]);
+export const pageAccesser = (data) => (data.page);
+
+export const TYPE = {
+  date: 'date',
+  option: 'option',
+}
+
+export const formaters = {
+  date: (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A'),
+  option: (key, options) => (options[key]),
+};
 
 class DataTable extends React.Component {
   constructor() {
@@ -99,7 +114,7 @@ class DataTable extends React.Component {
       <TableRow>
         {_.map(this.props.columns, (column) => (
           <TableRowColumn>
-            {column.formater ? column.formater (_.get(customer, column.key)) : _.get(customer, column.key)}
+            {column.formater ? column.formater(_.get(customer, column.key)) : formaters[column.type] ? formaters[column.type](_.get(customer, column.key), column.options) : _.get(customer, column.key)}
           </TableRowColumn>))}
         <TableRowColumn style={{width: '30px'}}><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
       </TableRow>
@@ -162,8 +177,8 @@ DataTable.defaultProps = {
   hideFirstAndLastPageLinks: true,
   hideEllipsis: false,
   data: null,
-  dataAccesser: (data) => (data._embedded[Object.keys(data._embedded)[0]]),
-  pageAccesser: (data) => (data.page),
+  dataAccesser,
+  pageAccesser,
 };
 
 export default DataTable;

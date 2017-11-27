@@ -29,7 +29,6 @@ const titleStyle = {
 }
 
 const formatDate = (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A');
-const formatText = (value) => (value || ' ');
 
 class CustomerDetails  extends React.Component  {
 
@@ -52,103 +51,125 @@ class CustomerDetails  extends React.Component  {
           <Subheader style={titleStyle}>Thông tin cá nhân</Subheader>
           <TextField
             floatingLabelText="Họ"
-            value={formatText(this.props.customer.lastName)}
+            value={this.props.customer.lastName}
+            floatingLabelFixed={true}
           />
           <TextField
             floatingLabelText="Tên"
-            value={formatText(this.props.customer.firstName)}
+            value={this.props.customer.firstName}
+            floatingLabelFixed={true}
           /><br/>
           <TextField
             floatingLabelText="Ngày sinh"
             value={formatDate(this.props.customer.dateOfBirth)}
+            floatingLabelFixed={true}
           />
           <TextField
             floatingLabelText="Giới tính"
-            value={formatText(GENDER[this.props.customer.gender])}
+            value={GENDER[this.props.customer.gender]}
+            floatingLabelFixed={true}
           />
           <TextField
             floatingLabelText="Quốc tịch"
-            value={formatText(this.props.customer.countryCode)}
+            value={this.props.customer.countryCode}
+            floatingLabelFixed={true}
           /><br />
           <TextField
             floatingLabelText="Nhóm"
-            value={formatText(this.props.customer.occupation)}
+            value={this.props.customer.occupation}
+            floatingLabelFixed={true}
           />
           <TextField
             floatingLabelText="Khoa | Phòng ban"
-            value={formatText(this.props.customer.position)}
+            value={this.props.customer.position}
+            floatingLabelFixed={true}
           />
           <TextField
             floatingLabelText="Chức vụ"
             value={this.props.customer.title}
-            hintText=" "
+            floatingLabelFixed={true}
           /><br />
           <TextField
             floatingLabelText="Email"
-            value={formatText(this.props.customer.email)}
+            value={this.props.customer.email}
+            floatingLabelFixed={true}
           /><br />
           <TextField
             floatingLabelText="SDT di động"
-            value={formatText(this.props.customer.phone1)}
+            value={this.props.customer.phone1}
+            floatingLabelFixed={true}
           />
           <TextField
             floatingLabelText="SDT khac"
-            value={formatText(this.props.customer.phone2)}
+            value={this.props.customer.phone2}
+            floatingLabelFixed={true}
           />
           <Subheader style={titleStyle}>Địa chỉ thường trú</Subheader>
           <TextField
             floatingLabelText="Địa chỉ"
-            value={formatText(address.line1)}
+            value={address.line1}
+            floatingLabelFixed={true}
           /><br />
           <TextField
             floatingLabelText="Phường (xã). Quận (Huyện)"
-            value={formatText(address.stateProvince)}
+            value={address.stateProvince}
+            floatingLabelFixed={true}
           /><br/>
           <TextField
             floatingLabelText="Tỉnh, Thành Phố"
-            value={formatText(address.city)}
+            value={address.city}
+            floatingLabelFixed={true}
           />
         </CardText>
         <CardText>
           <Subheader style={titleStyle}>Giấy tờ tùy thân - CMND</Subheader>
           <TextField
             floatingLabelText="Mã số"
-            value={formatText(indetifyCard.number)}
+            value={indetifyCard.number}
+            floatingLabelFixed={true}
           /><br />
           <TextField
             floatingLabelText="Ngày cấp"
             value={formatDate(indetifyCard.dateOfIssue)}
+            floatingLabelFixed={true}
           />
           <TextField
             floatingLabelText="ngày hết hạn"
             value={formatDate(indetifyCard.dateOfExpiry)}
+            floatingLabelFixed={true}
           /><br/>
           <TextField
             floatingLabelText="Nơi cấp"
-            value={formatText(indetifyCard.placeOfIssue)}
+            value={indetifyCard.placeOfIssue}
+            floatingLabelFixed={true}
           />
           <Subheader style={titleStyle}>Giấy tờ tùy thân - PASSPORT</Subheader>
           <TextField
             floatingLabelText="Mã số"
-            value={formatText(passportCard.number)}
+            value={passportCard.number}
+            floatingLabelFixed={true}
           /><br />
           <TextField
             floatingLabelText="Ngày cấp"
-            value={formatDate(passportCard.dateOfIssue)}
+            value={passportCard.dateOfIssue}
+            floatingLabelFixed={true}
           />
           <TextField
             floatingLabelText="ngày hết hạn"
             value={formatDate(passportCard.dateOfExpiry)}
+            floatingLabelFixed={true}
           /><br/>
           <TextField
             floatingLabelText="Nơi cấp"
-            value={formatText(passportCard.placeOfIssue)}
+            value={passportCard.placeOfIssue}
+            floatingLabelFixed={true}
           />
           <Subheader style={titleStyle}>Thông tin tài khoản</Subheader>
           <TextField
             floatingLabelText="Trạng thái"
-            value={formatText(STATUS[this.props.customer.status])}
-          /><br />
+            value={STATUS[this.props.customer.status]}
+            floatingLabelFixed={true}
+          />
           <TextField
             floatingLabelText="Thời gian cập nhật gần nhất"
             value={formatDate(this.props.customer.updatedAt)}
