@@ -45,7 +45,9 @@ class DataTable extends React.Component {
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
   componentWillMount() {
-    this.props.getData({size: this.props.size, page: this.props.page }, this.props.sort, this.props.search);
+    if (!this.props.search) {
+      this.props.getData({size: this.props.size, page: this.props.page }, this.props.sort, this.props.search);
+    }
   }
   onPageChangeFromPagination(newPage) {
     this.props.getData({size: this.props.size, page: (newPage - 1)}, this.props.sort, this.props.search);
@@ -130,14 +132,12 @@ class DataTable extends React.Component {
           <TableRowColumn>
             {column.formater ? column.formater(customer) : formaters[column.type] ? formaters[column.type](_.get(customer, column.key), column.options) : _.get(customer, column.key)}
           </TableRowColumn>))}
-        <TableRowColumn style={{width: '30px'}}><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
       </TableRow>
     )) : [];
     return (<Table style={{color: 'rgba(0, 0, 0, 0.87)'}} onCellClick={this.props.handleCellClick} >
       <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
         <TableRow>
           {tableColumns}
-          <TableHeaderColumn style={{width: '30px'}}></TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody displayRowCheckbox={false} stripedRows>
