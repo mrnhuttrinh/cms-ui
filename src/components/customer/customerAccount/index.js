@@ -30,7 +30,7 @@ const titleStyle = {
 }
 
 const formatDate = (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A');
-const formatText = (value) => (value || ' ');
+const formatTinmeDate = (date) => (date ? moment(date).format('hh:mm:ss DD/MM/YYYY') : 'N/A');
 
 class CustomerAccount  extends React.Component  {
   componentWillMount() {
@@ -44,47 +44,58 @@ class CustomerAccount  extends React.Component  {
       <CardText>
         <TextField
           floatingLabelText="Số tài khoản"
-          value={formatText(account.id)}
+          value={account.id}
+          floatingLabelFixed={true}
         />
         <TextField
           floatingLabelText="Loại"
-          value={formatText(account.accountType.description)}
+          value={account.accountType.description}
+          floatingLabelFixed={true}
         />
         <TextField
           floatingLabelText="Tên"
-          value={formatText(account.accountName)}
+          value={account.accountName}
+          floatingLabelFixed={true}
         /><br/>
         <TextField
           floatingLabelText="Tên Tài Khoản"
-          value={formatText(account.accountName)}
+          value={account.accountName}
+          floatingLabelFixed={true}
         />
         <TextField
           floatingLabelText="Ngày mở"
           value={formatDate(account.dateOpened)}
+          floatingLabelFixed={true}
         />
         <TextField
           floatingLabelText="Ngày đóng"
           value={formatDate(account.dateClosed)}
+          floatingLabelFixed={true}
         />
         <TextField
           floatingLabelText="Chi tiết"
           value="[TBD]"
+          floatingLabelFixed={true}
         /><br />
         <TextField
           floatingLabelText="Loại tiền"
-          value={formatText(account.currencyCode.text)}
+          value={account.currencyCode.text}
+          floatingLabelFixed={true}
         />
         <TextField
           floatingLabelText="Trạng thái ví"
-          value={formatText(STATUS[account.status])}
+          value={STATUS[account.status]}
+          floatingLabelFixed={true}
         /><br />
         <TextField
           floatingLabelText="Số dư hiện tại"
-          value={formatText(account.currentBalance)}
+          value={account.currentBalance}
+          floatingLabelFixed={true}
         />
         <TextField
           floatingLabelText="Thời gian cập nhật gần nhất"
-          value="07:30:55 5/11/2017"
+          value={formatTinmeDate(account.updatedAt)}
+          floatingLabelFixed={true}
         />
       </CardText>
       <CardActions style={{textAlign: 'right'}}>

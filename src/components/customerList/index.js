@@ -2,12 +2,11 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CustomerListReducer from './reducers';
 import * as actions from './actions';
-import DataTable from '../commons/table';
+import DataTable, { dataAccesser, TYPE } from '../commons/table';
 
 const CUSTOMER_STATUS = {
   ACTIVE: 'ĐANG HOẠT ĐỘNG',
@@ -21,7 +20,7 @@ class CustomerList extends React.Component {
     this.refreshData = this.refreshData.bind(this);
   }
   handleCellClick(indexRow, column, event) {
-    this.props.history.push(`/customer/${this.props.dataAccesser(this.props.data)[indexRow].id}`);
+    this.props.history.push(`/customer/${dataAccesser(this.props.data)[indexRow].id}`);
   }
   refreshData() {
     this.props.actions.getData({size: this.props.size, page: this.props.page }, this.props.sort, this.props.search);
@@ -93,11 +92,12 @@ CustomerList.defaultProps = {
     }, {
       key: 'dateBecameCustomer',
       text: 'NGÀY KHỞI TẠO',
-      formater: (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A'),
+      type: TYPE.date,
     }, {
       key: 'status',
       text: 'TRẠNG THÁI',
-      formater: (status) => (CUSTOMER_STATUS[status]),
+      type: TYPE.option,
+      options: CUSTOMER_STATUS,
     }
   ],
   sort: {
@@ -109,8 +109,6 @@ CustomerList.defaultProps = {
   },
   data: null,
   size: 10,
-  dataAccesser: (data) => (data.content),
-  pageAccesser: (data) => (data),
 }
 
 const mapStateToProps = (state) => ({
