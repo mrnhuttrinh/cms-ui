@@ -120,7 +120,7 @@ class DataTable extends React.Component {
       <TableRow>
         {_.map(this.props.columns, (column) => (
           <TableRowColumn>
-            {column.formater ? column.formater(_.get(customer, column.key)) : formaters[column.type] ? formaters[column.type](_.get(customer, column.key), column.options) : _.get(customer, column.key)}
+            {column.formater ? column.formater(customer) : formaters[column.type] ? formaters[column.type](_.get(customer, column.key), column.options) : _.get(customer, column.key)} 
           </TableRowColumn>))}
         <TableRowColumn style={{width: '30px'}}><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
       </TableRow>
