@@ -7,7 +7,7 @@ import Drawer from 'material-ui/Drawer';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
 import _ from 'lodash';
-
+import uuid from 'uuid/v1';
 import * as actionsLogin from '../../components/login/actions';
 import * as actions from './actions';
 
@@ -92,10 +92,11 @@ class LeftSideMenu extends React.Component {
     return UI_ROUTES_LEFT_SIDE_MENU.DASHBOARD.value;
   }
 
-  generateMenu(routeUI) {
+  generateMenu(routeUI, key) {
     if (routeUI.value === UI_ROUTES_LEFT_SIDE_MENU.LOGOUT.value) {
      return (
         <ListItem
+          key={key}
           value={routeUI.value}
           primaryText={routeUI.text}
           onClick={this.signOut}
@@ -105,6 +106,7 @@ class LeftSideMenu extends React.Component {
     }
     return (
       <ListItem
+        key={key}
         value={routeUI.value}
         primaryText={routeUI.text}
         onClick={() => this.onClickMenu(routeUI.url || '')}
@@ -123,7 +125,7 @@ class LeftSideMenu extends React.Component {
         <SelectableList defaultValue={this.state.selectedMenu} onClick={this.onChangeMenu}>
           {
             _.map(UI_ROUTES_LEFT_SIDE_MENU, routeUI => {
-              return this.generateMenu(routeUI);
+              return this.generateMenu(routeUI, uuid());
             })
           }
         </SelectableList>

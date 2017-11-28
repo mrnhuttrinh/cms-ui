@@ -1,14 +1,14 @@
-const ENUM_USER_STATUS = {
+export const ENUM_USER_STATUS = {
   ACTIVE: 'ĐANG HOẠT ĐỘNG',
   INACTIVE: 'BỊ KHÓA',
 };
 
-const ENUM_ROLE_TYPE = {
+export const ENUM_ROLE_TYPE = {
   ADMIN: 'Quản Trị Viên',
   USER: 'Người Dùng',
 };
 
-const UI_ROUTES_LEFT_SIDE_MENU = {
+export const UI_ROUTES_LEFT_SIDE_MENU = {
   DASHBOARD: {
     value: 'dashboard',
     text: 'Bảng Điều Khiển',
@@ -58,10 +58,4 @@ const UI_ROUTES_LEFT_SIDE_MENU = {
     text: 'Đăng xuất',
     icon: 'exit_to_app',
   },
-};
-
-export {
-  ENUM_USER_STATUS,
-  ENUM_ROLE_TYPE,
-  UI_ROUTES_LEFT_SIDE_MENU,
 };
