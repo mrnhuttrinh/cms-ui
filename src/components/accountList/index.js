@@ -80,12 +80,12 @@ CustomerList.defaultProps = {
       text: 'LOẠI',
     }, {
       key: 'customer.lastName',
-      text: 'Họ',
-      formater: (data) => (data ? `${data.customer.lastName}` : ''),
+      text: 'HỌ',
+      formater: (data) => (data && data.customer ? `${data.customer.lastName}` : ''),
     }, {
       key: 'customer.firstName',
-      text: 'Tên',
-      formater: (data) => (data ? `${data.customer.firstName}` : ''),
+      text: 'TÊN',
+      formater: (data) => (data && data.customer ? `${data.customer.firstName}` : ''),
     }, {
       key: 'accountType.description',
       text: 'HẠNG VÍ',
