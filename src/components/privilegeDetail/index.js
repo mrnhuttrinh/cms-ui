@@ -120,6 +120,7 @@ class PrivilegeDetail  extends React.Component {
                     textTransform: 'none',
                     color: '#747474'
                   }}
+                  onClick={() => this.props.history.push('/permission')}
                   label="Quay lại" />
                 <FlatButton
                   style={{

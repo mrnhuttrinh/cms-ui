@@ -80,112 +80,21 @@ class ActiveHistory extends React.Component {
     }
     return null;
   }
-  compareDate(today, anotherDay) {
-    const duration = moment.duration(today.diff(anotherDay));
-    const days = duration.asDays();
-    return Math.floor(days);
-  }
-  createDate(year, month, date) {
-    return moment(`${year}/${month + 1}/${date}`);
-  }
-  renderLifeTimeAnotherYear(histories, currentYear) {
-    const result = [];
-    let currentMonth = 12;
-    // loop for another month in this year
-    while (currentMonth > 0) {
-      currentMonth--;
-
-      const anotherMonth = this.createDate(currentYear, currentMonth, 1);
-      const dayInLastMonth = anotherMonth.daysInMonth();
-      let anotherMonthList = _.remove(histories, history => {
-        const createdAt = moment(history.createdAt);
-        return createdAt >= anotherMonth &&
-          createdAt < this.createDate(currentYear, currentMonth, dayInLastMonth);
-      });
-      if (anotherMonthList && anotherMonthList.length) {
-        result.push(this.renderMilestoneHistory(anotherMonthList, `Tháng ${currentMonth + 1} Năm ${currentYear}`));
-      }
-    }
-    return result;
-  }
   divideTimeLife(histories) {
     let result = [];
+    const timeLines = {};
 
-    const today = moment();
-    let currentDate = today.date();
-    let currentMonth = today.month();
-    let currentYear = today.year();
-    
-    // render for plan after today
-    const planList = _.remove(histories, history => {
-      const createdAt = moment(history.createdAt);
-      return createdAt > today;
-    });
-    result.push(this.renderMilestoneHistory(planList, 'Kế hoạch'));
-
-    // render list today
-    const todayList = _.remove(histories, history => {
-      const createdAt = moment(history.createdAt);
-      return createdAt <= today && createdAt >= this.createDate(currentYear, currentMonth, currentDate);
-    });
-    result.push(this.renderMilestoneHistory(todayList, 'Hôm nay'));
-
-    // list yesterday
-    if (currentDate > 1) {
-      const yesterdayList = _.remove(histories, history => {
-        const createdAt = moment(history.createdAt);
-        return createdAt >= this.createDate(currentYear, currentMonth, currentDate - 1) &&
-          createdAt < this.createDate(currentYear, currentMonth, currentDate);
-      });
-      result.push(this.renderMilestoneHistory(yesterdayList, 'Hôm qua'));
-      currentDate--;
-    }
-
-    // list this month
-    if (currentDate > 1) {
-      const thisMonthList = _.remove(histories, history => {
-        const createdAt = moment(history.createdAt);
-        return createdAt >= this.createDate(currentYear, currentMonth, 1) &&
-          createdAt < this.createDate(currentYear, currentMonth, currentDate - 1);
-      });
-      result.push(this.renderMilestoneHistory(thisMonthList, 'Tháng này'));
-      currentDate--;
-    }
-
-    // list last month
-    if (currentMonth > 0) {
-      currentMonth--;
-      const lastMonth = this.createDate(currentYear, currentMonth, 1);
-      const dayInLastMonth = lastMonth.daysInMonth();
-
-      const lastMonthList = _.remove(histories, history => {
-        const createdAt = moment(history.createdAt);
-        return createdAt >= lastMonth &&
-          createdAt < this.createDate(currentYear, currentMonth, dayInLastMonth);
-      });
-      result.push(this.renderMilestoneHistory(lastMonthList, 'Tháng trước'));
-    }
-
-    // loop for another month in this year
-    while (currentMonth > 0) {
-      currentMonth--;
-
-      const anotherMonth = this.createDate(currentYear, currentMonth, 1);
-      const dayInLastMonth = anotherMonth.daysInMonth();
-      let anotherMonthList = _.remove(histories, history => {
-        const createdAt = moment(history.createdAt);
-        return createdAt >= anotherMonth &&
-          createdAt < this.createDate(currentYear, currentMonth, dayInLastMonth);
-      });
-      if (anotherMonthList && anotherMonthList.length) {
-        result.push(this.renderMilestoneHistory(anotherMonthList, `Tháng ${currentMonth + 1}`));
+    _.forEach(histories, (e) => {
+      const key = moment(e.createdAt).locale('vi').fromNow();
+      if (timeLines[key]) {
+        timeLines[key].push(e);
+      } else {
+        timeLines[key] = [e];
       }
-    }
-    
-    while (histories.length > 0) {
-      currentYear--;
-      result = result.concat(this.renderLifeTimeAnotherYear(histories, currentYear));
-    }
+    });
+    _.forEach(Object.keys(timeLines), (key) => {
+      result = result.concat(this.renderMilestoneHistory(timeLines[key], key));
+    });
 
     return result;
   }
