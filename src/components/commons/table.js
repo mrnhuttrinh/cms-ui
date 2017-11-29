@@ -56,6 +56,12 @@ class DataTable extends React.Component {
     }
   }
   handleSearchChange(search) {
+    // Trim value
+    _.forIn(search, function(value, key) {
+      if (typeof value === 'string') {
+        search[key] = value.trim();
+      }
+    });
     this.props.getData({size: this.props.size, page: this.props.page }, this.props.sort, search);
   }
   renderPagination() {
