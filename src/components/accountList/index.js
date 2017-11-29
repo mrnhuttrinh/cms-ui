@@ -2,7 +2,6 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AccountListReducer from './reducers';
@@ -80,9 +79,13 @@ CustomerList.defaultProps = {
       key: 'accountType.description',
       text: 'LOẠI',
     }, {
-      key: 'customer',
-      text: 'KHÁCH HÀNG',
-      formater: (customer) => (customer ? `${customer.lastName} ${customer.firstName}` : ''),
+      key: 'customer.lastName',
+      text: 'HỌ',
+      formater: (data) => (data && data.customer ? `${data.customer.lastName}` : ''),
+    }, {
+      key: 'customer.firstName',
+      text: 'TÊN',
+      formater: (data) => (data && data.customer ? `${data.customer.firstName}` : ''),
     }, {
       key: 'accountType.description',
       text: 'HẠNG VÍ',
