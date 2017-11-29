@@ -16,7 +16,15 @@ import { Pagination } from '../../components';
 import SearchField from './search';
 
 
-export const dataAccesser = (data) => (data._embedded[Object.keys(data._embedded)[0]]);
+export const dataAccesser = (data) => {
+  if (data._embedded) {
+    return data._embedded[Object.keys(data._embedded)[0]];
+  } else if (data.content) {
+    return data.content;
+  } else {
+    return [];
+  }
+};
 export const pageAccesser = (data) => (data.page);
 
 export const TYPE = {
@@ -120,7 +128,7 @@ class DataTable extends React.Component {
       <TableRow>
         {_.map(this.props.columns, (column) => (
           <TableRowColumn>
-            {column.formater ? column.formater(customer) : formaters[column.type] ? formaters[column.type](_.get(customer, column.key), column.options) : _.get(customer, column.key)} 
+            {column.formater ? column.formater(customer) : formaters[column.type] ? formaters[column.type](_.get(customer, column.key), column.options) : _.get(customer, column.key)}
           </TableRowColumn>))}
         <TableRowColumn style={{width: '30px'}}><FontIcon className="material-icons">mode_edit</FontIcon></TableRowColumn>
       </TableRow>
