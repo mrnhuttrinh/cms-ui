@@ -1,18 +1,9 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import MenuItem from 'material-ui/MenuItem';
-import {List, ListItem} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
+import FlatButton from 'material-ui/FlatButton';
 import {
-  Card,
-  CardActions,
   CardTitle,
-  CardText,
-  CardHeader
 } from 'material-ui/Card';
 import {
   Tabs,
@@ -21,49 +12,71 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Row, Col } from 'react-flexbox-grid';
-import _ from 'lodash';
-import moment from 'moment';
-
+import UserInformation from './userInformation';
+import ActiveHistory from './activeHistory';
 import * as actions from './actions';
-import { STATUS } from './constants';
+
+import { ContentWrapper } from '../commons';
+
+import PrivilegeDetailReducer from './reducers';
 
 const tabStyle = {
-  backgroundColor: 'rgb(128, 203, 196)'
-}
+  backgroundColor: 'rgb(128, 203, 196)',
+  minHeight: 'calc(100% - 64px)',
+  position: 'relative',
+};
 const indicatorStyle = {
   backgroundColor: '#009688'
-}
-
-const style = {
-  width: '100%',
-  display: 'inline-block',
-  padding: '14px 24px 24px',
-  margin: '0px',
 };
 
 const titleStyle = {
-  fontFamily: 'Roboto',
   fontSize: '16px',
   color: '#00897b',
   paddingLeft: 0,
 }
 
-const formatDate = (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A');
-const formatText = (value) => (value || ' ');
+const rowContainer = {
+  backgroundColor: '#fff',
+  marginLeft: 0,
+  marginRight: 0
+};
 
-class CustomerAccount  extends React.Component  {
+const leftColumn = {
+  borderRight: '1px solid rgba(232, 232, 232, 0.5)',
+  paddingBottom: 15
+};
+
+const rightColumn = {
+  paddingBottom: 15
+};
+
+const groupControl = {
+  display: 'block',
+  padding: '10px',
+  backgroundColor: '#e8e8e8',
+  width: '100%',
+  boxShadow: 'rgba(0, 0, 0, 0.24) 0px 4px 4px 0px, rgba(0, 0, 0, 0.12) 0px 0px 4px 0px'
+}
+
+class PrivilegeDetail  extends React.Component {
+  componentWillMount() {
+    // fetch user detail
+    const {
+      match: {
+        params: {
+          userId
+        }
+      }
+    } = this.props;
+    this.props.actions.getUser(userId);
+    // fetch user active history
+    this.props.actions.getUserHistories(userId);
+  }
   render () {
     return (
-      <div>
-      <AppBar
-        title={<span style={{
-            color: 'rgba(0, 0, 0, 0.4)'
-          }}>Chi Tiết Người Dùng</span>}
+      <ContentWrapper
+        title="Chi Tiết Người Dùng"
         iconStyleLeft={{display: 'none'}}
-        style={{
-          backgroundColor: '#e8e8e8',
-          boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12)'
-        }}
         iconElementRight={
           <MenuItem
             style={{
@@ -80,120 +93,76 @@ class CustomerAccount  extends React.Component  {
               REFRESH
           </MenuItem>
         }
-      />
-      <Tabs style={tabStyle} inkBarStyle={indicatorStyle}>
-        <Tab style={tabStyle} label="THÔNG TIN CHUNG & LỊCH SỬ HOẠT ĐỘNG" >
-          <Row style={{backgroundColor: '#fff', marginLeft: 0, marginRight: 0 }}>
-            <Col md={4} style={{borderRight: '1px solid rgba(0, 0, 0, 0.5)'}}>
-              <CardTitle style={titleStyle}>
-                Thông tin cá nhân
-              </CardTitle>
-              <Row>
-                <Col md={7} ms={12}>
-                  <TextField
-                    floatingLabelText="Họ"
-                    floatingLabelFixed
-                    fullWidth
-                  />
-                </Col>
-                <Col md={5} ms={12}>
-                  <TextField
-                    floatingLabelText="Tên"
-                    floatingLabelFixed
-                    fullWidth
-                  />
-                </Col>
-                <Col md={7} ms={12}>
-                  <TextField
-                    floatingLabelText="Email"
-                    floatingLabelFixed
-                    fullWidth
-                  />
-                </Col>
-                <Col md={5} ms={12}>
-                  <TextField
-                    floatingLabelText="Tên Đăng Nhập"
-                    floatingLabelFixed
-                    fullWidth
-                  />
-                </Col>
-                <Col md={12} ms={12}>
-                  <TextField
-                    floatingLabelText="Nhóm"
-                    floatingLabelFixed
-                    fullWidth
-                  />
-                </Col>
-                <Col md={6} ms={12}>
-                  <TextField
-                    floatingLabelText="Trạng Thái"
-                    floatingLabelFixed
-                    fullWidth
-                  />
-                </Col>
-                <Col md={6} ms={12}>
-                  <TextField
-                    floatingLabelText="Thời gian hoạt động gần nhất"
-                    floatingLabelFixed
-                    fullWidth
-                  />
-                </Col>
-              </Row>
-            </Col>
-            <Col md={8}>
-              <CardTitle style={titleStyle}>
-                Lịch Sử Hoạt Động
-              </CardTitle>
-              <Row>
-                <List>
-                </List>
-                Hôm qua
-                <Card>
-                  <CardHeader
-                    title="URL Avatar"
-                    subtitle="Subtitle"
-                    avatar="images/jsa-128.jpg"
-                  />
-                </Card>
-              </Row>
-            </Col>
-          </Row>
-
-            {/* <Card>
-              <CardTitle style={titleStyle}>
-                Thông tin cá nhân
-              </CardTitle>
-              <CardText>
-                <TextField
-                  floatingLabelText="Số tài khoản"
+      >
+        <Tabs inkBarStyle={indicatorStyle}>
+          <Tab style={tabStyle} label="THÔNG TIN CHUNG & LỊCH SỬ HOẠT ĐỘNG" >
+            <Row style={rowContainer}>
+              <Col md={5} style={leftColumn}>
+                <CardTitle style={titleStyle}>
+                  Thông tin cá nhân
+                </CardTitle>
+                <UserInformation userData={this.props.userData} />
+              </Col>
+              <Col md={7} style={rightColumn}>
+                <CardTitle style={titleStyle}>
+                  Lịch Sử Hoạt Động
+                </CardTitle>
+                <ActiveHistory userHistories={this.props.userHistoriesData} />
+              </Col>
+              <div style={groupControl}>
+                <FlatButton
+                  style={{
+                    boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
+                    float: 'left',
+                  }}
+                  backgroundColor="#fff"
+                  labelStyle={{
+                    textTransform: 'none',
+                    color: '#747474'
+                  }}
+                  label="Quay lại" />
+                <FlatButton
+                  style={{
+                    boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
+                    float: 'right',
+                    marginLeft: 15
+                  }}
+                  backgroundColor="#009688"
+                  labelStyle={{color: '#fff'}}
+                  label="CHỈNH SỬA"
                 />
-              </CardText>
-              <CardActions style={{textAlign: 'right'}}>
-                <RaisedButton label="KHÓA TÀI KHOẢN" />
-                <RaisedButton label="CHỈNH SỬA" />
-              </CardActions>
-            </Card> */}
-        </Tab>
-      </Tabs>
-    </div>
+                <FlatButton
+                  style={{
+                    boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
+                    float: 'right',
+                    marginRight: 15,
+                  }}
+                  backgroundColor="#b93221"
+                  labelStyle={{color: '#fff'}}
+                  label="KHÓA TÀI KHOẢN"
+                />
+              </div>
+            </Row>
+          </Tab>
+        </Tabs>
+      </ContentWrapper>
     );
   }
 }
 
-CustomerAccount.defaultProps = {
-  data: [
-    {
-      account: {},
-      card: {}
-    }
-  ],
-}
-
-const mapStateToProps = (state) => ({
-  data: state.CustomerAccountReducer.get('accounts'),
-  requesting: state.CustomerAccountReducer.get('requesting'),
-  error: state.CustomerAccountReducer.get('error'),
-});
+const mapStateToProps = (state) => {
+  const userDetail = state.PrivilegeDetailReducer.get('userDetail');
+  const userHistories = state.PrivilegeDetailReducer.get('userHistories');
+  return {
+    userRequesting: userDetail.get('requesting'),
+    userData: userDetail.get('data'),
+    userError: userDetail.get('error'),
+    // user histories
+    userHistoriesRequesting: userHistories.get('requesting'),
+    userHistoriesData: userHistories.get('data'),
+    userHistoriesError: userHistories.get('error'),
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
@@ -202,4 +171,8 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CustomerAccount);
+)(PrivilegeDetail);
+
+export const reducers = {
+  PrivilegeDetailReducer,
+};

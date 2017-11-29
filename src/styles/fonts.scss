@@ -1,0 +1,15 @@
+$fonts-path: "/assets/fonts" !default;
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('#{$fonts-path}/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('#{$fonts-path}/Roboto.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -4,7 +4,7 @@ import About from './about';
 import Customer, { reducers as CustomerReducers } from './customer';
 import CustomerList, { reducers as CustomerListReducers } from './customerList';
 import ManagePrivilegeList, {reducers as ManagePrivilegeListReducer } from './managePrivilege';
-import PrivilegeDetail from './privilegeDetail';
+import PrivilegeDetail, {reducers as PrivilegeDetailReducer } from './privilegeDetail';
 import Account, { reducers as AccountReducers } from './account';
 import AccountList, { reducers as AccountListReducers } from './accountList';
 
@@ -28,6 +28,7 @@ export const reducers = {
   ...ManagePrivilegeListReducer,
   ...AccountListReducers,
   ...AccountReducers,
+  ...PrivilegeDetailReducer,
 }
 
 // export commons control

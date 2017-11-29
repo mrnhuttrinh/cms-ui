@@ -1,7 +1,10 @@
+* {
+  font-family: 'Roboto-Regular', 'Roboto', sans-serif;
+}
+
 html,body { display: block; margin: 0px; padding: 0px; overflow-x: hidden; }
 
 body {
-  font-family: 'Roboto-Regular', 'Roboto', sans-serif;
   min-height: 100vh;
 }
 

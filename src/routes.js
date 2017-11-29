@@ -43,7 +43,7 @@ const AppRoutes = ({refreshTokenRequesting}) => {
               <PrivateRoute path="/dashboard" component={CustomerList} />
               <PrivateRoute path="/customer/:customerId" component={Customer} />
               <PrivateRoute path="/customer" isExact component={CustomerList} />
-              <PrivateRoute path="/permission/:accountId" component={PrivilegeDetail} />
+              <PrivateRoute path="/permission/:userId" component={PrivilegeDetail} />
               <PrivateRoute path="/permission" isExact component={ManagePrivilegeList} />
               <PrivateRoute path="/account/:accountId" component={Account} />
               <PrivateRoute path="/account" isExact component={AccountList} />
