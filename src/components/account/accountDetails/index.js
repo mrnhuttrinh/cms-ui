@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
-
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Subheader from 'material-ui/Subheader';

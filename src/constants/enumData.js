@@ -22,9 +22,10 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     url: '/customer',
   },
   AGENT: {
-    value: 'agent',
+    value: 'merchant',
     text: 'Đại lí',
     icon: 'store',
+    url: '/merchant',
   },
   CARD_SYSTEM: {
     value: 'cardsystem',

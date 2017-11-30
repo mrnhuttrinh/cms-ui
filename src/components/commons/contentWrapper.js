@@ -1,5 +1,6 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
+import RefreshButton from './refreshButton';
 
 const containterStyle = {
   height: '100%',
@@ -18,7 +19,7 @@ const titleStyle = {
   lineHeight: '56px'
 }
 
-class ContentWrapper  extends React.Component  {
+class ContentWrapper extends React.Component  {
   render () {
     const {
       title, iconElementRight, children, ...rest

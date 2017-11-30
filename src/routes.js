@@ -11,7 +11,6 @@ import {
   PrivateRoute,
   PublicRoute,
   ComponentsDemoRoute,
-  NotFound
 } from './containers';
 
 import {
@@ -22,6 +21,9 @@ import {
   PrivilegeDetail,
   AccountList,
   Account,
+  MerchantList,
+  Merchant,
+  NotFound,
 } from './components';
 
 // https://reacttraining.com/react-router/web/example/auth-workflow
@@ -47,6 +49,8 @@ const AppRoutes = ({refreshTokenRequesting}) => {
               <PrivateRoute path="/permission" isExact component={ManagePrivilegeList} />
               <PrivateRoute path="/account/:accountId" component={Account} />
               <PrivateRoute path="/account" isExact component={AccountList} />
+              <PrivateRoute path="/merchant/:merchantId" isExact component={Merchant} />
+              <PrivateRoute path="/merchant" isExact component={MerchantList} />
               <Route component={NotFound}/>
             </Switch>
           )
