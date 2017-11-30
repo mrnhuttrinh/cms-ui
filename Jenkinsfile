@@ -4,6 +4,7 @@ def appName = "ecash/cms-ui"
 
 node {
     def imageTag = "${env.DOCKER_REGISTRY_URL}/${appName}:latest"
+    def containerName = "cms-ui"
 
     println "Branch name = " + env.BRANCH_NAME
 
@@ -14,7 +15,6 @@ node {
     stage("run-build: npm install") {
       sh "rm -rf node_modules"
       sh "yarn install"
-      sh "ls -al"
     }
 
     stage("run-build: PROD") {
@@ -42,8 +42,8 @@ node {
             stage("Deploy ${appName} docker image") {
               sh("ssh -tt -i $ECASH_PEM_FILE ${env.CMS_UI_USER}@${env.CMS_UI_SERVER} docker login -e ${env.DOCKER_REGISTRY_EMAIL} -u $DOCKER_REPO_USERNAME -p $DOCKER_REPO_PASSWORD ${env.DOCKER_REGISTRY_URL}")
               sh("ssh -tt -i $ECASH_PEM_FILE ${env.CMS_UI_USER}@${env.CMS_UI_SERVER} docker pull ${imageTag}")
-              sh("ssh -tt -i $ECASH_PEM_FILE ${env.CMS_UI_USER}@${env.CMS_UI_SERVER} docker rm -f ${appName} || true")
-              sh("ssh -tt -i $ECASH_PEM_FILE ${env.CMS_UI_USER}@${env.CMS_UI_SERVER} docker run --name=${appName} --restart=on-failure:7 -d -t -p 8080:8080 ${imageTag}")
+              sh("ssh -tt -i $ECASH_PEM_FILE ${env.CMS_UI_USER}@${env.CMS_UI_SERVER} docker rm -f ${containerName} || true")
+              sh("ssh -tt -i $ECASH_PEM_FILE ${env.CMS_UI_USER}@${env.CMS_UI_SERVER} docker run --name=${containerName} --restart=on-failure:7 -d -t -p 8080:8080 ${imageTag}")
             }
           }
       }
