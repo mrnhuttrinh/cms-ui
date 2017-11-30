@@ -15,7 +15,6 @@ node {
     stage("run-build: npm install") {
       sh "rm -rf node_modules"
       sh "yarn install"
-      sh "ls -al"
     }
 
     stage("run-build: PROD") {
