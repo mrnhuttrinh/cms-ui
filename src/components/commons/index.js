@@ -6,6 +6,9 @@ import Address from './address/';
 import IdentifyDocument from './identify-document/';
 import Pagination from './pagination';
 import ContentWrapper from './contentWrapper';
+import AnimationGroup from './animationGroup';
+import TabTemplate from './tabTemplate';
+import RefreshButton from './refreshButton';
 
 export {
   Checkbox,
@@ -16,4 +19,7 @@ export {
   IdentifyDocument,
   Pagination,
   ContentWrapper,
+  AnimationGroup,
+  TabTemplate,
+  RefreshButton,
 };

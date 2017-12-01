@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import AppBarHeader from './appBarHeader';
 import LeftSideMenu from './leftSideMenu';
-
 import privateRouteReducers from './reducers';
 
 import "./index.scss"; 
@@ -23,7 +22,7 @@ class PrivateRoute extends React.Component{
                 <LeftSideMenu location={props.location} />
               </div> 
               <div className={rightContentClassName}>
-                <Component {...props}/> 
+                <Component {...props}/>
               </div>
             </div>
           </div>

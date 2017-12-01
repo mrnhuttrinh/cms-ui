@@ -16,7 +16,7 @@ import UserInformation from './userInformation';
 import ActiveHistory from './activeHistory';
 import * as actions from './actions';
 
-import { ContentWrapper } from '../commons';
+import { ContentWrapper, RefreshButton } from '../commons';
 
 import PrivilegeDetailReducer from './reducers';
 
@@ -77,22 +77,7 @@ class PrivilegeDetail  extends React.Component {
       <ContentWrapper
         title="Chi Tiết Người Dùng"
         iconStyleLeft={{display: 'none'}}
-        iconElementRight={
-          <MenuItem
-            style={{
-              color: '#009688',
-              letterSpacing: '0px'
-            }}
-            leftIcon={
-              <FontIcon
-                style={{
-                  color: '#009688',
-                }}
-                className="material-icons"
-              >refresh</FontIcon>}>
-              REFRESH
-          </MenuItem>
-        }
+        iconElementRight={<RefreshButton />}
       >
         <Tabs inkBarStyle={indicatorStyle}>
           <Tab style={tabStyle} label="THÔNG TIN CHUNG & LỊCH SỬ HOẠT ĐỘNG" >
