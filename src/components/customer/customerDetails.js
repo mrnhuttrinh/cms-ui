@@ -1,26 +1,11 @@
 import React from 'react';
 import _ from 'lodash';
-import moment from 'moment';
-
-import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Subheader from 'material-ui/Subheader';
-
-import {
-  Card,
-  CardText
-} from 'material-ui/Card';
-
+import { CardText } from 'material-ui/Card';
 import { GridList } from 'material-ui/GridList';
-
 import { GENDER, STATUS, COUNTRY } from './constants';
-
-const style = {
-  width: '100%',
-  display: 'inline-block',
-  padding: '14px 24px 24px',
-  margin: '0px',
-};
+import { dateFormatter, dateTimeFormatter } from '../../utils';
 
 const titleStyle = {
   fontFamily: 'Roboto',
@@ -28,24 +13,32 @@ const titleStyle = {
   color: '#00897b',
 }
 
-const formatDate = (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A');
-
 class CustomerDetails  extends React.Component  {
 
   renderCard() {
-    const  address = _.filter(this.props.customer.addresses, (address) =>
-      (address.addressType.typeCode === 'RESIDENT'))[0] || this.props.customer.addresses[0] || {};
+    let  address = {};
+    if (this.props.addresses && this.props.addresses._embedded.addresses.length) {
+      address = _.filter(this.props.addresses._embedded.addresses, (address) =>
+        (address.addressType.typeCode === 'RESIDENT'))[0] || this.props.addresses._embedded.addresses[0] || {};
+    }
 
-    const  indetifyCard = _.filter(this.props.customer.identifyDocuments, (identifyDocument) =>
-      (identifyDocument.identifyDocumentType.typeCode === 'IDENTIFY_CARD'))[0] || {};
+    let  indetifyCard = {};
+    if (this.props.identifyDocuments && this.props.identifyDocuments._embedded.identifyDocuments.length) {
+      indetifyCard = _.filter(this.props.identifyDocuments._embedded.identifyDocuments, (identifyDocument) =>
+        (identifyDocument.identifyDocumentType.typeCode === 'IDENTIFY_CARD'))[0] || {};
+    }
 
-    const  passportCard = _.filter(this.props.customer.identifyDocuments, (identifyDocument) =>
+    let  passportCard = {};
+    if (this.props.identifyDocuments && this.props.identifyDocuments._embedded.identifyDocuments.length) {
+      passportCard = _.filter(this.props.identifyDocuments._embedded.identifyDocuments, (identifyDocument) =>
         (identifyDocument.identifyDocumentType.typeCode === 'PASSPORT_CARD'))[0] || {};
+    }
 
-    return (<Card>
+    return (
       <GridList
         cols={2}
         cellHeight="auto"
+        style={{padding:'20px 100px 20px 100px'}}
       >
         <CardText>
           <GridList
@@ -71,7 +64,7 @@ class CustomerDetails  extends React.Component  {
             <TextField
               cols={1}
               floatingLabelText="Ngày sinh"
-              value={formatDate(this.props.customer.dateOfBirth)}
+              value={dateFormatter(this.props.customer.dateOfBirth)}
               floatingLabelFixed={true}
               fullWidth
             />
@@ -175,14 +168,14 @@ class CustomerDetails  extends React.Component  {
             />
             <TextField
               floatingLabelText="Ngày cấp"
-              value={formatDate(indetifyCard.dateOfIssue)}
+              value={dateFormatter(indetifyCard.dateOfIssue)}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
               floatingLabelText="ngày hết hạn"
-              value={formatDate(indetifyCard.dateOfExpiry)}
+              value={dateFormatter(indetifyCard.dateOfExpiry)}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
@@ -208,14 +201,14 @@ class CustomerDetails  extends React.Component  {
             />
             <TextField
               floatingLabelText="Ngày cấp"
-              value={passportCard.dateOfIssue}
+              value={dateFormatter(passportCard.dateOfIssue)}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
               floatingLabelText="ngày hết hạn"
-              value={formatDate(passportCard.dateOfExpiry)}
+              value={dateFormatter(passportCard.dateOfExpiry)}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
@@ -241,20 +234,16 @@ class CustomerDetails  extends React.Component  {
             />
             <TextField
               floatingLabelText="Thời gian cập nhật gần nhất"
-              value={formatDate(this.props.customer.updatedAt)}
+              value={dateTimeFormatter(this.props.customer.updatedAt)}
               cols={1}
               fullWidth
             />
           </GridList>
         </CardText>
-      </GridList>
-    </Card>)
+      </GridList>)
   }
   render () {
-    return (
-      <Paper style={style} zDepth={1} rounded={false}>
-        {this.props.customer ? this.renderCard() : null}
-      </Paper>);
+    return this.props.customer ? this.renderCard() : null;
   }
 }
 

@@ -23,7 +23,7 @@ export const getCustomer = (pageable, sort) =>
     dispatch({
       type: GET_USER_LIST,
       fetchConfig: {
-        path: `${USER_LIST_API}?${params.toString()}`,
+        path: `${USER_LIST_API}&${params.toString()}`,
         params: {
           method: 'GET'
         },

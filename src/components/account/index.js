@@ -1,78 +1,82 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import MenuItem from 'material-ui/MenuItem';
-import FontIcon from 'material-ui/FontIcon';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Tab } from 'material-ui/Tabs';
+import { TabTemplate } from '../commons';
+import { ContentWrapper, RefreshButton } from '../commons';
+import * as actions from './actions';
 
-import {
-  Tabs,
-  Tab,
-} from 'material-ui/Tabs';
-
-import CustomerDetails from './accountDetails';
+import AccountDetails from './accountDetails';
+import AccountHistory from './accountHistory';
+import AccountTransaction from './accountTransaction';
 
 
-import AccountDetailReducer from './accountDetails/reducers';
+import AccountDetailReducer from './reducers';
+import AccountTransactionReducer from './accountTransaction/reducers';
+import AccountHistoryReducer from './accountHistory/reducers';
 
 
 const tabStyle = {
-  backgroundColor: 'rgb(128, 203, 196)'
-}
+  backgroundColor: 'rgb(128, 203, 196)',
+  minHeight: 'calc(100% - 64px)',
+  position: 'relative',
+};
+
 const indicatorStyle = {
   backgroundColor: '#009688'
-}
+};
 
-class Dashboard extends React.Component {
+class Account extends React.Component {
+  componentWillMount() {
+    this.props.actions.getAccountDetails(this.props.match.params.accountId);
+  }
   render() {
     const accountId = this.props.match.params.accountId;
     return (
-      <div>
-        <AppBar
-          title={<span style={{
-              color: 'rgba(0, 0, 0, 0.4)'
-            }}>Chi Tiết Khách Hàng</span>}
-          iconStyleLeft={{display: 'none'}}
+      <ContentWrapper
+        title="Chi tiết tài khoản"
+        iconStyleLeft={{display: 'none'}}
+        iconElementRight={<RefreshButton />}
+      >
+        <TabTemplate
           style={{
-            backgroundColor: '#e8e8e8',
-            boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12)'
+            minHeight: 'calc(100% - 56px)',
+            height: 'calc(100% - 56px)',
           }}
-          iconElementRight={
-            <MenuItem
-              style={{
-                color: '#009688',
-                letterSpacing: '0px'
-              }}
-              leftIcon={
-                <FontIcon
-                  style={{
-                    color: '#009688',
-                  }}
-                  className="material-icons"
-                >refresh</FontIcon>}>
-                REFRESH
-            </MenuItem>
-          }
-        />
-        <Tabs style={tabStyle} inkBarStyle={indicatorStyle}>
+          inkBarStyle={indicatorStyle}
+        >
           <Tab style={tabStyle} label="THÔNG TIN CHUNG" >
-            <CustomerDetails accountId={accountId} />
-          </Tab>
-          <Tab style={tabStyle} label="THẺ" >
-
+            <AccountDetails account={this.props.account} />
           </Tab>
           <Tab style={tabStyle} label="LỊCH SỬ" >
-
+            <AccountHistory accountId={accountId} />
           </Tab>
           <Tab style={tabStyle} label="GIAO DỊCH" >
-
+            <AccountTransaction accountId={accountId} />
           </Tab>
-        </Tabs>
-      </div>
+        </TabTemplate>
+      </ContentWrapper>
     );
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => ({
+  account: state.AccountDetailReducer.get('account'),
+  requesting: state.AccountDetailReducer.get('requesting'),
+  error: state.AccountDetailReducer.get('error'),
+});
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Account);
 
 export const reducers = {
   AccountDetailReducer,
+  AccountTransactionReducer,
+  AccountHistoryReducer,
 };

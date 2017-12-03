@@ -1,12 +1,12 @@
 import {
   ACCOUNT_API,
-} from '../../../constants';
+} from '../../constants';
 
 import {
   GET_ACCOUNT,
 } from './constants';
 
-export const getCustomer = id => {
+export const getAccountDetails = id => {
   return {
     type: GET_ACCOUNT,
     fetchConfig: {

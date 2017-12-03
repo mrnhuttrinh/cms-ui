@@ -1,5 +1,4 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import {
@@ -12,16 +11,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import * as actions from './actions';
 import { STATUS } from './constants';
-
-const style = {
-  width: '100%',
-  display: 'inline-block',
-  padding: '14px 24px 24px',
-  margin: '0px',
-};
 
 const titleStyle = {
   fontFamily: 'Roboto',
@@ -99,7 +92,7 @@ class CustomerAccount  extends React.Component  {
         />
       </CardText>
       <CardActions style={{textAlign: 'right'}}>
-        <RaisedButton label="Xem chi tiết" />
+        <RaisedButton containerElement={<Link to={`/account/${account.id}`} />} label="Xem chi tiết" style={{border: 'solid 1px #009688'}} labelColor='#009688'/>
       </CardActions>
     </Card>)
   }
@@ -107,21 +100,12 @@ class CustomerAccount  extends React.Component  {
     if (this.props.data && this.props.data._embedded) {
       const accountsCard = _.map(this.props.data._embedded.accounts, this.renderCard);
       return (
-        <Paper style={style} zDepth={1} rounded={false}>
+        <div style={{padding:'20px 100px 20px 100px'}}>
           {accountsCard}
-        </Paper>);
+        </div>);
     }
     return null;
   }
-}
-
-CustomerAccount.defaultProps = {
-  data: [
-    {
-      account: {},
-      card: {}
-    }
-  ],
 }
 
 const mapStateToProps = (state) => ({

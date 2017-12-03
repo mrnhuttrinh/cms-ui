@@ -1,12 +1,10 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import MenuItem from 'material-ui/MenuItem';
-import FontIcon from 'material-ui/FontIcon';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AccountListReducer from './reducers';
 import * as actions from './actions';
 import DataTable, { dataAccesser, TYPE } from '../commons/table';
+import { ContentWrapper, RefreshButton } from '../commons';
 
 const ACCOUNT_STATUS = {
   ACTIVE: 'ĐANG HOẠT ĐỘNG',
@@ -23,33 +21,11 @@ class CustomerList extends React.Component {
   }
   render() {
     return (
-      <div>
-        <AppBar
-          title={<span style={{
-              color: 'rgba(0, 0, 0, 0.4)',
-            }}>Danh sách khách hàng</span>}
-          iconStyleLeft={{display: 'none'}}
-          style={{
-            backgroundColor: '#e8e8e8',
-            border: 'rgba(0, 0, 0, 0.12) 1px'
-          }}
-          iconElementRight={
-            <MenuItem
-              style={{
-                color: '#009688',
-                letterSpacing: '0px'
-              }}
-              leftIcon={
-                <FontIcon
-                  style={{
-                    color: '#009688',
-                  }}
-                  className="material-icons"
-                >refresh</FontIcon>}>
-                REFRESH
-            </MenuItem>
-          }
-        />
+      <ContentWrapper
+        title="Danh sách tài khoản ví"
+        iconStyleLeft={{display: 'none'}}
+        iconElementRight={<RefreshButton />}
+      >
         <DataTable
           columns={this.props.columns}
           sort={this.props.sort}
@@ -61,7 +37,7 @@ class CustomerList extends React.Component {
           dataAccesser={this.props.dataAccesser}
           pageAccesser={this.props.pageAccesser}
         />
-      </div>
+      </ContentWrapper>
     );
   }
 }

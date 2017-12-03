@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField';
 import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import _ from 'lodash';
 import moment from 'moment';
-import { dateFormater } from '../../utils';
+import { dateFormatter } from '../../utils';
 
 const style = {
   height: '74px',
@@ -18,7 +18,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      key: props.search.key,
+      key: props.search.key || this.props.columns[0].key,
       value: props.search.value,
     }
     this.changeSearchKey = this.changeSearchKey.bind(this);
@@ -26,6 +26,9 @@ class Search extends React.Component {
     this.changeSearchWithType = this.changeSearchWithType.bind(this);
     this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
     this.handleChangeEndDate = this.handleChangeEndDate.bind(this);
+  }
+  componentWillMount() {
+    this.changeSearchKey(null, null, this.state.key);
   }
   changeSearchKey(e, index, key) {
     const currentColumn = this.props.columns.filter((column) => (column.key === this.state.key))[0];
@@ -123,7 +126,7 @@ class Search extends React.Component {
               value={startDate}
               onChange={this.handleChangeStartDate}
               autoOk
-              formatDate={dateFormater}
+              formatDate={dateFormatter}
               maxDate={endDate}
             />),
             (<DatePicker
@@ -131,7 +134,7 @@ class Search extends React.Component {
               value={endDate}
               onChange={this.handleChangeEndDate}
               autoOk
-              formatDate={dateFormater}
+              formatDate={dateFormatter}
               minDate={startDate}
               maxDate={new Date()}
             />)
@@ -140,8 +143,8 @@ class Search extends React.Component {
       default:
         searchField = (<TextField
           floatingLabelFixed={true}
-          floatingLabelText="Search"
-          hintText="Search"
+          floatingLabelText="Tìm kiếm"
+          hintText="Tìm kiếm"
           value={this.state.value}
           onChange={this.changeSearchValue}
         />);
@@ -158,7 +161,7 @@ class Search extends React.Component {
         <ToolbarGroup firstChild={true} />
         <ToolbarGroup>
           <SelectField
-            floatingLabelText="Search by"
+            floatingLabelText="Tìm theo"
             value={this.state.key}
             autoWidth={true}
             onChange={this.changeSearchKey}

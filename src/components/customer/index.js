@@ -1,76 +1,69 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import MenuItem from 'material-ui/MenuItem';
-import FontIcon from 'material-ui/FontIcon';
-
-import {
-  Tabs,
-  Tab,
-} from 'material-ui/Tabs';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import { Tab } from 'material-ui/Tabs';
+import { TabTemplate } from '../commons';
+import { ContentWrapper, RefreshButton } from '../commons';
 import * as actions from './actions';
 import CustomerDetails from './customerDetails';
 import CustomerAccount from './customerAccount';
 import CustomerHistory from './customerHistory';
+import CustomerCards from './customerCards';
 
 
 import CustomerDetailReducer from './reducers';
 import CustomerAccountReducer from './customerAccount/reducers';
+import CustomerCardReducer from './customerCards/reducers';
+import CustomerHistoryReducer from './customerHistory/reducers';
 
 const tabStyle = {
-  backgroundColor: 'rgb(128, 203, 196)'
-}
+  backgroundColor: 'rgb(128, 203, 196)',
+  minHeight: 'calc(100% - 64px)',
+  position: 'relative',
+};
+
 const indicatorStyle = {
   backgroundColor: '#009688'
-}
+};
 
 class Customer extends React.Component {
   componentWillMount() {
     this.props.actions.getCustomer(this.props.match.params.customerId);
+    this.props.actions.getAddressesByCustomerId(this.props.match.params.customerId);
+    this.props.actions.getIdentifyDocsByCustomerId(this.props.match.params.customerId);
   }
   render() {
     return (
-      <div>
-        <AppBar
-          title={<span style={{
-              color: 'rgba(0, 0, 0, 0.4)'
-            }}>Chi Tiết Khách Hàng</span>}
-          iconStyleLeft={{display: 'none'}}
+      <ContentWrapper
+        title="Chi Tiết Khách Hàng"
+        iconStyleLeft={{display: 'none'}}
+        iconElementRight={<RefreshButton />}
+      >
+        <TabTemplate
           style={{
-            backgroundColor: '#e8e8e8',
-            boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12)'
+            minHeight: 'calc(100% - 56px)',
+            height: 'calc(100% - 56px)',
           }}
-          iconElementRight={
-            <MenuItem
-              style={{
-                color: '#009688',
-                letterSpacing: '0px'
-              }}
-              leftIcon={
-                <FontIcon
-                  style={{
-                    color: '#009688',
-                  }}
-                  className="material-icons"
-                >refresh</FontIcon>}>
-                REFRESH
-            </MenuItem>
-          }
-        />
-        <Tabs style={tabStyle} inkBarStyle={indicatorStyle}>
+          inkBarStyle={indicatorStyle}
+        >
           <Tab style={tabStyle} label="THÔNG TIN CHUNG" >
-            <CustomerDetails customer={this.props.customer} />
+            <CustomerDetails
+              customer={this.props.customer}
+              addresses={this.props.addresses}
+              identifyDocuments={this.props.identifyDocuments}
+            />
           </Tab>
           <Tab style={tabStyle} label="TÀI KHOẢN VÍ ĐIỆN TỬ" >
             <CustomerAccount customerId={this.props.match.params.customerId} />
           </Tab>
-          <Tab style={tabStyle} label="LỊCH SỬ" >
-            <CustomerHistory customer={this.props.customer} />
+          <Tab style={tabStyle} label="Thẻ" >
+            <CustomerCards customerId={this.props.match.params.customerId} />
           </Tab>
-        </Tabs>
-      </div>
+          <Tab style={tabStyle} label="LỊCH SỬ" >
+            <CustomerHistory customerId={this.props.match.params.customerId} />
+          </Tab>
+        </TabTemplate>
+      </ContentWrapper>
     );
   }
 }
@@ -78,6 +71,8 @@ class Customer extends React.Component {
 
 const mapStateToProps = (state) => ({
   customer: state.CustomerDetailReducer.get('customer'),
+  addresses: state.CustomerDetailReducer.get('addresses'),
+  identifyDocuments: state.CustomerDetailReducer.get('identifyDocuments'),
   requesting: state.CustomerDetailReducer.get('requesting'),
   error: state.CustomerDetailReducer.get('error'),
 });
@@ -95,4 +90,6 @@ export default connect(
 export const reducers = {
   CustomerDetailReducer,
   CustomerAccountReducer,
+  CustomerCardReducer,
+  CustomerHistoryReducer,
 };
