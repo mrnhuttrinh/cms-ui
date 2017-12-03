@@ -20,7 +20,7 @@ export const ACCOUNT_API = '/api/accounts/{id}?projection=custom';
 
 // for user and related
 export const USER_LIST_API = '/api/users?projection=custom';
-export const USER_DETAIL_API = '/api/users/{id}';
+export const USER_DETAIL_API = '/api/users/{id}?projection=custom';
 export const USER_HISTORY_API = '/api/userHistories?projection=custom&user.id={id}';
 export const CARD_BY_ACCOUNT_API = '/api/accounts/{id}/cards?projection=custom';
 export const ACCOUNT_HISTORY_BY_ACCOUNT_ID_API = '/api/accounts/{id}/accountHistories?projection=custom';
@@ -28,3 +28,5 @@ export const TRANSACTIONS_BY_ACCOUNT_ID_API = '/api/transactions?projection=cust
 
 // for merchant and related
 export const MERCHANT_LIST_API = '/api/merchants/?projection=custom';
+export const MERCHANT_DETAIL_API ='/api/merchants/{id}?projection=custom';
+export const MERCHANT_TERMINAL_BY_MERCHANT_API = '/api/merchantTerminals?projection=custom&merchant.id={id}';

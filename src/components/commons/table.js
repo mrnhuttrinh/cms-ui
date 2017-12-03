@@ -14,6 +14,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import { Pagination } from '../../components';
 import SearchField from './search';
+import AnimationGroup from './animationGroup';
 
 
 export const dataAccesser = (data) => {
@@ -161,6 +162,9 @@ class DataTable extends React.Component {
   render() {
     return (
       <div>
+        <AnimationGroup
+          loading={this.props.requesting}
+        />
         {this.renderSearch()}
         {this.renderTable()}
         {this.renderPagination()}

@@ -1,13 +1,11 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import MenuItem from 'material-ui/MenuItem';
-import FontIcon from 'material-ui/FontIcon';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import TextField from 'material-ui/TextField';
 import ManagePrivilegeListReducer from './reducers';
 import * as actions from './actions';
-import DataTable from '../commons/table';
+import DataTable, { dataAccesser } from '../commons/table';
+import { RefreshButton } from '../commons';
 
 import {
   ENUM_USER_STATUS,
@@ -20,7 +18,10 @@ class ManagePrivilegeList extends React.Component {
     this.handleCellClick = this.handleCellClick.bind(this);
   }
   handleCellClick(indexRow, column, event) {
-    this.props.history.push(`/permission/${this.props.data._embedded.users[indexRow].id}`);
+    this.props.history.push(`/permission/${dataAccesser(this.props.data)[indexRow].id}`);
+  }
+  refreshData() {
+    this.props.actions.getMerchants({size: this.props.size, page: this.props.page }, this.props.sort, this.props.search);
   }
   render() {
     return (
@@ -34,39 +35,18 @@ class ManagePrivilegeList extends React.Component {
             backgroundColor: '#e8e8e8',
             border: 'rgba(0, 0, 0, 0.12) 1px'
           }}
-          iconElementRight={
-            <MenuItem
-              style={{
-                color: '#009688',
-                letterSpacing: '0px'
-              }}
-              leftIcon={
-                <FontIcon
-                  style={{
-                    color: '#009688',
-                  }}
-                  className="material-icons"
-                >refresh</FontIcon>}>
-                REFRESH
-            </MenuItem>
-          }
+          iconElementRight={<RefreshButton />}
         />
-        <div style={{ padding: '20px 20px 20px 0px'}}>
-          <TextField
-            style={{float: 'right'}}
-            hintText="Search"
-            floatingLabelText="Search"
-            floatingLabelFixed={true}
-          />
-          <div style={{clear: 'both'}} />
-        </div>
         <DataTable
           columns={this.props.columns}
           sort={this.props.sort}
           data={this.props.data}
-          getData={this.props.actions.getCustomer}
+          getData={this.props.actions.getUsers}
           handleCellClick={this.handleCellClick}
           size={this.props.size}
+          search={this.props.search}
+          dataAccesser={this.props.dataAccesser}
+          pageAccesser={this.props.pageAccesser}
         />
       </div>
     );
@@ -108,6 +88,9 @@ ManagePrivilegeList.defaultProps = {
     key: 'firstName',
     type: 'ASC',
   },
+  search: {
+    key: 'firstName',
+  },
   data: null,
   size: 10,
 }
@@ -115,6 +98,7 @@ ManagePrivilegeList.defaultProps = {
 const mapStateToProps = (state) => ({
   page: state.ManagePrivilegeListReducer.get('page'),
   sort: state.ManagePrivilegeListReducer.get('sort'),
+  search: state.ManagePrivilegeListReducer.get('search'),
   data: state.ManagePrivilegeListReducer.get('data'),
   requesting: state.ManagePrivilegeListReducer.get('requesting'),
   error: state.ManagePrivilegeListReducer.get('error'),

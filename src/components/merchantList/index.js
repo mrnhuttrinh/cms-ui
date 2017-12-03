@@ -1,12 +1,11 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import MenuItem from 'material-ui/MenuItem';
-import FontIcon from 'material-ui/FontIcon';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import MerchantListReducer from './reducers';
 import * as actions from './actions';
 import DataTable, { dataAccesser, TYPE } from '../commons/table';
+import { RefreshButton } from '../commons';
 
 const MERCHANT_STATUS = {
   ACTIVE: 'ĐANG HOẠT ĐỘNG',
@@ -37,23 +36,7 @@ class MerchantList extends React.Component {
             backgroundColor: '#e8e8e8',
             border: 'rgba(0, 0, 0, 0.12) 1px'
           }}
-          iconElementRight={
-            <MenuItem
-              onClick={this.refreshData}
-              style={{
-                color: '#009688',
-                letterSpacing: '0px'
-              }}
-              leftIcon={
-                <FontIcon
-                  style={{
-                    color: '#009688',
-                  }}
-                  className="material-icons"
-                >refresh</FontIcon>}>
-                REFRESH
-            </MenuItem>
-          }
+          iconElementRight={<RefreshButton />}
         />
         <DataTable
           columns={this.props.columns}
@@ -65,6 +48,7 @@ class MerchantList extends React.Component {
           search={this.props.search}
           dataAccesser={this.props.dataAccesser}
           pageAccesser={this.props.pageAccesser}
+          requesting={this.props.requesting}
         />
       </div>
     );

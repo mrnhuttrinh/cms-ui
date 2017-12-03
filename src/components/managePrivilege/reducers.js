@@ -10,7 +10,7 @@ export default (state = initialState, action = {}) => {
   let newState;
   switch (action.type) {
     case UPDATE_PAGE_SORT_USER_LIST:
-      newState = state.set('page', action.pageable.page).set('sort',action.sort);
+      newState = state.set('page', action.pageable.page).set('sort',action.sort).set('search',action.search);
       break;
     case `${GET_USER_LIST}_START`:
       newState = state.set('requesting', true).delete('data').delete('error');

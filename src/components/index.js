@@ -7,8 +7,10 @@ import ManagePrivilegeList, {reducers as ManagePrivilegeListReducer } from './ma
 import PrivilegeDetail, {reducers as PrivilegeDetailReducer } from './privilegeDetail';
 import Account, { reducers as AccountReducers } from './account';
 import AccountList, { reducers as AccountListReducers } from './accountList';
+
+import Merchant, { reducers as MerchantDetailReducers } from './merchant';
 import MerchantList, { reducers as MerchantListReducers } from './merchantList';
-import Merchant from './merchant';
+
 import NotFound from './notFound';
 // export view
 export {
@@ -35,6 +37,7 @@ export const reducers = {
   ...AccountReducers,
   ...PrivilegeDetailReducer,
   ...MerchantListReducers,
+  ...MerchantDetailReducers,
 }
 
 // export commons control

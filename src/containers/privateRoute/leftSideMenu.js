@@ -19,7 +19,7 @@ function wrapState(ComposedComponent) {
   return class SelectableList extends Component {
     static propTypes = {
       children: PropTypes.node.isRequired,
-      defaultValue: PropTypes.number.isRequired,
+      defaultValue: PropTypes.object.isRequired,
     };
 
     handleRequestChange = (event, index) => {

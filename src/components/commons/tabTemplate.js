@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import { Tabs } from 'material-ui/Tabs';
 
 // https://github.com/mui-org/material-ui/issues/2085
 
@@ -12,23 +12,7 @@ class TabTemplate extends React.Component {
   }
 }
 
-const styles = {
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400,
-  },
-};
-
 export default class TabsExampleControlled extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 'a',
-    };
-  }
 
   get styles() {
     return {
@@ -40,7 +24,7 @@ export default class TabsExampleControlled extends React.Component {
             flexDirection: 'column'
         },
         container: {
-            flex: '1 1 100%;',
+            flex: '1 1 100%',
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
