@@ -12,27 +12,27 @@ class TransactionByAccountList extends React.Component {
     this.getData = this.getData.bind(this);
   }
   refreshData() {
-    this.props.actions.getTransaction(this.props.accountId, {size: this.props.size, page: this.props.page }, this.props.sort, this.props.search);
+    this.props.actions.getTransaction(this.props.cardId, {size: this.props.size, page: this.props.page }, this.props.sort, this.props.search);
   }
   getData(pageable, sort, search) {
-    this.props.actions.getTransaction(this.props.accountId, pageable, sort, search);
+    this.props.actions.getTransaction(this.props.cardId, pageable, sort, search);
   }
   render() {
     return (
-        <DataTable
-          columns={this.props.columns}
-          sort={this.props.sort}
-          data={this.props.data}
-          getData={this.getData}
-          size={this.props.size}
-          search={this.props.search}
-          dataAccesser={this.props.dataAccesser}
-          pageAccesser={this.props.pageAccesser}
-          style={{
-            height: '100%',
-            display: 'block',
-          }}
-        />
+      <DataTable
+        columns={this.props.columns}
+        sort={this.props.sort}
+        data={this.props.data}
+        getData={this.getData}
+        size={this.props.size}
+        search={this.props.search}
+        dataAccesser={this.props.dataAccesser}
+        pageAccesser={this.props.pageAccesser}
+        style={{
+          height: '100%',
+          display: 'block',
+        }}
+      />
     );
   }
 }
@@ -78,12 +78,12 @@ TransactionByAccountList.defaultProps = {
 }
 
 const mapStateToProps = (state) => ({
-  page: state.AccountTransactionReducer.get('page'),
-  sort: state.AccountTransactionReducer.get('sort'),
-  search: state.AccountTransactionReducer.get('search'),
-  data: state.AccountTransactionReducer.get('data'),
-  requesting: state.AccountTransactionReducer.get('requesting'),
-  error: state.AccountTransactionReducer.get('error'),
+  page: state.CardTransactionReducer.get('page'),
+  sort: state.CardTransactionReducer.get('sort'),
+  search: state.CardTransactionReducer.get('search'),
+  data: state.CardTransactionReducer.get('data'),
+  requesting: state.CardTransactionReducer.get('requesting'),
+  error: state.CardTransactionReducer.get('error'),
 });
 
 const mapDispatchToProps = dispatch => ({

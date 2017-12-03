@@ -31,6 +31,7 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     value: 'cardsystem',
     text: 'Hệ thống thẻ',
     icon: 'credit_card',
+    url: '/card',
   },
   ACCOUNT: {
     value: 'account',

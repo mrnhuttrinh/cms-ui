@@ -30,3 +30,8 @@ export const TRANSACTIONS_BY_ACCOUNT_ID_API = '/api/transactions?projection=cust
 export const MERCHANT_LIST_API = '/api/merchants/?projection=custom';
 export const MERCHANT_DETAIL_API ='/api/merchants/{id}?projection=custom';
 export const MERCHANT_TERMINAL_BY_MERCHANT_API = '/api/merchantTerminals?projection=custom&merchant.id={id}';
+
+export const CARD_LIST_API = '/api/cards/search?projection=custom';
+export const CARD_API = '/api/cards/{id}?projection=custom';
+export const CARD_HISTORY_API = '/api/cards/{id}/cardHistories?projection=custom';
+export const TRANSACTIONS_BY_CARD_API = '/api/transactions?projection=custom&card.cardNumber={cardNumber}';

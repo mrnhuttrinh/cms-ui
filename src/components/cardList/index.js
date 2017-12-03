@@ -1,30 +1,25 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import MenuItem from 'material-ui/MenuItem';
-import FontIcon from 'material-ui/FontIcon';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import CustomerListReducer from './reducers';
+import _ from 'lodash';
+import CardListReducer from './reducers';
 import * as actions from './actions';
-import DataTable, { dataAccesser, TYPE } from '../commons/table';
+import DataTable, { TYPE } from '../commons/table';
+import AppBar from 'material-ui/AppBar';
 import { RefreshButton } from '../commons';
 
-const CUSTOMER_STATUS = {
+const ACCOUNT_STATUS = {
   ACTIVE: 'ĐANG HOẠT ĐỘNG',
   INACTIVE: 'BỊ KHÓA',
 }
 
-class CustomerList extends React.Component {
+class CardList extends React.Component {
   constructor() {
     super();
     this.handleCellClick = this.handleCellClick.bind(this);
-    this.refreshData = this.refreshData.bind(this);
   }
   handleCellClick(indexRow, column, event) {
-    this.props.history.push(`/customer/${dataAccesser(this.props.data)[indexRow].id}`);
-  }
-  refreshData() {
-    this.props.actions.getData({size: this.props.size, page: this.props.page }, this.props.sort, this.props.search);
+    this.props.history.push(`/card/${this.props.dataAccesser(this.props.data)[indexRow].cardNumber}`);
   }
   render() {
     return (
@@ -36,7 +31,7 @@ class CustomerList extends React.Component {
         <AppBar
           title={<span style={{
               color: 'rgba(0, 0, 0, 0.4)',
-            }}>Danh sách khách hàng</span>}
+            }}>Danh sách thẻ</span>}
           iconStyleLeft={{display: 'none'}}
           style={{
             backgroundColor: '#e8e8e8',
@@ -48,7 +43,7 @@ class CustomerList extends React.Component {
           columns={this.props.columns}
           sort={this.props.sort}
           data={this.props.data}
-          getData={this.props.actions.getCustomer}
+          getData={this.props.actions.getCardList}
           handleCellClick={this.handleCellClick}
           size={this.props.size}
           search={this.props.search}
@@ -64,53 +59,67 @@ class CustomerList extends React.Component {
   }
 }
 
-CustomerList.defaultProps = {
+CardList.defaultProps = {
   columns: [
     {
-      key: 'firstName',
-      text: 'TÊN',
+      key: 'cardCode',
+      text: 'CODE',
       sort: 'ASC',
-    }, {
-      key: 'lastName',
+    },
+    {
+      key: 'customer',
+      text: 'TÀI KHOẢN',
+      formater: (data) => _.map(_.get(data, 'customer.accounts'), account => account.accountName).join(', '),
+    },
+    {
+      key: 'cardType.description',
+      text: 'LOẠI',
+    },
+    {
+      key: 'customer.lastName',
       text: 'HỌ',
-    }, {
-      key: 'scmsMemberCode',
-      text: 'Mã SV/GV',
-    }, {
-      key: 'title',
-      text: 'KHOA | PHÒNG BAN',
-    }, {
-      key: 'position',
-      text: 'CHỨC VỤ',
-    }, {
-      key: 'dateBecameCustomer',
-      text: 'NGÀY KHỞI TẠO',
+    },
+    {
+      key: 'customer.firstName',
+      text: 'TÊN',
+    },
+    {
+      key: 'effectiveDate',
+      text: 'NGÀY HIỆU LỰC',
       type: TYPE.date,
-    }, {
+    },
+    {
+      key: 'expiryDate',
+      text: 'NGÀY HẾT HẠN',
+      type: TYPE.date,
+    },
+    {
       key: 'status',
       text: 'TRẠNG THÁI',
       type: TYPE.option,
-      options: CUSTOMER_STATUS,
-    }
+      options: ACCOUNT_STATUS,
+    },
   ],
   sort: {
-    key: 'firstName',
+    key: 'cardCode',
     type: 'ASC',
-  },
-  search: {
-    key: 'firstName',
   },
   data: null,
   size: 10,
+  search: {
+    key: 'cardCode',
+  },
+  dataAccesser: (data) => (data.content),
+  pageAccesser: (data) => (data),
 }
 
 const mapStateToProps = (state) => ({
-  page: state.CustomerListReducer.get('page'),
-  sort: state.CustomerListReducer.get('sort'),
-  search: state.CustomerListReducer.get('search'),
-  data: state.CustomerListReducer.get('data'),
-  requesting: state.CustomerListReducer.get('requesting'),
-  error: state.CustomerListReducer.get('error'),
+  page: state.CardListReducer.get('page'),
+  sort: state.CardListReducer.get('sort'),
+  search: state.CardListReducer.get('search'),
+  data: state.CardListReducer.get('data'),
+  requesting: state.CardListReducer.get('requesting'),
+  error: state.CardListReducer.get('error'),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -120,8 +129,8 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CustomerList);
+)(CardList);
 
 export const reducers = {
-  CustomerListReducer,
+  CardListReducer,
 }
