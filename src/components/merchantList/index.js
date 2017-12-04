@@ -26,7 +26,10 @@ class MerchantList extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div style={{
+        display: 'block',
+        height: '100%',
+      }}>
         <AppBar
           title={<span style={{
               color: 'rgba(0, 0, 0, 0.4)',
@@ -49,6 +52,10 @@ class MerchantList extends React.Component {
           dataAccesser={this.props.dataAccesser}
           pageAccesser={this.props.pageAccesser}
           requesting={this.props.requesting}
+          style={{
+            height: 'calc(100% - 64px)',
+            display: 'block',
+          }}
         />
       </div>
     );

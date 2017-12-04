@@ -135,16 +135,38 @@ class DataTable extends React.Component {
           </TableRowColumn>))}
       </TableRow>
     )) : [];
-    return (<Table style={{color: 'rgba(0, 0, 0, 0.87)'}} onCellClick={this.props.handleCellClick} >
-      <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-        <TableRow>
-          {tableColumns}
-        </TableRow>
-      </TableHeader>
-      <TableBody displayRowCheckbox={false} stripedRows>
-        {tableRows}
-      </TableBody>
-    </Table>);
+    
+    let wrapperMinusHeight = 0;
+    if (this.props.data && this.props.dataAccesser(this.props.data).length) {
+      wrapperMinusHeight += 64;
+    }
+    if (this.props.search) {
+      wrapperMinusHeight += 74;
+    }
+    let wrapperHeight = '100%';
+    if (wrapperMinusHeight > 0) {
+      wrapperHeight = `calc(100% - ${wrapperMinusHeight}px)`;
+    } 
+    return (
+      <Table
+          wrapperStyle={{ height: wrapperHeight, backgroundColor: '#ececec'}}
+          style={{color: 'rgba(0, 0, 0, 0.87)'}}
+          onCellClick={this.props.handleCellClick}
+          bodyStyle={{
+            overflowX: 'visible',
+            overflowY: 'visible'
+          }}
+        >
+        <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+          <TableRow>
+            {tableColumns}
+          </TableRow>
+        </TableHeader>
+        <TableBody displayRowCheckbox={false} stripedRows>
+          {tableRows}
+        </TableBody>
+      </Table>
+    );
   }
 
   renderSearch() {
@@ -161,13 +183,23 @@ class DataTable extends React.Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={Object.assign({}, {
+            position: 'relative',
+          }, this.props.style
+        )}
+      >
+        <div style={{height: '100%'}}>
+          {this.renderSearch()}
+          {this.renderTable()}
+          {this.renderPagination()}
+        </div>
         <AnimationGroup
           loading={this.props.requesting}
+          style={{
+            backgroundColor: 'transparent'
+          }}
         />
-        {this.renderSearch()}
-        {this.renderTable()}
-        {this.renderPagination()}
       </div>
     );
   }

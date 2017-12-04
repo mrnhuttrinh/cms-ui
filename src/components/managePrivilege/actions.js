@@ -24,7 +24,7 @@ export const getUsers = (pageable, sort, search) =>
     const searchParams = parseParams(pageable, sort, search);
     dispatch({
       type: GET_USER_LIST,
-      showLoading: true,
+      // showLoading: true,
       fetchConfig: {
         path: `${USER_LIST_API}&${searchParams.toString()}`,
         params: {

@@ -25,7 +25,11 @@ class ManagePrivilegeList extends React.Component {
   }
   render() {
     return (
-      <div style={{background: '#fff'}}>
+      <div style={{
+        display: 'block',
+        height: '100%',
+        background: '#fff',
+      }}>
         <AppBar
           title={<span style={{
               color: 'rgba(0, 0, 0, 0.4)',
@@ -47,6 +51,11 @@ class ManagePrivilegeList extends React.Component {
           search={this.props.search}
           dataAccesser={this.props.dataAccesser}
           pageAccesser={this.props.pageAccesser}
+          requesting={this.props.requesting}
+          style={{
+            height: 'calc(100% - 64px)',
+            display: 'block',
+          }}
         />
       </div>
     );
