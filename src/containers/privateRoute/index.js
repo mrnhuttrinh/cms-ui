@@ -4,12 +4,19 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 import AppBarHeader from './appBarHeader';
 import LeftSideMenu from './leftSideMenu';
 import privateRouteReducers from './reducers';
+import { AnimationGroup } from '../../components';
 
 import "./index.scss"; 
 
 class PrivateRoute extends React.Component{
   render() {
-    const { component: Component, leftMenuState, ...rest } = this.props;
+    const {
+      component: Component,
+      leftMenuState,
+      loading,
+      errorLoading,
+      ...rest
+    } = this.props;
     if (this.props.data && this.props.data.credential) {
       const leftSidebarClassName = leftMenuState ? 'column-left' : 'column-left-none-width';
       const rightContentClassName = leftMenuState ? 'column-right' : 'column-right-full-width';
@@ -22,6 +29,10 @@ class PrivateRoute extends React.Component{
                 <LeftSideMenu location={props.location} />
               </div> 
               <div className={rightContentClassName}>
+                <AnimationGroup
+                  loading={loading}
+                  errorLoading={errorLoading}
+                />
                 <Component {...props}/>
               </div>
             </div>
@@ -49,6 +60,8 @@ class PrivateRoute extends React.Component{
 const mapStateToProps = (state) => ({
   data: state.loginReducer.get('data'),
   leftMenuState: state.privateRouteReducers.get('leftMenuState'),
+  loading: state.animationGroup.get('loading'),
+  errorLoading: state.animationGroup.get('errorLoading'),
 });
 
 export default withRouter(connect(
@@ -56,7 +69,6 @@ export default withRouter(connect(
     pure: false,
   }
 )(PrivateRoute));
-
 
 export const reducers = {
   privateRouteReducers

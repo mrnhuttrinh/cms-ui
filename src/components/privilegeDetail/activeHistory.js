@@ -1,5 +1,4 @@
 import React from 'react';
-import {Card, CardHeader } from 'material-ui/Card';
 import { Row, Col } from 'react-flexbox-grid';
 import FontIcon from 'material-ui/FontIcon';
 import uuid from 'uuid/v1';

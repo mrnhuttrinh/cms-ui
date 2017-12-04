@@ -1,14 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import TextField from 'material-ui/TextField';
 import { Row, Col } from 'react-flexbox-grid';
+import moment from 'moment';
 import {
   CardTitle,
 } from 'material-ui/Card';
 
+import { AnimationGroup } from '../commons';
+
+import * as actions from './actions';
+
 const rowContainer = {
   backgroundColor: '#fff',
-  marginLeft: 0,
-  marginRight: 0
+  marginLeft: 10,
+  marginRight: 10,
+  marginTop: 20,
+  marginBottom: 20,
 };
 const titleStyle = {
   fontSize: '16px',
@@ -16,10 +26,40 @@ const titleStyle = {
   paddingLeft: 0,
 }
 
-export default class GeneralInformation extends React.Component {
+const MERCHANT_STATUS = {
+  ACTIVE: 'ĐANG HOẠT ĐỘNG',
+  INACTIVE: 'BỊ KHÓA',
+}
+
+const formatDate = (date) => (date ? moment(date).format('h:mm:ss DD/MM/YYYY') : 'N/A');
+
+class GeneralInformation extends React.Component {
+
+  componentWillMount() {
+    const {
+      match: {
+        params: {
+          merchantId
+        }
+      }
+    } = this.props;
+    this.props.actions.getMerchantDetail(merchantId);
+  }
   render() {
+    const {
+      data = {
+        address: {}
+      },
+    } = this.props;
+    const {
+      address = {}
+    } = data;
     return (
       <Row style={rowContainer}>
+        <AnimationGroup
+          loading={this.props.requesting}
+          errorLoading={this.props.error ? true : false}
+        />
         <Col md={12}>
           <Row>
             <Col md={12}>
@@ -34,7 +74,7 @@ export default class GeneralInformation extends React.Component {
                 floatingLabelText="Tên Gọi"
                 floatingLabelFixed
                 fullWidth
-                value="S-Canteen Khu A"
+                value={data.name}
               />
             </Col>
             <Col md={6}>
@@ -42,7 +82,7 @@ export default class GeneralInformation extends React.Component {
                 floatingLabelText="SĐT"
                 floatingLabelFixed
                 fullWidth
-                value="08-62728206"
+                value={data.phone}
               />
             </Col>
           </Row>
@@ -52,7 +92,7 @@ export default class GeneralInformation extends React.Component {
                 floatingLabelText="Email"
                 floatingLabelFixed
                 fullWidth
-                value="vmnam@yopmail.com"
+                value={data.email}
               />
             </Col>
           </Row>
@@ -62,7 +102,7 @@ export default class GeneralInformation extends React.Component {
                 floatingLabelText="Trạng Thái"
                 floatingLabelFixed
                 fullWidth
-                value="ĐANG HOẠT ĐỘNG"
+                value={MERCHANT_STATUS[data.status]}
               />
             </Col>
             <Col md={6}>
@@ -70,7 +110,7 @@ export default class GeneralInformation extends React.Component {
                 floatingLabelText="THời gian cập nhật gần nhất"
                 floatingLabelFixed
                 fullWidth
-                value="07:30:55 5/11/2017"
+                value={formatDate(data.updatedAt)}
               />
             </Col>
           </Row>
@@ -87,7 +127,7 @@ export default class GeneralInformation extends React.Component {
                 floatingLabelText="Số nhà, đường"
                 floatingLabelFixed
                 fullWidth
-                value="368 Đường Số 7"
+                value={address.line1}
               />
             </Col>
           </Row>
@@ -97,7 +137,7 @@ export default class GeneralInformation extends React.Component {
                 floatingLabelText="Phường (Xã), Quận (Huyện)"
                 floatingLabelFixed
                 fullWidth
-                value="Phường 8, quận Phú Nhuận"
+                value={address.line2}
               />
             </Col>
           </Row>
@@ -107,7 +147,7 @@ export default class GeneralInformation extends React.Component {
                 floatingLabelText="Tỉnh, Thành Phố"
                 floatingLabelFixed
                 fullWidth
-                value="TP Hồ Chí Minh"
+                value={address.city}
               />
             </Col>
           </Row>
@@ -116,3 +156,22 @@ export default class GeneralInformation extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const generalInformation = state.MerchantDetailReducer.get('generalInformation');
+  return {
+    requesting: generalInformation.get('requesting'),
+    data: generalInformation.get('data'),
+    error: generalInformation.get('error'),
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch)
+});
+
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(GeneralInformation));

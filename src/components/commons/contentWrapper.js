@@ -1,6 +1,5 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import RefreshButton from './refreshButton';
 
 const containterStyle = {
   height: '100%',

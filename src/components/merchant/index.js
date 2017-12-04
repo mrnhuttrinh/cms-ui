@@ -1,5 +1,8 @@
 import React from 'react';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import { withRouter } from 'react-router-dom';
+import { Tab } from 'material-ui/Tabs';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 import { TabTemplate } from '../commons';
 import GeneralInformation from './viewGeneralInformation';
 import EquipmentAccessCard from './viewEquipmentAccessCard';
@@ -7,14 +10,7 @@ import Report from './viewReport';
 import History from './viewHistory';
 import { ContentWrapper, RefreshButton } from '../commons';
 
-const styles = {
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400,
-  },
-};
+import MerchantDetailReducer from './reducers';
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
@@ -24,12 +20,12 @@ const tabStyle = {
 const indicatorStyle = {
   backgroundColor: '#009688'
 };
-export default class MerchantDetail extends React.Component {
+class MerchantDetail extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      value: 'a',
+      value: 'generalInfo',
     };
   }
 
@@ -43,8 +39,16 @@ export default class MerchantDetail extends React.Component {
     return (
       <ContentWrapper
         title="Chi Tiết Đại Lý"
-        iconStyleLeft={{display: 'none'}}
         iconElementRight={<RefreshButton />}
+        iconElementLeft={
+          <IconButton
+            onClick={() => this.props.history.push('/merchant')}
+            style={{ marginTop: '-4px'}}
+          >
+            <FontIcon
+              color="#009688" className="material-icons">arrow_back</FontIcon>
+          </IconButton>
+        }
       >
         <TabTemplate
           style={{
@@ -55,16 +59,16 @@ export default class MerchantDetail extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
         >
-          <Tab style={tabStyle} label="THÔNG TIN CHUNG" value="a">
+          <Tab style={tabStyle} label="THÔNG TIN CHUNG" value="generalInfo">
             <GeneralInformation />
           </Tab>
-          <Tab style={tabStyle} label="ỨNG DỤNG, THIẾT BỊ CHẬP NHẬN THẺ" value="b">
+          <Tab style={tabStyle} label="ỨNG DỤNG, THIẾT BỊ CHẬP NHẬN THẺ" value="equipment">
             <EquipmentAccessCard />
           </Tab>
-          <Tab style={tabStyle} label="BÁO CÁO" value="c">
+          <Tab style={tabStyle} label="BÁO CÁO" value="report">
             <Report />
           </Tab>
-          <Tab style={tabStyle} label="LỊCH SỬ" value="d">
+          <Tab style={tabStyle} label="LỊCH SỬ" value="history">
             <History />
           </Tab>
         </TabTemplate>
@@ -72,3 +76,9 @@ export default class MerchantDetail extends React.Component {
     );
   }
 }
+
+export default withRouter(MerchantDetail);
+
+export const reducers = {
+  MerchantDetailReducer,
+};

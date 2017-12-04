@@ -1,4 +1,3 @@
-import URLSearchParams from 'url-search-params';
 import {
   USER_LIST_API,
 } from '../../constants';
@@ -8,22 +7,26 @@ import {
   UPDATE_PAGE_SORT_USER_LIST,
 } from './constants';
 
-const updatePageAndSort = (pageable, sort) => {
+import { parseParams } from '../../utils';
+
+const updatePageSortSearch = (pageable, sort, search) => {
   return {
     type: UPDATE_PAGE_SORT_USER_LIST,
     pageable,
     sort,
+    search,
   };
 }
 
-export const getCustomer = (pageable, sort) =>
+export const getUsers = (pageable, sort, search) =>
   (dispatch) => {
-    dispatch(updatePageAndSort(pageable, sort));
-    const params = new URLSearchParams({...pageable, sort:`${sort.key},${sort.type}`});
+    dispatch(updatePageSortSearch(pageable, sort, search));
+    const searchParams = parseParams(pageable, sort, search);
     dispatch({
       type: GET_USER_LIST,
+      // showLoading: true,
       fetchConfig: {
-        path: `${USER_LIST_API}&${params.toString()}`,
+        path: `${USER_LIST_API}&${searchParams.toString()}`,
         params: {
           method: 'GET'
         },

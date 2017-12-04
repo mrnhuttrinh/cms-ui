@@ -4,6 +4,7 @@ import { reducer as toastrReducer } from 'react-redux-toastr';
 import { reducer as formReducer } from 'redux-form';
 
 // the section import the reducer of components
+import animationGroup from './mainLoading';
 import dashboardReducer from '../components/dashboard/reducers';
 import { reducers as componentsReducers } from '../components';
 import { reducers as containerReducers } from '../containers';
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   toastr: toastrReducer,
   form: formReducer,
   dashboard: dashboardReducer,
+  animationGroup,
   ...componentsReducers,
   ...containerReducers,
 });
