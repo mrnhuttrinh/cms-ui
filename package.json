@@ -77,7 +77,7 @@
   },
   "proxy": {
     "/api/*": {
-      "target": "http://34.212.195.16:8081/api",
+      "target": "http://localhost:8081/api",
       "changeOrigin": true,
       "pathRewrite": {
         "^/api": ""
