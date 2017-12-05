@@ -27,7 +27,7 @@ export const ACCOUNT_HISTORY_BY_ACCOUNT_ID_API = '/api/accounts/{id}/accountHist
 export const TRANSACTIONS_BY_ACCOUNT_ID_API = '/api/transactions?projection=custom&account.id={accountId}';
 
 // for merchant and related
-export const MERCHANT_LIST_API = '/api/merchants/?projection=custom';
+export const MERCHANT_LIST_API = '/api/merchants?projection=custom';
 export const MERCHANT_DETAIL_API ='/api/merchants/{id}?projection=custom';
 export const MERCHANT_TERMINAL_BY_MERCHANT_API = '/api/merchantTerminals?projection=custom&merchant.id={id}';
 export const MERCHANT_HISTORY_API = '/api/merchantHistories?projection=custom&merchant.id={id}';
