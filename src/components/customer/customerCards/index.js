@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
@@ -61,7 +62,7 @@ class CustomersCard  extends React.Component {
           />
         </CardText>
         <CardActions style={{textAlign: 'right'}}>
-          <RaisedButton label="Chi tiết"  backgroundColor="#009587" labelColor='#ffffff' />
+          <RaisedButton containerElement={<Link to={`/card/${customerCard.cardNumber}`} />} label="Chi tiết"  backgroundColor="#009587" labelColor='#ffffff' />
         </CardActions>
       </Card>
     </Col>)

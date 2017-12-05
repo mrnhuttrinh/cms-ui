@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AccountListReducer from './reducers';
 import * as actions from './actions';
-import DataTable, { dataAccesser, TYPE } from '../commons/table';
-import { ContentWrapper, RefreshButton } from '../commons';
+import DataTable, { TYPE } from '../commons/table';
+import AppBar from 'material-ui/AppBar';
+import { RefreshButton } from '../commons';
 
 const ACCOUNT_STATUS = {
   ACTIVE: 'ĐANG HOẠT ĐỘNG',
@@ -17,27 +18,42 @@ class CustomerList extends React.Component {
     this.handleCellClick = this.handleCellClick.bind(this);
   }
   handleCellClick(indexRow, column, event) {
-    this.props.history.push(`/account/${dataAccesser(this.props.data)[indexRow].id}`);
+    this.props.history.push(`/account/${this.props.dataAccesser(this.props.data)[indexRow].id}`);
   }
   render() {
     return (
-      <ContentWrapper
-        title="Danh sách tài khoản ví"
-        iconStyleLeft={{display: 'none'}}
-        iconElementRight={<RefreshButton />}
-      >
+      <div style={{
+        display: 'block',
+        height: '100%',
+        background: '#fff',
+      }}>
+        <AppBar
+          title={<span style={{
+              color: 'rgba(0, 0, 0, 0.4)',
+            }}>Danh sách tài khoản ví</span>}
+          iconStyleLeft={{display: 'none'}}
+          style={{
+            backgroundColor: '#e8e8e8',
+            border: 'rgba(0, 0, 0, 0.12) 1px'
+          }}
+          iconElementRight={<RefreshButton />}
+        />
         <DataTable
           columns={this.props.columns}
           sort={this.props.sort}
           data={this.props.data}
-          getData={this.props.actions.getCustomer}
+          getData={this.props.actions.getAccountList}
           handleCellClick={this.handleCellClick}
           size={this.props.size}
           search={this.props.search}
           dataAccesser={this.props.dataAccesser}
           pageAccesser={this.props.pageAccesser}
+          style={{
+            height: 'calc(100% - 64px)',
+            display: 'block',
+          }}
         />
-      </ContentWrapper>
+      </div>
     );
   }
 }
@@ -63,7 +79,7 @@ CustomerList.defaultProps = {
       text: 'TÊN',
       formater: (data) => (data && data.customer ? `${data.customer.firstName}` : ''),
     }, {
-      key: 'accountType.description',
+      key: 'plan.planType.description',
       text: 'HẠNG VÍ',
     }, {
       key: 'dateOpened',
