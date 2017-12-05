@@ -5,6 +5,8 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { dateTimeFormatter } from '../../../utils';
 
+import { MERCHANT_STATUS } from '../constants';
+
 const cardStyle = {
   padding: 10,
   marginBottom: 5,
@@ -28,7 +30,7 @@ class Application extends React.Component {
         <Row>
           <Col md={12}>
             <CardTitle style={titleStyle}>
-              Ứng dụng - SCanteen - Khu A
+              {application.name}
             </CardTitle>
           </Col>
         </Row>
@@ -66,7 +68,7 @@ class Application extends React.Component {
               floatingLabelText="Trạng thái"
               floatingLabelFixed
               fullWidth
-              value="ĐANG HOẠT ĐỘNG"
+              value={MERCHANT_STATUS[application.status]}
             />
           </Col>
           <Col md={4}>

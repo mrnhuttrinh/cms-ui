@@ -15,10 +15,16 @@ import * as actions from './actions';
 
 const rowContainer = {
   backgroundColor: '#fff',
-  marginLeft: 10,
-  marginRight: 10,
-  marginTop: 20,
-  marginBottom: 20,
+  marginLeft: 0,
+  marginRight: 0,
+  marginTop: 0,
+  marginBottom: 0,
+  paddingLeft: 10,
+  paddingRight: 10,
+  paddingTop: 20,
+  paddingBottom: 20,
+  position: 'relative',
+  height: '100%'
 };
 const titleStyle = {
   fontSize: '16px',

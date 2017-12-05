@@ -22,22 +22,3 @@ export const HISTORY_TYPE = {
     createdByText: 'Quản Trị Viên',
   },
 };
-
-export const TIME_LIFE_LEVEL = {
-  TODAY: {
-    value: 0,
-    text: 'Hôm nay',
-  },
-  YESTERDAY: {
-    value: 1,
-    text: 'Hôm qua'
-  },
-  THIS_MONTH: {
-    value: 0,
-    text: 'Tháng này',
-  },
-  LAST_MONTH: {
-    value: 1,
-    text: 'Tháng trước'
-  },
-};

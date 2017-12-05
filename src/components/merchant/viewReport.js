@@ -5,7 +5,15 @@ import NotFound from '../notFound';
 const rowContainer = {
   backgroundColor: '#fff',
   marginLeft: 0,
-  marginRight: 0
+  marginRight: 0,
+  marginTop: 0,
+  marginBottom: 0,
+  paddingLeft: 10,
+  paddingRight: 10,
+  paddingTop: 20,
+  paddingBottom: 20,
+  position: 'relative',
+  height: '100%'
 };
 
 export default class Report extends React.Component {

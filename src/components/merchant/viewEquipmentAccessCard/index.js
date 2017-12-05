@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { Row, Col } from 'react-flexbox-grid';
 import Application from './application';
 import { dataAccesser } from '../../commons/table';
+import { AnimationGroup } from '../../commons';
 
 import * as actions from '../actions';
 
@@ -13,8 +14,14 @@ const rowContainer = {
   backgroundColor: '#fff',
   marginLeft: 0,
   marginRight: 0,
-  paddingTop: 10,
-  paddingBottom: 10,
+  marginTop: 0,
+  marginBottom: 0,
+  paddingLeft: 10,
+  paddingRight: 10,
+  paddingTop: 20,
+  paddingBottom: 20,
+  position: 'relative',
+  height: '100%'
 };
 
 class EquipmentAccessCard extends React.Component {
@@ -54,6 +61,10 @@ class EquipmentAccessCard extends React.Component {
   render() {
     return (
       <Row style={rowContainer}>
+        <AnimationGroup
+          loading={this.props.requesting}
+          errorLoading={this.props.error ? true : false}
+        />
         {this.renderApplication()}
       </Row>
     );
