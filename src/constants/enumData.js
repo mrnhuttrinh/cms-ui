@@ -28,7 +28,7 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     url: '/merchant',
   },
   CARD_SYSTEM: {
-    value: 'cardsystem',
+    value: 'card',
     text: 'Hệ thống thẻ',
     icon: 'credit_card',
     url: '/card',
