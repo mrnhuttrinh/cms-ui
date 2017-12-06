@@ -9,6 +9,7 @@ import { dateFormatter, dateTimeFormatter } from '../../../utils';
 import { STATUS } from './constants';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { GridList } from 'material-ui/GridList';
 
 import * as actions from './actions';
 
@@ -30,36 +31,54 @@ class CustomersCard  extends React.Component {
           Thông tin thẻ
         </CardTitle>
         <CardText>
-          <TextField
-            floatingLabelText="Số thẻ - Card code"
-            value={customerCard.cardCode}
-            floatingLabelFixed={true}
-          />
-          <TextField
-            floatingLabelText="Loại"
-            value={_.get(customerCard, 'cardType.description')}
-            floatingLabelFixed={true}
-          /><br/>
-          <TextField
-            floatingLabelText="Ngày hiệu lực"
-            value={dateFormatter(customerCard.effectiveDate)}
-            floatingLabelFixed={true}
-          />
-          <TextField
-            floatingLabelText="Ngày hết hạn"
-            value={dateFormatter(customerCard.expiryDate)}
-            floatingLabelFixed={true}
-          /><br />
-          <TextField
-            floatingLabelText="Trạng thái thẻ"
-            value={STATUS[customerCard.status]}
-            floatingLabelFixed={true}
-          />
-          <TextField
-            floatingLabelText="Thời gian cập nhật gần nhất"
-            value={dateTimeFormatter(customerCard.updatedAt)}
-            floatingLabelFixed={true}
-          />
+          <GridList
+            cols={12}
+            padding={10}
+            cellHeight={56}
+          >
+            <TextField
+              floatingLabelText="Số thẻ - Card code"
+              value={customerCard.cardCode}
+              floatingLabelFixed={true}
+              cols={9}
+              fullWidth
+            />
+            <TextField
+              floatingLabelText="Loại"
+              value={_.get(customerCard, 'cardType.description')}
+              floatingLabelFixed={true}
+              cols={3}
+              fullWidth
+            />
+            <TextField
+              floatingLabelText="Ngày hiệu lực"
+              value={dateFormatter(customerCard.effectiveDate)}
+              floatingLabelFixed={true}
+              cols={6}
+              fullWidth
+            />
+            <TextField
+              floatingLabelText="Ngày hết hạn"
+              value={dateFormatter(customerCard.expiryDate)}
+              floatingLabelFixed={true}
+              cols={6}
+              fullWidth
+            />
+            <TextField
+              floatingLabelText="Trạng thái thẻ"
+              value={STATUS[customerCard.status]}
+              floatingLabelFixed={true}
+              cols={6}
+              fullWidth
+            />
+            <TextField
+              floatingLabelText="Thời gian cập nhật gần nhất"
+              value={dateTimeFormatter(customerCard.updatedAt)}
+              floatingLabelFixed={true}
+              cols={6}
+              fullWidth
+            />
+          </GridList>
         </CardText>
         <CardActions style={{textAlign: 'right'}}>
           <RaisedButton containerElement={<Link to={`/card/${customerCard.cardNumber}`} />} label="Chi tiết"  backgroundColor="#009587" labelColor='#ffffff' />
