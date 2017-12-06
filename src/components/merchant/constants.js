@@ -12,21 +12,17 @@ export const MERCHANT_STATUS = {
 export const HISTORY_TYPE = {
   CREATED: {
     icon: 'new_releases',
-    textNote: 'Người dùng được khởi tạo bởi SCMS',
+    textNote: '',
+    title: 'Khởi tạo',
   },
-  PASSWORD_CHANGED: {
+  ADDED: {
     icon: 'note_add',
-    textNote: 'Người dùng đã được đổi mật khẩu bởi',
-    createdByText: 'Quản Trị Viên',
+    textNote: '',
+    title: 'Thêm ứng dụng',
   },
-  LOCKED: {
+  UPDATED: {
     icon: 'mode_edit',
-    textNote: 'Người dùng bị khóa bởi',
-    createdByText: 'Quản Trị Viên',
-  },
-  UNLOCKED: {
-    icon: 'mode_edit',
-    textNote: 'Người dùng được mở khóa bởi',
-    createdByText: 'Quản Trị Viên',
-  },
+    textNote: '',
+    title: 'Cập nhật trạng thái',
+  }
 };

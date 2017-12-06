@@ -56,7 +56,7 @@ class ActiveHistory extends React.Component {
           </FontIcon>
         </Col>
         <Col md={3}>
-          {type.name}
+          {historyType.title}
         </Col>
         <Col md={8}>
           {historyType.textNote} <strong>{historyType.createdByText}</strong>
@@ -79,6 +79,25 @@ class ActiveHistory extends React.Component {
     }
     return null;
   }
+  renderEmptyHistory() {
+    return (
+      <div key={uuid()}>
+        <p style={titleStyle}><span></span></p>
+        <div style={divHistoryDetail}>
+          <Row key={uuid()} style={milestoneStyle}>
+            <Col md={1}>
+              <FontIcon style={iconStyle} className="material-icons">
+                new_releases
+              </FontIcon>
+            </Col>
+            <Col md={11}>
+              Không có thông tin chi tiết!
+            </Col>
+          </Row>
+        </div>
+      </div>
+    );
+  }
   divideTimeLife(histories) {
     let result = [];
     const timeLines = {};
@@ -94,7 +113,9 @@ class ActiveHistory extends React.Component {
     _.forEach(Object.keys(timeLines), (key) => {
       result = result.concat(this.renderMilestoneHistory(timeLines[key], key));
     });
-
+    if (result.length === 0) {
+      result.push(this.renderEmptyHistory());
+    }
     return result;
   }
   render () {

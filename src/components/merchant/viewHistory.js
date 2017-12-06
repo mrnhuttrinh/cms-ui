@@ -11,6 +11,11 @@ import { HISTORY_TYPE } from './constants';
 import { AnimationGroup } from '../commons';
 import * as actions from './actions';
 
+const MERCHANT_STATUS = {
+  ACTIVE: 'ĐANG HOẠT ĐỘNG',
+  INACTIVE: 'BỊ KHÓA',
+}
+
 const rowContainer = {
   backgroundColor: '#fff',
   marginLeft: 0,
@@ -80,7 +85,12 @@ class History extends React.Component {
   parseInformation(data) {
     // Create Customer
     if (data.type.type === 'CREATED') {
-      return ([null, <span>Khách hàng được khởi tạo</span>]);
+      return (<span>Đại lý được khởi tạo bởi <strong>Quản Trị Viên</strong></span>);
+    }
+
+    // ADDED information
+    if (data.type.type === 'ADDED') {
+      return (<span>Đại lý được đăng ký một <strong>ứng dụng</strong> bởi <strong>Quản Trị Viên</strong></span>);
     }
 
     let updateObject;
@@ -93,28 +103,22 @@ class History extends React.Component {
 
     // Update information
     if (data.type.type === 'UPDATED') {
-      const propertiesChanged = [];
       const content = _.map(Object.keys(changes(updateObject.previous, updateObject.next)), (key) => {
         const property = this.props.propertyName[key];
         if (property) {
-          propertiesChanged.push(property.name);
-          return (<span>
-            {property.name} khách hàng được chuyển từ <strong>
-              [{property.formatter ? property.formatter(updateObject.previous[key]) : updateObject.previous[key]}]
-            </strong> sang <strong>
-              [{property.formatter ? property.formatter(updateObject.next[key]) : updateObject.next[key]}]
-            </strong>
-          </span>);
+          return (
+            <span>
+              {property.name} khách hàng được chuyển từ <strong>
+                [{property.formatter ? property.formatter(updateObject.previous[key]) : updateObject.previous[key]}]
+              </strong> sang <strong>
+                [{property.formatter ? property.formatter(updateObject.next[key]) : updateObject.next[key]}]
+              </strong> bởi <strong>Quản Trị Viên</strong>
+            </span>
+          );
         }
         return null;
       });
-      return [propertiesChanged.join(', '), content];
-    }
-
-    // ADDED information
-    if (data.type.type === 'ADDED') {
-      const propertiesChanged = _.map(Object.keys(changes(updateObject.previous, updateObject.next)), (key) => this.props.propertyName[key].name);
-      return [propertiesChanged.join(', '), (<span>Khách hàng đã được thêm <strong>{propertiesChanged.join(', ')}</strong> </span>)];
+      return [content];
     }
 
     return null;
@@ -126,20 +130,21 @@ class History extends React.Component {
     } = milestone;
     const historyType = HISTORY_TYPE[type.type] || {
       icon: 'mode_edit',
-      textNote: '',
     };
     return (
       <Row key={uuid()} style={milestoneStyle}>
-        <Col md={1}>
+        <Col md={3}>
           <FontIcon style={iconStyle} className="material-icons">
             {historyType.icon}
           </FontIcon>
-        </Col>
-        <Col md={3}>
-          {type.name}
+          <div style={{
+            display: 'inline-block',
+            position: 'absolute',
+            left: 60
+          }}>{historyType.title}</div>
         </Col>
         <Col md={8}>
-          {historyType.textNote} <strong>{historyType.createdByText}</strong>
+          {this.parseInformation(milestone)}
         </Col>
       </Row>
     );
@@ -158,6 +163,25 @@ class History extends React.Component {
       );
     }
     return null;
+  }
+  renderEmptyHistory() {
+    return (
+      <div key={uuid()}>
+        <p style={titleStyle}><span></span></p>
+        <div style={divHistoryDetail}>
+          <Row key={uuid()} style={milestoneStyle}>
+            <Col md={1}>
+              <FontIcon style={iconStyle} className="material-icons">
+                new_releases
+              </FontIcon>
+            </Col>
+            <Col md={11}>
+              Không có thông tin chi tiết!
+            </Col>
+          </Row>
+        </div>
+      </div>
+    );
   }
   divideTimeLife(histories) {
     let result = [];
@@ -210,6 +234,24 @@ const mapStateToProps = (state) => {
     error: merchantHistories.get('error'),
   };
 };
+
+History.defaultProps = {
+  propertyName: {
+    name : {
+      name: 'Tên',
+    },
+    phone : {
+      name: 'SDT',
+    },
+    email : {
+      name: 'Email',
+    },
+    status : {
+      name: 'Trạng thái',
+      formatter: (key) => (MERCHANT_STATUS[key])
+    },
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)

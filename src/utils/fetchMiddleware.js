@@ -5,6 +5,11 @@ import {
   mainLoadingError,
 } from '../actions';
 
+import {
+  REFRESH_TOKEN,
+  SUBMIT_LOGIN,
+} from '../components/login/constants';
+
 // guild create middle
 // http://blog.jakegardner.me/consolidate-fetch-with-redux-middleware/index.html
 
@@ -31,9 +36,9 @@ const fetchMiddleware = store => next => async action => {
     }
     const data = await fetch(path, params).then(async (res) => {
       // authenticate error
-      if (res.status === 403) {
+      if (res.status === 403 && type !== REFRESH_TOKEN && type !== SUBMIT_LOGIN) {
         // force redirect login
-        // window.history.push('/login');
+        window.location.href = '/login';
       }
       // handle common
       if (res.status >= 400) {
