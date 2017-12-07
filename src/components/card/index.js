@@ -38,7 +38,7 @@ class Card extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Chi Tiết Khách Hàng"
+        title="Chi tiết thẻ"
         iconStyleLeft={{display: 'none'}}
         iconElementRight={<RefreshButton onClick={this.refreshData} />}
       >
