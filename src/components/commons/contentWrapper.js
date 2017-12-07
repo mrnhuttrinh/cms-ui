@@ -1,5 +1,6 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
+import RefreshButton from './refreshButton';
 
 const containterStyle = {
   height: '100%',
@@ -8,7 +9,8 @@ const containterStyle = {
 
 const appBarStyle = {
   backgroundColor: '#e8e8e8',
-  boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12)'
+  border: 'rgba(0, 0, 0, 0.12) 1px'
+  // boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12)'
 };
 
 const titleStyle = {
@@ -18,7 +20,31 @@ const titleStyle = {
   lineHeight: '56px'
 }
 
-class ContentWrapper extends React.Component  {
+class ContentWrapper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      children: props.children,
+    }
+    this.onClickRefreshButton = this.onClickRefreshButton.bind(this);
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      children: nextProps.children,
+    });
+  }
+  onClickRefreshButton() {
+    const oldChildren = this.state.children;
+    this.setState({
+      children: null,
+    });
+    // reload
+    setTimeout(() => {
+      this.setState({
+        children: oldChildren,
+      });
+    }, 10);
+  }
   render () {
     const {
       title, iconElementRight, children, ...rest
@@ -32,10 +58,10 @@ class ContentWrapper extends React.Component  {
           }}
           title={<span>{title}</span>}
           style={appBarStyle}
-          iconElementRight={iconElementRight}
+          iconElementRight={<RefreshButton onClick={this.onClickRefreshButton} />}
           {...rest}
         />
-        {children}
+        {this.state.children}
       </div>
     );
   }

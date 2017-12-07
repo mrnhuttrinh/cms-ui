@@ -14,13 +14,13 @@ import ActiveHistory from './activeHistory';
 import { TabTemplate, AnimationGroup } from '../commons';
 import * as actions from './actions';
 
-import { ContentWrapper, RefreshButton } from '../commons';
+import { ContentWrapper } from '../commons';
 
 import PrivilegeDetailReducer from './reducers';
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
-  minHeight: 'calc(100% - 64px)',
+  minHeight: 'calc(100% - 56px)',
   position: 'relative',
 };
 const indicatorStyle = {
@@ -80,7 +80,6 @@ class PrivilegeDetail  extends React.Component {
       <ContentWrapper
         title="Chi Tiết Người Dùng"
         iconStyleLeft={{display: 'none'}}
-        iconElementRight={<RefreshButton />}
       >
         <TabTemplate
           style={{

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tab } from 'material-ui/Tabs';
 import { TabTemplate } from '../commons';
-import { ContentWrapper, RefreshButton } from '../commons';
+import { ContentWrapper } from '../commons';
 import * as actions from './actions';
 
 import AccountDetails from './accountDetails';
@@ -18,7 +18,7 @@ import AccountHistoryReducer from './accountHistory/reducers';
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
-  minHeight: 'calc(100% - 64px)',
+  minHeight: 'calc(100% - 56px)',
   position: 'relative',
 };
 
@@ -36,7 +36,6 @@ class Account extends React.Component {
       <ContentWrapper
         title="Chi tiết tài khoản"
         iconStyleLeft={{display: 'none'}}
-        iconElementRight={<RefreshButton />}
       >
         <TabTemplate
           style={{

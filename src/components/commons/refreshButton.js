@@ -10,6 +10,7 @@ class RefreshButton extends React.Component {
           color: '#009688',
           letterSpacing: '0px'
         }}
+        onClick={this.props.onClick}
         leftIcon={
           <FontIcon
             style={{

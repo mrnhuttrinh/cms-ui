@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
+import { AnimationGroup } from '../../commons';
 
 import * as actions from './actions';
 
@@ -37,7 +38,14 @@ class CustomerAccount  extends React.Component  {
           {accountsCard}
         </div>);
     }
-    return null;
+    return (
+      <div style={{ position: 'relative', width: '100%', height: '100%'}}>
+        <AnimationGroup
+          loading={this.props.requesting}
+          errorLoading={this.props.error ? true : false}
+        />
+      </div>
+    );
   }
 }
 

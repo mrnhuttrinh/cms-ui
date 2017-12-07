@@ -138,7 +138,7 @@ class DataTable extends React.Component {
     
     let wrapperMinusHeight = 0;
     if (this.props.data && this.props.dataAccesser(this.props.data).length) {
-      wrapperMinusHeight += 64;
+      wrapperMinusHeight += 56;
     }
     if (this.props.search) {
       wrapperMinusHeight += 74;

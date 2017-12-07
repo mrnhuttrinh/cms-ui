@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tab } from 'material-ui/Tabs';
 import { TabTemplate } from '../commons';
-import { ContentWrapper, RefreshButton } from '../commons';
+import { ContentWrapper } from '../commons';
 import * as actions from './actions';
 import CardDetails from './cardDetails';
 import CardDetailReducer from './reducers';
@@ -16,7 +16,7 @@ import CardTransactionReducer from './cardTransaction/reducers';
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
-  minHeight: 'calc(100% - 64px)',
+  minHeight: 'calc(100% - 56px)',
   position: 'relative',
 };
 
@@ -40,7 +40,6 @@ class Card extends React.Component {
       <ContentWrapper
         title="Chi tiết thẻ"
         iconStyleLeft={{display: 'none'}}
-        iconElementRight={<RefreshButton onClick={this.refreshData} />}
       >
         <TabTemplate
           style={{

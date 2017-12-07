@@ -11,6 +11,7 @@ import AddIcon from 'material-ui/svg-icons/action/note-add';
 import {
   Card
 } from 'material-ui/Card';
+import { AnimationGroup } from '../../commons';
 import * as actions from './actions';
 import { STATUS } from './constants';
 import { genderFormatter, dateFormatter } from '../../../utils';
@@ -105,14 +106,21 @@ class CustomerHistory  extends React.Component  {
     return (<Card key={key} style={{ padding: '9px 9px 0px'}}>
       <Row>
         <Col md={1}>{icon}</Col>
-        <Col md={2}>{title}</Col>
-        <Col md={9}>{content}</Col>
+        <Col md={3}>{title}</Col>
+        <Col md={8}>{content}</Col>
       </Row>
     </Card>)
   }
   render () {
     if (!this.props.customerHistory) {
-      return null;
+      return (
+        <div style={{ position: 'relative', width: '100%', height: '100%'}} >
+          <AnimationGroup
+            loading={this.props.requesting}
+            errorLoading={this.props.error ? true : false}
+          />
+        </div>
+      );
     }
     const customerHistories = _.sortBy(this.props.customerHistory._embedded.customerHistories, (e) => (new Date(e.createdAt))).reverse();
     const timeLine = {};
@@ -126,7 +134,7 @@ class CustomerHistory  extends React.Component  {
       historyDetail = historyDetail.concat(timeLine[key]);
     });
     return (
-      <div style={{padding:'20px 100px 20px 100px'}} >
+      <div style={{padding:'20px 100px 20px 100px', position: 'relative'}} >
         {historyDetail.length ? historyDetail : 'Không có thông tin lịch sử khách hàng!'}
       </div>);
   }

@@ -8,13 +8,13 @@ import GeneralInformation from './viewGeneralInformation';
 import EquipmentAccessCard from './viewEquipmentAccessCard';
 import Report from './viewReport';
 import History from './viewHistory';
-import { ContentWrapper, RefreshButton } from '../commons';
+import { ContentWrapper } from '../commons';
 
 import MerchantDetailReducer from './reducers';
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
-  minHeight: 'calc(100% - 64px)',
+  minHeight: 'calc(100% - 56px)',
   position: 'relative',
 };
 const indicatorStyle = {
@@ -39,7 +39,6 @@ class MerchantDetail extends React.Component {
     return (
       <ContentWrapper
         title="Chi Tiết Đại Lý"
-        iconElementRight={<RefreshButton />}
         iconElementLeft={
           <IconButton
             onClick={() => this.props.history.push('/merchant')}
