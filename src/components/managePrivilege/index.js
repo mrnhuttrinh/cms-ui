@@ -1,11 +1,10 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ManagePrivilegeListReducer from './reducers';
 import * as actions from './actions';
 import DataTable, { dataAccesser } from '../commons/table';
-import { RefreshButton } from '../commons';
+import { ContentWrapper } from '../commons';
 
 import {
   ENUM_USER_STATUS,
@@ -25,22 +24,10 @@ class ManagePrivilegeList extends React.Component {
   }
   render() {
     return (
-      <div style={{
-        display: 'block',
-        height: '100%',
-        background: '#fff',
-      }}>
-        <AppBar
-          title={<span style={{
-              color: 'rgba(0, 0, 0, 0.4)',
-            }}>Danh sách người dùng</span>}
-          iconStyleLeft={{display: 'none'}}
-          style={{
-            backgroundColor: '#e8e8e8',
-            border: 'rgba(0, 0, 0, 0.12) 1px'
-          }}
-          iconElementRight={<RefreshButton />}
-        />
+      <ContentWrapper
+        title="Danh sách người dùng"
+        iconStyleLeft={{display: 'none'}}
+      >
         <DataTable
           columns={this.props.columns}
           sort={this.props.sort}
@@ -53,11 +40,11 @@ class ManagePrivilegeList extends React.Component {
           pageAccesser={this.props.pageAccesser}
           requesting={this.props.requesting}
           style={{
-            height: 'calc(100% - 64px)',
+            height: 'calc(100% - 56px)',
             display: 'block',
           }}
         />
-      </div>
+      </ContentWrapper>
     );
   }
 }

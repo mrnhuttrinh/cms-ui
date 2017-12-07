@@ -4,8 +4,7 @@ import { bindActionCreators } from 'redux';
 import AccountListReducer from './reducers';
 import * as actions from './actions';
 import DataTable, { TYPE } from '../commons/table';
-import AppBar from 'material-ui/AppBar';
-import { RefreshButton } from '../commons';
+import { ContentWrapper } from '../commons';
 
 const ACCOUNT_STATUS = {
   ACTIVE: 'ĐANG HOẠT ĐỘNG',
@@ -22,22 +21,10 @@ class CustomerList extends React.Component {
   }
   render() {
     return (
-      <div style={{
-        display: 'block',
-        height: '100%',
-        background: '#fff',
-      }}>
-        <AppBar
-          title={<span style={{
-              color: 'rgba(0, 0, 0, 0.4)',
-            }}>Danh sách tài khoản ví</span>}
-          iconStyleLeft={{display: 'none'}}
-          style={{
-            backgroundColor: '#e8e8e8',
-            border: 'rgba(0, 0, 0, 0.12) 1px'
-          }}
-          iconElementRight={<RefreshButton />}
-        />
+      <ContentWrapper
+        title="Danh sách tài khoản ví"
+        iconStyleLeft={{display: 'none'}}
+      >
         <DataTable
           columns={this.props.columns}
           sort={this.props.sort}
@@ -49,11 +36,11 @@ class CustomerList extends React.Component {
           dataAccesser={this.props.dataAccesser}
           pageAccesser={this.props.pageAccesser}
           style={{
-            height: 'calc(100% - 64px)',
+            height: 'calc(100% - 56px)',
             display: 'block',
           }}
         />
-      </div>
+      </ContentWrapper>
     );
   }
 }

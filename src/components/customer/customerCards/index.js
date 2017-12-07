@@ -9,6 +9,7 @@ import { dateFormatter, dateTimeFormatter } from '../../../utils';
 import { STATUS } from './constants';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { AnimationGroup } from '../../commons';
 import { GridList } from 'material-ui/GridList';
 
 import * as actions from './actions';
@@ -94,7 +95,14 @@ class CustomersCard  extends React.Component {
           {customerCards}
         </Row>);
     }
-    return null;
+    return (
+      <div style={{ position: 'relative', width: '100%', height: '100%'}}>
+        <AnimationGroup
+          loading={this.props.requesting}
+          errorLoading={this.props.error ? true : false}
+        />
+      </div>
+    );
   }
 }
 

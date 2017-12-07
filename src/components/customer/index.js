@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tab } from 'material-ui/Tabs';
 import { TabTemplate } from '../commons';
-import { ContentWrapper, RefreshButton } from '../commons';
+import { ContentWrapper, AnimationGroup } from '../commons';
 import * as actions from './actions';
 import CustomerDetails from './customerDetails';
 import CustomerAccount from './customerAccount';
 import CustomerHistory from './customerHistory';
 import CustomerCards from './customerCards';
-
 
 import CustomerDetailReducer from './reducers';
 import CustomerAccountReducer from './customerAccount/reducers';
@@ -18,7 +17,7 @@ import CustomerHistoryReducer from './customerHistory/reducers';
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
-  minHeight: 'calc(100% - 64px)',
+  minHeight: 'calc(100% - 56px)',
   position: 'relative',
 };
 
@@ -37,7 +36,6 @@ class Customer extends React.Component {
       <ContentWrapper
         title="Chi Tiết Khách Hàng"
         iconStyleLeft={{display: 'none'}}
-        iconElementRight={<RefreshButton />}
       >
         <TabTemplate
           style={{
@@ -52,6 +50,12 @@ class Customer extends React.Component {
               addresses={this.props.addresses}
               identifyDocuments={this.props.identifyDocuments}
             />
+            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+              <AnimationGroup
+                loading={this.props.requesting}
+                errorLoading={this.props.error ? true : false}
+              />
+            </div>
           </Tab>
           <Tab style={tabStyle} label="TÀI KHOẢN VÍ ĐIỆN TỬ" >
             <CustomerAccount customerId={this.props.match.params.customerId} />
