@@ -38,3 +38,8 @@ export const CARD_LIST_API = '/api/cards/search?projection=custom';
 export const CARD_API = '/api/cards/{id}?projection=custom';
 export const CARD_HISTORY_API = '/api/cards/{id}/cardHistories?projection=custom';
 export const TRANSACTIONS_BY_CARD_API = '/api/transactions?projection=custom&card.cardNumber={cardNumber}';
+
+// user
+export const GET_USER_PROFILE_API ='/api/users?projection={id}';
+export const USER_CHANGE_PASSWORD_API ='/api/users/change-password';
+export const USER_RESET_PASSWORD_API ='/api/users/reset-password';

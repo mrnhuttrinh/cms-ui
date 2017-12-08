@@ -40,7 +40,7 @@ const AnimationGroup = ({ loading, errorLoading, style }) => {
   if (errorLoading) {
     return (
       <div
-        style={Object.assign({}, style, {background: '#fff'})}
+        style={Object.assign({}, inlineStyle, style, {background: '#fff'})}
       >
         <NotFound />
       </div>

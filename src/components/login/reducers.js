@@ -17,7 +17,7 @@ export default (state = initialState, action = {}) => {
       newState = state.set('requesting', true).delete('data').delete('errorLogin');
       break;
     case `${SUBMIT_LOGIN}_COMPLETED`:
-      newState = state.set('requesting', false).set('data', {credential: true}).delete('errorLogin');
+      newState = state.set('requesting', false).set('data', {credential: true, user: action.data.data}).delete('errorLogin');
       break;
     case `${SUBMIT_LOGIN}_FAILED`:
       newState = state.set('requesting', false).set('data', {credential: false}).set('errorLogin', true);
@@ -27,7 +27,7 @@ export default (state = initialState, action = {}) => {
       newState = state.set('refreshTokenRequesting', true).delete('data').delete('errorRefreshToken');
       break;
     case `${REFRESH_TOKEN}_COMPLETED`:
-      newState = state.set('refreshTokenRequesting', false).set('data', {credential: true});
+      newState = state.set('refreshTokenRequesting', false).set('data', {credential: true, user: action.data.data});
       break;
     case `${REFRESH_TOKEN}_FAILED`:
       newState = state.set('refreshTokenRequesting', false).set('data', {credential: false}).set('errorRefreshToken', action.error);
