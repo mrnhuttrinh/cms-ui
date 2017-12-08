@@ -100,7 +100,7 @@ class CustomerHistory  extends React.Component  {
     let historyDetail = [];
     _.forEach(Object.keys(timeLine), (key) => {
       historyDetail.push(<div className="time-title" style={titleStyle}>{key}</div>);
-      historyDetail = historyDetail.concat(timeLine[key]);
+      historyDetail = historyDetail.concat(_.reverse(timeLine[key]));
     });
     return (
       <div>
