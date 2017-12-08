@@ -10,7 +10,7 @@ import CreateIcon from 'material-ui/svg-icons/av/new-releases';
 import AddIcon from 'material-ui/svg-icons/action/note-add';
 import { Card } from 'material-ui/Card';
 import * as actions from './actions';
-import { STATUS } from './constants';
+import { STATUS } from '../constants';
 import { dateFormatter } from '../../../utils';
 
 const historyType = {
@@ -121,7 +121,7 @@ class AccountHistory  extends React.Component  {
     let historyDetail = [];
     _.forEach(Object.keys(timeLine), (key) => {
       historyDetail.push(<div className="time-title" style={titleStyle}>{key}</div>);
-      historyDetail = historyDetail.concat(timeLine[key]);
+      historyDetail = historyDetail.concat(_.reverse(timeLine[key]));
     });
     return (
       <div style={{padding:'20px 100px 20px 100px'}} >

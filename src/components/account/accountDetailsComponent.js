@@ -3,11 +3,7 @@ import TextField from 'material-ui/TextField';
 import { GridList } from 'material-ui/GridList';
 import { Row, Col } from 'react-flexbox-grid';
 import { dateFormatter, dateTimeFormatter } from '../../utils';
-
-const STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'KHÔNG HOẠT ĐỘNG',
-};
+import { STATUS } from './constants';
 
 
 const titleStyle = {
