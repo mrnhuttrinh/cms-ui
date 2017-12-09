@@ -18,50 +18,36 @@ import { ContentWrapper } from '../commons';
 
 import PrivilegeDetailReducer from './reducers';
 
-const tabStyle = {
-  backgroundColor: 'rgb(128, 203, 196)',
-  minHeight: 'calc(100% - 56px)',
-  position: 'relative',
-};
-const indicatorStyle = {
-  backgroundColor: '#009688'
-};
+import ResetPasswordDialog from './resetPassword';
 
-const titleStyle = {
-  fontSize: '16px',
-  color: '#00897b',
-  paddingLeft: 0,
-}
+import {
+  tabStyle,
+  indicatorStyle,
+  titleStyle,
+  rowContainer,
+  leftColumn,
+  rightColumn,
+  groupControl,
+} from './styles';
 
-const rowContainer = {
-  backgroundColor: '#fff',
-  marginLeft: 0,
-  marginRight: 0,
-  // paddingTop: 10,
-  // paddingBottom: 10,
-  height: '100%',
-};
-
-const leftColumn = {
-  borderRight: '1px solid rgba(232, 232, 232, 0.5)',
-  paddingBottom: 15,
-  position: 'relative',
-};
-
-const rightColumn = {
-  paddingBottom: 15,
-  position: 'relative',
-};
-
-const groupControl = {
-  display: 'block',
-  padding: '10px',
-  backgroundColor: '#e8e8e8',
-  width: 'calc(100% - 20px)',
-  boxShadow: 'rgba(0, 0, 0, 0.24) 0px 4px 4px 0px, rgba(0, 0, 0, 0.12) 0px 0px 4px 0px'
-}
 
 class PrivilegeDetail  extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      openResetPasswordDialog: false,
+    };
+    this.onClickOpenDialog = this.onClickOpenDialog.bind(this);
+    this.onClickCloseDialog = this.onClickCloseDialog.bind(this);
+  }
+  
+  onClickOpenDialog() {
+    this.setState({openResetPasswordDialog: true});
+  };
+
+  onClickCloseDialog() {
+    this.setState({openResetPasswordDialog: false});
+  };
   componentWillMount() {
     // fetch user detail
     const {
@@ -139,12 +125,32 @@ class PrivilegeDetail  extends React.Component {
                   boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
                   float: 'right',
                   marginRight: 15,
+                  marginLeft: 15,
                 }}
                 backgroundColor="#b93221"
                 labelStyle={{color: '#fff'}}
                 label="KHÓA TÀI KHOẢN"
               />
+              <FlatButton
+                style={{
+                  boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
+                  float: 'right',
+                  marginRight: 15,
+                }}
+                backgroundColor="#9F6000"
+                labelStyle={{color: '#fff'}}
+                onClick={this.onClickOpenDialog}
+                label="RESET MẬT KHẨU"
+              />
             </div>
+            {
+              this.state.openResetPasswordDialog ? (
+                <ResetPasswordDialog
+                  onClickCloseDialog={this.onClickCloseDialog}
+                  openDialog={this.state.openResetPasswordDialog}
+                />
+              ) : null
+            }
           </Tab>
         </TabTemplate>
       </ContentWrapper>

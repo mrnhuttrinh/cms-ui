@@ -55,6 +55,12 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     text: 'Cài đặt',
     icon: 'settings',
   },
+  USER_PROFILE: {
+    value: 'user-profile',
+    text: 'Thông tin tài khoản',
+    icon: 'account_circle',
+    url: '/user-profile',
+  },
   LOGOUT: {
     value: 'logout',
     text: 'Đăng xuất',

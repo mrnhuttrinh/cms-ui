@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import { toastr } from 'react-redux-toastr'
 import {
   mainLoadingStart,
   mainLoadingEnd,
@@ -23,6 +24,7 @@ const fetchMiddleware = store => next => async action => {
   const type = action.type;
   const path = config.path;
   const params = { ...config.params, credentials: 'include' };
+  const showMessage = action.showMessage;
 
   // for main loading
   const showLoading = action.showLoading || false;
@@ -52,11 +54,21 @@ const fetchMiddleware = store => next => async action => {
     if (showLoading) {
       dispatch(mainLoadingEnd());
     }
+    if (showMessage) {
+      const success = showMessage.success;
+      toastr.success(success.title, success.message);
+    }
+    // show success existence message
   } catch (error) {
     // dispatch failed with error
     dispatch({ type: `${type}_FAILED`, error });
     if (showLoading) {
       dispatch(mainLoadingError());
+    }
+    // show error existence message
+    if (showMessage) {
+      const error = showMessage.error;
+      toastr.error(error.title, error.message);
     }
   }
 }

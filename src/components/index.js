@@ -14,6 +14,8 @@ import MerchantList, { reducers as MerchantListReducers } from './merchantList';
 import NotFound from './notFound';
 import Card, { reducers as CardReducers } from './card';
 import CardList, { reducers as CardListReducers } from './cardList';
+
+import UserProfile, { reducers as UserProfileReducers } from './userProfile';
 // export view
 export {
   Login,
@@ -30,6 +32,7 @@ export {
   NotFound,
   CardList,
   Card,
+  UserProfile,
 };
 
 export const reducers = {
@@ -44,6 +47,7 @@ export const reducers = {
   ...MerchantDetailReducers,
   ...CardListReducers,
   ...CardReducers,
+  ...UserProfileReducers,
 }
 
 // export commons control
