@@ -60,7 +60,7 @@ class Login extends React.Component{
         style={{textAlign: 'left', width: '45%'}}
       >
         <MenuItem value="en" primaryText={LANGUAGE_SELECTION['en']} />
-        <MenuItem value="vn" primaryText={LANGUAGE_SELECTION['vi']} />
+        <MenuItem value="vi" primaryText={LANGUAGE_SELECTION['vi']} />
       </DropDownMenu>
     );
   }

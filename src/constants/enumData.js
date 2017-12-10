@@ -9,7 +9,7 @@ export const ENUM_ROLE_TYPE = {
 };
 
 export const LANGUAGE_SELECTION = {
-  vn: 'Tiếng việt',
+  vi: 'Tiếng việt',
   en: 'Tiếng anh',
 }
 
@@ -34,7 +34,7 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
   },
   CARD_SYSTEM: {
     value: 'card',
-    text: 'Hệ thống thẻ',
+    text: 'Card',
     icon: 'credit_card',
     url: '/card',
   },

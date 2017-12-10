@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tab } from 'material-ui/Tabs';
+import { translate } from 'react-i18next';
 import { TabTemplate } from '../commons';
 import { ContentWrapper } from '../commons';
 import * as actions from './actions';
@@ -38,7 +39,7 @@ class Card extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Chi tiết thẻ"
+        title="Card details"
         iconStyleLeft={{display: 'none'}}
       >
         <TabTemplate
@@ -48,13 +49,13 @@ class Card extends React.Component {
           }}
           inkBarStyle={indicatorStyle}
         >
-          <Tab style={tabStyle} label="THÔNG TIN CHUNG & LỊCH SỬ HOẠT ĐỘNG" >
+          <Tab style={tabStyle} label={this.props.t('general information & History')} >
             <CardDetails card={this.props.card} cardId={this.props.match.params.cardId} />
           </Tab>
-          <Tab style={tabStyle} label="KHÁCH HÀNG" >
+          <Tab style={tabStyle} label={this.props.t('Customer')} >
             <CardCustomer customer={this.props.card ? this.props.card.customer : null} />
           </Tab>
-          <Tab style={tabStyle} label="GIAO DỊCH" >
+          <Tab style={tabStyle} label={this.props.t('transaction')} >
             <CardTransaction cardId={this.props.match.params.cardId} />
           </Tab>
         </TabTemplate>
@@ -74,10 +75,10 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Card);
+)(Card));
 
 
 export const reducers = {

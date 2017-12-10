@@ -11,6 +11,7 @@ import AddIcon from 'material-ui/svg-icons/action/note-add';
 import {
   Card
 } from 'material-ui/Card';
+import { translate } from 'react-i18next';
 import * as actions from './actions';
 
 const titleStyle = {
@@ -36,8 +37,7 @@ class CustomerHistory  extends React.Component  {
 
     // Create card
     if (data.type.type === 'CREATED') {
-      const content = 'Thẻ được khởi tạo';
-      return [<Col md={1}><CreateIcon /></Col>,<Col md={2}>Khởi tạo</Col>,<Col md={9}>{content} {data.createdBy? <span> bởi <strong>{data.createdBy}</strong></span> : null}</Col>]
+      return [<Col md={1}><CreateIcon /></Col>,<Col md={2}>{this.props.t('CREATED')}</Col>,<Col md={9}>{this.props.t('Card has been created')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>]
     }
 
     let updateObject;
@@ -45,7 +45,7 @@ class CustomerHistory  extends React.Component  {
     try {
       updateObject = JSON.parse(data.details);
     } catch(e) {
-      return [null, <div>Không có thông tin chi tiết!</div>];
+      return [null, <div>this.props.t('Don\'t have history information!')</div>];
     }
 
     // Update information
@@ -56,22 +56,22 @@ class CustomerHistory  extends React.Component  {
           if (updateObject.next === 'ACTIVE') {
             results = results.concat([
               <Col md={1}><EditIcon /></Col>,
-              <Col md={2}>Mở khóa</Col>,
-              <Col md={9}>Thẻ đã được mở khoá {data.createdBy? <span> bởi <strong>{data.createdBy}</strong></span> : null}</Col>
+              <Col md={2}>{this.props.t('Unlock')}</Col>,
+              <Col md={9}>{this.props.t('The card has been unlocked')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>
             ]);
           } else {
             results = results.concat([
               <Col md={1}><EditIcon /></Col>,
-              <Col md={2}>Khóa</Col>,
-              <Col md={9}>Thẻ đã bị khoá {data.createdBy? <span> bởi <strong>{data.createdBy}</strong></span> : null}</Col>
+              <Col md={2}>{this.props.t('Lock')}</Col>,
+              <Col md={9}>{this.props.t('The card has been locked')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>
             ])
           }
         }
         if (key==='expiryDate') {
           results = results.concat([
             <Col md={1}><AddIcon /></Col>,
-            <Col md={2}>Gia hạn</Col>,
-            <Col md={9}>Thẻ đã được gia hạn {data.createdBy? <span> bởi <strong>{data.createdBy}</strong></span> : null}</Col>
+            <Col md={2}>{this.props.t('Renew')}</Col>,
+            <Col md={9}>{this.props.t('Card has been renewed')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>
           ]);
         }
       });
@@ -94,7 +94,7 @@ class CustomerHistory  extends React.Component  {
     const customerHistories = _.sortBy(this.props.cardHistory._embedded.cardHistories, (e) => (new Date(e.createdAt))).reverse();
     const timeLine = {};
     _.forEach(customerHistories, (e) => {
-      const key = moment(e.createdAt).locale('vi').fromNow();
+      const key = moment(e.createdAt).locale(this.props.t('Language')).fromNow();
       timeLine[key] = [this.renderCard(e)].concat(timeLine[key]);
     });
     let historyDetail = [];
@@ -104,7 +104,7 @@ class CustomerHistory  extends React.Component  {
     });
     return (
       <div>
-        {historyDetail.length ? historyDetail : 'Không có thông tin lịch sử khách hàng!'}
+        {historyDetail.length ? historyDetail : this.props.t('Don\'t have history information!')}
       </div>);
   }
 }
@@ -119,7 +119,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CustomerHistory);
+)(CustomerHistory));

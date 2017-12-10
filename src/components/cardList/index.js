@@ -24,7 +24,7 @@ class CardList extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Danh sách thẻ"
+        title="Card list"
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable
@@ -51,39 +51,39 @@ CardList.defaultProps = {
   columns: [
     {
       key: 'cardCode',
-      text: 'CODE',
+      text: 'Card code',
       sort: 'ASC',
     },
     {
       key: 'customer',
-      text: 'TÀI KHOẢN',
+      text: 'account',
       formater: (data) => _.map(_.get(data, 'customer.accounts'), account => account.accountName).join(', '),
     },
     {
       key: 'cardType.description',
-      text: 'LOẠI',
+      text: 'Type',
     },
     {
       key: 'customer.lastName',
-      text: 'HỌ',
+      text: 'Last name',
     },
     {
       key: 'customer.firstName',
-      text: 'TÊN',
+      text: 'First name',
     },
     {
       key: 'effectiveDate',
-      text: 'NGÀY HIỆU LỰC',
+      text: 'Effective date',
       type: TYPE.date,
     },
     {
       key: 'expiryDate',
-      text: 'NGÀY HẾT HẠN',
+      text: 'Expiry Date',
       type: TYPE.date,
     },
     {
       key: 'status',
-      text: 'TRẠNG THÁI',
+      text: 'Status',
       type: TYPE.option,
       options: ACCOUNT_STATUS,
     },

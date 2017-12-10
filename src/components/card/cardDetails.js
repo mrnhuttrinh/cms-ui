@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'react-flexbox-grid';
+import { translate } from 'react-i18next';
 import Card from './cardDetailComponent';
 import CardHistory from './cardHistory';
 
@@ -9,7 +10,7 @@ const titleStyle = {
   color: '#00897b',
 }
 
-class CustomerDetails extends React.Component {
+class CardDetails extends React.Component {
 
   renderCard() {
     if (!this.props.card) {
@@ -23,20 +24,15 @@ class CustomerDetails extends React.Component {
   render () {
     return (<Row style={{padding:'20px 100px 20px 100px', minHeight: '100%'}} >
       <Col md={4} style={{padding:'20px'}}>
-        <div  style={titleStyle}>Thông tin thẻ</div>
+        <div  style={titleStyle}>{this.props.t('Card information')}</div>
         {this.renderCard()}
       </Col>
       <Col md={8} style={{borderLeft: '1px solid rgb(224, 224, 224)', padding:'20px'}}>
-        <div  style={titleStyle}>Lịch sử hoạt động</div>
+        <div  style={titleStyle}>{this.props.t('Card history')}</div>
         {this.renderCardHistoy()}
       </Col>
     </Row>)
   }
 }
 
-CustomerDetails.defaultProps = {
-  customer: null,
-}
-
-
-export default CustomerDetails;
+export default translate('translations')(CardDetails);

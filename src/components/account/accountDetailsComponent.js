@@ -4,7 +4,6 @@ import { GridList } from 'material-ui/GridList';
 import { Row, Col } from 'react-flexbox-grid';
 import { translate } from 'react-i18next';
 import { dateFormatter, dateTimeFormatter } from '../../utils';
-import { STATUS } from './constants';
 
 
 const titleStyle = {
