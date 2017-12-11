@@ -25,12 +25,12 @@ export const pushPasswordChange = (values) => {
     type: CHANGE_PASSWORD,
     showMessage: {
       success: {
-        title: 'Cập nhật mật khẩu',
-        message: 'Cập nhật mật khẩu thành công',
+        title: 'Update password',
+        message: 'Update password successful',
       },
       error: {
-        title: 'Cập nhật mật khẩu',
-        message: 'Cập nhật mật khẩu thất bại',
+        title: 'Update password',
+        message: 'Update password failure',
       },
     },
     fetchConfig: {

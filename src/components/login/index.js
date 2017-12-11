@@ -2,17 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
+import { translate } from 'react-i18next'; 
 import {Field, reduxForm, getFormValues} from 'redux-form';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import _ from 'lodash';
 import {
   TextField,
   Checkbox,
 } from '../commons';
 import { getItem } from '../../utils';
-import { PATTERN_EMAIL, LANGUAGE_SELECTION } from '../../constants';
+import {
+  PATTERN_EMAIL,
+  LANGUAGE_SELECTION,
+} from '../../constants';
 import * as actions from './actions';
 
 import loginReducer from './reducers';
@@ -32,8 +37,6 @@ const validate = values => {
 class Login extends React.Component{
   constructor(props) {
     super(props);
-    const language = getItem('language') || 'vi';
-    this.state = {value: language };
     this.onClickSignIn = this.onClickSignIn.bind(this);
     this.onSelectLanguage = this.onSelectLanguage.bind(this);
   }
@@ -45,22 +48,28 @@ class Login extends React.Component{
       },
       history,
     } = this.props;
-    this.props.actions.submitLogin(values.email, values.password, this.state.value).then(() => {
+    this.props.actions.submitLogin(values.email, values.password, this.props.language).then(() => {
       history.push(state.from);
     });
   }
   onSelectLanguage (event, index, value) {
-    this.setState({value});
+    this.props.actions.changeLanguage(value);
+  }
+  buildOptionLanguage() {
+    return _.map(LANGUAGE_SELECTION, language => {
+      return (
+        <MenuItem key={language.value} value={language.value} primaryText={this.props.t(language.text)} />
+      )
+    });
   }
   renderOptionLanguages() {
     return (
       <DropDownMenu
-        value={this.state.value}
+        value={this.props.language}
         onChange={this.onSelectLanguage}
         style={{textAlign: 'left', width: '45%'}}
       >
-        <MenuItem value="en" primaryText={LANGUAGE_SELECTION['en']} />
-        <MenuItem value="vi" primaryText={LANGUAGE_SELECTION['vi']} />
+        {this.buildOptionLanguage()}
       </DropDownMenu>
     );
   }
@@ -77,7 +86,7 @@ class Login extends React.Component{
           <div className="ecash-login-form">
             <div>
               <p className="title">
-                Sign In To Admin
+              {this.props.t('Sign In To Admin')}
               </p>
               <div className="email">
                 <Field
@@ -92,7 +101,7 @@ class Login extends React.Component{
                   name="password"
                   type="password"
                   component={TextField}
-                  label="Password"
+                  label={this.props.t('Password')}
                   fullWidth
                   errorText={this.props.errorLogin ? errorTextLoginFailed : null}
                 />
@@ -102,10 +111,10 @@ class Login extends React.Component{
                   <Field
                     name="rememberMe"
                     component={Checkbox}
-                    label="Remember me"
+                    label={this.props.t('Remember me')}
                   />
                 </div>
-                <div className="pull-right">Forgot Password?</div>
+                <div className="pull-right forgot-password">{this.props.t('Forgot Password')}?</div>
                 <div className="clearfix" />
               </div>
               <div className="button-sign-in">
@@ -118,13 +127,13 @@ class Login extends React.Component{
                         boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12)'
                       }}
                       labelStyle={{
-                        textTransform: 'none',
                         color: "#fff",
                         fontWeight: 'bold',
                         fontSize: '14px',
                         letterSpacing: '0px',
+                        textTransform: 'uppercase'
                       }}
-                      label={"SIGN IN"}
+                      label={this.props.t('SIGN IN')}
                       icon={this.props.requesting ? <CircularProgress size={20} /> : null}
                       backgroundColor="#009688"
                       onClick={this.onClickSignIn}
@@ -135,7 +144,7 @@ class Login extends React.Component{
             </div>
           </div>
           <div className="ecash-login-bottom-control">
-            <div className="text-note">Hiện thị bằng ngôn ngữ</div>
+            <div className="text-note">{this.props.t('Display language')}</div>
             {this.renderOptionLanguages()}
           </div>
         </div>
@@ -145,6 +154,7 @@ class Login extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
+  language: state.loginReducer.get('language'),
   requesting: state.loginReducer.get('requesting'),
   data: state.loginReducer.get('data'),
   errorLogin: state.loginReducer.get('errorLogin'),
@@ -161,7 +171,7 @@ export default reduxForm({
 })(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRouter(Login)));
+)(withRouter(translate('translations')(Login))));
 
 export const reducers = {
   loginReducer,

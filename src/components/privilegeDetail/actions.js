@@ -5,6 +5,8 @@ import {
   USER_UPDATE_STATUS_API,
 } from '../../constants';
 
+import { english as englishMSM } from '../../constants/messages';
+
 import {
   GET_USER_DETAIL,
   GET_USER_HISTORY,
@@ -42,12 +44,12 @@ export const pushResetPassword = (values) => {
     type: USER_RESET_PASSWORD,
     showMessage: {
       success: {
-        title: 'Reset mật khẩu',
-        message: 'Reset mật khẩu thành công',
+        title: 'Reset password',
+        message: 'Reset password successful',
       },
       error: {
-        title: 'Reset mật khẩu',
-        message: 'Reset mật khẩu thất bại',
+        title: 'Reset password',
+        message: 'Reset password failure',
       },
     },
     fetchConfig: {
@@ -65,17 +67,17 @@ export const pushResetPassword = (values) => {
 }
 
 export const userUpdateStatus = (id, status) => {
-  const statusText = status === 'ACTIVE' ? 'Khóa tài khoản' : 'Mở tài khoản';
+  const statusText = status === 'ACTIVE' ? 'Lock account' : 'Unlock account';
   return {
     type: USER_UPDATE_STATUS,
     showMessage: {
       success: {
         title: statusText,
-        message: `${statusText} thành công`,
+        message: `${statusText} successful`,
       },
       error: {
         title: statusText,
-        message: `${statusText} thất bại`,
+        message: `${statusText} failure`,
       },
     },
     fetchConfig: {
