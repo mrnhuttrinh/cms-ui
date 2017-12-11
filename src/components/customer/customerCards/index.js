@@ -7,7 +7,6 @@ import { Row, Col } from 'react-flexbox-grid';
 import _ from 'lodash';
 import { translate } from 'react-i18next';
 import { dateFormatter, dateTimeFormatter } from '../../../utils';
-import { STATUS } from './constants';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AnimationGroup } from '../../commons';

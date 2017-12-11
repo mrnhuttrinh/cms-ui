@@ -2,16 +2,12 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import { dateFormatter, dateTimeFormatter } from '../../utils';
 import { Row, Col } from 'react-flexbox-grid';
-
-export const STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'KHÔNG HOẠT ĐỘNG',
-};
+import { translate } from 'react-i18next';
 
 const Card = (props) => (<Row>
   <Col md={6}>
     <TextField
-      floatingLabelText="Số thẻ - Card Code"
+      floatingLabelText={props.t('Card code')}
       value={props.card.cardCode}
       floatingLabelFixed={true}
       fullWidth
@@ -19,7 +15,7 @@ const Card = (props) => (<Row>
   </Col>
   <Col md={6}>
     <TextField
-      floatingLabelText="Loại"
+      floatingLabelText={props.t('Type')}
       value={props.card.cardType.description}
       floatingLabelFixed={true}
       fullWidth
@@ -27,7 +23,7 @@ const Card = (props) => (<Row>
   </Col>
   <Col md={6}>
     <TextField
-      floatingLabelText="Ngày hiệu lực"
+      floatingLabelText={props.t('Effective date')}
       value={dateFormatter(props.card.effectiveDate)}
       floatingLabelFixed={true}
       fullWidth
@@ -35,7 +31,7 @@ const Card = (props) => (<Row>
   </Col>
   <Col md={6}>
     <TextField
-      floatingLabelText="Ngày hết hạn"
+      floatingLabelText={props.t('Expiry date')}
       value={dateFormatter(props.card.expiryDate)}
       floatingLabelFixed={true}
       fullWidth
@@ -43,19 +39,19 @@ const Card = (props) => (<Row>
   </Col>
   <Col md={6}>
     <TextField
-      floatingLabelText="Trạng thái thẻ"
-      value={STATUS[props.card.status]}
+      floatingLabelText={props.t('Status')}
+      value={props.t(props.card.status)}
       floatingLabelFixed={true}
       fullWidth
     />
   </Col>
   <Col md={6}>
     <TextField
-      floatingLabelText="Thời gian cập nhật gần nhất"
+      floatingLabelText={props.t('Updated at')}
       value={dateTimeFormatter(props.card.updatedAt)}
       floatingLabelFixed={true}
       fullWidth
     />
   </Col>
 </Row>);
-export default Card;
+export default translate('translations')(Card);

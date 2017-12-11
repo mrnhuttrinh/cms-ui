@@ -5,7 +5,6 @@ import Subheader from 'material-ui/Subheader';
 import { CardText } from 'material-ui/Card';
 import { GridList } from 'material-ui/GridList';
 import { translate } from 'react-i18next';
-import { COUNTRY } from './constants';
 import { dateFormatter, dateTimeFormatter } from '../../utils';
 
 const titleStyle = {
