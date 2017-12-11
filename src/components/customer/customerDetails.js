@@ -4,7 +4,8 @@ import TextField from 'material-ui/TextField';
 import Subheader from 'material-ui/Subheader';
 import { CardText } from 'material-ui/Card';
 import { GridList } from 'material-ui/GridList';
-import { GENDER, STATUS, COUNTRY } from './constants';
+import { translate } from 'react-i18next';
+import { COUNTRY } from './constants';
 import { dateFormatter, dateTimeFormatter } from '../../utils';
 
 const titleStyle = {
@@ -46,9 +47,9 @@ class CustomerDetails  extends React.Component  {
             padding={5}
             cellHeight={56}
           >
-            <Subheader style={titleStyle}>Thông tin cá nhân</Subheader>
+            <Subheader style={titleStyle}>{this.props.t('Personal information')}</Subheader>
             <TextField
-              floatingLabelText="Họ"
+              floatingLabelText={this.props.t('Last name')}
               cols={2}
               value={this.props.customer.lastName}
               floatingLabelFixed={true}
@@ -56,91 +57,91 @@ class CustomerDetails  extends React.Component  {
             />
             <TextField
               cols={1}
-              floatingLabelText="Tên"
+              floatingLabelText={this.props.t('First name')}
               value={this.props.customer.firstName}
               floatingLabelFixed={true}
               fullWidth
             />
             <TextField
               cols={1}
-              floatingLabelText="Ngày sinh"
+              floatingLabelText={this.props.t('Birthday')}
               value={dateFormatter(this.props.customer.dateOfBirth)}
               floatingLabelFixed={true}
               fullWidth
             />
             <TextField
               cols={1}
-              floatingLabelText="Giới tính"
-              value={GENDER[this.props.customer.gender]}
+              floatingLabelText={this.props.t('Gender')}
+              value={this.props.t(`GENDER.${this.props.customer.gender}`)}
               floatingLabelFixed={true}
               fullWidth
             />
             <TextField
-              floatingLabelText="Quốc tịch"
-              value={this.props.customer.countryCode && COUNTRY[this.props.customer.countryCode] ? COUNTRY[this.props.customer.countryCode] : ''}
+              floatingLabelText={this.props.t('Country')}
+              value={this.props.t(`${this.props.customer.countryCode}`.toUpperCase())}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
-              floatingLabelText="Nhóm"
+              floatingLabelText={this.props.t('Occupation')}
               value={this.props.customer.occupation}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
-              floatingLabelText="Khoa | Phòng ban"
+              floatingLabelText={this.props.t('Position')}
               value={this.props.customer.position}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
-              floatingLabelText="Chức vụ"
+              floatingLabelText={this.props.t('Title')}
               value={this.props.customer.title}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
-              floatingLabelText="Email"
+              floatingLabelText={this.props.t('Email')}
               value={this.props.customer.email}
               floatingLabelFixed={true}
               cols={3}
               fullWidth
             />
             <TextField
-              floatingLabelText="SDT di động"
+              floatingLabelText={this.props.t('Phone1')}
               value={this.props.customer.phone1}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
-              floatingLabelText="SDT khác"
+              floatingLabelText={this.props.t('Phone2')}
               value={this.props.customer.phone2}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
-            <Subheader style={titleStyle} cols={1}>Địa chỉ thường trú</Subheader>
+            <Subheader style={titleStyle} cols={1}>{this.props.t('Address')}</Subheader>
             <TextField
-              floatingLabelText="Địa chỉ"
+              floatingLabelText={this.props.t('Line')}
               value={address.line1}
               floatingLabelFixed={true}
               cols={3}
               fullWidth
             />
             <TextField
-              floatingLabelText="Phường (xã). Quận (Huyện)"
+              floatingLabelText={this.props.t('State Province')}
               value={address.stateProvince}
               floatingLabelFixed={true}
               cols={3}
               fullWidth
             />
             <TextField
-              floatingLabelText="Tỉnh, Thành Phố"
+              floatingLabelText={this.props.t('City')}
               value={address.city}
               floatingLabelFixed={true}
               cols={3}
@@ -157,31 +158,31 @@ class CustomerDetails  extends React.Component  {
             <Subheader
               cols={2}
               style={titleStyle}>
-              Giấy tờ tùy thân - CMND
+              {this.props.t('Indetity Card')}
             </Subheader>
             <TextField
-              floatingLabelText="Mã số"
+              floatingLabelText={this.props.t('Number')}
               value={indetifyCard.number}
               floatingLabelFixed={true}
               cols={2}
               fullWidth
             />
             <TextField
-              floatingLabelText="Ngày cấp"
+              floatingLabelText={this.props.t('Date of issue')}
               value={dateFormatter(indetifyCard.dateOfIssue)}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
-              floatingLabelText="ngày hết hạn"
+              floatingLabelText={this.props.t('Date of expiry')}
               value={dateFormatter(indetifyCard.dateOfExpiry)}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
-              floatingLabelText="Nơi cấp"
+              floatingLabelText={this.props.t('Place of issue')}
               value={indetifyCard.placeOfIssue}
               floatingLabelFixed={true}
               cols={2}
@@ -190,31 +191,31 @@ class CustomerDetails  extends React.Component  {
             <Subheader
               cols={2}
               style={titleStyle}>
-              Giấy tờ tùy thân - PASSPORT
+              {this.props.t('Passport Card')}
             </Subheader>
             <TextField
-              floatingLabelText="Mã số"
+              floatingLabelText={this.props.t('Number')}
               value={passportCard.number}
               floatingLabelFixed={true}
               cols={2}
               fullWidth
             />
             <TextField
-              floatingLabelText="Ngày cấp"
+              floatingLabelText={this.props.t('Date of issue')}
               value={dateFormatter(passportCard.dateOfIssue)}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
-              floatingLabelText="ngày hết hạn"
+              floatingLabelText={this.props.t('Date of expiry')}
               value={dateFormatter(passportCard.dateOfExpiry)}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
-              floatingLabelText="Nơi cấp"
+              floatingLabelText={this.props.t('Place of issue')}
               value={passportCard.placeOfIssue}
               floatingLabelFixed={true}
               cols={2}
@@ -223,17 +224,17 @@ class CustomerDetails  extends React.Component  {
             <Subheader
               cols={2}
               style={titleStyle}>
-              Thông tin tài khoản
+              {this.props.t('Customer status')}
             </Subheader>
             <TextField
-              floatingLabelText="Trạng thái"
-              value={STATUS[this.props.customer.status]}
+              floatingLabelText={this.props.t('Status')}
+              value={this.props.t(this.props.customer.status)}
               floatingLabelFixed={true}
               cols={1}
               fullWidth
             />
             <TextField
-              floatingLabelText="Thời gian cập nhật gần nhất"
+              floatingLabelText={this.props.t('Updated at')}
               value={dateTimeFormatter(this.props.customer.updatedAt)}
               cols={1}
               fullWidth
@@ -252,4 +253,4 @@ CustomerDetails.defaultProps = {
 }
 
 
-export default CustomerDetails;
+export default translate('translations')(CustomerDetails);

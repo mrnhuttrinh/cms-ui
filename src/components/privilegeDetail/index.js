@@ -39,15 +39,8 @@ class PrivilegeDetail  extends React.Component {
     };
     this.onClickOpenDialog = this.onClickOpenDialog.bind(this);
     this.onClickCloseDialog = this.onClickCloseDialog.bind(this);
+    this.onClickUpdateStatus = this.onClickUpdateStatus.bind(this);
   }
-  
-  onClickOpenDialog() {
-    this.setState({openResetPasswordDialog: true});
-  };
-
-  onClickCloseDialog() {
-    this.setState({openResetPasswordDialog: false});
-  };
   componentWillMount() {
     // fetch user detail
     const {
@@ -61,7 +54,35 @@ class PrivilegeDetail  extends React.Component {
     // fetch user active history
     this.props.actions.getUserHistories(userId);
   }
+  
+  onClickOpenDialog() {
+    this.setState({openResetPasswordDialog: true});
+  };
+
+  onClickCloseDialog() {
+    this.setState({openResetPasswordDialog: false});
+  };
+  
+  onClickUpdateStatus() {
+    const {
+      match: {
+        params: {
+          userId
+        }
+      },
+      userData = {},
+    } = this.props;
+    const status = userData.enabled ? 'ACTIVE' : 'INACTIVE';
+    this.props.actions.userUpdateStatus(userId, status).then(() => {
+      this.props.actions.getUser(userId);
+      this.props.actions.getUserHistories(userId);
+    });
+  }
   render () {
+    const {
+      userData = {},
+    } = this.props;
+    const labelLockUser = userData.enabled ? 'KHÓA TÀI KHOẢN' : 'MỞ TÀI KHOẢN';
     return (
       <ContentWrapper
         title="Chi Tiết Người Dùng"
@@ -129,7 +150,8 @@ class PrivilegeDetail  extends React.Component {
                 }}
                 backgroundColor="#b93221"
                 labelStyle={{color: '#fff'}}
-                label="KHÓA TÀI KHOẢN"
+                label={labelLockUser}
+                onClick={this.onClickUpdateStatus}
               />
               <FlatButton
                 style={{

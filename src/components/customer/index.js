@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tab } from 'material-ui/Tabs';
+import { translate } from 'react-i18next';
+
 import { TabTemplate } from '../commons';
 import { ContentWrapper, AnimationGroup } from '../commons';
 import * as actions from './actions';
@@ -14,6 +16,7 @@ import CustomerDetailReducer from './reducers';
 import CustomerAccountReducer from './customerAccount/reducers';
 import CustomerCardReducer from './customerCards/reducers';
 import CustomerHistoryReducer from './customerHistory/reducers';
+
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
@@ -34,7 +37,7 @@ class Customer extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Chi Tiết Khách Hàng"
+        title="Customer details"
         iconStyleLeft={{display: 'none'}}
       >
         <TabTemplate
@@ -44,7 +47,7 @@ class Customer extends React.Component {
           }}
           inkBarStyle={indicatorStyle}
         >
-          <Tab style={tabStyle} label="THÔNG TIN CHUNG" >
+          <Tab style={tabStyle} label={this.props.t('general information')} >
             <CustomerDetails
               customer={this.props.customer}
               addresses={this.props.addresses}
@@ -57,13 +60,13 @@ class Customer extends React.Component {
               />
             </div>
           </Tab>
-          <Tab style={tabStyle} label="TÀI KHOẢN VÍ ĐIỆN TỬ" >
+          <Tab style={tabStyle} label={this.props.t('accounts')} >
             <CustomerAccount customerId={this.props.match.params.customerId} />
           </Tab>
-          <Tab style={tabStyle} label="Thẻ" >
+          <Tab style={tabStyle} label={this.props.t('cards')} >
             <CustomerCards customerId={this.props.match.params.customerId} />
           </Tab>
-          <Tab style={tabStyle} label="LỊCH SỬ" >
+          <Tab style={tabStyle} label={this.props.t('history')} >
             <CustomerHistory customerId={this.props.match.params.customerId} />
           </Tab>
         </TabTemplate>
@@ -85,10 +88,10 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Customer);
+)(Customer));
 
 
 export const reducers = {

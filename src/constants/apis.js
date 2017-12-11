@@ -23,9 +23,14 @@ export const TRANSACTIONS_BY_ACCOUNT_ID_API = '/api/transactions?projection=cust
 export const UPDATE_ACCOUNT_API = '/api/account/update';
 
 // for user and related
+export const GET_USER_PROFILE_API ='/api/users?projection={id}';
+export const USER_CHANGE_PASSWORD_API ='/api/users/change-password';
+export const USER_RESET_PASSWORD_API ='/api/users/reset-password';
 export const USER_LIST_API = '/api/users?projection=custom';
 export const USER_DETAIL_API = '/api/users/{id}?projection=custom';
 export const USER_HISTORY_API = '/api/userHistories?projection=custom&user.id={id}';
+export const USER_UPDATE_STATUS_API = '/api/users/update-status';
+export const USER_UPDATE_SETTING_API = '/api/users/update-setting';
 
 // for merchant and related
 export const MERCHANT_LIST_API = '/api/merchants?projection=custom';
@@ -38,8 +43,3 @@ export const CARD_LIST_API = '/api/cards/search?projection=custom';
 export const CARD_API = '/api/cards/{id}?projection=custom';
 export const CARD_HISTORY_API = '/api/cards/{id}/cardHistories?projection=custom';
 export const TRANSACTIONS_BY_CARD_API = '/api/transactions?projection=custom&card.cardNumber={cardNumber}';
-
-// user
-export const GET_USER_PROFILE_API ='/api/users?projection={id}';
-export const USER_CHANGE_PASSWORD_API ='/api/users/change-password';
-export const USER_RESET_PASSWORD_API ='/api/users/reset-password';

@@ -1,13 +1,15 @@
 import {
   USER_DETAIL_API,
   USER_HISTORY_API,
-  USER_RESET_PASSWORD_API
+  USER_RESET_PASSWORD_API,
+  USER_UPDATE_STATUS_API,
 } from '../../constants';
 
 import {
   GET_USER_DETAIL,
   GET_USER_HISTORY,
   USER_RESET_PASSWORD,
+  USER_UPDATE_STATUS,
 } from './constants';
 
 export const getUser = id => {
@@ -57,6 +59,37 @@ export const pushResetPassword = (values) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(values),
+      },
+    }
+  };
+}
+
+export const userUpdateStatus = (id, status) => {
+  const statusText = status === 'ACTIVE' ? 'Khóa tài khoản' : 'Mở tài khoản';
+  return {
+    type: USER_UPDATE_STATUS,
+    showMessage: {
+      success: {
+        title: statusText,
+        message: `${statusText} thành công`,
+      },
+      error: {
+        title: statusText,
+        message: `${statusText} thất bại`,
+      },
+    },
+    fetchConfig: {
+      path: USER_UPDATE_STATUS_API,
+      params: {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+          status,
+        }),
       },
     }
   };

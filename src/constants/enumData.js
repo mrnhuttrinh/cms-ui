@@ -8,6 +8,11 @@ export const ENUM_ROLE_TYPE = {
   USER: 'Người Dùng',
 };
 
+export const LANGUAGE_SELECTION = {
+  vn: 'Tiếng việt',
+  en: 'Tiếng anh',
+}
+
 export const UI_ROUTES_LEFT_SIDE_MENU = {
   DASHBOARD: {
     value: 'dashboard',
@@ -17,7 +22,7 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
   },
   CUSTOMER: {
     value: 'customer',
-    text: 'Khách hàng',
+    text: 'Customer',
     icon: 'people',
     url: '/customer',
   },

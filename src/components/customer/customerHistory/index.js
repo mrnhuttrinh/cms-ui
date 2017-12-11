@@ -11,6 +11,7 @@ import AddIcon from 'material-ui/svg-icons/action/note-add';
 import {
   Card
 } from 'material-ui/Card';
+import { translate } from 'react-i18next';
 import { AnimationGroup } from '../../commons';
 import * as actions from './actions';
 import { STATUS } from './constants';
@@ -19,15 +20,15 @@ import { genderFormatter, dateFormatter } from '../../../utils';
 const historyType = {
   CREATED: {
     icon: CreateIcon,
-    title: 'Khởi tạo',
+    title: 'CREATED',
   },
   UPDATED: {
     icon: EditIcon,
-    title: 'Cập nhật '
+    title: 'UPDATED'
   },
   ADDED: {
     icon: AddIcon,
-    title: 'Thêm ',
+    title: 'ADDED',
   },
 }
 
@@ -54,7 +55,7 @@ class CustomerHistory  extends React.Component  {
 
     // Create Customer
     if (data.type.type === 'CREATED') {
-      return ([null, <span>Khách hàng được khởi tạo</span>]);
+      return ([null, <span>{this.props.t('Customer has been created')}</span>]);
     }
 
     let updateObject;
@@ -62,7 +63,7 @@ class CustomerHistory  extends React.Component  {
     try {
       updateObject = JSON.parse(data.details);
     } catch(e) {
-      return [null, <div>Không có thông tin chi tiết!</div>];
+      return [null, <div>{this.props.t('Don\'t have history information!')}</div>];
     }
 
     // Update information
@@ -73,9 +74,9 @@ class CustomerHistory  extends React.Component  {
         if (property) {
           propertiesChanged.push(property.name);
           return (<span>
-            {property.name} khách hàng được chuyển từ <strong>
+            {property.name} {this.props.t('of Customer has been changed from')} <strong>
               [{property.formatter ? property.formatter(updateObject.previous[key]) : updateObject.previous[key]}]
-            </strong> sang <strong>
+            </strong> {this.props.t('to')} <strong>
               [{property.formatter ? property.formatter(updateObject.next[key]) : updateObject.next[key]}]
             </strong>
           </span>);
@@ -88,7 +89,7 @@ class CustomerHistory  extends React.Component  {
     // ADDED information
     if (data.type.type === 'ADDED') {
       const propertiesChanged = _.map(Object.keys(changes(updateObject.previous, updateObject.next)), (key) => this.props.propertyName[key].name);
-      return [propertiesChanged.join(', '), (<span>Khách hàng đã được thêm <strong>{propertiesChanged.join(', ')}</strong> </span>)];
+      return [propertiesChanged.join(', '), (<span>{this.props.t('Customer has been added')} <strong>{propertiesChanged.join(', ')}</strong> </span>)];
     }
 
     return null;
@@ -99,10 +100,10 @@ class CustomerHistory  extends React.Component  {
 
     const Informations = this.parseInformation(r);
     const Icon = historyType[r.type.type].icon;
-    const Title = historyType[r.type.type].title;
+    const Title = this.props.t(historyType[r.type.type].title);
     const icon = (<Icon />);
     const title = (<strong>{Title} {Informations[0]}</strong>);
-    const content = (<span>{Informations[1]} {r.createdBy? <span> bởi <strong>{r.createdBy}</strong></span> : null}</span>);
+    const content = (<span>{Informations[1]} {r.createdBy? <span> {this.props.t('by')} <strong>{r.createdBy}</strong></span> : null}</span>);
     return (<Card key={key} style={{ padding: '9px 9px 0px'}}>
       <Row>
         <Col md={1}>{icon}</Col>
@@ -125,7 +126,7 @@ class CustomerHistory  extends React.Component  {
     const customerHistories = _.sortBy(this.props.customerHistory._embedded.customerHistories, (e) => (new Date(e.createdAt))).reverse();
     const timeLine = {};
     _.forEach(customerHistories, (e) => {
-      const key = moment(e.createdAt).locale('vi').fromNow();
+      const key = moment(e.createdAt).locale(this.props.t('Language')).fromNow();
       timeLine[key] = [this.renderCard(e)].concat(timeLine[key]);
     });
     let historyDetail = [];
@@ -135,7 +136,7 @@ class CustomerHistory  extends React.Component  {
     });
     return (
       <div style={{padding:'20px 100px 20px 100px', position: 'relative'}} >
-        {historyDetail.length ? historyDetail : 'Không có thông tin lịch sử khách hàng!'}
+        {historyDetail.length ? historyDetail : this.props.t('Don\'t have history information!')}
       </div>);
   }
 }
@@ -143,49 +144,49 @@ class CustomerHistory  extends React.Component  {
 CustomerHistory.defaultProps = {
   propertyName: {
     firstName : {
-      name: 'Tên',
+      name: 'First name',
     },
     lastName : {
-      name: 'Họ',
+      name: 'Last name',
     },
     phone1 : {
-      name: 'SDT',
+      name: 'Phone1',
     },
     phone2 : {
-      name: 'SDT',
+      name: 'Phone2',
     },
     email : {
       name: 'Email',
     },
     dateOfBirth : {
-      name: 'Ngày sinh',
+      name: 'Birthday',
       formatter: dateFormatter,
     },
     gender : {
-      name: 'Giới tính',
+      name: 'Gender',
       formatter: genderFormatter,
     },
     status : {
-      name: 'Trạng thái',
+      name: 'Status',
       formatter: (key) => (STATUS[key])
     },
     countryCode : {
-      name: 'Quốc gia',
+      name: 'Country',
     },
     occupation : {
-      name: 'Nhóm',
+      name: 'Occupation',
     },
     title : {
-      name: 'Chức vụ',
+      name: 'Title',
     },
     position : {
-      name: 'Khoa | Phòng ban',
+      name: 'Position',
     },
     addresses : {
-      name: 'Địa chỉ',
+      name: 'Addresses',
     },
     identifyDocuments : {
-      name: 'Giấy tờ tùy thân',
+      name: 'Identify documents',
     },
   }
 }
@@ -200,7 +201,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CustomerHistory);
+)(CustomerHistory));

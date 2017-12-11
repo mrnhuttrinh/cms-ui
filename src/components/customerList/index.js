@@ -5,10 +5,11 @@ import CustomerListReducer from './reducers';
 import * as actions from './actions';
 import DataTable, { dataAccesser, TYPE } from '../commons/table';
 import { ContentWrapper } from '../commons';
+import { translate } from 'react-i18next';
 
 const CUSTOMER_STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'BỊ KHÓA',
+  ACTIVE: 'ACTIVE',
+  DEACTIVE: 'DEACTIVE',
 }
 
 class CustomerList extends React.Component {
@@ -26,7 +27,7 @@ class CustomerList extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Danh sách khách hàng"
+        title="Customer List"
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable
@@ -54,27 +55,27 @@ CustomerList.defaultProps = {
   columns: [
     {
       key: 'firstName',
-      text: 'TÊN',
+      text: 'first name',
       sort: 'ASC',
     }, {
       key: 'lastName',
-      text: 'HỌ',
+      text: 'last name',
     }, {
       key: 'scmsMemberCode',
-      text: 'Mã SV/GV',
+      text: 'member code',
     }, {
       key: 'title',
-      text: 'KHOA | PHÒNG BAN',
+      text: 'title',
     }, {
       key: 'position',
-      text: 'CHỨC VỤ',
+      text: 'position',
     }, {
       key: 'dateBecameCustomer',
-      text: 'NGÀY KHỞI TẠO',
+      text: 'date became customer',
       type: TYPE.date,
     }, {
       key: 'status',
-      text: 'TRẠNG THÁI',
+      text: 'status',
       type: TYPE.option,
       options: CUSTOMER_STATUS,
     }
@@ -103,10 +104,10 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CustomerList);
+)(CustomerList));
 
 export const reducers = {
   CustomerListReducer,

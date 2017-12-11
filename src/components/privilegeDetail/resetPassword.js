@@ -41,6 +41,7 @@ class ResetPassword extends React.Component {
     this.props.actions.pushResetPassword(params).then(() => {
       const { error } = this.props;
       if (!error) {
+        this.props.actions.getUserHistories(userData.id);
         this.props.onClickCloseDialog();
       }
     });

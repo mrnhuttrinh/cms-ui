@@ -5,11 +5,14 @@ import { bindActionCreators } from 'redux';
 import {Field, reduxForm, getFormValues} from 'redux-form';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 import {
   TextField,
   Checkbox,
 } from '../commons';
-import { PATTERN_EMAIL } from '../../constants';
+import { getItem } from '../../utils';
+import { PATTERN_EMAIL, LANGUAGE_SELECTION } from '../../constants';
 import * as actions from './actions';
 
 import loginReducer from './reducers';
@@ -18,15 +21,6 @@ import './styles.scss';
 
 const validate = values => {
   const errors = {};
-  // const requiredFields = [
-  //   'email',
-  //   'password'
-  // ];
-  // requiredFields.forEach(field => {
-  //   if (!values[field]) {
-  //     errors[field] = 'Required'
-  //   }
-  // });
   if (
     values.email && !PATTERN_EMAIL.test(values.email)
   ) {
@@ -38,7 +32,10 @@ const validate = values => {
 class Login extends React.Component{
   constructor(props) {
     super(props);
+    const language = getItem('language') || 'vn';
+    this.state = {value: language };
     this.onClickSignIn = this.onClickSignIn.bind(this);
+    this.onSelectLanguage = this.onSelectLanguage.bind(this);
   }
   onClickSignIn() {
     const {
@@ -48,14 +45,29 @@ class Login extends React.Component{
       },
       history,
     } = this.props;
-    this.props.actions.submitLogin(values.email, values.password).then(() => {
+    this.props.actions.submitLogin(values.email, values.password, this.state.value).then(() => {
       history.push(state.from);
     });
+  }
+  onSelectLanguage (event, index, value) {
+    this.setState({value});
+  }
+  renderOptionLanguages() {
+    return (
+      <DropDownMenu
+        value={this.state.value}
+        onChange={this.onSelectLanguage}
+        style={{textAlign: 'left', width: '45%'}}
+      >
+        <MenuItem value="en" primaryText={LANGUAGE_SELECTION['en']} />
+        <MenuItem value="vn" primaryText={LANGUAGE_SELECTION['vn']} />
+      </DropDownMenu>
+    );
   }
   render() {
     const errorTextLoginFailed = 'Sorry, that login was invalid. Please try again.';
     return (
-      <form onSubmit={this.onClickSignIn}>
+      <form onSubmit={this.onClickSignIn} className="login-form">
         <div className="ecash-login">
           <div className="ecash-login-logo">
             <div>
@@ -121,6 +133,10 @@ class Login extends React.Component{
                 }
               </div>
             </div>
+          </div>
+          <div className="ecash-login-bottom-control">
+            <div className="text-note">Hiện thị bằng ngôn ngữ</div>
+            {this.renderOptionLanguages()}
           </div>
         </div>
       </form>

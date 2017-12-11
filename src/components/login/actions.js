@@ -10,7 +10,7 @@ import {
   SIGN_OUT,
 } from './constants';
 
-export const submitLogin = (username, password) => {
+export const submitLogin = (username, password, language) => {
   return {
     type: SUBMIT_LOGIN,
     fetchConfig: {
@@ -24,6 +24,7 @@ export const submitLogin = (username, password) => {
         body: JSON.stringify({
           username,
           password,
+          language,
         }),
       },
     }

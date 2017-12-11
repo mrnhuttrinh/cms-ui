@@ -12,6 +12,7 @@ import {
 import FlatButton from 'material-ui/FlatButton';
 import _ from 'lodash';
 import moment from 'moment';
+import { translate } from 'react-i18next';
 import { Pagination } from '../../components';
 import SearchField from './search';
 import AnimationGroup from './animationGroup';
@@ -35,7 +36,7 @@ export const TYPE = {
 
 export const formaters = {
   date: (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A'),
-  option: (key, options) => (options[key]),
+  option: (key, options, t) => (t(options[key])),
 };
 
 class DataTable extends React.Component {
@@ -84,7 +85,7 @@ class DataTable extends React.Component {
       * page.size + 1;
     const toElement = fromElement + this.props.dataAccesser(this.props.data).length - 1;
     const totalElements = page.totalElements;
-    const pageDescrition = (fromElement === toElement) ? `${fromElement} of ${totalElements}` : `${fromElement}-${toElement} of ${totalElements}`;
+    const pageDescrition = (fromElement === toElement) ? `${fromElement} ${this.props.t('of')} ${totalElements}` : `${fromElement}-${toElement} ${this.props.t('of')} ${totalElements}`;
     return (<div style={{backgroundColor: '#fff', padding: '7px', fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)'}}>
       <span style={{float: 'left', lineHeight: '50px'}}>{pageDescrition}</span>
       <div style={{float: 'right', display: 'inline-block', lineHeight: '50px'}}>
@@ -108,7 +109,7 @@ class DataTable extends React.Component {
           (<TableHeaderColumn key={column.key}>
               <FlatButton
                 id={index}
-                label={column.text}
+                label={this.props.t(column.text)}
                 labelPosition="before"
                 primary={false}
                 icon={<FontIcon className="material-icons">
@@ -120,22 +121,22 @@ class DataTable extends React.Component {
           <TableHeaderColumn key={column.key} id={index}>
             <FlatButton
               id={index}
-              label={column.text}
+              label={this.props.t(column.text)}
               labelPosition="before"
               primary={false}
               onClick={() => {this.handleSortChange(index);}}
             />
           </TableHeaderColumn>
     );
-    const tableRows = this.props.data ? _.map(this.props.dataAccesser(this.props.data), (customer) => (
+    const tableRows = this.props.data ? _.map(this.props.dataAccesser(this.props.data), (d) => (
       <TableRow>
         {_.map(this.props.columns, (column) => (
           <TableRowColumn>
-            {column.formater ? column.formater(customer) : formaters[column.type] ? formaters[column.type](_.get(customer, column.key), column.options) : _.get(customer, column.key)}
+            {column.formater ? column.formater(d, this.props.t) : formaters[column.type] ? formaters[column.type](_.get(d, column.key), column.options, this.props.t) : _.get(d, column.key)}
           </TableRowColumn>))}
       </TableRow>
     )) : [];
-    
+
     let wrapperMinusHeight = 0;
     if (this.props.data && this.props.dataAccesser(this.props.data).length) {
       wrapperMinusHeight += 56;
@@ -146,7 +147,7 @@ class DataTable extends React.Component {
     let wrapperHeight = '100%';
     if (wrapperMinusHeight > 0) {
       wrapperHeight = `calc(100% - ${wrapperMinusHeight}px)`;
-    } 
+    }
     return (
       <Table
           wrapperStyle={{ height: wrapperHeight, backgroundColor: '#ececec'}}
@@ -231,4 +232,4 @@ DataTable.defaultProps = {
   pageAccesser,
 };
 
-export default DataTable;
+export default translate('translations')(DataTable);

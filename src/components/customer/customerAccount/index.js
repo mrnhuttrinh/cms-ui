@@ -9,13 +9,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
+import { translate } from 'react-i18next';
+
 import { AnimationGroup } from '../../commons';
-
 import * as actions from './actions';
-
 import AccoutDetailsComponent from '../../account/accountDetailsComponent';
 
 class CustomerAccount  extends React.Component  {
+  constructor() {
+    super();
+    this.renderCard = this.renderCard.bind(this);
+  }
   componentWillMount() {
     this.props.actions.getAccountByCustomerId(this.props.customerId);
   }
@@ -26,7 +30,7 @@ class CustomerAccount  extends React.Component  {
           <AccoutDetailsComponent account={account} />
         </CardText>
         <CardActions style={{textAlign: 'right'}}>
-          <RaisedButton containerElement={<Link to={`/account/${account.id}`} />} label="Xem chi tiết" style={{border: 'solid 1px #009688'}} labelColor='#009688'/>
+          <RaisedButton containerElement={<Link to={`/account/${account.id}`} />} label={this.props.t('View details')} style={{border: 'solid 1px #009688'}} labelColor='#009688'/>
         </CardActions>
       </Card>);
   }
@@ -59,7 +63,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CustomerAccount);
+)(CustomerAccount));

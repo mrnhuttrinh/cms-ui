@@ -23,3 +23,12 @@ export const genderFormatter = (value) => {
   };
   return GENDER[value];
 }
+
+export const parseStringToObjectJson = (string) => {
+  try {
+    return JSON.parse(string);
+  } catch (error) {
+    
+  }
+  return {};
+}

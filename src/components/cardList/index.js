@@ -6,6 +6,7 @@ import CardListReducer from './reducers';
 import * as actions from './actions';
 import DataTable, { TYPE } from '../commons/table';
 import { ContentWrapper } from '../commons';
+import { translate } from 'react-i18next';
 
 const ACCOUNT_STATUS = {
   ACTIVE: 'ĐANG HOẠT ĐỘNG',
@@ -113,10 +114,10 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CardList);
+)(CardList));
 
 export const reducers = {
   CardListReducer,

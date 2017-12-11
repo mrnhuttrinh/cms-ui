@@ -1,5 +1,6 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
+import { translate } from 'react-i18next';
 import RefreshButton from './refreshButton';
 
 const containterStyle = {
@@ -56,7 +57,7 @@ class ContentWrapper extends React.Component {
           iconStyleRight={{
             marginTop: '4px'
           }}
-          title={<span>{title}</span>}
+          title={<span>{this.props.t(title)}</span>}
           style={appBarStyle}
           iconElementRight={<RefreshButton onClick={this.onClickRefreshButton} />}
           {...rest}
@@ -67,4 +68,4 @@ class ContentWrapper extends React.Component {
   }
 }
 
-export default ContentWrapper;
+export default translate('translations')(ContentWrapper);

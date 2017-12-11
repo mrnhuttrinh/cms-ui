@@ -7,6 +7,7 @@ import TextField from 'material-ui/TextField';
 import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import _ from 'lodash';
 import moment from 'moment';
+import { translate } from 'react-i18next';
 import { dateFormatter } from '../../utils';
 
 const style = {
@@ -109,12 +110,12 @@ class Search extends React.Component {
     switch (currentColumn.type) {
       case 'option':
         searchField = (<SelectField
-          floatingLabelText="Search"
+          floatingLabelText={this.props.t('Search')}
           value={this.state.value}
           autoWidth={true}
           onChange={this.changeSearchWithType}
         >
-          {_.map(currentColumn.options, (value, key) => (<MenuItem value={key} primaryText={value} />))}
+          {_.map(currentColumn.options, (value, key) => (<MenuItem value={key} primaryText={this.props.t(value)} />))}
         </SelectField>);
         break;
       case 'date':
@@ -122,7 +123,7 @@ class Search extends React.Component {
         const endDate = moment(this.state.value[1], "M/D/YYYY").toDate();
         searchField = [
             (<DatePicker
-              floatingLabelText="Từ ngày"
+              floatingLabelText={this.props.t('From date')}
               value={startDate}
               onChange={this.handleChangeStartDate}
               autoOk
@@ -130,7 +131,7 @@ class Search extends React.Component {
               maxDate={endDate}
             />),
             (<DatePicker
-              floatingLabelText="Đến ngày"
+              floatingLabelText={this.props.t('To date')}
               value={endDate}
               onChange={this.handleChangeEndDate}
               autoOk
@@ -143,8 +144,8 @@ class Search extends React.Component {
       default:
         searchField = (<TextField
           floatingLabelFixed={true}
-          floatingLabelText="Tìm kiếm"
-          hintText="Tìm kiếm"
+          floatingLabelText={this.props.t('Search')}
+          hintText={this.props.t('Search')}
           value={this.state.value}
           onChange={this.changeSearchValue}
         />);
@@ -155,13 +156,15 @@ class Search extends React.Component {
     if (!this.props.search) {
       return null;
     }
-    const searchByOptions = _.map(this.props.columns, (column) => (<MenuItem value={column.key} primaryText={column.text} />));
+    const searchByOptions = _.map(this.props.columns, (column) => (<MenuItem value={column.key} primaryText={this.props.t(column.text)} />));
     return (
       <Toolbar style={style}>
         <ToolbarGroup firstChild={true} />
         <ToolbarGroup>
           <SelectField
-            floatingLabelText="Tìm theo"
+            listStyle={{textTransform: 'uppercase'}}
+            labelStyle={{textTransform: 'uppercase'}}
+            floatingLabelText={this.props.t('Search by')}
             value={this.state.key}
             autoWidth={true}
             onChange={this.changeSearchKey}
@@ -187,4 +190,4 @@ Search.defaultProps = {
   search: null,
 };
 
-export default Search;
+export default translate('translations')(Search);

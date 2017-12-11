@@ -8,6 +8,7 @@ import {List, ListItem, makeSelectable} from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
 import _ from 'lodash';
 import uuid from 'uuid/v1';
+import { translate } from 'react-i18next';
 import * as actionsLogin from '../../components/login/actions';
 import * as actions from './actions';
 
@@ -59,13 +60,13 @@ class LeftSideMenu extends React.Component {
       selectedMenu: this.selectMenuClassName(nextProps),
     });
   }
-  
+
   onChangeMenu(path) {
     this.setState({
       selectedMenu: this.selectMenuClassName(this.props),
     });
   }
-  
+
   onClickMenu(path) {
     this.props.history.push(path);
   }
@@ -76,7 +77,7 @@ class LeftSideMenu extends React.Component {
       window.location.href = '/login';
     });
   }
-  
+
   selectMenuClassName(props) {
     const {
       location: {
@@ -98,7 +99,7 @@ class LeftSideMenu extends React.Component {
         <ListItem
           key={key}
           value={routeUI.value}
-          primaryText={routeUI.text}
+          primaryText={this.props.t(routeUI.text)}
           onClick={this.signOut}
           leftIcon={<FontIcon className="material-icons">{routeUI.icon}</FontIcon>}
         />
@@ -108,7 +109,7 @@ class LeftSideMenu extends React.Component {
       <ListItem
         key={key}
         value={routeUI.value}
-        primaryText={routeUI.text}
+        primaryText={this.props.t(routeUI.text)}
         onClick={() => this.onClickMenu(routeUI.url || '')}
         leftIcon={<FontIcon className="material-icons">{routeUI.icon}</FontIcon>}
       />
@@ -144,4 +145,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRouter(LeftSideMenu));
+)(withRouter(translate('translations')(LeftSideMenu)));

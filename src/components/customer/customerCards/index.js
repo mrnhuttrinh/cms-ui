@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import { Row, Col } from 'react-flexbox-grid';
 import _ from 'lodash';
+import { translate } from 'react-i18next';
 import { dateFormatter, dateTimeFormatter } from '../../../utils';
 import { STATUS } from './constants';
 import { connect } from 'react-redux';
@@ -21,6 +22,10 @@ const titleStyle = {
 }
 
 class CustomersCard  extends React.Component {
+  constructor() {
+    super();
+    this.renderCard = this.renderCard.bind(this);
+  }
   componentWillMount() {
     this.props.actions.getCardsByCustomerId(this.props.customerId);
   }
@@ -29,7 +34,7 @@ class CustomersCard  extends React.Component {
       <Col md={6} style={{padding:'10px 46px 10px 46px'}} key={key}>
         <Card>
         <CardTitle style={titleStyle}>
-          Thông tin thẻ
+          {this.props.t('Card information')}
         </CardTitle>
         <CardText>
           <GridList
@@ -38,42 +43,42 @@ class CustomersCard  extends React.Component {
             cellHeight={56}
           >
             <TextField
-              floatingLabelText="Số thẻ - Card code"
+              floatingLabelText={this.props.t('Card code')}
               value={customerCard.cardCode}
               floatingLabelFixed={true}
               cols={9}
               fullWidth
             />
             <TextField
-              floatingLabelText="Loại"
+              floatingLabelText={this.props.t('Type')}
               value={_.get(customerCard, 'cardType.description')}
               floatingLabelFixed={true}
               cols={3}
               fullWidth
             />
             <TextField
-              floatingLabelText="Ngày hiệu lực"
+              floatingLabelText={this.props.t('Effective date')}
               value={dateFormatter(customerCard.effectiveDate)}
               floatingLabelFixed={true}
               cols={6}
               fullWidth
             />
             <TextField
-              floatingLabelText="Ngày hết hạn"
+              floatingLabelText={this.props.t('Expiry date')}
               value={dateFormatter(customerCard.expiryDate)}
               floatingLabelFixed={true}
               cols={6}
               fullWidth
             />
             <TextField
-              floatingLabelText="Trạng thái thẻ"
-              value={STATUS[customerCard.status]}
+              floatingLabelText={this.props.t('Status')}
+              value={this.props.t(customerCard.status)}
               floatingLabelFixed={true}
               cols={6}
               fullWidth
             />
             <TextField
-              floatingLabelText="Thời gian cập nhật gần nhất"
+              floatingLabelText={this.props.t('Updated at')}
               value={dateTimeFormatter(customerCard.updatedAt)}
               floatingLabelFixed={true}
               cols={6}
@@ -82,7 +87,7 @@ class CustomersCard  extends React.Component {
           </GridList>
         </CardText>
         <CardActions style={{textAlign: 'right'}}>
-          <RaisedButton containerElement={<Link to={`/card/${customerCard.cardNumber}`} />} label="Chi tiết"  backgroundColor="#009587" labelColor='#ffffff' />
+          <RaisedButton containerElement={<Link to={`/card/${customerCard.cardNumber}`} />} label={this.props.t('View details')}  backgroundColor="#009587" labelColor='#ffffff' />
         </CardActions>
       </Card>
     </Col>)
@@ -116,7 +121,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CustomersCard);
+)(CustomersCard));
