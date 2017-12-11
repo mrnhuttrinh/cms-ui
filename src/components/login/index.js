@@ -32,7 +32,7 @@ const validate = values => {
 class Login extends React.Component{
   constructor(props) {
     super(props);
-    const language = getItem('language') || 'vn';
+    const language = getItem('language') || 'vi';
     this.state = {value: language };
     this.onClickSignIn = this.onClickSignIn.bind(this);
     this.onSelectLanguage = this.onSelectLanguage.bind(this);
@@ -60,7 +60,7 @@ class Login extends React.Component{
         style={{textAlign: 'left', width: '45%'}}
       >
         <MenuItem value="en" primaryText={LANGUAGE_SELECTION['en']} />
-        <MenuItem value="vn" primaryText={LANGUAGE_SELECTION['vn']} />
+        <MenuItem value="vn" primaryText={LANGUAGE_SELECTION['vi']} />
       </DropDownMenu>
     );
   }

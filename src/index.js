@@ -27,12 +27,12 @@ store.subscribe(() => {
   const state = store.getState();
   const data = state.loginReducer.get('data');
 
-  let language = 'vn';
+  let language = 'vi';
   if (!_.isEmpty(data) && !_.isEmpty(data.user)) {
     const loggedUser = data.user;
     language = (parseStringToObjectJson(loggedUser.setting)).language || 'vn';
   } else {
-    language = getItem('language') || 'vn';
+    language = getItem('language') || 'vi';
   }
   setItem('language', language);
   i18n.changeLanguage(language);

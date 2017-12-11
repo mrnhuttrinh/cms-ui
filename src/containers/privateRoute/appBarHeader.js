@@ -34,8 +34,8 @@ const Logged = (props) => (
         <MenuItem
           primaryText="Tiếng việt"
           insetChildren={true}
-          checked={props.language === 'vn'}
-          onClick={() => props.languageSetting('vn')}
+          checked={props.language === 'vi'}
+          onClick={() => props.languageSetting('vi')}
         />,
         <MenuItem
           primaryText="Tiếng anh"
