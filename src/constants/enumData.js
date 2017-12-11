@@ -16,7 +16,7 @@ export const LANGUAGE_SELECTION = {
 export const UI_ROUTES_LEFT_SIDE_MENU = {
   DASHBOARD: {
     value: 'dashboard',
-    text: 'Bảng Điều Khiển',
+    text: 'Dashboard',
     icon: 'dashboard',
     url: '/dashboard',
   },
@@ -28,7 +28,7 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
   },
   AGENT: {
     value: 'merchant',
-    text: 'Đại lí',
+    text: 'Merchant',
     icon: 'store',
     url: '/merchant',
   },
@@ -40,35 +40,35 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
   },
   ACCOUNT: {
     value: 'account',
-    text: 'Tài khoản',
+    text: 'Account',
     icon: 'account_balance_wallet',
     url: '/account',
   },
   REPORT: {
     value: 'report',
-    text: 'Báo cáo thống kê',
+    text: 'Report',
     icon: 'assignment',
   },
   PERMISSION: {
     value: 'permission',
-    text: 'Phân Quyền',
+    text: 'Permission',
     icon: 'supervisor_account',
     url: '/permission',
   },
   SETTING: {
     value: 'setting',
-    text: 'Cài đặt',
+    text: 'Setting',
     icon: 'settings',
   },
   USER_PROFILE: {
     value: 'user-profile',
-    text: 'Thông tin tài khoản',
+    text: 'User profile',
     icon: 'account_circle',
     url: '/user-profile',
   },
   LOGOUT: {
     value: 'logout',
-    text: 'Đăng xuất',
+    text: 'Logout',
     icon: 'exit_to_app',
   },
 };

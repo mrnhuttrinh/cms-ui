@@ -2,6 +2,7 @@ import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { translate } from 'react-i18next';
 import * as actions from './actions';
 import AccoutDetailsComponent from '../accountDetailsComponent';
 
@@ -36,7 +37,7 @@ class AccountDetails  extends React.Component  {
       }}
       backgroundColor="#b93221"
       labelStyle={{color: '#fff'}}
-      label="KHÓA TÀI KHOẢN"
+      label={this.props.t('lock account')}
       onClick={this.updateStatus}
       disabled={this.props.updateRequesting}
     />);
@@ -48,7 +49,7 @@ class AccountDetails  extends React.Component  {
       }}
       backgroundColor="#009688"
       labelStyle={{color: '#fff'}}
-      label="MỞ KHÓA TÀI KHOẢN"
+      label={this.props.t('unlock account')}
       onClick={this.updateStatus}
       disabled={this.props.updateRequesting}
     />);
@@ -64,7 +65,7 @@ class AccountDetails  extends React.Component  {
             }}
             backgroundColor="#009688"
             labelStyle={{color: '#fff'}}
-            label="CHỈNH SỬA"
+            label={this.props.t('edit')}
           />
           {this.props.account.status === 'ACTIVE' ? lockButton : unLockButton}
         </div>
@@ -91,7 +92,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AccountDetails);
+)(AccountDetails));
