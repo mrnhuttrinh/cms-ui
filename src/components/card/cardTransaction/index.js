@@ -46,7 +46,7 @@ TransactionByAccountList.defaultProps = {
     },
     {
       key: 'transaction.id',
-      text: 'transaction id',
+      text: 'reference transaction',
     },
     {
       key: 'transactionType.description',

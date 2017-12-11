@@ -41,28 +41,28 @@ TransactionByAccountList.defaultProps = {
   columns: [
     {
       key: 'date',
-      text: 'TG PHÁT SINH',
+      text: 'transaction date',
       type: TYPE.date,
     },
     {
       key: 'transaction.id',
-      text: 'SỐ THAM CHIẾU',
+      text: 'reference transaction',
     },
     {
       key: 'transactionType.description',
-      text: 'LOẠI GD',
+      text: 'transaction type',
     },
     {
       key: 'amount',
-      text: 'SỐ TIỀN',
+      text: 'amount',
     },
     {
       key: 'transactionDetail.detail',
-      text: 'NỘI DUNG',
+      text: 'Detail',
     },
     {
       key: 'createdAt',
-      text: 'TG CẬP NHẬT',
+      text: 'transaction created at',
       type: TYPE.date,
     },
   ],

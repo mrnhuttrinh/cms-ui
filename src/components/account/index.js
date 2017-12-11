@@ -1,12 +1,12 @@
 import React from 'react';
 import { Tab } from 'material-ui/Tabs';
+import { translate } from 'react-i18next';
+
 import { TabTemplate } from '../commons';
 import { ContentWrapper } from '../commons';
 import AccountDetails from './accountDetails';
 import AccountHistory from './accountHistory';
 import AccountTransaction from './accountTransaction';
-
-
 import AccountDetailReducer from './accountDetails/reducers';
 import AccountTransactionReducer from './accountTransaction/reducers';
 import AccountHistoryReducer from './accountHistory/reducers';
@@ -27,7 +27,7 @@ class Account extends React.Component {
     const accountId = this.props.match.params.accountId;
     return (
       <ContentWrapper
-        title="Chi tiết tài khoản"
+        title={this.props.t('Account details')}
         iconStyleLeft={{display: 'none'}}
       >
         <TabTemplate
@@ -37,13 +37,13 @@ class Account extends React.Component {
           }}
           inkBarStyle={indicatorStyle}
         >
-          <Tab style={tabStyle} label="THÔNG TIN CHUNG" >
+          <Tab style={tabStyle} label={this.props.t('general information')} >
             <AccountDetails accountId={accountId} />
           </Tab>
-          <Tab style={tabStyle} label="LỊCH SỬ" >
+          <Tab style={tabStyle} label={this.props.t('history')} >
             <AccountHistory accountId={accountId} />
           </Tab>
-          <Tab style={tabStyle} label="GIAO DỊCH" >
+          <Tab style={tabStyle} label={this.props.t('transaction')} >
             <AccountTransaction accountId={accountId} />
           </Tab>
         </TabTemplate>
@@ -52,7 +52,7 @@ class Account extends React.Component {
   }
 }
 
-export default Account;
+export default translate('translations')(Account);
 
 export const reducers = {
   AccountDetailReducer,

@@ -7,11 +7,11 @@ import DataTable, { TYPE } from '../commons/table';
 import { ContentWrapper } from '../commons';
 
 const ACCOUNT_STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'BỊ KHÓA',
+  ACTIVE: 'ACTIVE',
+  DEACTIVE: 'DEACTIVE',
 }
 
-class CustomerList extends React.Component {
+class AccountList extends React.Component {
   constructor() {
     super();
     this.handleCellClick = this.handleCellClick.bind(this);
@@ -22,7 +22,7 @@ class CustomerList extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Danh sách tài khoản ví"
+        title="Account list"
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable
@@ -45,36 +45,36 @@ class CustomerList extends React.Component {
   }
 }
 
-CustomerList.defaultProps = {
+AccountList.defaultProps = {
   columns: [
     {
       key: 'id',
-      text: 'STK',
+      text: 'account id',
       sort: 'ASC',
     }, {
       key: 'accountName',
-      text: 'TÊN KHOẢN',
+      text: 'Account name',
     }, {
       key: 'accountType.description',
-      text: 'LOẠI',
+      text: 'Type',
     }, {
       key: 'customer.lastName',
-      text: 'HỌ',
+      text: 'last name',
       formater: (data) => (data && data.customer ? `${data.customer.lastName}` : ''),
     }, {
       key: 'customer.firstName',
-      text: 'TÊN',
+      text: 'first name',
       formater: (data) => (data && data.customer ? `${data.customer.firstName}` : ''),
     }, {
       key: 'plan.planType.description',
-      text: 'HẠNG VÍ',
+      text: 'Plan',
     }, {
       key: 'dateOpened',
-      text: 'NGÀY MỞ',
+      text: 'Date opened',
       type: TYPE.date,
     }, {
       key: 'status',
-      text: 'TRẠNG THÁI',
+      text: 'status',
       type: TYPE.option,
       options: ACCOUNT_STATUS,
     }
@@ -108,7 +108,7 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CustomerList);
+)(AccountList);
 
 export const reducers = {
   AccountListReducer,
