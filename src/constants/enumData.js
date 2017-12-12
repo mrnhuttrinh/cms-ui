@@ -9,9 +9,17 @@ export const ENUM_ROLE_TYPE = {
 };
 
 export const LANGUAGE_SELECTION = {
-  vi: 'Tiếng việt',
-  en: 'Tiếng anh',
-}
+  vi: {
+    text: 'Vietnamese',
+    value: 'vi',
+  },
+  en: {
+    text: 'English',
+    value: 'en'
+  }
+};
+
+export const DEFAULT_LANGUAGE = 'vi';
 
 export const UI_ROUTES_LEFT_SIDE_MENU = {
   DASHBOARD: {

@@ -2,8 +2,7 @@ import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import CountryEn from './constants/countryEN.js';
 import CountryVi from './constants/countryVI.js';
-
-console.log(CountryEn);
+import { vietnamese as vietnameseMSM, english as englishMSM } from './constants/messages';
 
 i18n
   .use(LanguageDetector)
@@ -13,6 +12,7 @@ i18n
       en: {
         translations: {
           ...CountryEn,
+          ...englishMSM,
           'Language': 'en',
           'Dashboard': 'Dashboard',
           'Merchant': 'Merchant',
@@ -132,11 +132,23 @@ i18n
           'lock account': 'lock account',
           'unlock account': 'unlock account',
           'edit': 'edit',
+          // login page
+          'Sign In To Admin': 'Sign In To Admin',
+          'Password': 'Password',
+          'Remember me': 'Remember me',
+          'Forgot Password': 'Forgot Password',
+          'SIGN IN': 'Sign in',
+          'Display language': 'Display language',
+          'Vietnamese': 'Vietnamese',
+          'English': 'English',
+          // appbar
+          'Language Long': 'Language',
         }
       },
       vi: {
         translations: {
           ...CountryVi,
+          ...vietnameseMSM,
           'Language': 'vn',
           'Dashboard': 'Bảng Điều Khiển',
           'Merchant': 'Đại lí',
@@ -256,6 +268,17 @@ i18n
           'lock account': 'khóa tài khoản',
           'unlock account': 'mở khóa tài khoản',
           'edit': 'chỉnh sửa',
+          // login page
+          'Sign In To Admin': 'Đăng nhập để quản trị',
+          'Password': 'Mật khẩu',
+          'Remember me': 'Ghi nhớ đăng nhập',
+          'Forgot Password': 'Quên mật khẩu',
+          'SIGN IN': 'Đăng nhập',
+          'Display language': 'Hiển thị bằng ngôn ngữ',
+          'Vietnamese': 'Tiếng Việt',
+          'English': 'Tiếng Anh',
+          // appbar
+          'Language Long': 'Ngôn ngữ',
         }
       }
     },

@@ -1,12 +1,16 @@
 import { Map } from 'immutable';
+import { DEFAULT_LANGUAGE } from '../../constants';
+import { getItem, setItem } from '../../utils';
 import {
   SUBMIT_LOGIN,
   REFRESH_TOKEN,
   SIGN_OUT,
+  CHANGE_LANGUAGE,
 } from './constants';
 
 const initialState = new Map({
   refreshTokenRequesting: true,
+  language: getItem('language') || DEFAULT_LANGUAGE,
 });
 
 export default (state = initialState, action = {}) => {
@@ -42,6 +46,11 @@ export default (state = initialState, action = {}) => {
     case `${SIGN_OUT}_FAILED`:
       // force reload page
       newState = state.set('signOutRequesting', false).set('data', {credential: false});
+      break;
+    // change language
+    case CHANGE_LANGUAGE:
+      setItem('language', action.language);
+      newState = state.set('language', action.language);
       break;
     default:
       newState = state;

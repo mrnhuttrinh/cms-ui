@@ -8,6 +8,7 @@ import {
   SUBMIT_LOGIN,
   REFRESH_TOKEN,
   SIGN_OUT,
+  CHANGE_LANGUAGE,
 } from './constants';
 
 export const submitLogin = (username, password, language) => {
@@ -60,5 +61,12 @@ export const signOut = () => {
         },
       },
     }
+  };
+};
+
+export const changeLanguage = (language) => {
+  return {
+    type: CHANGE_LANGUAGE,
+    language,
   };
 };

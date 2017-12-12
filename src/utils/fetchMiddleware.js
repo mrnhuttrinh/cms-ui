@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { toastr } from 'react-redux-toastr'
+import { toastr } from 'react-redux-toastr';
+import i18n from '../i18n';
 import {
   mainLoadingStart,
   mainLoadingEnd,
@@ -50,25 +51,30 @@ const fetchMiddleware = store => next => async action => {
       return res.json();
     });
     // dispatch completed with data
-    dispatch({ type: `${type}_COMPLETED`, data });
+    await dispatch({ type: `${type}_COMPLETED`, data });
     if (showLoading) {
       dispatch(mainLoadingEnd());
     }
     if (showMessage) {
       const success = showMessage.success;
-      toastr.success(success.title, success.message);
+      setTimeout(() => {
+        toastr.success(i18n.t(success.title), i18n.t(success.message));
+      }, 0);
+      
     }
     // show success existence message
   } catch (error) {
     // dispatch failed with error
-    dispatch({ type: `${type}_FAILED`, error });
+    await dispatch({ type: `${type}_FAILED`, error });
     if (showLoading) {
       dispatch(mainLoadingError());
     }
     // show error existence message
     if (showMessage) {
       const error = showMessage.error;
-      toastr.error(error.title, error.message);
+      setTimeout(() => {
+        toastr.error(i18n.t(error.title), i18n.t(error.message));
+      }, 0);
     }
   }
 }

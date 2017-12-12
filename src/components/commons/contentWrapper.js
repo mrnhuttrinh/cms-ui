@@ -44,7 +44,7 @@ class ContentWrapper extends React.Component {
       this.setState({
         children: oldChildren,
       });
-    }, 10);
+    }, 0);
   }
   render () {
     const {

@@ -13,12 +13,12 @@ export const languageSetting = (id, key, value) => {
     type: CHANGE_LANGUAGE_SETTING,
     showMessage: {
       success: {
-        title: 'Thay đổi ngôn ngữ',
-        message: 'Thay đổi ngôn ngữ thành công',
+        title: 'Change language',
+        message: 'Change language successful',
       },
       error: {
-        title: 'Thay đổi ngôn ngữ',
-        message: 'Thay đổi ngôn ngữ thất bại',
+        title: 'Change language',
+        message: 'Change language failure',
       },
     },
     fetchConfig: {

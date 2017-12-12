@@ -8,9 +8,12 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import { Link } from 'react-router-dom';
+import { translate } from 'react-i18next'; 
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-
+import _ from 'lodash';
+import i18n from '../../i18n';
+import { LANGUAGE_SELECTION } from '../../constants';
 import * as actionsLogin from '../../components/login/actions';
 import * as actions from './actions';
 import {
@@ -18,37 +21,41 @@ import {
 } from '../../components/login/constants';
 import { parseStringToObjectJson } from '../../utils';
 
-const Logged = (props) => (
-  <IconMenu
-    {...props}
-    iconButtonElement={
-      <IconButton><MoreVertIcon /></IconButton>
-    }
-    targetOrigin={{horizontal: 'right', vertical: 'top'}}
-    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-  >
-    <MenuItem
-      primaryText="Ngôn ngữ"
-      rightIcon={<ArrowDropRight />}
-      menuItems={[
+const Logged = translate('translations')(class RightAppBar extends React.Component {
+  buildMenuLanguage() {
+    return _.map(LANGUAGE_SELECTION, language => {
+      return (
         <MenuItem
-          primaryText="Tiếng việt"
+          key={language.value}
+          primaryText={this.props.t(language.text)}
           insetChildren={true}
-          checked={props.language === 'vi'}
-          onClick={() => props.languageSetting('vi')}
-        />,
+          checked={this.props.language === language.value}
+          onClick={() => this.props.languageSetting(language.value)}
+        />
+      );
+    });
+  }
+  render() {
+    return (
+      <IconMenu
+        {...this.props}
+        iconButtonElement={
+          <IconButton><MoreVertIcon /></IconButton>
+        }
+        targetOrigin={{horizontal: 'right', vertical: 'top'}}
+        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+      >
         <MenuItem
-          primaryText="Tiếng anh"
-          insetChildren={true}
-          checked={props.language === 'en'}
-          onClick={() => props.languageSetting('en')}
-        />,
-      ]}
-    />
-    <Divider />
-    <MenuItem primaryText="Sign out" onClick={props.signOut}/>
-  </IconMenu>
-);
+          primaryText={this.props.t('Language Long')}
+          rightIcon={<ArrowDropRight />}
+          menuItems={this.buildMenuLanguage()}
+        />
+        <Divider />
+        <MenuItem primaryText={this.props.t('Logout')} onClick={this.props.signOut}/>
+      </IconMenu>
+    );
+  }
+})
 
 Logged.muiName = 'IconMenu';
 
@@ -67,15 +74,18 @@ class AppBarHeader extends Component {
     const data = userData.user || {
       roles: [],
     };
-    this.props.actions.languageSetting(data.id, 'language', language).then(() => {
-      const { languageSettingData } = this.props;
-      this.props.dispatch({
-        type: `${SUBMIT_LOGIN}_COMPLETED`,
-        data: {
-          data: languageSettingData,
-        },
+    const currentLanguage = i18n.language;
+    if (language !== currentLanguage) {
+      this.props.actions.languageSetting(data.id, 'language', language).then(() => {
+        const { languageSettingData } = this.props;
+        this.props.dispatch({
+          type: `${SUBMIT_LOGIN}_COMPLETED`,
+          data: {
+            data: languageSettingData,
+          },
+        });
       });
-    });
+    }
   }
 
   signOut() {
@@ -84,6 +94,7 @@ class AppBarHeader extends Component {
       window.location.href = '/login';
     });
   }
+
   render() {
     const {
       userData = {
@@ -131,4 +142,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRouter(AppBarHeader));
+)(withRouter(translate('translations')(AppBarHeader)));
