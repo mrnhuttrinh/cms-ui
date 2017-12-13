@@ -8,7 +8,6 @@ import { ContentWrapper } from '../commons';
 
 import {
   ENUM_USER_STATUS,
-  ENUM_ROLE_TYPE
 } from '../../constants';
 
 class ManagePrivilegeList extends React.Component {
@@ -63,7 +62,7 @@ ManagePrivilegeList.defaultProps = {
       text: 'NHÓM',
       formater: (roles) => {
         const firstRole = roles[0] || {};
-        return ENUM_ROLE_TYPE[firstRole.name];
+        return firstRole.name;
       },
     }, {
       key: 'email',

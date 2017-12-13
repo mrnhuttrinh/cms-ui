@@ -143,6 +143,19 @@ i18n
           'English': 'English',
           // appbar
           'Language Long': 'Language',
+          'user information': 'user information',
+          'User details': 'User details',
+          'change password': 'change password',
+          'User name': 'User name',
+          'Role': 'Role',
+          'Last login': 'Last login',
+          'ADMIN': 'ADMIN',
+          'USER': 'USER',
+          'Old password': 'Old password',
+          'New password': 'New password',
+          'Confirm new password': 'Confirm new password',
+          'Password must be more than 6 characters': 'Password must be more than 6 characters',
+          'Passwords do not match': 'Passwords do not match',
         }
       },
       vi: {
@@ -279,6 +292,19 @@ i18n
           'English': 'Tiếng Anh',
           // appbar
           'Language Long': 'Ngôn ngữ',
+          'user information': 'Thông tin tài khoản',
+          'User details': 'Chi tiết tài khoản',
+          'change password': 'ĐỔI MẬT KHẨU',
+          'User name': 'Tên Đăng Nhập',
+          'Role': 'Nhóm',
+          'Last login': 'Thời gian hoạt động gần nhất',
+          'ADMIN': 'Quản Trị Viên',
+          'USER': 'Người Dùng',
+          'Old password': 'Mật khẩu cũ',
+          'New password': 'Mật khẩu mới',
+          'Confirm new password': 'Xác nhận mật khẩu mới',
+          'Password must be more than 6 characters': 'Mật khẩu phải nhiều hơn 6 ký tự',
+          'Passwords do not match': 'Mật khẩu không trùng khớp',
         }
       }
     },

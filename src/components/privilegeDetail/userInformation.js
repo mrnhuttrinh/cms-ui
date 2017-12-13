@@ -6,7 +6,6 @@ import moment from 'moment';
 
 import {
   ENUM_USER_STATUS,
-  ENUM_ROLE_TYPE
 } from '../../constants';
 
 const formatDate = (date) => (date ? moment(date).format('h:mm:ss DD/MM/YYYY') : 'N/A');
@@ -58,7 +57,7 @@ class UserInformation extends React.Component  {
             floatingLabelText="Nhóm"
             floatingLabelFixed
             fullWidth
-            value={ENUM_ROLE_TYPE[firstRole.name]}
+            value={firstRole.name}
           />
         </Col>
         <Col md={6} ms={12}>
