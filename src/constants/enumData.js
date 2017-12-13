@@ -3,11 +3,6 @@ export const ENUM_USER_STATUS = {
   INACTIVE: 'BỊ KHÓA',
 };
 
-export const ENUM_ROLE_TYPE = {
-  ADMIN: 'Quản Trị Viên',
-  USER: 'Người Dùng',
-};
-
 export const LANGUAGE_SELECTION = {
   vi: {
     text: 'Vietnamese',

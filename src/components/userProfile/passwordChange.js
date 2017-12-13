@@ -6,6 +6,8 @@ import FlatButton from 'material-ui/FlatButton';
 import {Field, reduxForm, getFormValues, getFormSyncErrors} from 'redux-form';
 import { Row, Col } from 'react-flexbox-grid';
 import _ from 'lodash';
+import { translate } from 'react-i18next';
+
 import { TextField } from '../commons';
 import { AnimationGroup } from '../commons';
 
@@ -24,12 +26,12 @@ const validate = values => {
     confirmNewPassword: null,
   };
   if (!_.isEmpty(values.newPassword) && values.newPassword.length < 6) {
-    errors.newPassword = 'Mật khẩu phải nhiều hơn 6 ký tự';
+    errors.newPassword = 'Password must be more than 6 characters';
   }
   if (!_.isEmpty(values.confirmNewPassword) && values.confirmNewPassword.length < 6) {
-    errors.confirmNewPassword = 'Mật khẩu phải nhiều hơn 6 ký tự';
+    errors.confirmNewPassword = 'Password must be more than 6 characters';
   } else if (!_.isEmpty(values.confirmNewPassword) && values.newPassword !== values.confirmNewPassword) {
-    errors.confirmNewPassword = 'Mật khẩu không trùng khớp';
+    errors.confirmNewPassword = 'Passwords do not match';
   }
   return errors;
 }
@@ -69,9 +71,9 @@ class PasswordChange extends React.Component  {
                 name="oldPassword"
                 type="password"
                 component={TextField}
-                label="Mật khẩu cũ"
+                label={this.props.t('Old password')}
                 fullWidth
-                errorText={errors.oldPassword}
+                errorText={this.props.t(errors.oldPassword)}
               />
             </Col>
             <Col md={12} ms={12}>
@@ -79,9 +81,9 @@ class PasswordChange extends React.Component  {
                 name="newPassword"
                 type="password"
                 component={TextField}
-                label="Mật khẩu mới"
+                label={this.props.t('New password')}
                 fullWidth
-                errorText={errors.newPassword}
+                errorText={this.props.t(errors.newPassword)}
               />
             </Col>
             <Col md={12} ms={12}>
@@ -89,9 +91,9 @@ class PasswordChange extends React.Component  {
                 name="confirmNewPassword"
                 type="password"
                 component={TextField}
-                label="Xác nhận mật khẩu mới"
+                label={this.props.t('Confirm new password')}
                 fullWidth
-                errorText={errors.confirmNewPassword}
+                errorText={this.props.t(errors.confirmNewPassword)}
               />
             </Col>
           </Row>
@@ -105,7 +107,7 @@ class PasswordChange extends React.Component  {
             }}
             backgroundColor="#009688"
             labelStyle={{color: '#fff'}}
-            label="ĐỔI MẬT KHẨU"
+            label={this.props.t('change password')}
             disabled={this.getDisableChangePasswordButton()}
             onClick={this.onPushPasswordChange}
           />
@@ -140,4 +142,4 @@ export default reduxForm({
 })(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRouter(PasswordChange)));
+)(withRouter(translate('translations')(PasswordChange))));

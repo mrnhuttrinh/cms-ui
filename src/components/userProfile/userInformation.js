@@ -4,10 +4,9 @@ import { bindActionCreators } from 'redux';
 import TextField from 'material-ui/TextField';
 import { Row, Col } from 'react-flexbox-grid';
 import moment from 'moment';
+import { translate } from 'react-i18next';
+
 import { AnimationGroup } from '../commons';
-import {
-  ENUM_ROLE_TYPE
-} from '../../constants';
 
 import {
   rowContainer,
@@ -33,7 +32,7 @@ class UserInformation extends React.Component {
           <Row>
             <Col md={7} ms={12}>
               <TextField
-                floatingLabelText="Họ"
+                floatingLabelText={this.props.t('Last name')}
                 floatingLabelFixed
                 fullWidth
                 value={data.lastName}
@@ -41,7 +40,7 @@ class UserInformation extends React.Component {
             </Col>
             <Col md={5} ms={12}>
               <TextField
-                floatingLabelText="Tên"
+                floatingLabelText={this.props.t('First name')}
                 floatingLabelFixed
                 fullWidth
                 value={data.firstName}
@@ -49,7 +48,7 @@ class UserInformation extends React.Component {
             </Col>
             <Col md={7} ms={12}>
               <TextField
-                floatingLabelText="Email"
+                floatingLabelText={this.props.t('Email')}
                 floatingLabelFixed
                 fullWidth
                 value={data.email}
@@ -57,7 +56,7 @@ class UserInformation extends React.Component {
             </Col>
             <Col md={5} ms={12}>
               <TextField
-                floatingLabelText="Tên Đăng Nhập"
+                floatingLabelText={this.props.t('User name')}
                 floatingLabelFixed
                 fullWidth
                 value={data.username}
@@ -65,15 +64,15 @@ class UserInformation extends React.Component {
             </Col>
             <Col md={5} ms={12}>
               <TextField
-                floatingLabelText="Nhóm"
+                floatingLabelText={this.props.t('Role')}
                 floatingLabelFixed
                 fullWidth
-                value={ENUM_ROLE_TYPE[firstRole.name]}
+                value={this.props.t(firstRole.name)}
               />
             </Col>
             <Col md={7} ms={12}>
               <TextField
-                floatingLabelText="Thời gian hoạt động gần nhất"
+                floatingLabelText={this.props.t('Last login')}
                 floatingLabelFixed
                 fullWidth
                 floatingLabelStyle={{whiteSpace: 'nowrap'}}
@@ -101,7 +100,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Object.assign({}, actions), dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UserInformation);
+)(UserInformation));

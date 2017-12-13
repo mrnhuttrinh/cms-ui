@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tab } from 'material-ui/Tabs';
 import { translate } from 'react-i18next';
+
 import { TabTemplate } from '../commons';
 import { ContentWrapper } from '../commons';
 import * as actions from './actions';
@@ -10,7 +11,6 @@ import CardDetails from './cardDetails';
 import CardDetailReducer from './reducers';
 import CardTransaction from './cardTransaction';
 import CardCustomer from './cardCustomer';
-
 import CardHistoryReducer from './cardHistory/reducers';
 import CardTransactionReducer from './cardTransaction/reducers';
 

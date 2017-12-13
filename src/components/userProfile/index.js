@@ -1,5 +1,7 @@
 import React from 'react';
 import { Tab } from 'material-ui/Tabs';
+import { translate } from 'react-i18next';
+
 import { ContentWrapper } from '../commons';
 import { TabTemplate } from '../commons';
 import UserInformation from './userInformation';
@@ -14,7 +16,7 @@ class UserProfile extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Thông tin tài khoản"
+        title="User details"
         iconStyleLeft={{display: 'none'}}
       >
         <TabTemplate
@@ -24,10 +26,10 @@ class UserProfile extends React.Component {
           }}
           inkBarStyle={indicatorStyle}
         >
-          <Tab style={tabStyle} label="THÔNG TIN TÀI KHOẢN" >
+          <Tab style={tabStyle} label={this.props.t('user information')} >
             <UserInformation />
           </Tab>
-          <Tab style={tabStyle} label="ĐỔI MẬT KHẨU" >
+          <Tab style={tabStyle} label={this.props.t('change password')} >
             <PasswordChange />
           </Tab>
         </TabTemplate>
@@ -36,7 +38,7 @@ class UserProfile extends React.Component {
   }
 }
 
-export default UserProfile;
+export default translate('translations')(UserProfile);
 
 export const reducers = {
   UserProfileReducers,
