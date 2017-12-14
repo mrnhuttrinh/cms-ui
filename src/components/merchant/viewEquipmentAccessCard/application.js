@@ -1,11 +1,10 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { Row, Col } from 'react-flexbox-grid';
 import {Card, CardTitle} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { dateTimeFormatter } from '../../../utils';
-
-import { MERCHANT_STATUS } from '../constants';
 
 const cardStyle = {
   padding: 10,
@@ -37,7 +36,7 @@ class Application extends React.Component {
         <Row>
           <Col md={8}>
             <TextField
-              floatingLabelText="Mã số"
+              floatingLabelText={this.props.t('Code number')}
               floatingLabelFixed
               fullWidth
               value={application.id}
@@ -45,17 +44,17 @@ class Application extends React.Component {
           </Col>
           <Col md={4}>
             <TextField
-              floatingLabelText="Loại"
+              floatingLabelText={this.props.t('Type')}
               floatingLabelFixed
               fullWidth
-              value="Mặc định"
+              value={this.props.t('Default')}
             />
           </Col>
         </Row>
         <Row>
           <Col md={12}>
             <TextField
-              floatingLabelText="Khóa bảo mật"
+              floatingLabelText={this.props.t('Security code')}
               floatingLabelFixed
               fullWidth
               value={application.pubKey}
@@ -65,15 +64,15 @@ class Application extends React.Component {
         <Row>
           <Col md={4}>
             <TextField
-              floatingLabelText="Trạng thái"
+              floatingLabelText={this.props.t('Status')}
               floatingLabelFixed
               fullWidth
-              value={MERCHANT_STATUS[application.status]}
+              value={this.props.t(application.status)}
             />
           </Col>
           <Col md={4}>
             <TextField
-              floatingLabelText="Ngày hết hạn khóa"
+              floatingLabelText={this.props.t('Date of expiry')}
               floatingLabelFixed
               fullWidth
               value={dateTimeFormatter(application.pubKeyExpireDate)}
@@ -81,7 +80,7 @@ class Application extends React.Component {
           </Col>
           <Col md={4}>
             <TextField
-              floatingLabelText="Cập nhật lúc"
+              floatingLabelText={this.props.t('Updated at')}
               floatingLabelFixed
               fullWidth
               value={dateTimeFormatter(application.updatedAt || application.createdAt)}
@@ -104,7 +103,7 @@ class Application extends React.Component {
               letterSpacing: '0.5px',
               color: '#009688'
             }}
-            label="Xem chi tiết" />
+            label={this.props.t('View details')} />
           </Col>
         </Row>
       </Card>
@@ -112,4 +111,4 @@ class Application extends React.Component {
   }
 }
 
-export default Application;
+export default translate('translations')(Application);

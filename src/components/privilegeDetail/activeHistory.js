@@ -1,10 +1,12 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { Row, Col } from 'react-flexbox-grid';
 import FontIcon from 'material-ui/FontIcon';
 import uuid from 'uuid/v1';
 import _ from 'lodash';
 import moment from 'moment';
 import { HISTORY_TYPE } from './constants';
+import i18n from '../../i18n';
 
 const titleStyle = {
   padding: '0 20px',
@@ -56,10 +58,10 @@ class ActiveHistory extends React.Component {
           </FontIcon>
         </Col>
         <Col md={3}>
-          {historyType.title}
+          {this.props.t(historyType.title)}
         </Col>
         <Col md={8}>
-          {historyType.textNote} <strong>{historyType.createdByText}</strong>
+          {this.props.t(historyType.textNote)} <strong>{historyType.createdByText}</strong>
         </Col>
       </Row>
     );
@@ -91,7 +93,7 @@ class ActiveHistory extends React.Component {
               </FontIcon>
             </Col>
             <Col md={11}>
-              Không có thông tin chi tiết!
+              {this.props.t('Don\'t have history information!')}
             </Col>
           </Row>
         </div>
@@ -103,7 +105,7 @@ class ActiveHistory extends React.Component {
     const timeLines = {};
 
     _.forEach(histories, (e) => {
-      const key = moment(e.createdAt).locale('vi').fromNow();
+      const key = moment(e.createdAt).locale(i18n.language).fromNow();
       if (timeLines[key]) {
         timeLines[key].push(e);
       } else {
@@ -139,4 +141,4 @@ class ActiveHistory extends React.Component {
   }
 }
 
-export default ActiveHistory;
+export default translate('translations')(ActiveHistory);

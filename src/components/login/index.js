@@ -103,7 +103,7 @@ class Login extends React.Component{
                   component={TextField}
                   label={this.props.t('Password')}
                   fullWidth
-                  errorText={this.props.errorLogin ? errorTextLoginFailed : null}
+                  errorText={this.props.errorLogin ? this.props.t(errorTextLoginFailed) : null}
                 />
               </div>
               <div className="remember-me">

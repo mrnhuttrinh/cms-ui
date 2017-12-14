@@ -1,12 +1,8 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import TextField from 'material-ui/TextField';
 import { Row, Col } from 'react-flexbox-grid';
 import moment from 'moment';
-
-
-import {
-  ENUM_USER_STATUS,
-} from '../../constants';
 
 const formatDate = (date) => (date ? moment(date).format('h:mm:ss DD/MM/YYYY') : 'N/A');
 class UserInformation extends React.Component  {
@@ -22,7 +18,7 @@ class UserInformation extends React.Component  {
       <Row>
         <Col md={7} ms={12}>
           <TextField
-            floatingLabelText="Họ"
+            floatingLabelText={this.props.t('Last name')}
             floatingLabelFixed
             fullWidth
             value={userData.firstName}
@@ -30,7 +26,7 @@ class UserInformation extends React.Component  {
         </Col>
         <Col md={5} ms={12}>
           <TextField
-            floatingLabelText="Tên"
+            floatingLabelText={this.props.t('First name')}
             floatingLabelFixed
             fullWidth
             value={userData.lastName}
@@ -38,7 +34,7 @@ class UserInformation extends React.Component  {
         </Col>
         <Col md={7} ms={12}>
           <TextField
-            floatingLabelText="Email"
+            floatingLabelText={this.props.t('Email')}
             floatingLabelFixed
             fullWidth
             value={userData.email}
@@ -46,7 +42,7 @@ class UserInformation extends React.Component  {
         </Col>
         <Col md={5} ms={12}>
           <TextField
-            floatingLabelText="Tên Đăng Nhập"
+            floatingLabelText={this.props.t('User name')}
             floatingLabelFixed
             fullWidth
             value={userData.username}
@@ -54,23 +50,23 @@ class UserInformation extends React.Component  {
         </Col>
         <Col md={12} ms={12}>
           <TextField
-            floatingLabelText="Nhóm"
+            floatingLabelText={this.props.t('Role')}
             floatingLabelFixed
             fullWidth
-            value={firstRole.name}
+            value={this.props.t(firstRole.name)}
           />
         </Col>
         <Col md={6} ms={12}>
           <TextField
-            floatingLabelText="Trạng Thái"
+            floatingLabelText={this.props.t('Status')}
             floatingLabelFixed
             fullWidth
-            value={ENUM_USER_STATUS[status]}
+            value={this.props.t(status)}
           />
         </Col>
         <Col md={6} ms={12}>
           <TextField
-            floatingLabelText="Thời gian hoạt động gần nhất"
+            floatingLabelText={this.props.t('Last login')}
             floatingLabelFixed
             fullWidth
             floatingLabelStyle={{whiteSpace: 'nowrap'}}
@@ -82,4 +78,4 @@ class UserInformation extends React.Component  {
   }
 }
 
-export default UserInformation;
+export default translate('translations')(UserInformation);

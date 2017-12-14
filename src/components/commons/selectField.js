@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import SelectField from 'material-ui/SelectField';
 
 const EcSelectField = ({
@@ -6,11 +7,12 @@ const EcSelectField = ({
   label,
   meta: {touched, error},
   children,
+  t,
   ...custom
 }) => (
   <SelectField
-    floatingLabelText={label}
-    errorText={touched && error}
+    floatingLabelText={t(label)}
+    errorText={touched && t(error)}
     {...input}
     onChange={(event, index, value) => input.onChange(value)}
     children={children}
@@ -18,4 +20,4 @@ const EcSelectField = ({
   />
 )
 
-export default EcSelectField;
+export default translate('translations')(EcSelectField);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import MerchantListReducer from './reducers';
@@ -7,8 +8,8 @@ import DataTable, { dataAccesser, TYPE } from '../commons/table';
 import { ContentWrapper } from '../commons';
 
 const MERCHANT_STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'BỊ KHÓA',
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
 }
 
 class MerchantList extends React.Component {
@@ -26,7 +27,7 @@ class MerchantList extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Danh sách đại lý"
+        title="Merchant List"
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable
@@ -58,24 +59,24 @@ MerchantList.defaultProps = {
   columns: [
     {
       key: 'name',
-      text: 'TÊN',
+      text: 'First name',
       sort: 'ASC',
     }, {
       key: 'phone',
-      text: 'SĐT',
+      text: 'Phone',
     }, {
       key: 'email',
       text: 'EMAIL',
     }, {
       key: 'address',
-      text: 'ĐỊA CHỈ',
+      text: 'Address',
       formater: (data) => (data && data.address ? buildAddress(data.address) : ''),
     }, {
       key: 'status',
-      text: 'TRẠNG THÁI',
+      text: 'Status',
       type: TYPE.option,
       options: MERCHANT_STATUS,
-    }
+    },
   ],
   sort: {
     key: 'name',
@@ -104,7 +105,7 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MerchantList);
+)(translate('translations')(MerchantList));
 
 export const reducers = {
   MerchantListReducer,

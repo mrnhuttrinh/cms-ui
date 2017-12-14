@@ -13,16 +13,16 @@ export const HISTORY_TYPE = {
   CREATED: {
     icon: 'new_releases',
     textNote: '',
-    title: 'Khởi tạo',
+    title: 'CREATED',
   },
   ADDED: {
     icon: 'note_add',
     textNote: '',
-    title: 'Thêm ứng dụng',
+    title: 'Add new application',
   },
   UPDATED: {
     icon: 'mode_edit',
     textNote: '',
-    title: 'Cập nhật trạng thái',
+    title: 'Update status',
   }
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -10,11 +11,7 @@ import moment from 'moment';
 import { HISTORY_TYPE } from './constants';
 import { AnimationGroup } from '../commons';
 import * as actions from './actions';
-
-const MERCHANT_STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'BỊ KHÓA',
-}
+import i18n from '../../i18n';
 
 const rowContainer = {
   backgroundColor: '#fff',
@@ -85,12 +82,12 @@ class History extends React.Component {
   parseInformation(data) {
     // Create Customer
     if (data.type.type === 'CREATED') {
-      return (<span>Đại lý được khởi tạo bởi <strong>Quản Trị Viên</strong></span>);
+      return (<span>{this.props.t('Merchant has been created by')} <strong>{this.props.t('ADMIN')}</strong></span>);
     }
 
     // ADDED information
     if (data.type.type === 'ADDED') {
-      return (<span>Đại lý được đăng ký một <strong>ứng dụng</strong> bởi <strong>Quản Trị Viên</strong></span>);
+      return (<span>{this.props.t('Merchant has been registered a')} <strong>{this.props.t('application')}</strong> {this.props.t('by')} <strong>{this.props.t('ADMIN')}</strong></span>);
     }
 
     let updateObject;
@@ -98,7 +95,7 @@ class History extends React.Component {
     try {
       updateObject = JSON.parse(data.details);
     } catch(e) {
-      return [null, <div>Không có thông tin chi tiết!</div>];
+      return [null, <div>{this.props.t('Don\'t have history information!')}</div>];
     }
 
     // Update information
@@ -108,11 +105,11 @@ class History extends React.Component {
         if (property) {
           return (
             <span>
-              {property.name} khách hàng được chuyển từ <strong>
+              {this.props.t(property.name)} {this.props.t('customer has been transferred from')} <strong>
                 [{property.formatter ? property.formatter(updateObject.previous[key]) : updateObject.previous[key]}]
-              </strong> sang <strong>
+              </strong> {this.props.t('to')} <strong>
                 [{property.formatter ? property.formatter(updateObject.next[key]) : updateObject.next[key]}]
-              </strong> bởi <strong>Quản Trị Viên</strong>
+              </strong> {this.props.t('by')} <strong>{this.props.t('ADMIN')}</strong>
             </span>
           );
         }
@@ -141,7 +138,7 @@ class History extends React.Component {
             display: 'inline-block',
             position: 'absolute',
             left: 60
-          }}>{historyType.title}</div>
+          }}>{this.props.t(historyType.title)}</div>
         </Col>
         <Col md={8}>
           {this.parseInformation(milestone)}
@@ -176,7 +173,7 @@ class History extends React.Component {
               </FontIcon>
             </Col>
             <Col md={11}>
-              Không có thông tin chi tiết!
+              {this.props.t('Don\'t have history information!')}
             </Col>
           </Row>
         </div>
@@ -188,7 +185,7 @@ class History extends React.Component {
     const timeLines = {};
 
     _.forEach(histories, (e) => {
-      const key = moment(e.createdAt).locale('vi').fromNow();
+      const key = moment(e.createdAt).locale(i18n.language).fromNow();
       if (timeLines[key]) {
         timeLines[key].push(e);
       } else {
@@ -238,17 +235,17 @@ const mapStateToProps = (state) => {
 History.defaultProps = {
   propertyName: {
     name : {
-      name: 'Tên',
+      name: 'Name',
     },
     phone : {
-      name: 'SDT',
+      name: 'Phone',
     },
     email : {
       name: 'Email',
     },
     status : {
-      name: 'Trạng thái',
-      formatter: (key) => (MERCHANT_STATUS[key])
+      name: 'Status',
+      formatter: (key) => (key)
     },
   }
 }
@@ -261,4 +258,4 @@ const mapDispatchToProps = dispatch => ({
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(History));
+)(translate('translations')(History)));

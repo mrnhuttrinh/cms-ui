@@ -6,25 +6,25 @@ export const USER_UPDATE_STATUS = 'privilegeDetail/USER_UPDATE_STATUS';
 export const HISTORY_TYPE = {
   CREATED: {
     icon: 'new_releases',
-    textNote: 'Người dùng được khởi tạo bởi SCMS',
-    title: 'Khởi tạo',
+    textNote: 'User has been created by SCMS',
+    title: 'CREATED',
   },
   PASSWORD_CHANGED: {
     icon: 'note_add',
-    textNote: 'Người dùng đã được đổi mật khẩu bởi',
-    createdByText: 'Quản Trị Viên',
-    title: 'Đổi mật khẩu',
+    textNote: 'User has been changed password by',
+    createdByText: 'ADMIN',
+    title: 'Change password',
   },
   LOCKED: {
     icon: 'mode_edit',
-    textNote: 'Người dùng bị khóa bởi',
-    createdByText: 'Quản Trị Viên',
-    title: 'Khóa người dùng',
+    textNote: 'User has been locked by',
+    createdByText: 'ADMIN',
+    title: 'Lock user',
   },
   UNLOCKED: {
     icon: 'mode_edit',
-    textNote: 'Người dùng được mở khóa bởi',
-    createdByText: 'Quản Trị Viên',
-    title: 'Mở khóa',
+    textNote: 'User has been unlocked by',
+    createdByText: 'ADMIN',
+    title: 'Unlock user',
   },
 };

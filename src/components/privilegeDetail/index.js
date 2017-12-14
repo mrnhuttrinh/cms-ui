@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import FlatButton from 'material-ui/FlatButton';
 import {
   CardTitle,
@@ -82,10 +83,10 @@ class PrivilegeDetail  extends React.Component {
     const {
       userData = {},
     } = this.props;
-    const labelLockUser = userData.enabled ? 'KHÓA TÀI KHOẢN' : 'MỞ TÀI KHOẢN';
+    const labelLockUser = userData.enabled ? 'LOCK USER' : 'UNLOCK USER';
     return (
       <ContentWrapper
-        title="Chi Tiết Người Dùng"
+        title="User details"
         iconStyleLeft={{display: 'none'}}
       >
         <TabTemplate
@@ -95,11 +96,11 @@ class PrivilegeDetail  extends React.Component {
           }}
           inkBarStyle={indicatorStyle}
         >
-          <Tab style={tabStyle} label="THÔNG TIN CHUNG & LỊCH SỬ HOẠT ĐỘNG" >
+          <Tab style={tabStyle} label={this.props.t('general information & History')} >
             <Row style={rowContainer}>
               <Col md={5} style={leftColumn}>
                 <CardTitle style={titleStyle}>
-                  Thông tin cá nhân
+                  {this.props.t('Personal information')}
                 </CardTitle>
                 <AnimationGroup
                   loading={this.props.userRequesting}
@@ -109,7 +110,7 @@ class PrivilegeDetail  extends React.Component {
               </Col>
               <Col md={7} style={rightColumn}>
                 <CardTitle style={titleStyle}>
-                  Lịch Sử Hoạt Động
+                  {this.props.t('User Activity history')}
                 </CardTitle>
                 <AnimationGroup
                   loading={this.props.userHistoriesRequesting}
@@ -130,7 +131,7 @@ class PrivilegeDetail  extends React.Component {
                   color: '#747474'
                 }}
                 onClick={() => this.props.history.push('/permission')}
-                label="Quay lại" />
+                label={this.props.t('Go back')} />
               <FlatButton
                 style={{
                   boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
@@ -139,7 +140,7 @@ class PrivilegeDetail  extends React.Component {
                 }}
                 backgroundColor="#009688"
                 labelStyle={{color: '#fff'}}
-                label="CHỈNH SỬA"
+                label={this.props.t('EDIT')}
               />
               <FlatButton
                 style={{
@@ -150,7 +151,7 @@ class PrivilegeDetail  extends React.Component {
                 }}
                 backgroundColor="#b93221"
                 labelStyle={{color: '#fff'}}
-                label={labelLockUser}
+                label={this.props.t(labelLockUser)}
                 onClick={this.onClickUpdateStatus}
               />
               <FlatButton
@@ -162,7 +163,7 @@ class PrivilegeDetail  extends React.Component {
                 backgroundColor="#9F6000"
                 labelStyle={{color: '#fff'}}
                 onClick={this.onClickOpenDialog}
-                label="RESET MẬT KHẨU"
+                label={this.props.t('RESET PASSWORD')}
               />
             </div>
             {
@@ -198,10 +199,10 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(PrivilegeDetail);
+)(PrivilegeDetail));
 
 export const reducers = {
   PrivilegeDetailReducer,

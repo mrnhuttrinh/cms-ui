@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -30,11 +31,6 @@ const titleStyle = {
   fontSize: '16px',
   color: '#00897b',
   paddingLeft: 0,
-}
-
-const MERCHANT_STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'BỊ KHÓA',
 }
 
 const formatDate = (date) => (date ? moment(date).format('h:mm:ss DD/MM/YYYY') : 'N/A');
@@ -70,14 +66,14 @@ class GeneralInformation extends React.Component {
           <Row>
             <Col md={12}>
               <CardTitle style={titleStyle}>
-                Thông tin đại lý
+                {this.props.t('Merchant information')}
               </CardTitle>
             </Col>
           </Row>
           <Row>
             <Col md={6}>
               <TextField
-                floatingLabelText="Tên Gọi"
+                floatingLabelText={this.props.t('Name')}
                 floatingLabelFixed
                 fullWidth
                 value={data.name}
@@ -85,7 +81,7 @@ class GeneralInformation extends React.Component {
             </Col>
             <Col md={6}>
               <TextField
-                floatingLabelText="SĐT"
+                floatingLabelText={this.props.t('Phone')}
                 floatingLabelFixed
                 fullWidth
                 value={data.phone}
@@ -95,7 +91,7 @@ class GeneralInformation extends React.Component {
           <Row>
             <Col md={12}>
               <TextField
-                floatingLabelText="Email"
+                floatingLabelText={this.props.t('Email')}
                 floatingLabelFixed
                 fullWidth
                 value={data.email}
@@ -105,15 +101,15 @@ class GeneralInformation extends React.Component {
           <Row>
             <Col md={6}>
               <TextField
-                floatingLabelText="Trạng Thái"
+                floatingLabelText={this.props.t('Status')}
                 floatingLabelFixed
                 fullWidth
-                value={MERCHANT_STATUS[data.status]}
+                value={this.props.t(data.status)}
               />
             </Col>
             <Col md={6}>
               <TextField
-                floatingLabelText="THời gian cập nhật gần nhất"
+                floatingLabelText={this.props.t('Last login')}
                 floatingLabelFixed
                 fullWidth
                 value={formatDate(data.updatedAt)}
@@ -123,14 +119,14 @@ class GeneralInformation extends React.Component {
           <Row>
             <Col md={12}>
               <CardTitle style={titleStyle}>
-                Địa Chỉ
+              {this.props.t('Addresses')}
               </CardTitle>
             </Col>
           </Row>
           <Row>
             <Col md={12}>
               <TextField
-                floatingLabelText="Số nhà, đường"
+                floatingLabelText={this.props.t('Home No., Street')}
                 floatingLabelFixed
                 fullWidth
                 value={address.line1}
@@ -140,7 +136,7 @@ class GeneralInformation extends React.Component {
           <Row>
             <Col md={12}>
               <TextField
-                floatingLabelText="Phường (Xã), Quận (Huyện)"
+                floatingLabelText={this.props.t('Ward, District')}
                 floatingLabelFixed
                 fullWidth
                 value={address.line2}
@@ -150,7 +146,7 @@ class GeneralInformation extends React.Component {
           <Row>
             <Col md={12}>
               <TextField
-                floatingLabelText="Tỉnh, Thành Phố"
+                floatingLabelText={this.props.t('City')}
                 floatingLabelFixed
                 fullWidth
                 value={address.city}
@@ -180,4 +176,4 @@ const mapDispatchToProps = dispatch => ({
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(GeneralInformation));
+)(translate('translations')(GeneralInformation)));

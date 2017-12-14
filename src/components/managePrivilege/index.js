@@ -6,10 +6,6 @@ import * as actions from './actions';
 import DataTable, { dataAccesser } from '../commons/table';
 import { ContentWrapper } from '../commons';
 
-import {
-  ENUM_USER_STATUS,
-} from '../../constants';
-
 class ManagePrivilegeList extends React.Component {
   constructor() {
     super();
@@ -24,7 +20,7 @@ class ManagePrivilegeList extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Danh sách người dùng"
+        title="User List"
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable
@@ -52,30 +48,30 @@ ManagePrivilegeList.defaultProps = {
   columns: [
     {
       key: 'firstName',
-      text: 'TÊN',
+      text: 'First name',
       sort: 'ASC',
     }, {
       key: 'lastName',
-      text: 'HỌ',
+      text: 'Last name',
     }, {
       key: 'roles',
-      text: 'NHÓM',
-      formater: (roles) => {
-        const firstRole = roles[0] || {};
-        return firstRole.name;
+      text: 'Role',
+      formater: (user, t) => {
+        const firstRole = user.roles[0] || {};
+        return t(firstRole.name);
       },
     }, {
       key: 'email',
       text: 'EMAIL',
     }, {
       key: 'username',
-      text: 'TÊN ĐĂNG NHẬP',
+      text: 'User name',
     }, {
       key: 'enabled',
-      text: 'TRẠNG THÁI',
-      formater: (enabled) => {
+      text: 'Status',
+      formater: (enabled, t) => {
         const status = enabled ? 'ACTIVE' : 'INACTIVE';
-        return ENUM_USER_STATUS[status];
+        return t(status);
       },
     }
   ],

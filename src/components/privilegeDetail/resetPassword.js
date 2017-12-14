@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {Field, reduxForm, getFormValues, getFormSyncErrors} from 'redux-form';
@@ -16,12 +17,12 @@ const validate = values => {
     confirmNewPassword: null,
   };
   if (!_.isEmpty(values.newPassword) && values.newPassword.length < 6) {
-    errors.newPassword = 'Mật khẩu phải nhiều hơn 6 ký tự';
+    errors.newPassword = 'Password must be more than 6 characters';
   }
   if (!_.isEmpty(values.confirmNewPassword) && values.confirmNewPassword.length < 6) {
-    errors.confirmNewPassword = 'Mật khẩu phải nhiều hơn 6 ký tự';
+    errors.confirmNewPassword = 'Password must be more than 6 characters';
   } else if (!_.isEmpty(values.confirmNewPassword) && values.newPassword !== values.confirmNewPassword) {
-    errors.confirmNewPassword = 'Mật khẩu không trùng khớp';
+    errors.confirmNewPassword = 'Passwords do not match';
   }
   return errors;
 }
@@ -60,12 +61,12 @@ class ResetPassword extends React.Component {
   render() {
     const actions = [
       <FlatButton
-        label="Hủy"
+        label={this.props.t('CANCEL')}
         primary={true}
         onClick={this.props.onClickCloseDialog}
       />,
       <FlatButton
-        label="Reset"
+        label={this.props.t('RESET')}
         primary={true}
         backgroundColor="#9F6000"
         labelStyle={{color: '#fff'}}
@@ -78,7 +79,7 @@ class ResetPassword extends React.Component {
     return (
       <div>
         <Dialog
-          title="Reset Mật Khẩu"
+          title={this.props.t('Reset Password')}
           actions={actions}
           modal={true}
           open={this.props.openDialog}
@@ -89,9 +90,9 @@ class ResetPassword extends React.Component {
                 name="newPassword"
                 type="password"
                 component={TextField}
-                label="Mật khẩu mới"
+                label={this.props.t('New password')}
                 fullWidth
-                errorText={errors.newPassword}
+                errorText={this.props.t(errors.newPassword)}
               />
             </Col>
             <Col md={12} ms={12}>
@@ -99,9 +100,9 @@ class ResetPassword extends React.Component {
                 name="confirmNewPassword"
                 type="password"
                 component={TextField}
-                label="Xác nhận mật khẩu mới"
+                label={this.props.t('Confirm new password')}
                 fullWidth
-                errorText={errors.confirmNewPassword}
+                errorText={this.props.t(errors.confirmNewPassword)}
               />
             </Col>
           </Row>
@@ -135,4 +136,4 @@ export default reduxForm({
 })(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ResetPassword));
+)(translate('translations')(ResetPassword)));

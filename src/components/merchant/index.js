@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { Tab } from 'material-ui/Tabs';
 import IconButton from 'material-ui/IconButton';
@@ -38,7 +39,7 @@ class MerchantDetail extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Chi Tiết Đại Lý"
+        title="Merchant details"
         iconElementLeft={
           <IconButton
             onClick={() => this.props.history.push('/merchant')}
@@ -58,16 +59,16 @@ class MerchantDetail extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
         >
-          <Tab style={tabStyle} label="THÔNG TIN CHUNG" value="generalInfo">
+          <Tab style={tabStyle} label={this.props.t('general information')} value="generalInfo">
             <GeneralInformation />
           </Tab>
-          <Tab style={tabStyle} label="ỨNG DỤNG, THIẾT BỊ CHẬP NHẬN THẺ" value="equipment">
+          <Tab style={tabStyle} label={this.props.t('APPLICATIONS, MERCHANTS')} value="equipment">
             <EquipmentAccessCard />
           </Tab>
-          <Tab style={tabStyle} label="BÁO CÁO" value="report">
+          <Tab style={tabStyle} label={this.props.t('Merchant Report')} value="report">
             <Report />
           </Tab>
-          <Tab style={tabStyle} label="LỊCH SỬ" value="history">
+          <Tab style={tabStyle} label={this.props.t('history')} value="history">
             <History />
           </Tab>
         </TabTemplate>
@@ -76,7 +77,7 @@ class MerchantDetail extends React.Component {
   }
 }
 
-export default withRouter(MerchantDetail);
+export default withRouter(translate('translations')(MerchantDetail));
 
 export const reducers = {
   MerchantDetailReducer,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import RaisedButton from 'material-ui/RaisedButton';
 import HotTub from 'material-ui/svg-icons/places/hot-tub';
 import History from 'material-ui/svg-icons/action/history';
@@ -37,17 +38,17 @@ const goBack = () => {
   window.history.go(-1);
 }
 
-const NotFound = () => {
+const NotFound = (props) => {
   return (
     <div>
       <div style={styles.message}>
           <HotTub style={styles.icon} />
-          <h1>Not Found</h1>
-          <div>Either you typed a wrong URL, or you followed a bad link.</div>
+          <h1>{props.t('Not found')}</h1>
+          <div>{props.t('Either you typed a wrong URL, or you followed a bad link.')}</div>
       </div>
       <div style={styles.toolbar}>
           <RaisedButton
-              label="Quay lại"
+              label={props.t('Go back')}
               icon={<History />}
               onClick={goBack}
           />
@@ -56,4 +57,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default translate('translations')(NotFound);
