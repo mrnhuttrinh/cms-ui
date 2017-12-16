@@ -10,11 +10,9 @@ import * as actions from './actions';
 import CustomerDetails from './customerDetails';
 import CustomerAccount from './customerAccount';
 import CustomerHistory from './customerHistory';
-import CustomerCards from './customerCards';
 
 import CustomerDetailReducer from './reducers';
 import CustomerAccountReducer from './customerAccount/reducers';
-import CustomerCardReducer from './customerCards/reducers';
 import CustomerHistoryReducer from './customerHistory/reducers';
 
 
@@ -63,9 +61,6 @@ class Customer extends React.Component {
           <Tab style={tabStyle} label={this.props.t('accounts')} >
             <CustomerAccount customerId={this.props.match.params.customerId} />
           </Tab>
-          <Tab style={tabStyle} label={this.props.t('cards')} >
-            <CustomerCards customerId={this.props.match.params.customerId} />
-          </Tab>
           <Tab style={tabStyle} label={this.props.t('history')} >
             <CustomerHistory customerId={this.props.match.params.customerId} />
           </Tab>
@@ -97,6 +92,5 @@ export default translate('translations')(connect(
 export const reducers = {
   CustomerDetailReducer,
   CustomerAccountReducer,
-  CustomerCardReducer,
   CustomerHistoryReducer,
 };

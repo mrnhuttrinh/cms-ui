@@ -1,1 +1,1 @@
-export const GET_CUSTOMER_ACCOUNT = 'account/GET_CUSTOMER_ACCOUNT';
+export const GET_CUSTOMER_ACCOUNT = 'customer/GET_CUSTOMER_ACCOUNT';
