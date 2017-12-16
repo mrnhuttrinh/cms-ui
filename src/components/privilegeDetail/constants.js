@@ -27,4 +27,10 @@ export const HISTORY_TYPE = {
     createdByText: 'ADMIN',
     title: 'Unlock user',
   },
+  UPDATED: {
+    icon: 'mode_edit',
+    textNote: 'User has been updated by',
+    createdByText: 'ADMIN',
+    title: 'UPDATED',
+  }
 };

@@ -5,8 +5,6 @@ import {
   USER_UPDATE_STATUS_API,
 } from '../../constants';
 
-import { english as englishMSM } from '../../constants/messages';
-
 import {
   GET_USER_DETAIL,
   GET_USER_HISTORY,

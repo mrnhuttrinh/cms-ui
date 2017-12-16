@@ -179,6 +179,7 @@ i18n
           'User has been unlocked by': 'User has been unlocked by',
           'User has been changed password by': 'User has been changed password by',
           'User has been created by SCMS': 'User has been created by SCMS',
+          'User has been updated by': 'User has been updated by',
           // merchat list
           'Merchant List': 'Merchant List',
           'Merchant details': 'Merchant details',
@@ -187,7 +188,6 @@ i18n
           'Merchant information': 'Merchant information',
           'Home No., Street': 'Home No., Street',
           'Ward, District': 'Ward, District',
-          'City': 'City',
           'Code number': 'Code number',
           'Security code': 'Security code',
           'Default': 'Default',
@@ -375,6 +375,7 @@ i18n
           'User has been unlocked by': 'Người dùng bị khóa bởi',
           'User has been changed password by': 'Người dùng đã được đổi mật khẩu bởi',
           'User has been created by SCMS': 'Người dùng được khởi tạo bởi SCMS',
+          'User has been updated by': 'Người dùng được cập nhật bởi',
           // merchant list
           'Merchant List': 'Danh sách đại lý',
           'Merchant details': 'Chi Tiết Đại Lý',
@@ -383,7 +384,6 @@ i18n
           'Merchant information': 'Thông tin đại lý',
           'Home No., Street': 'Số nhà, đường',
           'Ward, District': 'Phường (Xã), Quận (Huyện)',
-          'City': 'Tỉnh, Thành Phố',
           'Code number': 'Mã số',
           'Security code': 'Khóa bảo mật',
           'Default': 'Mặc định',
