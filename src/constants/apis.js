@@ -8,7 +8,7 @@ export const REFRESH_TOKEN_API = '/api/refresh-token';
 // for customer and related
 export const CUSTOMER_API = '/api/customers/{id}?projection=custom';
 export const CUSTOMER_LIST_API = '/api/customers?projection=custom';
-export const CARDS_BY_CUSTOMER_API = '/api/customers/{id}/cards?projection=custom';
+export const CARDS_BY_ACCOUNT_API = '/api/accounts/{id}/cards?projection=custom';
 export const ADDRESS_BY_CUSTOMER_API = '/api/customers/{id}/addresses?projection=custom';
 export const IDENTIFY_DOCS_BY_CUSTOMER_API = '/api/customers/{id}/identifyDocuments?projection=custom';
 export const CUSTOMER_HISTORY_API = '/api/customers/{id}/customerHistory?projection=custom';

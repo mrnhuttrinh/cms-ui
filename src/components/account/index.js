@@ -5,9 +5,12 @@ import { translate } from 'react-i18next';
 import { TabTemplate } from '../commons';
 import { ContentWrapper } from '../commons';
 import AccountDetails from './accountDetails';
+import AccountCards from './accountCards';
+import AccountCustomer from './accountCustomer';
 import AccountHistory from './accountHistory';
 import AccountTransaction from './accountTransaction';
 import AccountDetailReducer from './accountDetails/reducers';
+import AccountCardsReducer from './accountCards/reducers';
 import AccountTransactionReducer from './accountTransaction/reducers';
 import AccountHistoryReducer from './accountHistory/reducers';
 
@@ -40,6 +43,12 @@ class Account extends React.Component {
           <Tab style={tabStyle} label={this.props.t('general information')} >
             <AccountDetails accountId={accountId} />
           </Tab>
+          <Tab style={tabStyle} label={this.props.t('Customer')} >
+            <AccountCustomer />
+          </Tab>
+          <Tab style={tabStyle} label={this.props.t('cards')} >
+            <AccountCards accountId={accountId} />
+          </Tab>
           <Tab style={tabStyle} label={this.props.t('history')} >
             <AccountHistory accountId={accountId} />
           </Tab>
@@ -58,4 +67,5 @@ export const reducers = {
   AccountDetailReducer,
   AccountTransactionReducer,
   AccountHistoryReducer,
+  AccountCardsReducer,
 };

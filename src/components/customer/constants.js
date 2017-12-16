@@ -1,3 +1,3 @@
-export const GET_CUSTOMER = 'account/GET_CUSTOMER';
-export const GET_ADDRESS_CUSTOMER = 'account/GET_ADDRESS_CUSTOMER';
-export const GET_IDENTIFY_DOCS_CUSTOMER = 'account/GET_IDENTIFY_DOCS_CUSTOMER';
+export const GET_CUSTOMER = 'customer/GET_CUSTOMER';
+export const GET_ADDRESS_CUSTOMER = 'customer/GET_ADDRESS_CUSTOMER';
+export const GET_IDENTIFY_DOCS_CUSTOMER = 'customer/GET_IDENTIFY_DOCS_CUSTOMER';

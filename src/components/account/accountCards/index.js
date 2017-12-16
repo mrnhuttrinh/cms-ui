@@ -20,13 +20,13 @@ const titleStyle = {
   color: '#00897b',
 }
 
-class CustomersCard  extends React.Component {
+class AccountCard  extends React.Component {
   constructor() {
     super();
     this.renderCard = this.renderCard.bind(this);
   }
   componentWillMount() {
-    this.props.actions.getCardsByCustomerId(this.props.customerId);
+    this.props.actions.getCardsByAccountId(this.props.accountId);
   }
   renderCard(customerCard, key) {
     return (
@@ -111,9 +111,9 @@ class CustomersCard  extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.CustomerCardReducer.get('cards'),
-  requesting: state.CustomerCardReducer.get('requesting'),
-  error: state.CustomerCardReducer.get('error'),
+  data: state.AccountCardsReducer.get('cards'),
+  requesting: state.AccountCardsReducer.get('requesting'),
+  error: state.AccountCardsReducer.get('error'),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -123,4 +123,4 @@ const mapDispatchToProps = dispatch => ({
 export default translate('translations')(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CustomersCard));
+)(AccountCard));

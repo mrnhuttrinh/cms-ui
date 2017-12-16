@@ -10,7 +10,6 @@ import * as actions from './actions';
 import CardDetails from './cardDetails';
 import CardDetailReducer from './reducers';
 import CardTransaction from './cardTransaction';
-import CardCustomer from './cardCustomer';
 import CardHistoryReducer from './cardHistory/reducers';
 import CardTransactionReducer from './cardTransaction/reducers';
 
@@ -51,9 +50,6 @@ class Card extends React.Component {
         >
           <Tab style={tabStyle} label={this.props.t('general information & History')} >
             <CardDetails card={this.props.card} cardId={this.props.match.params.cardId} />
-          </Tab>
-          <Tab style={tabStyle} label={this.props.t('Customer')} >
-            <CardCustomer customer={this.props.card ? this.props.card.customer : null} />
           </Tab>
           <Tab style={tabStyle} label={this.props.t('transaction')} >
             <CardTransaction cardId={this.props.match.params.cardId} />
