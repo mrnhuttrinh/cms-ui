@@ -13,7 +13,6 @@ import {
   TextField,
   Checkbox,
 } from '../commons';
-import { getItem } from '../../utils';
 import {
   PATTERN_EMAIL,
   LANGUAGE_SELECTION,
