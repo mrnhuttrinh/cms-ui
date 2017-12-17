@@ -81,7 +81,7 @@ const vi = {
     'Current balance': 'Số dư hiện tại',
     'Name': 'Tên',
     'Detail': 'Chi tiết',
-    'Card code': 'Số thẻ - Card code',
+    'Card code': 'Số thẻ',
     'Effective date': 'Ngày hiệu lực',
     'Expiry date': 'Ngày hết hạn',
     'CREATED': 'Khởi tạo',
