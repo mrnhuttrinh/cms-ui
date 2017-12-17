@@ -196,6 +196,14 @@ const en = {
     'Not found': 'Not Found',
     'Either you typed a wrong URL, or you followed a bad link.': 'Either you typed a wrong URL, or you followed a bad link.',
     'GO BACK': 'GO BACK',
+    'Wallet': 'Wallet',
+    'Wallet list': 'Wallet list',
+    'Wallet ID': 'Wallet ID',
+    'Provider': 'Provider',
+    'wallets': 'wallets',
+    'Wallet information': 'Wallet information',
+    'Disconnect wallet': 'Disconnect',
+    'create and connect new wallet': 'create and connect new wallet',
   }
 };
 

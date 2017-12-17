@@ -43,3 +43,7 @@ export const CARD_LIST_API = '/api/cards/search?projection=custom';
 export const CARD_API = '/api/cards/{id}?projection=custom';
 export const CARD_HISTORY_API = '/api/cards/{id}/cardHistories?projection=custom';
 export const TRANSACTIONS_BY_CARD_API = '/api/transactions?projection=custom&card.cardNumber={cardNumber}';
+
+// for wallet and related
+export const WALLET_LIST_API = '/api/wallets/search?projection=custom';
+export const WALLET_BY_CARD_API = '/api/cards/{id}/wallets?projection=custom';
