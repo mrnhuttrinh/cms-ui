@@ -8,7 +8,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import { Link } from 'react-router-dom';
-import { translate } from 'react-i18next'; 
+import { translate } from 'react-i18next';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import _ from 'lodash';
@@ -51,6 +51,7 @@ const Logged = translate('translations')(class RightAppBar extends React.Compone
           menuItems={this.buildMenuLanguage()}
         />
         <Divider />
+        <MenuItem primaryText={this.props.t('My profile')} onClick={this.props.viewMyProfile}/>
         <MenuItem primaryText={this.props.t('Logout')} onClick={this.props.signOut}/>
       </IconMenu>
     );
@@ -63,6 +64,7 @@ class AppBarHeader extends Component {
   constructor(props) {
     super(props);
     this.signOut = this.signOut.bind(this);
+    this.viewMyProfile = this.viewMyProfile.bind(this);
     this.languageSetting = this.languageSetting.bind(this);
   }
   languageSetting(language) {
@@ -86,6 +88,10 @@ class AppBarHeader extends Component {
         });
       });
     }
+  }
+
+  viewMyProfile() {
+    this.props.history.push('/user-profile');
   }
 
   signOut() {
@@ -116,7 +122,7 @@ class AppBarHeader extends Component {
             boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12)'
           }}
           title={<Link style={{textDecoration: 'none', color: '#fff'}} to="/">CMS</Link>}
-          iconElementRight={<Logged language={language} signOut={this.signOut} languageSetting={this.languageSetting} />}
+          iconElementRight={<Logged language={language} viewMyProfile={this.viewMyProfile} signOut={this.signOut} languageSetting={this.languageSetting} />}
           onLeftIconButtonTouchTap={this.props.actions.toggleLeftMenu}
         />
       </header>
