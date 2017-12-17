@@ -11,6 +11,7 @@ const en = {
     'Report': 'Report',
     'Permission': 'Permission',
     'Setting': 'Setting',
+    'My profile': 'My profile',
     'User profile': 'User profile',
     'Logout': 'Logout',
     'Customer List': 'Customer List',

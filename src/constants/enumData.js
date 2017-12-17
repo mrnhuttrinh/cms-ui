@@ -63,12 +63,6 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     text: 'Setting',
     icon: 'settings',
   },
-  USER_PROFILE: {
-    value: 'user-profile',
-    text: 'User profile',
-    icon: 'account_circle',
-    url: '/user-profile',
-  },
   LOGOUT: {
     value: 'logout',
     text: 'Logout',
