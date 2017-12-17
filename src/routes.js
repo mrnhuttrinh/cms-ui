@@ -27,6 +27,7 @@ import {
   CardList,
   Card,
   UserProfile,
+  WalletList,
 } from './components';
 
 // https://reacttraining.com/react-router/web/example/auth-workflow
@@ -56,6 +57,7 @@ const AppRoutes = ({refreshTokenRequesting}) => {
               <PrivateRoute path="/merchant" isExact component={MerchantList} />
               <PrivateRoute path="/card/:cardId" isExact component={Card} />
               <PrivateRoute path="/card" isExact component={CardList} />
+              <PrivateRoute path="/wallet" isExact component={WalletList} />
               <PrivateRoute path="/user-profile" isExact component={UserProfile} />
               <Route component={NotFound}/>
             </Switch>

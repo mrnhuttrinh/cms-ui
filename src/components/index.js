@@ -16,6 +16,8 @@ import Card, { reducers as CardReducers } from './card';
 import CardList, { reducers as CardListReducers } from './cardList';
 
 import UserProfile, { reducers as UserProfileReducers } from './userProfile';
+
+import WalletList, { reducers as WalletListReducers } from './walletList';
 // export view
 export {
   Login,
@@ -33,6 +35,7 @@ export {
   CardList,
   Card,
   UserProfile,
+  WalletList,
 };
 
 export const reducers = {
@@ -48,6 +51,7 @@ export const reducers = {
   ...CardListReducers,
   ...CardReducers,
   ...UserProfileReducers,
+  ...WalletListReducers,
 }
 
 // export commons control

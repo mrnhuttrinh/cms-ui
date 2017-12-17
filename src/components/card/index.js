@@ -9,10 +9,12 @@ import { ContentWrapper } from '../commons';
 import * as actions from './actions';
 import CardDetails from './cardDetails';
 import CardDetailReducer from './reducers';
+
 import CardTransaction from './cardTransaction';
 import CardHistoryReducer from './cardHistory/reducers';
 import CardTransactionReducer from './cardTransaction/reducers';
-
+import CardWallet from './cardWallet';
+import CardWalletReducer from './cardWallet/reducers';
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
@@ -51,6 +53,9 @@ class Card extends React.Component {
           <Tab style={tabStyle} label={this.props.t('general information & History')} >
             <CardDetails card={this.props.card} cardId={this.props.match.params.cardId} />
           </Tab>
+          <Tab style={tabStyle} label={this.props.t('wallets')} >
+            <CardWallet cardId={this.props.match.params.cardId} />
+          </Tab>
           <Tab style={tabStyle} label={this.props.t('transaction')} >
             <CardTransaction cardId={this.props.match.params.cardId} />
           </Tab>
@@ -81,4 +86,5 @@ export const reducers = {
   CardDetailReducer,
   CardHistoryReducer,
   CardTransactionReducer,
+  CardWalletReducer,
 };

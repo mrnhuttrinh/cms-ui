@@ -195,7 +195,15 @@ const vi = {
     // not found
     'Not found': 'Không tìm thấy',
     'Either you typed a wrong URL, or you followed a bad link.': 'Bạn đã gõ sai URL, hoặc bạn đã truy cập một liên kết không tồn tại.',
-    'GO BACK': 'GO BACK',
+    'GO BACK': 'QUAY LẠI',
+    'Wallet': 'Ví',
+    'Wallet list': 'Danh sách ví',
+    'Wallet ID': 'Tên mã',
+    'Provider': 'Nhà Cung Cấp',
+    'wallets': 'Ví',
+    'Wallet information': 'Thông tin ví',
+    'Disconnect wallet': 'Hủy liên kết',
+    'create and connect new wallet': 'Tạo và liên kết với ví mới',
   }
 };
 
