@@ -17,23 +17,17 @@ export const LANGUAGE_SELECTION = {
 export const DEFAULT_LANGUAGE = 'vi';
 
 export const UI_ROUTES_LEFT_SIDE_MENU = {
-  DASHBOARD: {
-    value: 'dashboard',
-    text: 'Dashboard',
-    icon: 'dashboard',
-    url: '/dashboard',
-  },
   CUSTOMER: {
     value: 'customer',
     text: 'Customer',
     icon: 'people',
     url: '/customer',
   },
-  AGENT: {
-    value: 'merchant',
-    text: 'Merchant',
-    icon: 'store',
-    url: '/merchant',
+  ACCOUNT: {
+    value: 'account',
+    text: 'Account',
+    icon: 'account_balance_wallet',
+    url: '/account',
   },
   CARD_SYSTEM: {
     value: 'card',
@@ -41,11 +35,17 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     icon: 'credit_card',
     url: '/card',
   },
-  ACCOUNT: {
-    value: 'account',
-    text: 'Account',
+  WALLET: {
+    value: 'wallet',
+    text: 'Wallet',
     icon: 'account_balance_wallet',
-    url: '/account',
+    url: '/wallet',
+  },
+  AGENT: {
+    value: 'merchant',
+    text: 'Merchant',
+    icon: 'store',
+    url: '/merchant',
   },
   REPORT: {
     value: 'report',
