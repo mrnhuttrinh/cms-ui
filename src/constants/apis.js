@@ -47,3 +47,5 @@ export const TRANSACTIONS_BY_CARD_API = '/api/transactions?projection=custom&car
 // for wallet and related
 export const WALLET_LIST_API = '/api/wallets/search?projection=custom';
 export const WALLET_BY_CARD_API = '/api/cards/{id}/wallets?projection=custom';
+export const CREATE_CARD_WALLET_API = '/api/wallets';
+export const DISCONNECT_CARD_WALLET_API = '/api/wallets/{id}';

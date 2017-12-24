@@ -204,6 +204,8 @@ const en = {
     'Wallet information': 'Wallet information',
     'Disconnect wallet': 'Disconnect',
     'create and connect new wallet': 'create and connect new wallet',
+
+    'DEFAULT': 'DEFAULT',
   }
 };
 
