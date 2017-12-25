@@ -4,14 +4,9 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import WalletListReducer from './reducers';
 import * as actions from './actions';
-import DataTable, { TYPE } from '../commons/table';
+import DataTable from '../commons/table';
 import { ContentWrapper } from '../commons';
 import { translate } from 'react-i18next';
-
-const ACCOUNT_STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'BỊ KHÓA',
-}
 
 class CardList extends React.Component {
   render() {

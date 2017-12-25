@@ -204,6 +204,7 @@ const vi = {
     'Wallet information': 'Thông tin ví',
     'Disconnect wallet': 'Hủy liên kết',
     'create and connect new wallet': 'Tạo và liên kết với ví mới',
+    'DEFAULT': 'MẶC ĐỊNH',
   }
 };
 

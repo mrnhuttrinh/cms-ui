@@ -36,9 +36,22 @@ class CardWallet  extends React.Component  {
   constructor() {
     super();
     this.renderCard = this.renderCard.bind(this);
+    this.createNewWallet = this.createNewWallet.bind(this);
+    this.disconnectWallet = this.disconnectWallet.bind(this);
   }
   componentWillMount() {
     this.props.actions.getWalletByCardId(this.props.cardId);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.createWalletCompleted || nextProps.disconnectWalletCompleted) {
+      this.props.actions.getWalletByCardId(this.props.cardId);
+    }
+  }
+  createNewWallet() {
+    this.props.actions.createNewWallet(this.props.cardId);
+  }
+  disconnectWallet(e) {
+    this.props.actions.disconnectWallet(e.target.offsetParent.id);
   }
   renderCard(wallet, key) {
     return (<Row>
@@ -71,7 +84,7 @@ class CardWallet  extends React.Component  {
           <Col md={3}>
             <TextField
               floatingLabelText={this.props.t('Status')}
-              value={wallet.status}
+              value={this.props.t(wallet.status)}
               floatingLabelFixed={true}
               fullWidth
             />
@@ -85,6 +98,7 @@ class CardWallet  extends React.Component  {
           labelColor='#b93221'
           style={{border: 'solid 1px #b93221', float: 'right', marginTop: '25px'}}
           labelColor='#b93221'
+          onClick={this.disconnectWallet}
         />
       </Col>
       <Col md={1}></Col>
@@ -102,6 +116,7 @@ class CardWallet  extends React.Component  {
               style={{border: 'solid 1px #009688', float: 'right'}}
               labelColor='#009688'
               icon={<PlusIcon />}
+              onClick={this.createNewWallet}
             />
           </div>
           <div style={{padding:'20px 100px 20px 100px'}}>
@@ -128,9 +143,11 @@ class CardWallet  extends React.Component  {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.CardWalletReducer.get('accounts'),
+  data: state.CardWalletReducer.get('wallets'),
   requesting: state.CardWalletReducer.get('requesting'),
   error: state.CardWalletReducer.get('error'),
+  createWalletCompleted: state.CardWalletReducer.get('createWalletCompleted'),
+  disconnectWalletCompleted: state.CardWalletReducer.get('disconnectWalletCompleted'),
 });
 
 const mapDispatchToProps = dispatch => ({
