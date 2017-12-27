@@ -67,8 +67,6 @@ RoleList.defaultProps = {
   search: {
     key: 'name',
   },
-  dataAccesser: (data) => (data.content),
-  pageAccesser: (data) => (data),
 }
 
 const mapStateToProps = (state) => ({

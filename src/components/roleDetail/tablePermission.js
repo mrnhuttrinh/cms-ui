@@ -79,10 +79,10 @@ TablePermission.defaultProps = {
     first: true,
     last: true,
     number: 0,
-    numberOfElements: data.length,
-    size: 10,
-    totalElements: data.length,
-    totalPages: Math.ceil(data.length / 10),
+    numberOfElements: 0,
+    size: 0,
+    totalElements: 0,
+    totalPages: 1,
   }),
 }
 
