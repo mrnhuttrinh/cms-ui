@@ -49,3 +49,7 @@ export const WALLET_LIST_API = '/api/wallets/search?projection=custom';
 export const WALLET_BY_CARD_API = '/api/cards/{id}/wallets?projection=custom';
 export const CREATE_CARD_WALLET_API = '/api/wallets';
 export const DISCONNECT_CARD_WALLET_API = '/api/wallets/{id}';
+
+// for role and related
+export const GET_ROLE_LIST_API = '/api/roles/search?projection=custom';
+export const GET_ROLE_DETAIL_API = '/api/roles/{id}?projection=custom';
