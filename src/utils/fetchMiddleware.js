@@ -45,7 +45,7 @@ const fetchMiddleware = store => next => async action => {
       }
       // handle common
       if (res.status >= 400) {
-        throw new Error('Bad response from server');
+        throw res;
       }
       // handle for authenticate
       return res.json();
@@ -65,7 +65,8 @@ const fetchMiddleware = store => next => async action => {
     // show success existence message
   } catch (error) {
     // dispatch failed with error
-    await dispatch({ type: `${type}_FAILED`, error });
+    const errorLogin = await error;
+    await dispatch({ type: `${type}_FAILED`, error: errorLogin });
     if (showLoading) {
       dispatch(mainLoadingError());
     }

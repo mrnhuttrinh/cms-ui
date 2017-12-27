@@ -87,6 +87,7 @@ const vi = {
     'CREATED': 'Khởi tạo',
     'UPDATED': 'Cập nhật',
     'ADDED': 'Thêm',
+    'DELETE': 'Xóa',
     'Addresses': 'Địa chỉ',
     'Identify documents': 'Giấy tờ tùy thân',
     'by': 'bởi',
@@ -137,6 +138,7 @@ const vi = {
     'English': 'Tiếng Anh',
     'Invalid email address': 'Email không đúng',
     'Sorry, that login was invalid. Please try again.': 'Đăng nhập đó không hợp lệ. Vui lòng thử lại.',
+    'You logged in from another device': 'Bạn đã đăng nhập trên một thiết bị khác',
     // appbar
     'Language Long': 'Ngôn ngữ',
     'user information': 'Thông tin tài khoản',
@@ -205,6 +207,13 @@ const vi = {
     'Disconnect wallet': 'Hủy liên kết',
     'create and connect new wallet': 'Tạo và liên kết với ví mới',
     'DEFAULT': 'MẶC ĐỊNH',
+    // role list
+    'Role list': 'Danh sách nhóm người dùng',
+    'Created date': 'Ngày khởi tạo',
+    'Role Name': 'Tên Nhóm',
+    // role detail
+    'Role detail': 'Chi tiết nhóm',
+    'Permission table': 'Quyền',
   }
 };
 

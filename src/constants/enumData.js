@@ -58,6 +58,12 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     icon: 'supervisor_account',
     url: '/permission',
   },
+  ROLE: {
+    value: 'role',
+    text: 'Role',
+    icon: 'group_add',
+    url: '/role',
+  },
   SETTING: {
     value: 'setting',
     text: 'Setting',

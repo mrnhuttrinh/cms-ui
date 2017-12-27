@@ -87,6 +87,7 @@ const en = {
     'CREATED': 'Create',
     'UPDATED': 'Update',
     'ADDED': 'Add',
+    'DELETE': 'DELETE',
     'Addresses': 'Addresses',
     'Identify documents': 'Identify documents',
     'by': 'by',
@@ -137,6 +138,7 @@ const en = {
     'English': 'English',
     'Invalid email address': 'Invalid email address',
     'Sorry, that login was invalid. Please try again.': 'Sorry, that login was invalid. Please try again.',
+    'You logged in from another device': 'You logged in from another device',
     // appbar
     'Language Long': 'Language',
     'user information': 'user information',
@@ -206,6 +208,13 @@ const en = {
     'create and connect new wallet': 'create and connect new wallet',
 
     'DEFAULT': 'DEFAULT',
+    // role list
+    'Role list': 'Role list',
+    'Created date': 'Created date',
+    'Role Name': 'Role Name',
+    // role detail
+    'Role detail': 'Role detail',
+    'Permission table': 'Permission',
   }
 };
 

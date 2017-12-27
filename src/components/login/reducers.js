@@ -6,6 +6,7 @@ import {
   REFRESH_TOKEN,
   SIGN_OUT,
   CHANGE_LANGUAGE,
+  CLEAN_ERROR,
 } from './constants';
 
 const initialState = new Map({
@@ -24,7 +25,7 @@ export default (state = initialState, action = {}) => {
       newState = state.set('requesting', false).set('data', {credential: true, user: action.data.data}).delete('errorLogin');
       break;
     case `${SUBMIT_LOGIN}_FAILED`:
-      newState = state.set('requesting', false).set('data', {credential: false}).set('errorLogin', true);
+      newState = state.set('requesting', false).set('data', {credential: false}).set('errorLogin', action.error);
       break;
     ///////////////////////// refresh token
     case `${REFRESH_TOKEN}_START`:
@@ -51,6 +52,10 @@ export default (state = initialState, action = {}) => {
     case CHANGE_LANGUAGE:
       setItem('language', action.language);
       newState = state.set('language', action.language);
+      break;
+    // clean error
+    case CLEAN_ERROR:
+      newState = state.delete('errorLogin');
       break;
     default:
       newState = state;

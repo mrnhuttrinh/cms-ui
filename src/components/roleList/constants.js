@@ -1,0 +1,2 @@
+export const GET_ROLE_LIST = 'wallet/GET_ROLE_LIST';
+export const UPDATE_PAGE_SORT_ROLE_LIST = 'agents/UPDATE_PAGE_SORT_ROLE_LIST';

@@ -18,6 +18,7 @@ import {
   LANGUAGE_SELECTION,
 } from '../../constants';
 import * as actions from './actions';
+import AlertMessage from './alertMessage';
 
 import loginReducer from './reducers';
 
@@ -36,10 +37,36 @@ const validate = values => {
 class Login extends React.Component{
   constructor(props) {
     super(props);
+    this.state = {
+      openAlertMessage: false,
+    }
     this.onClickSignIn = this.onClickSignIn.bind(this);
     this.onSelectLanguage = this.onSelectLanguage.bind(this);
+    this.alertMessageHandleOpen = this.alertMessageHandleOpen.bind(this);
+    this.alertMessageHandleClose = this.alertMessageHandleClose.bind(this);
   }
-  onClickSignIn() {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errorLogin && nextProps.errorLogin.status >= 500) {
+      // error 500
+      // open popup
+      this.setState({
+        openAlertMessage: true,
+      });
+    }
+  }
+  alertMessageHandleOpen = () => {
+    this.setState({
+      openAlertMessage: true,
+    });
+  };
+
+  alertMessageHandleClose = () => {
+    this.props.actions.cleanError();
+    this.setState({
+      openAlertMessage: false,
+    });
+  };
+  onClickSignIn(event) {
     const {
       values = {},
       location: {
@@ -47,6 +74,10 @@ class Login extends React.Component{
       },
       history,
     } = this.props;
+    event.preventDefault();
+    if (_.isEmpty(values.email) || _.isEmpty(values.password)) {
+      return false;
+    }
     this.props.actions.submitLogin(values.email, values.password, this.props.language).then(() => {
       history.push(state.from);
     });
@@ -75,7 +106,7 @@ class Login extends React.Component{
   render() {
     const errorTextLoginFailed = 'Sorry, that login was invalid. Please try again.';
     return (
-      <form onSubmit={this.onClickSignIn} className="login-form">
+      <form onSubmit={(event) => this.onClickSignIn(event)} className="login-form">
         <div className="ecash-login">
           <div className="ecash-login-logo">
             <div>
@@ -135,7 +166,7 @@ class Login extends React.Component{
                       label={this.props.t('SIGN IN')}
                       icon={this.props.requesting ? <CircularProgress size={20} /> : null}
                       backgroundColor="#009688"
-                      onClick={this.onClickSignIn}
+                      onClick={(event) => this.onClickSignIn(event)}
                     />
                   )
                 }
@@ -147,6 +178,10 @@ class Login extends React.Component{
             {this.renderOptionLanguages()}
           </div>
         </div>
+        <AlertMessage
+          openAlertMessage={this.state.openAlertMessage}
+          alertMessageHandleClose={this.alertMessageHandleClose}
+        />
       </form>
     );
   }
