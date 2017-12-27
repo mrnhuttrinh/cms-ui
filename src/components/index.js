@@ -1,5 +1,4 @@
 import Login, { reducers as loginReducers } from './login';
-import Dashboard from './dashboard';
 import About from './about';
 import Customer, { reducers as CustomerReducers } from './customer';
 import CustomerList, { reducers as CustomerListReducers } from './customerList';
@@ -21,10 +20,11 @@ import WalletList, { reducers as WalletListReducers } from './walletList';
 
 import RoleList, { reducers as RoleListReducers } from './roleList';
 import RoleDetail, { reducers as RoleDetailReducers } from './roleDetail';
+
+import Launcher from './launcher';
 // export view
 export {
   Login,
-  Dashboard,
   About,
   Customer,
   CustomerList,
@@ -39,6 +39,7 @@ export {
   Card,
   UserProfile,
   WalletList,
+  Launcher,
   RoleList,
   RoleDetail,
 };

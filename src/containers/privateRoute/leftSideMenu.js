@@ -93,7 +93,7 @@ class LeftSideMenu extends React.Component {
     return UI_ROUTES_LEFT_SIDE_MENU.CUSTOMER.value;
   }
 
-  generateMenu(routeUI, key) {
+  generateMenu(routeUI, key, permissions) {
     if (routeUI.value === UI_ROUTES_LEFT_SIDE_MENU.LOGOUT.value) {
      return (
         <ListItem
@@ -104,6 +104,9 @@ class LeftSideMenu extends React.Component {
           leftIcon={<FontIcon className="material-icons">{routeUI.icon}</FontIcon>}
         />
       );
+    }
+    if(routeUI.permission && permissions.indexOf(routeUI.permission) < 0) {
+      return null;
     }
     return (
       <ListItem
@@ -126,7 +129,7 @@ class LeftSideMenu extends React.Component {
         <SelectableList defaultValue={this.state.selectedMenu} onClick={this.onChangeMenu}>
           {
             _.map(UI_ROUTES_LEFT_SIDE_MENU, routeUI => {
-              return this.generateMenu(routeUI, uuid());
+              return this.generateMenu(routeUI, uuid(), this.props.permissions);
             })
           }
         </SelectableList>

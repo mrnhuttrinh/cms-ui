@@ -10,7 +10,6 @@ import CircularProgress from 'material-ui/CircularProgress';
 import {
   PrivateRoute,
   PublicRoute,
-  ComponentsDemoRoute,
 } from './containers';
 
 import {
@@ -30,6 +29,7 @@ import {
   WalletList,
   RoleList,
   RoleDetail,
+  Launcher,
 } from './components';
 
 // https://reacttraining.com/react-router/web/example/auth-workflow
@@ -46,9 +46,7 @@ const AppRoutes = ({refreshTokenRequesting}) => {
           ) : (
             <Switch>
               <PublicRoute path="/login" component={Login} />
-              <ComponentsDemoRoute path="/components-demo" />
-              <PrivateRoute exact path="/" component={CustomerList} />
-              <PrivateRoute path="/dashboard" component={CustomerList} />
+              <PrivateRoute exact path="/" component={Launcher} />
               <PrivateRoute path="/customer/:customerId" component={Customer} />
               <PrivateRoute path="/customer" isExact component={CustomerList} />
               <PrivateRoute path="/permission/:userId" component={PrivilegeDetail} />

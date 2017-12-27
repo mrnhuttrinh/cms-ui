@@ -1,6 +1,5 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
 import {
   Card,
   CardTitle,
@@ -12,10 +11,7 @@ import { Row, Col } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
 import { translate } from 'react-i18next';
-
-import { dateTimeFormatter } from '../../../utils';
 import { AnimationGroup } from '../../commons';
 import * as actions from './actions';
 
@@ -97,7 +93,6 @@ class CardWallet  extends React.Component  {
           label={this.props.t('Disconnect wallet')}
           labelColor='#b93221'
           style={{border: 'solid 1px #b93221', float: 'right', marginTop: '25px'}}
-          labelColor='#b93221'
           onClick={this.disconnectWallet}
         />
       </Col>
@@ -114,7 +109,6 @@ class CardWallet  extends React.Component  {
               label={this.props.t('create and connect new wallet')}
               labelColor='#009688'
               style={{border: 'solid 1px #009688', float: 'right'}}
-              labelColor='#009688'
               icon={<PlusIcon />}
               onClick={this.createNewWallet}
             />

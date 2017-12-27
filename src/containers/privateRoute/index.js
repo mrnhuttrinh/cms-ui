@@ -6,7 +6,7 @@ import LeftSideMenu from './leftSideMenu';
 import privateRouteReducers from './reducers';
 import { AnimationGroup } from '../../components';
 
-import "./index.scss"; 
+import "./index.scss";
 
 class PrivateRoute extends React.Component{
   render() {
@@ -26,8 +26,8 @@ class PrivateRoute extends React.Component{
             <AppBarHeader />
             <div className="main-body">
               <div className={leftSidebarClassName}>
-                <LeftSideMenu location={props.location} />
-              </div> 
+                <LeftSideMenu location={props.location} permissions={this.props.data.permissions}/>
+              </div>
               <div className={rightContentClassName}>
                 <AnimationGroup
                   loading={loading}
