@@ -1,4 +1,5 @@
 import { Map } from 'immutable';
+import _ from 'lodash';
 import { DEFAULT_LANGUAGE } from '../../constants';
 import { getItem, setItem } from '../../utils';
 import {
@@ -14,15 +15,26 @@ const initialState = new Map({
   language: getItem('language') || DEFAULT_LANGUAGE,
 });
 
+const getPermission = (user) => {
+  const permissions = [];
+  _.forEach(user.roles,(role) => {
+    _.forEach(role.permissions,(p) => {
+      permissions.push(p.name);
+    });
+  });
+  return permissions;
+};
+
 export default (state = initialState, action = {}) => {
   let newState;
   switch (action.type) {
-    //////////////////////////// login 
+    //////////////////////////// login
     case `${SUBMIT_LOGIN}_START`:
       newState = state.set('requesting', true).delete('data').delete('errorLogin');
       break;
     case `${SUBMIT_LOGIN}_COMPLETED`:
-      newState = state.set('requesting', false).set('data', {credential: true, user: action.data.data}).delete('errorLogin');
+      newState = state.set('requesting', false).set('data', {credential: true, user: action.data.data, permissions: getPermission(action.data.data)})
+        .delete('errorLogin');
       break;
     case `${SUBMIT_LOGIN}_FAILED`:
       newState = state.set('requesting', false).set('data', {credential: false}).set('errorLogin', action.error);
@@ -32,7 +44,7 @@ export default (state = initialState, action = {}) => {
       newState = state.set('refreshTokenRequesting', true).delete('data').delete('errorRefreshToken');
       break;
     case `${REFRESH_TOKEN}_COMPLETED`:
-      newState = state.set('refreshTokenRequesting', false).set('data', {credential: true, user: action.data.data});
+      newState = state.set('refreshTokenRequesting', false).set('data', {credential: true, user: action.data.data, permissions: getPermission(action.data.data)});
       break;
     case `${REFRESH_TOKEN}_FAILED`:
       newState = state.set('refreshTokenRequesting', false).set('data', {credential: false}).set('errorRefreshToken', action.error);

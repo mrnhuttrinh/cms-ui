@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import _ from 'lodash';
 import WalletListReducer from './reducers';
 import * as actions from './actions';
 import DataTable from '../commons/table';
