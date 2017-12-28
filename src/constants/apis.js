@@ -51,5 +51,6 @@ export const CREATE_CARD_WALLET_API = '/api/wallets';
 export const DISCONNECT_CARD_WALLET_API = '/api/wallets/{id}';
 
 // for role and related
-export const GET_ROLE_LIST_API = '/api/roles/search?projection=custom';
+export const GET_ROLE_LIST_API = '/api/roles?projection=custom';
 export const GET_ROLE_DETAIL_API = '/api/roles/{id}?projection=custom';
+export const GET_ROLE_PERMISSION_API = '/api/roles/{id}/permissions?projection=custom';
