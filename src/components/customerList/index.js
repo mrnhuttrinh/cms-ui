@@ -27,7 +27,7 @@ class CustomerList extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Customer List"
+        title="Customer list"
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable

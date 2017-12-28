@@ -144,7 +144,7 @@ class Login extends React.Component{
                     label={this.props.t('Remember me')}
                   />
                 </div>
-                <div className="pull-right forgot-password">{this.props.t('Forgot Password')}?</div>
+                <div className="pull-right forgot-password">{this.props.t('Forgot password')}?</div>
                 <div className="clearfix" />
               </div>
               <div className="button-sign-in">

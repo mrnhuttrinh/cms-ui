@@ -94,17 +94,6 @@ class LeftSideMenu extends React.Component {
   }
 
   generateMenu(routeUI, key, permissions) {
-    if (routeUI.value === UI_ROUTES_LEFT_SIDE_MENU.LOGOUT.value) {
-     return (
-        <ListItem
-          key={key}
-          value={routeUI.value}
-          primaryText={this.props.t(routeUI.text)}
-          onClick={this.signOut}
-          leftIcon={<FontIcon className="material-icons">{routeUI.icon}</FontIcon>}
-        />
-      );
-    }
     if(routeUI.permission && permissions.indexOf(routeUI.permission) < 0) {
       return null;
     }
