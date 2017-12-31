@@ -126,7 +126,7 @@ class AccountHistory  extends React.Component  {
     });
     return (
       <div style={{padding:'20px 100px 20px 100px'}} >
-        {historyDetail.length ? historyDetail : 'Không có thông tin lịch sử tài khoản!'}
+        {historyDetail.length ? historyDetail : 'This account does not have any history.'}
       </div>);
   }
 }

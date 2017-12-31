@@ -17,7 +17,7 @@ export const LANGUAGE_SELECTION = {
 export const DEFAULT_LANGUAGE = 'vi';
 
 const _PERMISSIONS = {
-  CUSTOMER_LIST_VIEW: 'CUSTOMER_LIST/VIEW_',
+  CUSTOMER_LIST_VIEW: 'CUSTOMER_LIST/VIEW',
   CUSTOMER_DETAILS_VIEW: 'CUSTOMER_DETAILS/VIEW',
   ACCOUNT_LIST_VIEW: 'ACCOUNT_LIST/VIEW',
   ACCOUNT_DETAILS_VIEW: 'ACCOUNT_DETAILS/VIEW',
@@ -40,66 +40,62 @@ const _PERMISSIONS = {
 export const UI_ROUTES_LEFT_SIDE_MENU = {
   CUSTOMER: {
     value: 'customer',
-    text: 'Customer',
+    text: 'Customers',
     icon: 'people',
     url: '/customer',
     permission: _PERMISSIONS.CUSTOMER_LIST_VIEW,
   },
   ACCOUNT: {
     value: 'account',
-    text: 'Account',
+    text: 'Accounts',
     icon: 'account_balance_wallet',
     url: '/account',
     permission: _PERMISSIONS.ACCOUNT_LIST_VIEW,
   },
   CARD_SYSTEM: {
     value: 'card',
-    text: 'Card',
+    text: 'Cards',
     icon: 'credit_card',
     url: '/card',
     permission: _PERMISSIONS.CARD_LIST_VIEW,
   },
   WALLET: {
     value: 'wallet',
-    text: 'Wallet',
+    text: 'Wallets',
     icon: 'account_balance_wallet',
     url: '/wallet',
     permission: _PERMISSIONS.WALLET_LIST_VIEW,
   },
   AGENT: {
     value: 'merchant',
-    text: 'Merchant',
+    text: 'Merchants',
     icon: 'store',
     url: '/merchant',
     permission: _PERMISSIONS.MERCHANT_LIST_VIEW,
   },
   REPORT: {
     value: 'report',
-    text: 'Report',
+    text: 'Reports',
     icon: 'assignment',
+    url: '/report',
   },
   PERMISSION: {
     value: 'permission',
-    text: 'Permission',
+    text: 'Users',
     icon: 'supervisor_account',
     url: '/permission',
     permission: _PERMISSIONS.USER_LIST_VIEW,
   },
   ROLE: {
     value: 'role',
-    text: 'Role',
+    text: 'Roles ',
     icon: 'group_add',
     url: '/role',
   },
   SETTING: {
     value: 'setting',
-    text: 'Setting',
+    text: 'Settings',
     icon: 'settings',
-  },
-  LOGOUT: {
-    value: 'logout',
-    text: 'Logout',
-    icon: 'exit_to_app',
   },
 };
 

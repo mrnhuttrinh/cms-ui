@@ -157,7 +157,7 @@ class CustomerDetails  extends React.Component  {
             <Subheader
               cols={2}
               style={titleStyle}>
-              {this.props.t('Indetity Card')}
+              {this.props.t('Indetity card')}
             </Subheader>
             <TextField
               floatingLabelText={this.props.t('Number')}

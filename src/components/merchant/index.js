@@ -65,7 +65,7 @@ class MerchantDetail extends React.Component {
           <Tab style={tabStyle} label={this.props.t('APPLICATIONS, MERCHANTS')} value="equipment">
             <EquipmentAccessCard />
           </Tab>
-          <Tab style={tabStyle} label={this.props.t('Merchant Report')} value="report">
+          <Tab style={tabStyle} label={this.props.t('merchant report')} value="report">
             <Report />
           </Tab>
           <Tab style={tabStyle} label={this.props.t('history')} value="history">

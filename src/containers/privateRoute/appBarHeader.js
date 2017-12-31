@@ -46,7 +46,7 @@ const Logged = translate('translations')(class RightAppBar extends React.Compone
         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
       >
         <MenuItem
-          primaryText={this.props.t('Language Long')}
+          primaryText={this.props.t('Language.long')}
           rightIcon={<ArrowDropRight />}
           menuItems={this.buildMenuLanguage()}
         />

@@ -27,7 +27,7 @@ class CustomerList extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Customer List"
+        title="Customer list"
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable
@@ -71,7 +71,7 @@ CustomerList.defaultProps = {
       text: 'position',
     }, {
       key: 'dateBecameCustomer',
-      text: 'date became customer',
+      text: 'registered date',
       type: TYPE.date,
     }, {
       key: 'status',
@@ -89,7 +89,7 @@ CustomerList.defaultProps = {
   },
   data: null,
   size: 10,
-}
+};
 
 const mapStateToProps = (state) => ({
   page: state.CustomerListReducer.get('page'),
@@ -111,4 +111,4 @@ export default translate('translations')(connect(
 
 export const reducers = {
   CustomerListReducer,
-}
+};

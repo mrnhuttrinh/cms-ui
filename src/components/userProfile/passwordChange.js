@@ -46,7 +46,7 @@ class PasswordChange extends React.Component  {
     const params = {
       ...values,
       id: userData.user.id,
-    }
+    };
     this.props.actions.pushPasswordChange(params);
     this.props.reset();
   }
@@ -55,10 +55,8 @@ class PasswordChange extends React.Component  {
     if (_.isEmpty(values.oldPassword) || _.isEmpty(values.newPassword) || _.isEmpty(values.confirmNewPassword)) {
       return true;
     }
-    if (!_.isEmpty(errors.confirmNewPassword)) {
-      return true;
-    }
-    return false;
+
+    return !_.isEmpty(errors.confirmNewPassword);
   }
   render () {
     const { errors = {} } = this.props;
