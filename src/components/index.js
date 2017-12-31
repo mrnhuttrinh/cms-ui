@@ -11,6 +11,7 @@ import Merchant, { reducers as MerchantDetailReducers } from './merchant';
 import MerchantList, { reducers as MerchantListReducers } from './merchantList';
 
 import NotFound from './notFound';
+import ComingSoon from './comingSoon';
 import Card, { reducers as CardReducers } from './card';
 import CardList, { reducers as CardListReducers } from './cardList';
 
@@ -42,6 +43,7 @@ export {
   Launcher,
   RoleList,
   RoleDetail,
+  ComingSoon,
 };
 
 export const reducers = {
@@ -60,7 +62,7 @@ export const reducers = {
   ...WalletListReducers,
   ...RoleListReducers,
   ...RoleDetailReducers,
-}
+};
 
 // export commons control
 export * from './commons';

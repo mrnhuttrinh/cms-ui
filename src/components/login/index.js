@@ -137,13 +137,6 @@ class Login extends React.Component{
                 />
               </div>
               <div className="remember-me">
-                <div className="pull-left">
-                  <Field
-                    name="rememberMe"
-                    component={Checkbox}
-                    label={this.props.t('Remember me')}
-                  />
-                </div>
                 <div className="pull-right forgot-password">{this.props.t('Forgot password')}?</div>
                 <div className="clearfix" />
               </div>

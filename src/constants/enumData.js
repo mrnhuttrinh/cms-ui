@@ -77,6 +77,7 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     value: 'report',
     text: 'Reports',
     icon: 'assignment',
+    url: '/report',
   },
   PERMISSION: {
     value: 'permission',

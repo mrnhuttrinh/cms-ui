@@ -20,7 +20,7 @@ class ManagePrivilegeList extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="User List"
+        title="User list"
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable
@@ -106,4 +106,4 @@ export default connect(
 
 export const reducers = {
   ManagePrivilegeListReducer,
-}
+};
