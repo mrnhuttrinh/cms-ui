@@ -21,11 +21,9 @@ import TablePermission from './tablePermission';
 import {
   tabStyle,
   indicatorStyle,
-  titleStyle,
   rowContainer,
   leftColumn,
   rightColumn,
-  groupControl,
 } from './styles';
 
 class RoleDetail extends React.Component {
@@ -39,10 +37,16 @@ class RoleDetail extends React.Component {
       }
     } = this.props;
     this.props.actions.getRoleDetail(id);
+    this.props.actions.getAllPermission();
   }
   render() {
     const {
       roleData = {},
+      match: {
+        params: {
+          id
+        }
+      }
     } = this.props;
     return (
       <ContentWrapper
@@ -66,7 +70,7 @@ class RoleDetail extends React.Component {
                 <DetailView data={roleData} />
               </Col>
               <Col md={8} style={rightColumn}>
-                <TablePermission data={roleData} />
+                <TablePermission roleId={id} roleData={roleData} />
               </Col>
             </Row>
           </Tab>

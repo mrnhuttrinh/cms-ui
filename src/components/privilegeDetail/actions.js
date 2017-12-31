@@ -3,6 +3,8 @@ import {
   USER_HISTORY_API,
   USER_RESET_PASSWORD_API,
   USER_UPDATE_STATUS_API,
+  GET_ROLE_LIST_API,
+  USER_UPDATE_INFORMATION_API,
 } from '../../constants';
 
 import {
@@ -10,6 +12,8 @@ import {
   GET_USER_HISTORY,
   USER_RESET_PASSWORD,
   USER_UPDATE_STATUS,
+  GET_ROLE_LIST,
+  USER_UPDATE_INFORMATION,
 } from './constants';
 
 export const getUser = id => {
@@ -94,3 +98,46 @@ export const userUpdateStatus = (id, status) => {
     }
   };
 }
+
+// get role list
+export const getRoleList = () =>
+  (dispatch) => {
+    dispatch({
+      type: GET_ROLE_LIST,
+      fetchConfig: {
+        path: GET_ROLE_LIST_API,
+        params: {
+          method: 'GET'
+        },
+      }
+    });
+  };
+
+  export const userUpdateInformation = (data) => {
+    return {
+      type: USER_UPDATE_INFORMATION,
+      showMessage: {
+        success: {
+          title: 'Success!',
+          message: 'Reset password success',
+        },
+        error: {
+          title: 'Error!',
+          message: 'Reset password failure',
+        },
+      },
+      fetchConfig: {
+        path: USER_UPDATE_INFORMATION_API,
+        params: {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...data
+          }),
+        },
+      }
+    };
+  }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { translate } from 'react-i18next';
+import _ from 'lodash';
 import FlatButton from 'material-ui/FlatButton';
 import {
   CardTitle,
@@ -21,6 +22,8 @@ import PrivilegeDetailReducer from './reducers';
 
 import ResetPasswordDialog from './resetPassword';
 
+import { ENUM_USER_STATUS } from '../../constants';
+
 import {
   tabStyle,
   indicatorStyle,
@@ -41,6 +44,7 @@ class PrivilegeDetail  extends React.Component {
     this.onClickOpenDialog = this.onClickOpenDialog.bind(this);
     this.onClickCloseDialog = this.onClickCloseDialog.bind(this);
     this.onClickUpdateStatus = this.onClickUpdateStatus.bind(this);
+    this.onClickUpdateUserInformation = this.onClickUpdateUserInformation.bind(this);
   }
   componentWillMount() {
     // fetch user detail
@@ -54,6 +58,26 @@ class PrivilegeDetail  extends React.Component {
     this.props.actions.getUser(userId);
     // fetch user active history
     this.props.actions.getUserHistories(userId);
+    this.props.actions.getRoleList();
+  }
+  
+  onClickUpdateUserInformation() {
+    const {
+      form: {
+        userInformation
+      },
+      roleListData,
+    } = this.props;
+
+    const values = Object.assign({}, userInformation.values);
+    delete values.roles;
+    values.enabled = values.status === ENUM_USER_STATUS.ACTIVE ? true : false;
+
+    const roleItem = _.find(roleListData._embedded.roles, role => role.id === values.role);
+    values.roles = [ roleItem ];
+    delete values.role;
+    delete values.status;
+    this.props.actions.userUpdateInformation(values);
   }
   
   onClickOpenDialog() {
@@ -106,7 +130,7 @@ class PrivilegeDetail  extends React.Component {
                   loading={this.props.userRequesting}
                   errorLoading={this.props.userError ? true : false}
                 />
-                <UserInformation userData={this.props.userData} />
+                <UserInformation />
               </Col>
               <Col md={7} style={rightColumn}>
                 <CardTitle style={titleStyle}>
@@ -141,6 +165,7 @@ class PrivilegeDetail  extends React.Component {
                 backgroundColor="#009688"
                 labelStyle={{color: '#fff'}}
                 label={this.props.t('EDIT')}
+                onClick={this.onClickUpdateUserInformation}
               />
               <FlatButton
                 style={{
@@ -181,10 +206,20 @@ class PrivilegeDetail  extends React.Component {
   }
 }
 
+PrivilegeDetail.defaultProps = {
+  roleListData: {
+    _embedded: {
+      roles: [],
+    },
+  },
+};
+
 const mapStateToProps = (state) => {
   const userDetail = state.PrivilegeDetailReducer.get('userDetail');
   const userHistories = state.PrivilegeDetailReducer.get('userHistories');
+  const roleList = state.PrivilegeDetailReducer.get('roleList');
   return {
+    form: state.form,
     userRequesting: userDetail.get('requesting'),
     userData: userDetail.get('data'),
     userError: userDetail.get('error'),
@@ -192,6 +227,10 @@ const mapStateToProps = (state) => {
     userHistoriesRequesting: userHistories.get('requesting'),
     userHistoriesData: userHistories.get('data'),
     userHistoriesError: userHistories.get('error'),
+    // role list
+    roleListRequesting: roleList.get('requesting'),
+    roleListData: roleList.get('data'),
+    roleListError: roleList.get('error'),
   };
 };
 

@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import CircularProgress from 'material-ui/CircularProgress';
+import { AnimationGroup } from './components';
 import {
   PrivateRoute,
   PublicRoute,
@@ -42,7 +42,12 @@ const AppRoutes = ({refreshTokenRequesting}) => {
         {
           refreshTokenRequesting ? (
             <div className="ecash-app-loading">
-              <CircularProgress size={80} thickness={5} />
+              <AnimationGroup
+                loading={true}
+                style={{
+                  backgroundColor: 'transparent'
+                }}
+              />
             </div>
           ) : (
             <Switch>

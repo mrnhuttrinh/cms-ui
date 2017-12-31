@@ -32,6 +32,7 @@ class RoleList extends React.Component {
           dataAccesser={this.props.dataAccesser}
           pageAccesser={this.props.pageAccesser}
           getData={this.props.actions.getRoleList}
+          requesting={this.props.requesting}
           style={{
             height: 'calc(100% - 56px)',
             display: 'block',

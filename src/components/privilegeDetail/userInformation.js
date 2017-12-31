@@ -1,76 +1,104 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import {Field, reduxForm, getFormValues} from 'redux-form';
 import { translate } from 'react-i18next';
-import TextField from 'material-ui/TextField';
 import { Row, Col } from 'react-flexbox-grid';
+import MenuItem from 'material-ui/MenuItem';
+import _ from 'lodash';
 import moment from 'moment';
+import {
+  TextField,
+  SelectField,
+} from '../commons';
+import { ENUM_USER_STATUS } from '../../constants';
+
+const validate = values => {
+  const errors = {};
+  // if (
+  //   values.email && !PATTERN_EMAIL.test(values.email)
+  // ) {
+  //   errors.email = 'Invalid email address';
+  // }
+  return errors;
+}
+
 
 const formatDate = (date) => (date ? moment(date).format('h:mm:ss DD/MM/YYYY') : 'N/A');
 class UserInformation extends React.Component  {
   render () {
     const {
-      userData = {
-        roles: [],
-      }
+      roleList: {
+        _embedded: {
+          roles
+        },
+      },
     } = this.props;
-    const status = userData.enabled ? 'ACTIVE' : 'INACTIVE';
-    const firstRole = userData.roles[0] || {};
+    const items = _.map(roles, role => (<MenuItem value={role.id} primaryText={this.props.t(role.name)} />));
+    const itemsStatus = _.map(ENUM_USER_STATUS, (key, value) => (<MenuItem value={key} primaryText={this.props.t(value)} />));
     return (
       <Row>
         <Col md={7} ms={12}>
-          <TextField
-            floatingLabelText={this.props.t('Last name')}
-            floatingLabelFixed
+          <Field
+            name="lastName"
+            type="text"
+            component={TextField}
+            label={this.props.t('Last name')}
             fullWidth
-            value={userData.firstName}
           />
         </Col>
         <Col md={5} ms={12}>
-          <TextField
-            floatingLabelText={this.props.t('First name')}
-            floatingLabelFixed
+          <Field
+            name="firstName"
+            type="text"
+            component={TextField}
+            label={this.props.t('First name')}
             fullWidth
-            value={userData.lastName}
           />
         </Col>
         <Col md={7} ms={12}>
-          <TextField
-            floatingLabelText={this.props.t('Email')}
-            floatingLabelFixed
+          <Field
+            name="email"
+            type="text"
+            component={TextField}
+            label={this.props.t('Email')}
             fullWidth
-            value={userData.email}
           />
         </Col>
         <Col md={5} ms={12}>
-          <TextField
-            floatingLabelText={this.props.t('User name')}
-            floatingLabelFixed
+          <Field
+            name="username"
+            type="text"
+            component={TextField}
+            label={this.props.t('User name')}
             fullWidth
-            value={userData.username}
           />
         </Col>
         <Col md={12} ms={12}>
-          <TextField
-            floatingLabelText={this.props.t('Role')}
-            floatingLabelFixed
-            fullWidth
-            value={this.props.t(firstRole.name)}
+          <Field
+            name="role"
+            component={SelectField}
+            label={this.props.t('Role')}
+            children={items}
           />
         </Col>
         <Col md={6} ms={12}>
-          <TextField
-            floatingLabelText={this.props.t('Status')}
-            floatingLabelFixed
-            fullWidth
-            value={this.props.t(status)}
+          <Field
+            name="status"
+            component={SelectField}
+            label={this.props.t('Status')}
+            children={itemsStatus}
           />
         </Col>
         <Col md={6} ms={12}>
-          <TextField
-            floatingLabelText={this.props.t('Last login')}
-            floatingLabelFixed
-            fullWidth
+          <Field
+            name="lastLogin"
+            type="text"
+            component={TextField}
+            label={this.props.t('Last login')}
             floatingLabelStyle={{whiteSpace: 'nowrap'}}
-            value={formatDate(userData.lastLogin)}
+            fullWidth
+            disabled
           />
         </Col>
       </Row>
@@ -78,4 +106,39 @@ class UserInformation extends React.Component  {
   }
 }
 
-export default translate('translations')(UserInformation);
+UserInformation.propTypes = {
+  roleList: PropTypes.object,
+};
+
+UserInformation.defaultProps = {
+  roleList: {
+    _embedded: {
+      roles: [],
+    },
+  },
+};
+
+const mapStateToProps = (state) => {
+  const userDetail = state.PrivilegeDetailReducer.get('userDetail');
+  const roleList = state.PrivilegeDetailReducer.get('roleList');
+  const userData = userDetail.get('data');
+  if (userData) {
+    userData.status = userData.enabled ? ENUM_USER_STATUS.ACTIVE : ENUM_USER_STATUS.DEACTIVE;
+    const firstRole = userData.roles[0];
+    if (!_.isEmpty(firstRole)) {
+      userData.role = firstRole.id;
+    }
+  }
+  return {
+    initialValues: userData,
+    roleList: roleList.get('data'),
+  };
+};
+
+
+export default connect(
+  mapStateToProps
+)(reduxForm({
+  form: 'userInformation',
+  validate,
+})(translate('translations')(UserInformation)));

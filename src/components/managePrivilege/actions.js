@@ -1,10 +1,12 @@
 import {
   USER_LIST_API,
+  GET_ROLE_LIST_API,
 } from '../../constants';
 
 import {
   GET_USER_LIST,
   UPDATE_PAGE_SORT_USER_LIST,
+  GET_ROLE_LIST,
 } from './constants';
 
 import { parseParams } from '../../utils';
@@ -33,3 +35,17 @@ export const getUsers = (pageable, sort, search) =>
       }
     });
   };
+  
+  // get role list
+export const getRoleList = () =>
+(dispatch) => {
+  dispatch({
+    type: GET_ROLE_LIST,
+    fetchConfig: {
+      path: GET_ROLE_LIST_API,
+      params: {
+        method: 'GET'
+      },
+    }
+  });
+};

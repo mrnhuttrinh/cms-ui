@@ -31,6 +31,7 @@ export const USER_DETAIL_API = '/api/users/{id}?projection=custom';
 export const USER_HISTORY_API = '/api/userHistories?projection=custom&user.id={id}';
 export const USER_UPDATE_STATUS_API = '/api/users/update-status';
 export const USER_UPDATE_SETTING_API = '/api/users/update-setting';
+export const USER_UPDATE_INFORMATION_API = '/api/users/update-information';
 
 // for merchant and related
 export const MERCHANT_LIST_API = '/api/merchants?projection=custom';
@@ -53,4 +54,7 @@ export const DISCONNECT_CARD_WALLET_API = '/api/wallets/{id}';
 // for role and related
 export const GET_ROLE_LIST_API = '/api/roles?projection=custom';
 export const GET_ROLE_DETAIL_API = '/api/roles/{id}?projection=custom';
-export const GET_ROLE_PERMISSION_API = '/api/roles/{id}/permissions?projection=custom';
+export const GET_ROLE_PERMISSION_API = '/api/permissions?projection=custom&role.id={id}';
+
+// for permission
+export const GET_ALL_PERMISSION_API = '/api/permissions';

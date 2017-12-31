@@ -1,6 +1,6 @@
 export const ENUM_USER_STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'BỊ KHÓA',
+  ACTIVE: 'ACTIVE',
+  DEACTIVE: 'DEACTIVE',
 };
 
 export const LANGUAGE_SELECTION = {
