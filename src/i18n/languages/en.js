@@ -213,6 +213,12 @@ const en = {
     // role detail
     'Role detail': 'Role detail',
     'Permission table': 'Permission',
+    'dialog tilte when account is ACTIVE': 'Lock Account',
+    'dialog tilte when account is DEACTIVE': 'Unlock Account',
+    'dialog content when account is ACTIVE': 'Do you want to lock this account?',
+    'dialog content when account is DEACTIVE': 'Do you want to unlock this account?',
+    'Cancel': 'Cancel',
+    'Ok': 'Ok',
   }
 };
 

@@ -212,6 +212,12 @@ const vi = {
     // role detail
     'Role detail': 'Chi tiết nhóm',
     'Permission table': 'Quyền',
+    'dialog tilte when account is ACTIVE': 'Khóa Tài Khoản',
+    'dialog tilte when account is DEACTIVE': 'Mở Khóa Tài Khoản',
+    'dialog content when account is ACTIVE': 'Bạn có muốn khóa tài khoản này?',
+    'dialog content when account is DEACTIVE': 'Bạn có muốn mở khóa tài khoản này?',
+    'Cancel': 'Hủy bỏ',
+    'Ok': 'Đồng ý',
   }
 };
 
