@@ -27,7 +27,7 @@ class MerchantList extends React.Component {
   render() {
     return (
       <ContentWrapper
-        title="Merchant List"
+        title="Merchant list"
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable

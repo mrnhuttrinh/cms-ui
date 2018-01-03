@@ -126,7 +126,7 @@ class GeneralInformation extends React.Component {
           <Row>
             <Col md={12}>
               <TextField
-                floatingLabelText={this.props.t('Home No., Street')}
+                floatingLabelText={this.props.t('Line')}
                 floatingLabelFixed
                 fullWidth
                 value={address.line1}
@@ -136,7 +136,7 @@ class GeneralInformation extends React.Component {
           <Row>
             <Col md={12}>
               <TextField
-                floatingLabelText={this.props.t('Ward, District')}
+                floatingLabelText={this.props.t('State Province')}
                 floatingLabelFixed
                 fullWidth
                 value={address.line2}
