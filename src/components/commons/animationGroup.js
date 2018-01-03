@@ -9,7 +9,7 @@ const inlineStyle = {
   position: 'absolute',
   top: '0px',
   left: '0px',
-  zIndex: '9999',
+  zIndex: '100',
   backgroundColor: 'rgba(0, 0, 0, 0.1)'
   // background: 'transparent'
 }

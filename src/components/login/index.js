@@ -11,7 +11,6 @@ import MenuItem from 'material-ui/MenuItem';
 import _ from 'lodash';
 import {
   TextField,
-  Checkbox,
 } from '../commons';
 import {
   PATTERN_EMAIL,

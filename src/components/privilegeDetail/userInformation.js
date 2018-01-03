@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {Field, reduxForm, getFormValues} from 'redux-form';
+import {Field, reduxForm } from 'redux-form';
 import { translate } from 'react-i18next';
 import { Row, Col } from 'react-flexbox-grid';
 import MenuItem from 'material-ui/MenuItem';
 import _ from 'lodash';
-import moment from 'moment';
 import {
   TextField,
   SelectField,
@@ -23,8 +22,6 @@ const validate = values => {
   return errors;
 }
 
-
-const formatDate = (date) => (date ? moment(date).format('h:mm:ss DD/MM/YYYY') : 'N/A');
 class UserInformation extends React.Component  {
   render () {
     const {

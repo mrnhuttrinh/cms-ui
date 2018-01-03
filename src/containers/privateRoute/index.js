@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import AppBarHeader from './appBarHeader';
@@ -9,6 +10,28 @@ import { AnimationGroup } from '../../components';
 import "./index.scss";
 
 class PrivateRoute extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      reloadChildren: true,
+    };
+    this.forceReloadContent = this.forceReloadContent.bind(this);
+  }
+  forceReloadContent() {
+    this.setState({
+      reloadChildren: false,
+    });
+    setTimeout(() => {
+      this.setState({
+        reloadChildren: true,
+      });
+    }, 0);
+  }
+  getChildContext() {
+    return {
+      forceReloadContent: this.forceReloadContent
+    };
+  }
   render() {
     const {
       component: Component,
@@ -33,7 +56,9 @@ class PrivateRoute extends React.Component{
                   loading={loading}
                   errorLoading={errorLoading}
                 />
-                <Component {...props}/>
+                {
+                  this.state.reloadChildren ? <Component {...props}/> : null
+                }
               </div>
             </div>
           </div>
@@ -56,6 +81,10 @@ class PrivateRoute extends React.Component{
     );
   }
 }
+
+PrivateRoute.childContextTypes = {
+  forceReloadContent: PropTypes.func,
+};
 
 const mapStateToProps = (state) => ({
   data: state.loginReducer.get('data'),

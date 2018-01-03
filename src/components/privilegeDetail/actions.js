@@ -119,11 +119,11 @@ export const getRoleList = () =>
       showMessage: {
         success: {
           title: 'Success!',
-          message: 'Reset password success',
+          message: 'Update user information success',
         },
         error: {
           title: 'Error!',
-          message: 'Reset password failure',
+          message: 'Update user information failure',
         },
       },
       fetchConfig: {

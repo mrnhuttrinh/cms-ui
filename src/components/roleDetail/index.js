@@ -16,7 +16,7 @@ import {
 } from '../commons';
 
 import DetailView from './detailView';
-import TablePermission from './tablePermission';
+import TablePermission from './treeViewPermission';
 
 import {
   tabStyle,
