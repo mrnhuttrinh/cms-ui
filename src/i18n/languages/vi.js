@@ -53,7 +53,7 @@ const vi = {
     'Phone1': 'SĐT di động',
     'Phone2': 'SĐT khác',
     'Address': 'Địa chỉ thường trú',
-    'Line1': 'Địa chỉ',
+    'Line': 'Địa chỉ',
     'State Province': 'Phường (xã). Quận (Huyện)',
     'City': 'Tỉnh, Thành Phố',
     'Indetity card': 'Giấy tờ tùy thân - CMND',
@@ -176,13 +176,11 @@ const vi = {
     'User has been created by SCMS': 'Người dùng được khởi tạo bởi SCMS',
     'User has been updated by': 'Người dùng được cập nhật bởi',
     // merchant list
-    'Merchant List': 'Danh sách đại lý',
-    'Merchant details': 'Chi tiết ại Llý',
+    'Merchant list': 'Danh sách đại lý',
+    'Merchant details': 'Chi tiết đại lý',
     'APPLICATIONS, MERCHANTS': 'ỨNG DỤNG, THIẾT BỊ CHẤP NHẬN THẺ',
     'merchant report': 'Báo Cáo',
     'Merchant information': 'Thông tin đại lý',
-    'Home No., Street': 'Số nhà, đường',
-    'Ward, District': 'Phường (Xã), Quận (Huyện)',
     'Code number': 'Mã số',
     'Security code': 'Khóa bảo mật',
     'Default': 'Mặc định',
@@ -214,6 +212,12 @@ const vi = {
     // role detail
     'Role detail': 'Chi tiết nhóm',
     'Permission table': 'Quyền',
+    'dialog tilte when account is ACTIVE': 'Khóa Tài Khoản',
+    'dialog tilte when account is DEACTIVE': 'Mở Khóa Tài Khoản',
+    'dialog content when account is ACTIVE': 'Bạn có muốn khóa tài khoản này?',
+    'dialog content when account is DEACTIVE': 'Bạn có muốn mở khóa tài khoản này?',
+    'Cancel': 'Hủy bỏ',
+    'Ok': 'Đồng ý',
   }
 };
 
