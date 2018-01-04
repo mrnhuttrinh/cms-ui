@@ -2,6 +2,8 @@ export const GET_USER_DETAIL = 'privilegeDetail/GET_USER_DETAIL';
 export const GET_USER_HISTORY = 'privilegeDetail/GET_USER_HISTORY';
 export const USER_RESET_PASSWORD = 'privilegeDetail/USER_RESET_PASSWORD';
 export const USER_UPDATE_STATUS = 'privilegeDetail/USER_UPDATE_STATUS';
+export const GET_ROLE_LIST = 'privilegeDetail/GET_ROLE_LIST';
+export const USER_UPDATE_INFORMATION = 'privilegeDetail/USER_UPDATE_INFORMATION';
 
 export const HISTORY_TYPE = {
   CREATED: {

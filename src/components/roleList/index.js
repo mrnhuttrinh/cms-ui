@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RoleListReducer from './reducers';
 import * as actions from './actions';
-import DataTable, { dataAccesser } from '../commons/table';
+import DataTable, { dataAccesser, TYPE } from '../commons/table';
 import { ContentWrapper } from '../commons';
 import { translate } from 'react-i18next';
-import { dateFormatter } from '../../utils';
 
 class RoleList extends React.Component {
   constructor() {
@@ -32,6 +31,7 @@ class RoleList extends React.Component {
           dataAccesser={this.props.dataAccesser}
           pageAccesser={this.props.pageAccesser}
           getData={this.props.actions.getRoleList}
+          requesting={this.props.requesting}
           style={{
             height: 'calc(100% - 56px)',
             display: 'block',
@@ -55,7 +55,7 @@ RoleList.defaultProps = {
     {
       key: 'createdAt',
       text: 'Created date',
-      formater: (data) => dateFormatter(data.createdAt),
+      type: TYPE.date,
     },
   ],
   sort: {

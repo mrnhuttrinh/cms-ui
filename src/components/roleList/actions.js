@@ -20,7 +20,7 @@ const updatePageAndSort = (pageable, sort, search) => {
 
 export const getRoleList = (pageable, sort, search) =>
   (dispatch) => {
-    dispatch(updatePageAndSort(pageable, sort));
+    dispatch(updatePageAndSort(pageable, sort, search));
     const searchParams = parseParams(pageable, sort, search);
     dispatch({
       type: GET_ROLE_LIST,

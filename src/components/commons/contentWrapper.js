@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import { translate } from 'react-i18next';
 import RefreshButton from './refreshButton';
@@ -22,29 +23,15 @@ const titleStyle = {
 }
 
 class ContentWrapper extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       children: props.children,
     }
     this.onClickRefreshButton = this.onClickRefreshButton.bind(this);
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      children: nextProps.children,
-    });
-  }
   onClickRefreshButton() {
-    const oldChildren = this.state.children;
-    this.setState({
-      children: null,
-    });
-    // reload
-    setTimeout(() => {
-      this.setState({
-        children: oldChildren,
-      });
-    }, 0);
+    this.context.forceReloadContent();
   }
   render () {
     const {
@@ -62,10 +49,14 @@ class ContentWrapper extends React.Component {
           iconElementRight={<RefreshButton onClick={this.onClickRefreshButton} />}
           {...rest}
         />
-        {this.state.children}
+        {this.props.children}
       </div>
     );
   }
 }
+
+ContentWrapper.contextTypes = {
+  forceReloadContent: PropTypes.func,
+};
 
 export default translate('translations')(ContentWrapper);
