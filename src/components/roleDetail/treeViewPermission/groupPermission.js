@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {ListItem} from 'material-ui/List';
 import _ from 'lodash';
 import Checkbox from 'material-ui/Checkbox';
@@ -22,7 +23,7 @@ class GroupPermission extends React.Component {
         <ListItem
           key={per.id}
           style={style}
-          primaryText={per.displayName}
+          primaryText={this.props.t(per.displayName)}
           leftCheckbox={
             <Checkbox
               onCheck={(event, isInputChecked) => this.props.handleCheckbox(isInputChecked, [per])}
@@ -55,7 +56,7 @@ class GroupPermission extends React.Component {
             paddingLeft: 35,
             borderTop: '1px solid rgb(224, 224, 224)',
           })}
-          primaryText={groupName}
+          primaryText={this.props.t(groupName)}
           leftCheckbox={
             <Checkbox
               onCheck={(event, isInputChecked) => this.props.handleCheckbox(isInputChecked, nestedItems)}
@@ -70,4 +71,4 @@ class GroupPermission extends React.Component {
   }
 }
 
-export default GroupPermission;
+export default translate('translations')(GroupPermission);
