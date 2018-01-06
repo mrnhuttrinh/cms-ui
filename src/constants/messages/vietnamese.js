@@ -18,4 +18,13 @@ export default {
   'Update password': 'Cập nhật mật khẩu',
   'Update password successful': 'Cập nhật mật khẩu thành công',
   'Update password failure': 'Cập nhật mật khẩu thât bại',
+  
+  'Success!': 'Thành Công!',
+  'Error!': 'Thất Bại!',
+
+  'Update role permission success': 'Cập nhật nhóm thành công',
+  'Update role permission failure': 'Cập nhật nhóm thất bại',
+  
+  'Update user information success': 'Cập nhật người dùng thành công',
+  'Update user information failure': 'Cập nhật người dùng thất bại',
 }

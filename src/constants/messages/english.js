@@ -18,4 +18,13 @@ export default {
   'Update password': 'Update password',
   'Update password successful': 'Update password successful',
   'Update password failure': 'Update password failure',
+  
+  'Success!': 'Success!',
+  'Error!': 'Error!',
+  
+  'Update role permission success': 'Update role permission success',
+  'Update role permission failure': 'Update role permission failure',
+  
+  'Update user information success': 'Update user information success',
+  'Update user information failure': 'Update user information failure',
 };
