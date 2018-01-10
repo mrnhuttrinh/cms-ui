@@ -159,9 +159,10 @@ class Search extends React.Component {
     const searchByOptions = _.map(this.props.columns, (column) => (<MenuItem value={column.key} primaryText={this.props.t(column.text)} />));
     return (
       <Toolbar style={style}>
-        <ToolbarGroup firstChild={true} />
-        <ToolbarGroup>
-          <SelectField
+        {!this.props.firstChild ? <ToolbarGroup firstChild /> : null}
+        <ToolbarGroup firstChild={!this.props.firstChild}>
+          {!this.props.hideLabel ?
+            <SelectField
             listStyle={{textTransform: 'uppercase'}}
             labelStyle={{textTransform: 'uppercase'}}
             floatingLabelText={this.props.t('Search by')}
@@ -170,7 +171,8 @@ class Search extends React.Component {
             onChange={this.changeSearchKey}
           >
             {searchByOptions}
-          </SelectField>
+          </SelectField> : null
+          }
           {this.renderSearchField()}
         </ToolbarGroup>
       </Toolbar>);

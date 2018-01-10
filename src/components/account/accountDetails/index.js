@@ -77,16 +77,6 @@ class AccountDetails  extends React.Component  {
     return (
       <div>
         <div style={groupControl}>
-          <FlatButton
-            style={{
-              boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
-              float: 'right',
-              marginLeft: 15
-            }}
-            backgroundColor="#009688"
-            labelStyle={{color: '#fff'}}
-            label={this.props.t('edit')}
-          />
           {this.props.account.status === 'ACTIVE' ? lockButton : unLockButton}
         </div>
         <div
