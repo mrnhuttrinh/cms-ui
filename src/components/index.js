@@ -23,6 +23,8 @@ import RoleList, { reducers as RoleListReducers } from './roleList';
 import RoleDetail, { reducers as RoleDetailReducers } from './roleDetail';
 
 import Launcher from './launcher';
+
+import GlobalGuide from './globalGuide';
 // export view
 export {
   Login,
@@ -44,6 +46,7 @@ export {
   RoleList,
   RoleDetail,
   ComingSoon,
+  GlobalGuide,
 };
 
 export const reducers = {

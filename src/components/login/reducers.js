@@ -8,6 +8,7 @@ import {
   SIGN_OUT,
   CHANGE_LANGUAGE,
   CLEAN_ERROR,
+  TURN_OFF_ALERT_MESSAGE,
 } from './constants';
 
 const initialState = new Map({
@@ -30,14 +31,25 @@ export default (state = initialState, action = {}) => {
   switch (action.type) {
     //////////////////////////// login
     case `${SUBMIT_LOGIN}_START`:
-      newState = state.set('requesting', true).delete('data').delete('errorLogin');
+      newState = state
+        .set('requesting', true)
+        .delete('data')
+        .delete('errorLogin')
+        .delete('openAlertMessage');
       break;
     case `${SUBMIT_LOGIN}_COMPLETED`:
-      newState = state.set('requesting', false).set('data', {credential: true, user: action.data.data, permissions: getPermission(action.data.data)})
-        .delete('errorLogin');
+      newState = state
+        .set('requesting', false)
+        .set('data', {credential: true, user: action.data.data, permissions: getPermission(action.data.data)})
+        .delete('errorLogin')
+        .delete('openAlertMessage');
       break;
     case `${SUBMIT_LOGIN}_FAILED`:
-      newState = state.set('requesting', false).set('data', {credential: false}).set('errorLogin', action.error);
+      newState = state
+        .set('requesting', false)
+        .set('data', {credential: false})
+        .set('errorLogin', action.error)
+        .set('openAlertMessage', true);
       break;
     ///////////////////////// refresh token
     case `${REFRESH_TOKEN}_START`:
@@ -68,6 +80,11 @@ export default (state = initialState, action = {}) => {
     // clean error
     case CLEAN_ERROR:
       newState = state.delete('errorLogin');
+      break;
+    // turn off alert message
+    case TURN_OFF_ALERT_MESSAGE:
+      newState = state
+        .set('openAlertMessage', action.openAlertMessage);
       break;
     default:
       newState = state;

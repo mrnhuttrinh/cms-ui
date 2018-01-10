@@ -53,7 +53,7 @@ class PrivateRoute extends React.Component{
               </div>
               <div className={rightContentClassName}>
                 <AnimationGroup
-                  loading={loading}
+                  loading={loading || !this.state.reloadChildren}
                   errorLoading={errorLoading}
                 />
                 {

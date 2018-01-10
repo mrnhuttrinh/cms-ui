@@ -36,34 +36,18 @@ const validate = values => {
 class Login extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {
-      openAlertMessage: false,
-    }
     this.onClickSignIn = this.onClickSignIn.bind(this);
     this.onSelectLanguage = this.onSelectLanguage.bind(this);
     this.alertMessageHandleOpen = this.alertMessageHandleOpen.bind(this);
     this.alertMessageHandleClose = this.alertMessageHandleClose.bind(this);
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errorLogin && nextProps.errorLogin.status >= 500) {
-      // error 500
-      // open popup
-      this.setState({
-        openAlertMessage: true,
-      });
-    }
-  }
   alertMessageHandleOpen = () => {
-    this.setState({
-      openAlertMessage: true,
-    });
+    this.props.actions.turnOffAlertMessage(true);
   };
 
   alertMessageHandleClose = () => {
     this.props.actions.cleanError();
-    this.setState({
-      openAlertMessage: false,
-    });
+    this.props.actions.turnOffAlertMessage(false);
   };
   onClickSignIn(event) {
     const {
@@ -171,7 +155,7 @@ class Login extends React.Component{
           </div>
         </div>
         <AlertMessage
-          openAlertMessage={this.state.openAlertMessage}
+          openAlertMessage={this.props.openAlertMessage}
           alertMessageHandleClose={this.alertMessageHandleClose}
         />
       </form>
@@ -185,6 +169,7 @@ const mapStateToProps = (state) => ({
   data: state.loginReducer.get('data'),
   errorLogin: state.loginReducer.get('errorLogin'),
   values: getFormValues('loginForm')(state),
+  openAlertMessage: state.loginReducer.get('openAlertMessage'),
 });
 
 const mapDispatchToProps = dispatch => ({

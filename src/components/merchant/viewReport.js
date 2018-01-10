@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'react-flexbox-grid';
 import NotFound from '../notFound';
+import DataTable, { dataAccesser, TYPE } from '../commons/table';
 
 const rowContainer = {
   backgroundColor: '#fff',

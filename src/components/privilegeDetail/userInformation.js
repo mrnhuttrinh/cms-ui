@@ -10,7 +10,7 @@ import {
   TextField,
   SelectField,
 } from '../commons';
-import { ENUM_USER_STATUS } from '../../constants';
+import { ENUM_USER_STATUS, ROLES } from '../../constants';
 
 const validate = values => {
   const errors = {};
@@ -22,7 +22,7 @@ const validate = values => {
   return errors;
 }
 
-class UserInformation extends React.Component  {
+class UserInformation extends React.Component {
   render () {
     const {
       roleList: {
@@ -30,9 +30,17 @@ class UserInformation extends React.Component  {
           roles
         },
       },
+      initialValues,
     } = this.props;
-    const items = _.map(roles, role => (<MenuItem value={role.id} primaryText={this.props.t(role.name)} />));
+    const items = _.map(roles, role => {
+      const disabled = role.name === ROLES.USER;
+      return (<MenuItem disabled={disabled} value={role.id} primaryText={this.props.t(role.name)} />);
+    });
     const itemsStatus = _.map(ENUM_USER_STATUS, (key, value) => (<MenuItem value={key} primaryText={this.props.t(value)} />));
+    let disabledRole = false;
+    if (!_.isEmpty(initialValues)) {
+      disabledRole = !_.isEmpty(_.find(roles, role => initialValues.role === role.id && role.name === ROLES.USER));
+    }
     return (
       <Row>
         <Col md={7} ms={12}>
@@ -77,6 +85,7 @@ class UserInformation extends React.Component  {
             component={SelectField}
             label={this.props.t('Role')}
             children={items}
+            disabled={disabledRole}
           />
         </Col>
         <Col md={6} ms={12}>

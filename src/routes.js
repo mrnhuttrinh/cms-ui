@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { AnimationGroup } from './components';
+import { AnimationGroup, GlobalGuide } from './components';
 import {
   PrivateRoute,
   PublicRoute,
@@ -39,6 +39,7 @@ const AppRoutes = ({refreshTokenRequesting}) => {
   return (
     <Router>
       <MuiThemeProvider>
+        <GlobalGuide />
         {
           refreshTokenRequesting ? (
             <div className="ecash-app-loading">
