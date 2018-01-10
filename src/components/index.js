@@ -22,6 +22,8 @@ import WalletList, { reducers as WalletListReducers } from './walletList';
 import RoleList, { reducers as RoleListReducers } from './roleList';
 import RoleDetail, { reducers as RoleDetailReducers } from './roleDetail';
 
+import AddNewUser from './addNewUser';
+
 import Launcher from './launcher';
 
 import GlobalGuide from './globalGuide';
@@ -47,6 +49,7 @@ export {
   RoleDetail,
   ComingSoon,
   GlobalGuide,
+  AddNewUser,
 };
 
 export const reducers = {

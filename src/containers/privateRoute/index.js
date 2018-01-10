@@ -9,7 +9,7 @@ import { AnimationGroup } from '../../components';
 
 import "./index.scss";
 
-class PrivateRoute extends React.Component{
+class PrivateRoute extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +31,21 @@ class PrivateRoute extends React.Component{
     return {
       forceReloadContent: this.forceReloadContent
     };
+  }
+  renderChildComponent(props, Component) {
+    const {
+      parentComponent,
+    } = this.props;
+    if (parentComponent) {
+      const ParentComponent = parentComponent;
+      return (
+        <React.Fragment>
+          <Component {...props}/>
+          <ParentComponent />
+        </React.Fragment>
+      )
+    }
+    return (<Component {...props}/>);
   }
   render() {
     const {
@@ -57,7 +72,7 @@ class PrivateRoute extends React.Component{
                   errorLoading={errorLoading}
                 />
                 {
-                  this.state.reloadChildren ? <Component {...props}/> : null
+                  this.state.reloadChildren ? this.renderChildComponent(props, Component) : null
                 }
               </div>
             </div>
