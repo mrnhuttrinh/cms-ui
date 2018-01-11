@@ -250,6 +250,10 @@ const en = {
     'NOTE': 'NOTE',
     'Experimental better on laptop': 'Experimental better on laptop',
     'Google Chrome get best experimental for the app.': 'Google Chrome get best experimental for the app.',
+    'Transaction Details': 'Transaction Details',
+    'transaction id': 'transaction ID',
+    'date time': 'date time',
+    'details': 'details',
   }
 };
 
