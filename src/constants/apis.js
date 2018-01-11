@@ -32,6 +32,7 @@ export const USER_HISTORY_API = '/api/userHistories?projection=custom&user.id={i
 export const USER_UPDATE_STATUS_API = '/api/users/update-status';
 export const USER_UPDATE_SETTING_API = '/api/users/update-setting';
 export const USER_UPDATE_INFORMATION_API = '/api/users/update-information';
+export const ADD_NEW_USER_API = '/api/user';
 
 // for merchant and related
 export const MERCHANT_LIST_API = '/api/merchants?projection=custom';

@@ -263,6 +263,15 @@ const en = {
     'transaction id': 'transaction ID',
     'date time': 'date time',
     'details': 'details',
+    // add new user
+    'Email not empty': 'Email not empty',
+    'First name not empty': 'First name not empty',
+    'Last name not empty': 'Last name not empty',
+    'Username not empty': 'Username not empty',
+    'Role not empty': 'Role not empty',
+    'Add New User': 'Add New User',
+    'Password not empty': 'Password not empty',
+    'Status not empty': 'Status not empty',
   }
 };
 

@@ -27,4 +27,11 @@ export default {
   
   'Update user information success': 'Update user information success',
   'Update user information failure': 'Update user information failure',
+
+  'Add new user': 'Add new user',
+  'Add new user successful': 'Add new user successful',
+  'Add new user failure': 'Add new user failure',
+  'Email is exists': 'Email is exists',
+  'Username is exists': 'Username is exists',
+
 };

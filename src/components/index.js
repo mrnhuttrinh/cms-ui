@@ -22,7 +22,7 @@ import WalletList, { reducers as WalletListReducers } from './walletList';
 import RoleList, { reducers as RoleListReducers } from './roleList';
 import RoleDetail, { reducers as RoleDetailReducers } from './roleDetail';
 
-import AddNewUser from './addNewUser';
+import AddNewUser, { reducers as AddNewUserReducers } from './addNewUser';
 
 import Report, { reducers as ReportReducers } from './report';
 
@@ -72,6 +72,7 @@ export const reducers = {
   ...RoleListReducers,
   ...RoleDetailReducers,
   ...ReportReducers,
+  ...AddNewUserReducers,
 };
 
 // export commons control
