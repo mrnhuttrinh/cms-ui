@@ -116,7 +116,7 @@ const vi = {
     'transaction date': 'TG PHÁT SINH',
     'reference transaction': 'SỐ THAM CHIẾU',
     'transaction type': 'LOẠI GD',
-    'amount': 'SỐ TIỀN',
+    'amount': 'số tiền',
     'transaction created at': 'TG CẬP NHẬT',
     'account id': 'STK',
     'Account list': 'Danh sách tài khoản ví',
@@ -249,6 +249,10 @@ const vi = {
     'NOTE': 'LƯU Ý',
     'Experimental better on laptop': 'Trải nghiệm tốt hơn trên laptop',
     'Google Chrome get best experimental for the app.': 'Trải nghiệm tốt nhất vơi Google Chrome.',
+    'Transaction Details': 'Chi tiết giao dịch',
+    'transaction id': 'mã số giao dịch',
+    'date time': 'ngày giờ',
+    'details': 'chi tiết',
   }
 };
 
