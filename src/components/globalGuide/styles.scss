@@ -1,0 +1,35 @@
+.frame-guide {
+  height: 40px;
+  position: relative;
+  .browser-guide-text {
+    height: 40px;
+    background-color: rgb(33, 150, 243);
+    display: flex;
+    color: rgb(255, 255, 255);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1101;
+  }
+  .browser-guide-close {
+    position: fixed;
+    right: 0px;
+    // bottom: 0px;
+    height: 40px;
+    width: 40px;
+    z-index: 1102;
+  }
+  .browser-guide-close::after {
+    display: inline-block;
+    content: '\D7';
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    line-height: 40px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

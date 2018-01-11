@@ -227,7 +227,6 @@ const en = {
     'CARD': 'CARD',
     'WALLET': 'WALLET',
     'MERCHANT': 'MERCHANT',
-    'USER': 'USER',
     'View Customer List': 'View Customer List',
     'View Customer Details': 'View Customer Details',
     'View Account List': 'View Account List',
@@ -246,6 +245,11 @@ const en = {
     'Reset User Password': 'Reset User Password',
     'Lock/Unlock User': 'Lock/Unlock User',
     'Update User': 'Update User',
+    'CLOSE': 'CLOSE',
+    'WARNING': 'WARNING',
+    'NOTE': 'NOTE',
+    'Experimental better on laptop': 'Experimental better on laptop',
+    'Google Chrome get best experimental for the app.': 'Google Chrome get best experimental for the app.',
   }
 };
 

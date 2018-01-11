@@ -10,7 +10,7 @@ const containterStyle = {
 };
 
 const appBarStyle = {
-  backgroundColor: '#e8e8e8',
+  backgroundColor: '#d4d4d4',
   border: 'rgba(0, 0, 0, 0.12) 1px'
   // boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12)'
 };

@@ -226,7 +226,6 @@ const vi = {
     'CARD': 'THẺ',
     'WALLET': 'VÍ',
     'MERCHANT': 'ĐẠI LÝ',
-    'USER': 'NGƯỜI DÙNG',
     'View Customer List': 'Hiển Thị Danh Sách Khách Hàng',
     'View Customer Details': 'Hiển Thị Chi Tiết Khách Hàng',
     'View Account List': 'Hiển Thị Danh Sách Tài Khoản',
@@ -245,6 +244,11 @@ const vi = {
     'Reset User Password': 'Cài Đặt Mật Khẩu Người Dùng',
     'Lock/Unlock User': 'Khóa/Mở Khóa Người Dùng',
     'Update User': 'Cập Nhật Người Dùng',
+    'CLOSE': 'ĐÓNG',
+    'WARNING': 'CẢNH BÁO',
+    'NOTE': 'LƯU Ý',
+    'Experimental better on laptop': 'Trải nghiệm tốt hơn trên laptop',
+    'Google Chrome get best experimental for the app.': 'Trải nghiệm tốt nhất vơi Google Chrome.',
   }
 };
 

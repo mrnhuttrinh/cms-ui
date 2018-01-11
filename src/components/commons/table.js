@@ -9,6 +9,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import _ from 'lodash';
 import moment from 'moment';
@@ -182,6 +183,24 @@ class DataTable extends React.Component {
     />);
   }
 
+  renderAddButton() {
+    if (this.props.addButton) {
+      return (
+        <RaisedButton
+          label={this.props.t(this.props.addButtonText)}
+          style={Object.assign({
+            margin: '30px',
+            marginLeft: '15px',
+            position: 'absolute'
+          }, this.props.addButtonStyles)}
+          backgroundColor="#009688"
+          labelColor="#fff"
+          onClick={this.props.addButtonClick}
+        />
+      );
+    }
+    return null;
+  }
   render() {
     return (
       <div
@@ -191,6 +210,7 @@ class DataTable extends React.Component {
         )}
       >
         <div style={{height: '100%'}}>
+          {this.renderAddButton()}
           {this.renderSearch()}
           {this.renderTable()}
           {this.renderPagination()}
@@ -214,6 +234,10 @@ DataTable.propsType = {
   getData: PropsType.func.isRequired,
   dataAccesser: PropsType.func,
   handleCellClick: PropsType.func,
+  addButton: PropsType.bool,
+  addButtonClick: PropsType.func,
+  addButtonText: PropsType.string,
+  addButtonStyles: PropsType.object,
 }
 
 DataTable.defaultProps = {
@@ -230,6 +254,9 @@ DataTable.defaultProps = {
   data: null,
   dataAccesser,
   pageAccesser,
+  addButton: false,
+  addButtonText: 'Add',
+  addButtonStyles: {},
 };
 
 export default translate('translations')(DataTable);

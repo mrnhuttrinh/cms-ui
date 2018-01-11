@@ -10,19 +10,22 @@ import {
   TextField,
   SelectField,
 } from '../commons';
-import { ENUM_USER_STATUS, ROLES } from '../../constants';
+import { ENUM_USER_STATUS, ROLES, PATTERN_EMAIL } from '../../constants';
 
 const validate = values => {
   const errors = {};
-  // if (
-  //   values.email && !PATTERN_EMAIL.test(values.email)
-  // ) {
-  //   errors.email = 'Invalid email address';
-  // }
+  if (values.email && !PATTERN_EMAIL.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+  _.each(values, (value, key) => {
+    if (_.isEmpty(value)) {
+      errors[key] = 'Required';
+    }
+  })
   return errors;
 }
 
-class UserInformation extends React.Component {
+class UserForm extends React.Component {
   render () {
     const {
       roleList: {
@@ -79,13 +82,14 @@ class UserInformation extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={12} ms={12}>
+        <Col md={6} ms={12}>
           <Field
             name="role"
             component={SelectField}
             label={this.props.t('Role')}
             children={items}
             disabled={disabledRole}
+            fullWidth
           />
         </Col>
         <Col md={6} ms={12}>
@@ -94,17 +98,7 @@ class UserInformation extends React.Component {
             component={SelectField}
             label={this.props.t('Status')}
             children={itemsStatus}
-          />
-        </Col>
-        <Col md={6} ms={12}>
-          <Field
-            name="lastLogin"
-            type="text"
-            component={TextField}
-            label={this.props.t('Last login')}
-            floatingLabelStyle={{whiteSpace: 'nowrap'}}
             fullWidth
-            disabled
           />
         </Col>
       </Row>
@@ -112,32 +106,25 @@ class UserInformation extends React.Component {
   }
 }
 
-UserInformation.propTypes = {
+UserForm.propTypes = {
   roleList: PropTypes.object,
 };
 
-UserInformation.defaultProps = {
+UserForm.defaultProps = {
   roleList: {
     _embedded: {
       roles: [],
     },
   },
-};
+}
 
 const mapStateToProps = (state) => {
-  const userDetail = state.PrivilegeDetailReducer.get('userDetail');
-  const roleList = state.PrivilegeDetailReducer.get('roleList');
-  const userData = userDetail.get('data');
-  if (userData) {
-    userData.status = userData.enabled ? ENUM_USER_STATUS.ACTIVE : ENUM_USER_STATUS.DEACTIVE;
-    const firstRole = userData.roles[0];
-    if (!_.isEmpty(firstRole)) {
-      userData.role = firstRole.id;
-    }
-  }
+  const roleList = state.ManagePrivilegeListReducer.get('roleList');
   return {
-    initialValues: userData,
     roleList: roleList.get('data'),
+    initialValues: {
+      status: 'ACTIVE'
+    }
   };
 };
 
@@ -145,6 +132,6 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps
 )(reduxForm({
-  form: 'userInformation',
+  form: 'addNewUser',
   validate,
-})(translate('translations')(UserInformation)));
+})(translate('translations')(UserForm)));

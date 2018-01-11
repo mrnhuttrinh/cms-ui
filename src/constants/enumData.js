@@ -100,3 +100,8 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
 };
 
 export const PERMISSIONS = _PERMISSIONS;
+
+export const ROLES = {
+  USER: 'USER',
+  ADMIN: 'ADMIN',
+};

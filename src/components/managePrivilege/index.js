@@ -60,6 +60,7 @@ class ManagePrivilegeList extends React.Component {
   constructor() {
     super();
     this.handleCellClick = this.handleCellClick.bind(this);
+    this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
   }
   componentWillMount() {
     this.props.actions.getRoleList();
@@ -69,6 +70,9 @@ class ManagePrivilegeList extends React.Component {
   }
   refreshData() {
     this.props.actions.getMerchants({size: this.props.size, page: this.props.page }, this.props.sort, this.props.search);
+  }
+  handleAddButtonClick(indexRow, column, event) {
+    this.props.history.push('/permission/new-user');
   }
   render() {
     return (
@@ -87,6 +91,8 @@ class ManagePrivilegeList extends React.Component {
           dataAccesser={this.props.dataAccesser}
           pageAccesser={this.props.pageAccesser}
           requesting={this.props.requesting}
+          addButton
+          addButtonClick={this.handleAddButtonClick}
           style={{
             height: 'calc(100% - 56px)',
             display: 'block',
