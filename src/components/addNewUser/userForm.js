@@ -17,11 +17,30 @@ const validate = values => {
   if (values.email && !PATTERN_EMAIL.test(values.email)) {
     errors.email = 'Invalid email address';
   }
-  _.each(values, (value, key) => {
-    if (_.isEmpty(value)) {
-      errors[key] = 'Required';
-    }
-  })
+  if (_.isEmpty(values.email)) {
+    errors.email = 'Email not empty';
+  }
+  if (_.isEmpty(values.firstName)) {
+    errors.firstName = 'First name not empty';
+  }
+  if (_.isEmpty(values.lastName)) {
+    errors.lastName = 'Last name not empty';
+  }
+  if (_.isEmpty(values.username)) {
+    errors.username = 'Username not empty';
+  }
+  if (_.isEmpty(values.role)) {
+    errors.role = 'Role not empty';
+  }
+  if (values.password && values.password.length < 6) {
+    errors.password = 'Password must be more than 6 characters';
+  }
+  if (_.isEmpty(values.password)) {
+    errors.password = 'Password not empty';
+  }
+  if (_.isEmpty(values.status)) {
+    errors.status = 'Status not empty';
+  }
   return errors;
 }
 
@@ -73,12 +92,21 @@ class UserForm extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={5} ms={12}>
+        <Col md={6} ms={12}>
           <Field
             name="username"
             type="text"
             component={TextField}
             label={this.props.t('User name')}
+            fullWidth
+          />
+        </Col>
+        <Col md={6} ms={12}>
+          <Field
+            name="password"
+            type="password"
+            component={TextField}
+            label={this.props.t('Password')}
             fullWidth
           />
         </Col>
@@ -123,7 +151,8 @@ const mapStateToProps = (state) => {
   return {
     roleList: roleList.get('data'),
     initialValues: {
-      status: 'ACTIVE'
+      status: 'ACTIVE',
+      role: 'ff8081815fa1bc2a015fa1bc64870003',
     }
   };
 };

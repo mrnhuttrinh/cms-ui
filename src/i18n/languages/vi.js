@@ -262,6 +262,15 @@ const vi = {
     'transaction id': 'mã số giao dịch',
     'date time': 'ngày giờ',
     'details': 'chi tiết',
+    // add new user
+    'Email not empty': 'Email không để trống',
+    'First name not empty': 'Tên không để trống',
+    'Last name not empty': 'Họ không để trống',
+    'Username not empty': 'Tên đăng nhập không để trống',
+    'Role not empty': 'Nhóm không để trống',
+    'Add New User': 'Thêm Người Dùng',
+    'Password not empty': 'Mật khẩu không để trống',
+    'Status not empty': 'Trạng thái không để trống'
   }
 };
 

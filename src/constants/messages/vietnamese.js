@@ -27,4 +27,10 @@ export default {
   
   'Update user information success': 'Cập nhật người dùng thành công',
   'Update user information failure': 'Cập nhật người dùng thất bại',
+
+  'Add new user': 'Thêm người dùng',
+  'Add new user successful': 'Thêm người dùng thành công',
+  'Add new user failure': 'Thêm người dùng thất bại',
+  'Email is exists': 'Email đã tồn tại',
+  'Username is exists': 'Tên đăng nhập đã tồn tại',
 }
