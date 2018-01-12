@@ -32,6 +32,7 @@ import {
   Launcher,
   ComingSoon,
   AddNewUser,
+  Report,
 } from './components';
 
 // https://reacttraining.com/react-router/web/example/auth-workflow
@@ -70,7 +71,8 @@ const AppRoutes = ({refreshTokenRequesting}) => {
               <PrivateRoute path="/user-profile" isExact component={UserProfile} />
               <PrivateRoute path="/role/:id" isExact component={RoleDetail} />
               <PrivateRoute path="/role" isExact component={RoleList} />
-              <PrivateRoute path="/report" isExact component={ComingSoon} />
+              <PrivateRoute path="/settings" isExact component={ComingSoon} />
+              <PrivateRoute path="/report" isExact component={Report} />
               <Route component={NotFound}/>
             </Switch>
           )

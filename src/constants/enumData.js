@@ -96,6 +96,7 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     value: 'setting',
     text: 'Settings',
     icon: 'settings',
+    url: '/settings',
   },
 };
 
