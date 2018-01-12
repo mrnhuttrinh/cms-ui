@@ -263,6 +263,7 @@ const vi = {
     'date time': 'ngày giờ',
     'details': 'chi tiết',
     // add new user
+    'User list': 'Danh sách người dùng',
     'Email not empty': 'Email không để trống',
     'First name not empty': 'Tên không để trống',
     'Last name not empty': 'Họ không để trống',
@@ -270,7 +271,15 @@ const vi = {
     'Role not empty': 'Nhóm không để trống',
     'Add New User': 'Thêm Người Dùng',
     'Password not empty': 'Mật khẩu không để trống',
-    'Status not empty': 'Trạng thái không để trống'
+    'Status not empty': 'Trạng thái không để trống',
+    'Add': 'Thêm',
+    'ADD': 'THÊM',
+    // add new role
+    'Add New Role': 'Thêm Nhóm',
+    'Add new role': 'Thêm nhóm',
+    'Role name is exists': 'Tên nhóm đã tồn tại',
+    'Role name': 'Tên nhóm',
+    'Role name not empty': 'Tên nhóm không để trống',
   }
 };
 

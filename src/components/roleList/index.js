@@ -11,9 +11,13 @@ class RoleList extends React.Component {
   constructor() {
     super();
     this.handleCellClick = this.handleCellClick.bind(this);
+    this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
   }
   handleCellClick(indexRow, column, event) {
     this.props.history.push(`/role/${dataAccesser(this.props.data)[indexRow].id}`);
+  }
+  handleAddButtonClick(indexRow, column, event) {
+    this.props.history.push('/role/new-role');
   }
   render() {
     return (
@@ -32,6 +36,8 @@ class RoleList extends React.Component {
           pageAccesser={this.props.pageAccesser}
           getData={this.props.actions.getRoleList}
           requesting={this.props.requesting}
+          addButton
+          addButtonClick={this.handleAddButtonClick}
           style={{
             height: 'calc(100% - 56px)',
             display: 'block',

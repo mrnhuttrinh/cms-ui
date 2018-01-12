@@ -33,6 +33,7 @@ import {
   ComingSoon,
   AddNewUser,
   Report,
+  AddNewRole,
 } from './components';
 
 // https://reacttraining.com/react-router/web/example/auth-workflow
@@ -69,6 +70,7 @@ const AppRoutes = ({refreshTokenRequesting}) => {
               <PrivateRoute path="/card" isExact component={CardList} />
               <PrivateRoute path="/wallet" isExact component={WalletList} />
               <PrivateRoute path="/user-profile" isExact component={UserProfile} />
+              <PrivateRoute path="/role/new-role" isExact component={AddNewRole} parentComponent={RoleList} />
               <PrivateRoute path="/role/:id" isExact component={RoleDetail} />
               <PrivateRoute path="/role" isExact component={RoleList} />
               <PrivateRoute path="/settings" isExact component={ComingSoon} />
