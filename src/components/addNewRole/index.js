@@ -6,14 +6,14 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
 import _ from 'lodash';
-import UserForm from './userForm';
-import AddNewUserReducer from './reducers';
+import RoleForm from './roleForm';
+import AddNewRoleReducer from './reducers';
 import * as actions from './actions';
 import { AnimationGroup } from '../commons';
 import { toastr } from 'react-redux-toastr';
 
 
-class AddNewUser extends React.Component {
+class AddNewRole extends React.Component {
   constructor(props) {
     super(props);
     this.handleCanelButtonClick = this.handleCanelButtonClick.bind(this);
@@ -26,22 +26,22 @@ class AddNewUser extends React.Component {
     const {
       values,
     } = this.props;
-    this.props.actions.addNewUser(values).then(async () => {
+    this.props.actions.addNewRole(values).then(async () => {
       const {
-        newUserError,
-        newUserData,
+        newRoleError,
+        newRoleData,
       } = this.props;
-      if (_.isEmpty(newUserError) && !_.isEmpty(newUserData)) {
+      if (_.isEmpty(newRoleError) && !_.isEmpty(newRoleData)) {
         this.props.actions.cleanCache();
-        this.props.history.push('/permission');
+        this.props.history.push('/role');
       } else {
-        const errorObject = await newUserError.json();
-        toastr.error(this.props.t('Add new user'), this.props.t(errorObject.status));
+        const errorObject = await newRoleError.json();
+        toastr.error(this.props.t('Add new role'), this.props.t(errorObject.status));
       }
     });
   }
   handleCanelButtonClick(indexRow, column, event) {
-    this.props.history.push('/permission');
+    this.props.history.push('/role');
   }
   render() {
     const {
@@ -67,18 +67,18 @@ class AddNewUser extends React.Component {
     return (
       <div>
         <Dialog
-          title={this.props.t('Add New User')}
+          title={this.props.t('Add New Role')}
           actions={actions}
           modal={true}
           open={true}
         >
           <Row>
             <Col md={12} ms={12}>
-              <UserForm />
+              <RoleForm />
             </Col>
           </Row>
           <AnimationGroup
-            loading={this.props.newUserRequesting}
+            loading={this.props.newRoleRequesting}
           />
         </Dialog>
       </div>
@@ -88,18 +88,18 @@ class AddNewUser extends React.Component {
 
 const mapStateToProps = (state) => {
   const {
-    addNewUser = {
+    addNewRole = {
       values: {},
       syncErrors: {}
     }
   } = state.form;
-  const newUser = state.AddNewUserReducer.get('newUser');
+  const newRole = state.AddNewRoleReducer.get('newRole');
   return {
-    values: addNewUser.values,
-    syncErrors: addNewUser.syncErrors,
-    newUserRequesting: newUser.get('requesting'),
-    newUserData: newUser.get('data'),
-    newUserError: newUser.get('error'),
+    values: addNewRole.values,
+    syncErrors: addNewRole.syncErrors,
+    newRoleRequesting: newRole.get('requesting'),
+    newRoleData: newRole.get('data'),
+    newRoleError: newRole.get('error'),
   };
 };
 
@@ -110,8 +110,8 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(translate('translations')(AddNewUser));
+)(translate('translations')(AddNewRole));
 
 export const reducers = {
-  AddNewUserReducer,
+  AddNewRoleReducer,
 };

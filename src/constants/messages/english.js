@@ -34,4 +34,7 @@ export default {
   'Email is exists': 'Email is exists',
   'Username is exists': 'Username is exists',
 
+  'Add new role': 'Add new role',
+  'Add new role successful': 'Add new role successful',
+  'Add new role failure': 'Add new role failure',
 };

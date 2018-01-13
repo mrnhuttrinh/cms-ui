@@ -57,6 +57,7 @@ export const GET_ROLE_LIST_API = '/api/roles?projection=custom';
 export const GET_ROLE_DETAIL_API = '/api/roles/{id}?projection=custom';
 export const GET_ROLE_PERMISSION_API = '/api/permissions?projection=custom&role.id={id}';
 export const UPDATE_ROLE_PERMISSION_API = '/api/roles/update-permission/{id}';
+export const ADD_NEW_ROLE_API = '/api/role';
 
 // for permission
 export const GET_ALL_PERMISSION_API = '/api/permissions';

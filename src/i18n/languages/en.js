@@ -264,6 +264,7 @@ const en = {
     'date time': 'date time',
     'details': 'details',
     // add new user
+    'User list': 'User list',
     'Email not empty': 'Email not empty',
     'First name not empty': 'First name not empty',
     'Last name not empty': 'Last name not empty',
@@ -272,6 +273,14 @@ const en = {
     'Add New User': 'Add New User',
     'Password not empty': 'Password not empty',
     'Status not empty': 'Status not empty',
+    'Add': 'Add',
+    'ADD': 'ADD',
+    // add new role
+    'Add New Role': 'Add New Role',
+    'Add new role': 'Add new role',
+    'Role name is exists': 'Role name is exists',
+    'Role name': 'Role name',
+    'Role name not empty': 'Role name not empty',
   }
 };
 

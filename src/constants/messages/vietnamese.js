@@ -33,4 +33,8 @@ export default {
   'Add new user failure': 'Thêm người dùng thất bại',
   'Email is exists': 'Email đã tồn tại',
   'Username is exists': 'Tên đăng nhập đã tồn tại',
+
+  'Add new role': 'Thêm nhóm',
+  'Add new role successful': 'Thêm nhóm thành công',
+  'Add new role failure': 'Thêm nhóm thất bại',
 }

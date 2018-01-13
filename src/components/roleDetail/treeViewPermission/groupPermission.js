@@ -10,7 +10,7 @@ import {
 } from './styles';
 
 class GroupPermission extends React.Component {
-  renderChildList() {
+  renderChildList(disabled) {
     const {
       nestedItems,
       checkedList,
@@ -28,6 +28,7 @@ class GroupPermission extends React.Component {
             <Checkbox
               onCheck={(event, isInputChecked) => this.props.handleCheckbox(isInputChecked, [per])}
               checked={itemChecked || false}
+              disabled={disabled}
             />
           }
         />
@@ -46,6 +47,7 @@ class GroupPermission extends React.Component {
       nestedItems,
       groupName,
       index,
+      disabled,
     } = this.props;
     const style = index % 2 === 0 ? itemEvent : {};
     return (
@@ -61,9 +63,10 @@ class GroupPermission extends React.Component {
             <Checkbox
               onCheck={(event, isInputChecked) => this.props.handleCheckbox(isInputChecked, nestedItems)}
               checked={this.checkboxChecked()}
+              disabled={disabled}
             />
           }
-          nestedItems={this.renderChildList()}
+          nestedItems={this.renderChildList(disabled)}
         />
         <Divider />
       </React.Fragment>

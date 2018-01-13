@@ -14,6 +14,8 @@ import {
   AnimationGroup
 } from '../../commons';
 
+import { ROLES } from '../../../constants';
+
 import {
   groupControl,
   tablePermission,
@@ -49,7 +51,7 @@ class TreeViewPermission extends React.Component {
       this.props.actions.getRoleDetail(roleId);
     });
   }
-  groupPermission() {
+  groupPermission(disabled) {
     const {
       permissionsData = {
         _embedded: {
@@ -90,6 +92,7 @@ class TreeViewPermission extends React.Component {
             nestedItems={listPermissionByGroup[gPer]}
             checkedList={listChildChecked[gPer]}
             handleCheckbox={this.handleCheckbox}
+            disabled={disabled}
           />
           <Divider />
         </React.Fragment>
@@ -131,7 +134,9 @@ class TreeViewPermission extends React.Component {
           permissions: [],
         },
       },
+      roleData,
     } = this.props;
+    const disabled = ROLES.ADMIN === roleData.name;
     return (
       <React.Fragment>
         <AnimationGroup
@@ -155,6 +160,7 @@ class TreeViewPermission extends React.Component {
               labelStyle={{color: '#fff'}}
               label={this.props.t('SAVE')}
               onClick={this.handleClickUpdate}
+              disabled={disabled}
             />
           </div>
           <ListItem
@@ -163,11 +169,12 @@ class TreeViewPermission extends React.Component {
               <Checkbox
                 onCheck={(event, isInputChecked) => this.handleCheckbox(isInputChecked, permissionsData._embedded.permissions)}
                 checked={this.checkboxChecked()}
+                disabled={disabled}
               />
             }
           />
           <Divider />
-          {this.groupPermission()}
+          {this.groupPermission(disabled)}
         </List>
       </React.Fragment>
     );

@@ -24,6 +24,8 @@ import RoleDetail, { reducers as RoleDetailReducers } from './roleDetail';
 
 import AddNewUser, { reducers as AddNewUserReducers } from './addNewUser';
 
+import AddNewRole, { reducers as AddNewRoleReducer } from './addNewRole';
+
 import Report, { reducers as ReportReducers } from './report';
 
 import Launcher from './launcher';
@@ -53,6 +55,7 @@ export {
   GlobalGuide,
   AddNewUser,
   Report,
+  AddNewRole,
 };
 
 export const reducers = {
@@ -73,6 +76,7 @@ export const reducers = {
   ...RoleDetailReducers,
   ...ReportReducers,
   ...AddNewUserReducers,
+  ...AddNewRoleReducer,
 };
 
 // export commons control
