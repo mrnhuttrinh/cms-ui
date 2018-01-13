@@ -27,6 +27,14 @@ const historyType = {
     icon: AddIcon,
     title: 'ADDED ',
   },
+  LOCKED: {
+    icon: EditIcon,
+    title: 'UPDATED',
+  },
+  UNLOCKED: {
+    icon: EditIcon,
+    title: 'UPDATED',
+  },
 }
 
 const titleStyle = {
@@ -64,7 +72,7 @@ class AccountHistory  extends React.Component  {
     }
 
     // Update information
-    if (data.type.type === 'UPDATED') {
+    if (data.type.type === 'UPDATED' || data.type.type === 'LOCKED' || data.type.type === 'UNLOCKED') {
       const propertiesChanged = [];
       const content = _.map(Object.keys(changes(updateObject.previous, updateObject.next)), (key) => {
         const property = this.props.propertyName[key];
