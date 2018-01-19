@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropsType from 'prop-types';
 import FontIcon from 'material-ui/FontIcon';
 import {
@@ -41,15 +42,55 @@ export const formaters = {
 };
 
 class DataTable extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      columnDisplay: props.columns.length,
+    };
     this.onPageChangeFromPagination = this.onPageChangeFromPagination.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
   componentWillMount() {
-    if (!this.props.search) {
+    if (!this.props.search && !this.props.getData) {
       this.props.getData({size: this.props.size, page: this.props.page }, this.props.sort, this.props.search);
+    }
+  }
+  componentDidMount () {
+    // first load
+    this._handleWindowResize();
+    // register event
+    window.addEventListener('resize', this._handleWindowResize.bind(this));
+  }
+  componentWillUnmount() {
+    // remove event
+    window.removeEventListener('resize', this._handleWindowResize.bind(this));
+  }
+  _getDisplayColumnFollowByActualWidth(actualWidth) {
+    let columnDisplay = 0;
+    if (actualWidth < 320) {
+      columnDisplay = 1;
+    } else if (actualWidth < 480) {
+      columnDisplay = 2;
+    } else if (actualWidth < 576) {
+      columnDisplay = 3;
+    } else if (actualWidth < 768) {
+      columnDisplay = 4;
+    } else if (actualWidth < 992) {
+      columnDisplay = 5;
+    } else {
+      columnDisplay = this.props.columns.length;
+    }
+    this.setState({
+      columnDisplay,
+    })
+  }
+  _handleWindowResize () {
+    if (this.dataTableWrapper) {
+      const element = ReactDOM.findDOMNode(this.dataTableWrapper);
+      if (element && element.offsetWidth) {
+        this._getDisplayColumnFollowByActualWidth(element.offsetWidth)
+      }
     }
   }
   onPageChangeFromPagination(newPage) {
@@ -95,8 +136,8 @@ class DataTable extends React.Component {
           totalPages={page.totalPages}
           boundaryPagesRange={this.props.boundaryPagesRange}
           siblingPagesRange={this.props.siblingPagesRange}
-          hidePreviousAndNextPageLinks={this.props.hidePreviousAndNextPageLinks}
-          hideFirstAndLastPageLinks={this.props.hideFirstAndLastPageLinks}
+          hidePreviousAndNextPageLinks={this.props.hidePreviousAndNextPageLinks || this.state.columnDisplay <= 4}
+          hideFirstAndLastPageLinks={this.props.hideFirstAndLastPageLinks || this.state.columnDisplay <= 3}
           hideEllipsis={this.props.hideEllipsis}
           onChange={this.onPageChangeFromPagination}
         />
@@ -105,9 +146,10 @@ class DataTable extends React.Component {
     </div>);
   }
   renderTable() {
-    const tableColumns = _.map(this.props.columns, (column, index) =>
-      (this.props.sort && (this.props.sort.key === column.key)) ?
-          (<TableHeaderColumn key={column.key}>
+    const tableColumns = _.map(this.props.columns, (column, index) => {
+      if (index < this.state.columnDisplay) {
+        return (this.props.sort && (this.props.sort.key === column.key)) ? (
+            <TableHeaderColumn key={column.key}>
               <FlatButton
                 id={index}
                 label={this.props.t(column.text)}
@@ -118,23 +160,36 @@ class DataTable extends React.Component {
                 </FontIcon>}
                 onClick={() => {this.handleSortChange(index);}}
               />
-          </TableHeaderColumn>) :
-          <TableHeaderColumn key={column.key} id={index}>
-            <FlatButton
-              id={index}
-              label={this.props.t(column.text)}
-              labelPosition="before"
-              primary={false}
-              onClick={() => {this.handleSortChange(index);}}
-            />
-          </TableHeaderColumn>
-    );
+            </TableHeaderColumn>
+          ) : (
+            <TableHeaderColumn key={column.key} id={index}>
+              <FlatButton
+                id={index}
+                label={this.props.t(column.text)}
+                labelPosition="before"
+                primary={false}
+                onClick={() => {this.handleSortChange(index);}}
+              />
+            </TableHeaderColumn>
+          )
+      }
+      return null;
+    });
+
     const tableRows = this.props.data ? _.map(this.props.dataAccesser(this.props.data), (d) => (
       <TableRow>
-        {_.map(this.props.columns, (column) => (
-          <TableRowColumn>
-            {column.formater ? column.formater(d, this.props.t) : formaters[column.type] ? formaters[column.type](_.get(d, column.key), column.options, this.props.t) : _.get(d, column.key)}
-          </TableRowColumn>))}
+        {
+          _.map(this.props.columns, (column, index) => {
+            if (index < this.state.columnDisplay) {
+              return (
+                  <TableRowColumn>
+                    {column.formater ? column.formater(d, this.props.t) : formaters[column.type] ? formaters[column.type](_.get(d, column.key), column.options, this.props.t) : _.get(d, column.key)}
+                  </TableRowColumn>
+                );
+            }
+            return null;
+          })
+        }
       </TableRow>
     )) : [];
 
@@ -202,8 +257,10 @@ class DataTable extends React.Component {
     return null;
   }
   render() {
+    console.log(this.state.columnDisplay)
     return (
       <div
+        ref={element => this.dataTableWrapper = element}
         style={Object.assign({}, {
             position: 'relative',
           }, this.props.style
