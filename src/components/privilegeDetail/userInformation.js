@@ -43,7 +43,7 @@ class UserInformation extends React.Component {
     }
     return (
       <Row>
-        <Col md={7} ms={12}>
+        <Col md={7} xs={12}>
           <Field
             name="lastName"
             type="text"
@@ -52,7 +52,7 @@ class UserInformation extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={5} ms={12}>
+        <Col md={5} xs={12}>
           <Field
             name="firstName"
             type="text"
@@ -61,7 +61,7 @@ class UserInformation extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={7} ms={12}>
+        <Col md={7} xs={12}>
           <Field
             name="email"
             type="text"
@@ -70,7 +70,7 @@ class UserInformation extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={5} ms={12}>
+        <Col md={5} xs={12}>
           <Field
             name="username"
             type="text"
@@ -79,7 +79,7 @@ class UserInformation extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={12} ms={12}>
+        <Col md={12} xs={12}>
           <Field
             name="role"
             component={SelectField}
@@ -88,7 +88,7 @@ class UserInformation extends React.Component {
             disabled={disabledRole}
           />
         </Col>
-        <Col md={6} ms={12}>
+        <Col md={6} xs={12}>
           <Field
             name="status"
             component={SelectField}
@@ -96,7 +96,7 @@ class UserInformation extends React.Component {
             children={itemsStatus}
           />
         </Col>
-        <Col md={6} ms={12}>
+        <Col md={6} xs={12}>
           <Field
             name="lastLogin"
             type="text"

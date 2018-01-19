@@ -30,7 +30,7 @@ class UserInformation extends React.Component {
       <Row style={rowContainer}>
         <Col md={12}>
           <Row>
-            <Col md={7} ms={12}>
+            <Col md={7} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('Last name')}
                 floatingLabelFixed
@@ -38,7 +38,7 @@ class UserInformation extends React.Component {
                 value={data.lastName}
               />
             </Col>
-            <Col md={5} ms={12}>
+            <Col md={5} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('First name')}
                 floatingLabelFixed
@@ -46,7 +46,7 @@ class UserInformation extends React.Component {
                 value={data.firstName}
               />
             </Col>
-            <Col md={7} ms={12}>
+            <Col md={7} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('Email')}
                 floatingLabelFixed
@@ -54,7 +54,7 @@ class UserInformation extends React.Component {
                 value={data.email}
               />
             </Col>
-            <Col md={5} ms={12}>
+            <Col md={5} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('User name')}
                 floatingLabelFixed
@@ -62,7 +62,7 @@ class UserInformation extends React.Component {
                 value={data.username}
               />
             </Col>
-            <Col md={5} ms={12}>
+            <Col md={5} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('Role')}
                 floatingLabelFixed
@@ -70,7 +70,7 @@ class UserInformation extends React.Component {
                 value={this.props.t(firstRole.name)}
               />
             </Col>
-            <Col md={7} ms={12}>
+            <Col md={7} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('Last login')}
                 floatingLabelFixed

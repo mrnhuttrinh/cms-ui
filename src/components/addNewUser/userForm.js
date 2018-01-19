@@ -65,7 +65,7 @@ class UserForm extends React.Component {
     }
     return (
       <Row>
-        <Col md={7} ms={12}>
+        <Col md={7} xs={12}>
           <Field
             name="lastName"
             type="text"
@@ -74,7 +74,7 @@ class UserForm extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={5} ms={12}>
+        <Col md={5} xs={12}>
           <Field
             name="firstName"
             type="text"
@@ -83,7 +83,7 @@ class UserForm extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={7} ms={12}>
+        <Col md={7} xs={12}>
           <Field
             name="email"
             type="text"
@@ -92,7 +92,7 @@ class UserForm extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={6} ms={12}>
+        <Col md={6} xs={12}>
           <Field
             name="username"
             type="text"
@@ -101,7 +101,7 @@ class UserForm extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={6} ms={12}>
+        <Col md={6} xs={12}>
           <Field
             name="password"
             type="password"
@@ -110,7 +110,7 @@ class UserForm extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={6} ms={12}>
+        <Col md={6} xs={12}>
           <Field
             name="role"
             component={SelectField}
@@ -120,7 +120,7 @@ class UserForm extends React.Component {
             fullWidth
           />
         </Col>
-        <Col md={6} ms={12}>
+        <Col md={6} xs={12}>
           <Field
             name="status"
             component={SelectField}
