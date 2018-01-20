@@ -17,14 +17,15 @@
     min-height: calc(100vh - 64px);
 
     .column-left {
+      z-index: 1101;
       width: 256px;
       flex: 0 0 256px;
       opacity: 1;
       -webkit-animation: display-none-transition 1s both;
       animation: display-none-transition 1s both;
-       > div {
-         height: 100%;
-       }
+      > div {
+        height: 100%;
+      }
     }
     
     .column-left-none-width {
@@ -46,19 +47,49 @@
         opacity: 0;
       }
     }
-    
+
+    .column-left.transparent-layer {
+      @media screen and (max-width: 768px) {
+        display: block;
+        z-index: 1101;
+        background: #dddddd;
+        opacity: 0.6;
+        width: calc(100% - 256px);
+        flex: 0 0 calc(100% - 256px);
+      }
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
+    }
+
     .column-right {
-      width: calc(100% - 256px - 64px);
-      flex: 0 0 calc(100% - 256px - 64px);
-      padding: 32px;
+      @media screen and (max-width: 768px) {
+        width: calc(100% - 20px);
+        padding: 10px;
+        position: absolute;
+        overflow: hidden;
+        height: calc(100% - 84px);
+      }
+      @media screen and (min-width: 768px) {
+        width: calc(100% - 256px - 64px);
+        flex: 0 0 calc(100% - 256px - 64px);
+        padding: 32px;
+      }
       transition: 350ms;
       position: relative;
     }
     
     .column-right-full-width {
-      width: calc(100% - 64px);
-      flex: 0 0 calc(100% - 64px);
-      padding: 32px;
+      @media screen and (max-width: 768px) {
+        width: calc(100% - 20px);
+        flex: 0 0 calc(100% - 20px);
+        padding: 10px;
+      }
+      @media screen and (min-width: 768px) {
+        width: calc(100% - 64px);
+        flex: 0 0 calc(100% - 64px);
+        padding: 32px;
+      }
       transition: 350ms;
       position: relative;
     }

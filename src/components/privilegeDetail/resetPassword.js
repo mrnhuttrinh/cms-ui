@@ -85,7 +85,7 @@ class ResetPassword extends React.Component {
           open={this.props.openDialog}
         >
           <Row>
-            <Col md={12} ms={12}>
+            <Col md={12} xs={12}>
               <Field
                 name="newPassword"
                 type="password"
@@ -95,7 +95,7 @@ class ResetPassword extends React.Component {
                 errorText={this.props.t(errors.newPassword)}
               />
             </Col>
-            <Col md={12} ms={12}>
+            <Col md={12} xs={12}>
               <Field
                 name="confirmNewPassword"
                 type="password"

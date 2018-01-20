@@ -73,7 +73,7 @@ class AddNewRole extends React.Component {
           open={true}
         >
           <Row>
-            <Col md={12} ms={12}>
+            <Col md={12} xs={12}>
               <RoleForm />
             </Col>
           </Row>

@@ -34,7 +34,7 @@ class RoleForm extends React.Component {
   render () {
     return (
       <Row>
-        <Col md={12} ms={12}>
+        <Col md={12} xs={12}>
           <Field
             name="roleName"
             type="text"
