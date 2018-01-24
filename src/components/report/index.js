@@ -12,6 +12,7 @@ import TextField from 'material-ui/TextField';
 import { GridList } from 'material-ui/GridList';
 import { Tab } from 'material-ui/Tabs';
 import { TabTemplate } from '../commons';
+import MerchantStatmentList, { reducers as MerchantStatementsListReducer } from './merchantStatementList';
 
 
 const tabStyle = {
@@ -137,6 +138,11 @@ class Report extends React.Component {
               {this.renderDetail()}
             </div>
           </Tab>
+          <Tab style={tabStyle} label={this.props.t('Merchants Report')} >
+            <div style={{padding: '20px 100px'}}>
+              <MerchantStatmentList />
+            </div>
+          </Tab>
         </TabTemplate>
       </ContentWrapper>
     );
@@ -176,4 +182,5 @@ export default translate('translations')(connect(
 
 export const reducers = {
   ReportReducer,
+  ...MerchantStatementsListReducer,
 };

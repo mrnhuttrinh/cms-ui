@@ -64,4 +64,5 @@ export const GET_ALL_PERMISSION_API = '/api/permissions';
 
 // for reports
 export const GET_REPORT_API = '/api/report/general';
-export const MERCHANT_STATEMENTS_API = '/merchantStatements/search?projection=custom';
+export const MERCHANT_STATEMENT_LIST_API = '/api/merchantStatements?projection=custom';
+export const MERCHANT_STATEMENT_DETAILS_LIST_API = '/api/merchantStatementDetails?projection=custom';
