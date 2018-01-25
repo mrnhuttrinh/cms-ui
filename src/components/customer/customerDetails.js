@@ -36,9 +36,9 @@ class CustomerDetails  extends React.Component  {
 
     return (
       <GridList
+        className="customer-detail"
         cols={2}
         cellHeight="auto"
-        style={{padding:'20px 100px 20px 100px'}}
       >
         <CardText>
           <GridList

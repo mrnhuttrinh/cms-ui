@@ -11,12 +11,6 @@ import { translate } from 'react-i18next';
 import { TextField } from '../commons';
 import { AnimationGroup } from '../commons';
 
-import {
-  rowContainerChangePassword,
-  groupControl,
-  passwordChange,
-} from './styles';
-
 import * as actions from './actions';
 
 const validate = values => {
@@ -46,7 +40,7 @@ class PasswordChange extends React.Component  {
     const params = {
       ...values,
       id: userData.user.id,
-    };
+    }
     this.props.actions.pushPasswordChange(params);
     this.props.reset();
   }
@@ -55,14 +49,16 @@ class PasswordChange extends React.Component  {
     if (_.isEmpty(values.oldPassword) || _.isEmpty(values.newPassword) || _.isEmpty(values.confirmNewPassword)) {
       return true;
     }
-
-    return !_.isEmpty(errors.confirmNewPassword);
+    if (!_.isEmpty(errors.confirmNewPassword)) {
+      return true;
+    }
+    return false;
   }
   render () {
     const { errors = {} } = this.props;
     return (
-      <Row style={rowContainerChangePassword}>
-        <Col md={12} style={passwordChange}>
+      <Row className="rowContainerChangePassword">
+        <Col md={12} className="change-password">
           <Row>
             <Col md={12} xs={12}>
               <Field
@@ -96,7 +92,7 @@ class PasswordChange extends React.Component  {
             </Col>
           </Row>
         </Col>
-        <div style={groupControl}>
+        <div className="groupControl">
           <FlatButton
             style={{
               boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',

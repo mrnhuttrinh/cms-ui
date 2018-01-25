@@ -13,6 +13,8 @@ import AccountCardsReducer from './accountCards/reducers';
 import AccountTransactionReducer from './accountTransaction/reducers';
 import AccountHistoryReducer from './accountHistory/reducers';
 
+import './styles.scss';
+
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
@@ -33,10 +35,6 @@ class Account extends React.Component {
         iconStyleLeft={{display: 'none'}}
       >
         <TabTemplate
-          style={{
-            minHeight: 'calc(100% - 56px)',
-            height: 'calc(100% - 56px)',
-          }}
           inkBarStyle={indicatorStyle}
         >
           <Tab style={tabStyle} label={this.props.t('general information')} >

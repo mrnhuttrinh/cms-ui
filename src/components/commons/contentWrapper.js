@@ -4,16 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import { translate } from 'react-i18next';
 import RefreshButton from './refreshButton';
 
-const containterStyle = {
-  height: '100%',
-  minHeight: '100%',
-};
-
-const appBarStyle = {
-  backgroundColor: '#d4d4d4',
-  border: 'rgba(0, 0, 0, 0.12) 1px'
-  // boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12)'
-};
+import './contentWrapper.scss';
 
 const titleStyle = {
   color: 'rgba(0, 0, 0, 0.4)',
@@ -33,23 +24,41 @@ class ContentWrapper extends React.Component {
   onClickRefreshButton() {
     this.context.forceReloadContent();
   }
+  renderChildren() {
+    if (this.props.appBarDisabled) {
+      return (
+        <div className="content-children-not-bar">
+          {this.props.children}
+        </div>
+      );
+    }
+    return  (
+      <div className="content-children">
+        {this.props.children}
+      </div>
+    );
+  }
   render () {
     const {
-      title, iconElementRight, children, ...rest
+      title, iconElementRight, children, appBarDisabled, ...rest
     } = this.props;
     return (
-      <div style={containterStyle}>
-        <AppBar
-          titleStyle={titleStyle}
-          iconStyleRight={{
-            marginTop: '4px'
-          }}
-          title={<span>{this.props.t(title)}</span>}
-          style={appBarStyle}
-          iconElementRight={<RefreshButton onClick={this.onClickRefreshButton} />}
-          {...rest}
-        />
-        {this.props.children}
+      <div className="content-wrapper-style">
+        { 
+          appBarDisabled ? null : (
+            <AppBar
+              titleStyle={titleStyle}
+              iconStyleRight={{
+                marginTop: '4px'
+              }}
+              title={<span>{this.props.t(title)}</span>}
+              className="appbar-style"
+              iconElementRight={<RefreshButton onClick={this.onClickRefreshButton} />}
+              {...rest}
+            />
+          )
+        }
+        {this.renderChildren()} 
       </div>
     );
   }

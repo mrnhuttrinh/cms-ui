@@ -20,7 +20,6 @@ import TablePermission from './treeViewPermission';
 
 import {
   tabStyle,
-  indicatorStyle,
   rowContainer,
   leftColumn,
   rightColumn,
@@ -53,23 +52,17 @@ class RoleDetail extends React.Component {
         title="Role detail"
         iconStyleLeft={{display: 'none'}}
       >
-        <TabTemplate
-          style={{
-            minHeight: 'calc(100% - 56px)',
-            height: 'calc(100% - 56px)',
-          }}
-          inkBarStyle={indicatorStyle}
-        >
+        <TabTemplate>
           <Tab style={tabStyle} label={this.props.t('general information')} >
             <AnimationGroup
               loading={this.props.roleRequesting}
               errorLoading={this.props.roleError ? true : false}
             />
             <Row style={rowContainer}>
-              <Col md={4} style={leftColumn}>
+              <Col md={4} xs={12} style={leftColumn}>
                 <DetailView data={roleData} />
               </Col>
-              <Col md={8} style={rightColumn}>
+              <Col md={8} xs={12} style={rightColumn}>
                 <TablePermission roleId={id} roleData={roleData} />
               </Col>
             </Row>

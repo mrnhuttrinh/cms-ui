@@ -30,7 +30,7 @@ class AccountCard  extends React.Component {
   }
   renderCard(customerCard, key) {
     return (
-      <Col md={6} style={{padding:'10px 46px 10px 46px'}} key={key}>
+      <Col md={6} className="account-detail" key={key}>
         <Card>
         <CardTitle style={titleStyle}>
           {this.props.t('Card information')}

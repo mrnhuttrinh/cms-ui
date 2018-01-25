@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import AppBarHeader from './appBarHeader';
 import LeftSideMenu from './leftSideMenu';
 import privateRouteReducers from './reducers';
 import { AnimationGroup } from '../../components';
+import * as actions from './actions';
 
 import "./index.scss";
 
@@ -66,7 +68,10 @@ class PrivateRoute extends React.Component {
               <div className={leftSidebarClassName}>
                 <LeftSideMenu location={props.location} permissions={this.props.data.permissions}/>
               </div>
-              <div className={`transparent-layer ${leftSidebarClassName}`} /> 
+              <div
+                className={`transparent-layer ${leftSidebarClassName}`}
+                onClick={this.props.actions.toggleLeftMenu}
+              />
               <div className={rightContentClassName}>
                 <AnimationGroup
                   loading={loading || !this.state.reloadChildren}
@@ -109,8 +114,13 @@ const mapStateToProps = (state) => ({
   errorLoading: state.animationGroup.get('errorLoading'),
 });
 
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+  actions: bindActionCreators(Object.assign({}, actions), dispatch)
+});
+
 export default withRouter(connect(
-  mapStateToProps, null, null, {
+  mapStateToProps, mapDispatchToProps, null, {
     pure: false,
   }
 )(PrivateRoute));
