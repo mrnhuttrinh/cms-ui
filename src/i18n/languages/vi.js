@@ -280,6 +280,17 @@ const vi = {
     'Role name is exists': 'Tên nhóm đã tồn tại',
     'Role name': 'Tên nhóm',
     'Role name not empty': 'Tên nhóm không để trống',
+    // report
+    'Merchants Report': 'Báo cáo đại lý',
+    'date': 'Ngày',
+    'merchant': 'đại lý',
+    'opening amount': 'số tiền ban đầu',
+    'closing amount': 'số tiền lúc sau',
+    'created by': 'được tạo bởi',
+    'DEPOSIT': 'tiền gửi',
+    'EXPENSE': 'chi phí',
+    'PAYMENT': 'thanh toán',
+    'REFUND': 'hoàn tiền',
   }
 };
 

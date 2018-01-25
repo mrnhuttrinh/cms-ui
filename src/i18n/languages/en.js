@@ -281,6 +281,17 @@ const en = {
     'Role name is exists': 'Role name is exists',
     'Role name': 'Role name',
     'Role name not empty': 'Role name not empty',
+    // report
+    'Merchants Report': 'Merchants Report',
+    'date': 'date',
+    'merchant': 'merchant',
+    'opening amount': 'opening amount',
+    'closing amount': 'closing amount',
+    'created by': 'created by',
+    'DEPOSIT': 'deposit',
+    'EXPENSE': 'expense',
+    'PAYMENT': 'payment',
+    'REFUND': 'refund',
   }
 };
 
