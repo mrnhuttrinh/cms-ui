@@ -8,10 +8,6 @@ import { translate } from 'react-i18next';
 
 import { AnimationGroup } from '../commons';
 
-import {
-  rowContainer,
-} from './styles';
-
 import * as actions from './actions';
 
 const formatDate = (date) => (date ? moment(date).format('h:mm:ss DD/MM/YYYY') : 'N/A');
@@ -27,7 +23,7 @@ class UserInformation extends React.Component {
     };
     const firstRole = data.roles[0] || {};
     return (
-      <Row style={rowContainer}>
+      <Row className="userRowContainer">
         <Col md={12}>
           <Row>
             <Col md={7} xs={12}>

@@ -51,10 +51,6 @@ class MerchantDetail extends React.Component {
         }
       >
         <TabTemplate
-          style={{
-            minHeight: 'calc(100% - 56px)',
-            height: 'calc(100% - 56px)',
-          }}
           inkBarStyle={indicatorStyle}
           value={this.state.value}
           onChange={this.handleChange}

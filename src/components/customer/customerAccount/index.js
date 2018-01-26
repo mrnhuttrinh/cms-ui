@@ -38,7 +38,7 @@ class CustomerAccount  extends React.Component  {
     if (this.props.data && this.props.data._embedded) {
       const accountsCard = _.map(this.props.data._embedded.accounts, this.renderCard);
       return (
-        <div style={{padding:'20px 100px 20px 100px'}}>
+        <div className="customer-detail">
           {accountsCard}
         </div>);
     }

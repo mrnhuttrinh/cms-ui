@@ -15,6 +15,8 @@ import CustomerDetailReducer from './reducers';
 import CustomerAccountReducer from './customerAccount/reducers';
 import CustomerHistoryReducer from './customerHistory/reducers';
 
+import './styles.scss';
+
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
@@ -38,13 +40,7 @@ class Customer extends React.Component {
         title="Customer details"
         iconStyleLeft={{display: 'none'}}
       >
-        <TabTemplate
-          style={{
-            minHeight: 'calc(100% - 56px)',
-            height: 'calc(100% - 56px)',
-          }}
-          inkBarStyle={indicatorStyle}
-        >
+        <TabTemplate inkBarStyle={indicatorStyle}>
           <Tab style={tabStyle} label={this.props.t('general information')} >
             <CustomerDetails
               customer={this.props.customer}

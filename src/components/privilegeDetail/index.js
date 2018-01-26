@@ -113,13 +113,7 @@ class PrivilegeDetail  extends React.Component {
         title="User details"
         iconStyleLeft={{display: 'none'}}
       >
-        <TabTemplate
-          style={{
-            minHeight: 'calc(100% - 56px)',
-            height: 'calc(100% - 56px)',
-          }}
-          inkBarStyle={indicatorStyle}
-        >
+        <TabTemplate inkBarStyle={indicatorStyle}>
           <Tab style={tabStyle} label={this.props.t('general information & History')} >
             <Row style={rowContainer}>
               <Col md={5} style={leftColumn}>

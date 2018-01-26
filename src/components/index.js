@@ -31,6 +31,8 @@ import Report, { reducers as ReportReducers } from './report';
 import Launcher from './launcher';
 
 import GlobalGuide from './globalGuide';
+
+import './base-styles.scss';
 // export view
 export {
   Login,

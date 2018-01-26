@@ -135,7 +135,7 @@ class CustomerHistory  extends React.Component  {
       historyDetail = historyDetail.concat(_.reverse(timeLine[key]));
     });
     return (
-      <div style={{padding:'20px 100px 20px 100px', position: 'relative'}} >
+      <div className="customer-detail" >
         {historyDetail.length ? historyDetail : this.props.t('Don\'t have history information!')}
       </div>);
   }
