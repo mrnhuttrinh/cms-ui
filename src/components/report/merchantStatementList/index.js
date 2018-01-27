@@ -5,12 +5,17 @@ import FontIcon from 'material-ui/FontIcon';
 import AppBar from 'material-ui/AppBar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import currencyFormatter from 'currency-formatter';
 import MerchantStatementsListReducer from './reducers';
 import * as actions from './actions';
 import DataTable, { dataAccesser, TYPE } from '../../commons/table';
 import MerchantStatementsDetailsList, { reducers as MerchantStatementsDetailsListReducer } from './merchantStatementDetails';
-import { dateFormatter } from '../../../utils';
+import { dateFormatter, dateTimeFormatter } from '../../../utils';
 
+const STATUS_TYPE = {
+  STORAGE: 'STORAGE',
+  PENDING: 'PENDING',
+};
 
 const appBarStyle = {
   backgroundColor: '#FFFFFF',
@@ -108,28 +113,46 @@ MerchantStatementsList.defaultProps = {
       key: 'dueDate',
       text: 'date',
       type: TYPE.date,
-      sort: 'ASC',
+      sort: 'DESC',
     },
     {
       key: 'merchant.name',
       text: 'merchant',
     },
     {
+      key: 'totalTransaction',
+      text: 'total transaction',
+    },
+    {
       key: 'openingAmount',
       text: 'opening amount',
+      formater: currencyFormatter.format,
     },
     {
       key: 'closingAmount',
       text: 'closing amount',
+      // formater: (amount) => currencyFormatter.format(parseFloat(amount),  { code: 'USD' }),
+    },
+    {
+      key: 'createdAt',
+      text: 'record at',
+      type: TYPE.date,
+      formater: dateTimeFormatter,
     },
     {
       key: 'createdBy',
       text: 'created by',
     },
+    {
+      key: 'status',
+      text: 'status',
+      type: TYPE.option,
+      options: STATUS_TYPE,
+    },
   ],
   sort: {
     key: 'dueDate',
-    type: 'ASC',
+    type: 'DESC',
   },
   search: {
     key: 'dueDate',
