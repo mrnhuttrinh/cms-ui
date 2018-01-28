@@ -88,7 +88,7 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
   },
   ROLE: {
     value: 'role',
-    text: 'Roles ',
+    text: 'Roles',
     icon: 'group_add',
     url: '/role',
   },

@@ -73,7 +73,7 @@ MerchantStatementsDetailsList.defaultProps = {
     key: 'description',
   },
   data: null,
-  size: 10,
+  size: 8,
 }
 
 const mapStateToProps = (state) => ({

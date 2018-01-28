@@ -37,7 +37,7 @@ const en = {
     'Customer details': 'Customer details',
     'general information': 'general information',
     'accounts': 'accounts',
-    'cards': 'cards',
+    'Cards': 'Cards',
     'history': 'history',
     'Personal information': 'Personal information',
     'First name': 'First name',
@@ -183,6 +183,7 @@ const en = {
     'Code number': 'Code number',
     'Security code': 'Security code',
     'Default': 'Default',
+    'Merchants': 'Merchants',
 
     'Add new application': 'Add new application',
     'Update status': 'Update status',
@@ -199,12 +200,14 @@ const en = {
     'Wallet list': 'Wallet list',
     'Wallet ID': 'Wallet ID',
     'Provider': 'Provider',
-    'wallets': 'wallets',
+    'Wallets': 'Wallets',
     'Wallet information': 'Wallet information',
     'Disconnect wallet': 'Disconnect',
     'create and connect new wallet': 'create and connect new wallet',
 
     'DEFAULT': 'DEFAULT',
+    'Users': 'Users',
+    'Settings': 'Settings',
     // role list
     'Role list': 'Role list',
     'Created date': 'Created date',
@@ -282,16 +285,21 @@ const en = {
     'Role name': 'Role name',
     'Role name not empty': 'Role name not empty',
     // report
+    'Reports': 'Reports',
     'Merchants Report': 'Merchants Report',
     'date': 'date',
     'merchant': 'merchant',
+    'total transaction': 'total transaction',
     'opening amount': 'opening amount',
     'closing amount': 'closing amount',
+    'record at': 'record at',
     'created by': 'created by',
-    'DEPOSIT': 'deposit',
-    'EXPENSE': 'expense',
-    'PAYMENT': 'payment',
-    'REFUND': 'refund',
+    'DEPOSIT': 'DEPOSIT',
+    'EXPENSE': 'EXPENSE',
+    'PAYMENT': 'PAYMENT',
+    'REFUND': 'REFUND',
+    'STORAGE': 'STORAGE',
+    'PENDING': 'PENDING',
   }
 };
 
