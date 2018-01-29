@@ -51,7 +51,7 @@ class GroupPermission extends React.Component {
     } = this.props;
     const style = index % 2 === 0 ? itemEvent : {};
     return (
-      <React.Fragment>
+      <div>
         <ListItem
           style={style}
           nestedListStyle={Object.assign({}, style, {
@@ -69,7 +69,7 @@ class GroupPermission extends React.Component {
           nestedItems={this.renderChildList(disabled)}
         />
         <Divider />
-      </React.Fragment>
+      </div>
     )
   }
 }
