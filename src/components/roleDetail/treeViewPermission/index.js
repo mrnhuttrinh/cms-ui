@@ -84,7 +84,7 @@ class TreeViewPermission extends React.Component {
     // group permission
     return _.map(groupPermissions, (gPer, index) => {
       return (
-        <React.Fragment>
+        <div>
           <GroupPermission
             key={`${index}_${gPer}`}
             index={index}
@@ -95,7 +95,7 @@ class TreeViewPermission extends React.Component {
             disabled={disabled}
           />
           <Divider />
-        </React.Fragment>
+        </div>
       )
     });
   }
@@ -138,7 +138,7 @@ class TreeViewPermission extends React.Component {
     } = this.props;
     const disabled = ROLES.ADMIN === roleData.name;
     return (
-      <React.Fragment>
+      <div>
         <AnimationGroup
           loading={this.props.updateRolePermissionRequesting}
           errorLoading={this.props.updateRolePermissionError ? true : false}
@@ -176,7 +176,7 @@ class TreeViewPermission extends React.Component {
           <Divider />
           {this.groupPermission(disabled)}
         </List>
-      </React.Fragment>
+      </div>
     );
   }
 }
