@@ -71,7 +71,7 @@ CustomerList.defaultProps = {
       text: 'position',
     }, {
       key: 'dateBecameCustomer',
-      text: 'registered date',
+      text: 'effective date',
       type: TYPE.date,
     }, {
       key: 'status',
