@@ -91,13 +91,7 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     text: 'Roles',
     icon: 'group_add',
     url: '/role',
-  },
-  SETTING: {
-    value: 'setting',
-    text: 'Settings',
-    icon: 'settings',
-    url: '/settings',
-  },
+  }
 };
 
 export const PERMISSIONS = _PERMISSIONS;

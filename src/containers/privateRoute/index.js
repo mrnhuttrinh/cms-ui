@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import AppBarHeader from './appBarHeader';
 import LeftSideMenu from './leftSideMenu';
@@ -18,6 +19,11 @@ class PrivateRoute extends React.Component {
       reloadChildren: true,
     };
     this.forceReloadContent = this.forceReloadContent.bind(this);
+  }
+  componentDidMount() {
+    if (this.props.data && this.props.data.user && this.props.data.user.roles) {
+      this.props.actions.getRoleDetail(this.props.data.user.roles[0].id);
+    }
   }
   forceReloadContent() {
     this.setState({
@@ -40,14 +46,20 @@ class PrivateRoute extends React.Component {
     } = this.props;
     if (parentComponent) {
       const ParentComponent = parentComponent;
-      return (
-        <React.Fragment>
-          <Component {...props}/>
-          <ParentComponent />
-        </React.Fragment>
-      )
+      return [
+        <Component {...props}/>,
+        <ParentComponent />
+      ];
     }
     return (<Component {...props}/>);
+  }
+  getPermissions() {
+    const {
+      roleData: {
+        permissions,
+      },
+    } = this.props;
+    return _.map(permissions, per => per.name);
   }
   render() {
     const {
@@ -66,7 +78,7 @@ class PrivateRoute extends React.Component {
             <AppBarHeader />
             <div className="main-body">
               <div className={leftSidebarClassName}>
-                <LeftSideMenu location={props.location} permissions={this.props.data.permissions}/>
+                <LeftSideMenu location={props.location} permissions={this.getPermissions()}/>
               </div>
               <div
                 className={`transparent-layer ${leftSidebarClassName}`}
@@ -103,11 +115,25 @@ class PrivateRoute extends React.Component {
   }
 }
 
+PrivateRoute.defaultProps = {
+  roleData: {
+    permissions: [],
+  },
+  data: {
+    user: {
+      roles: []
+    }
+  }
+}
+
 PrivateRoute.childContextTypes = {
   forceReloadContent: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
+  roleRequesting: state.privateRouteReducers.get('roleDetail').get('requesting'),
+  roleData: state.privateRouteReducers.get('roleDetail').get('data'),
+  roleError: state.privateRouteReducers.get('roleDetail').get('error'),
   data: state.loginReducer.get('data'),
   leftMenuState: state.privateRouteReducers.get('leftMenuState'),
   loading: state.animationGroup.get('loading'),

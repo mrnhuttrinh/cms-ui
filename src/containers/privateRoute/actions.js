@@ -1,12 +1,27 @@
 import {
   USER_UPDATE_SETTING_API,
+  GET_ROLE_DETAIL_API,
 } from '../../constants';
 import {
+  GET_ROLE_DETAIL,
   TOGGLE_LEFT_MENU,
   CHANGE_LANGUAGE_SETTING,
 } from './constants';
 
 export const toggleLeftMenu = () => ({type: TOGGLE_LEFT_MENU});
+
+export const getRoleDetail = id => {
+  return {
+    type: GET_ROLE_DETAIL,
+    fetchConfig: {
+      path: GET_ROLE_DETAIL_API.replace('{id}', id),
+      params: {
+        method: 'GET'
+      },
+    }
+  };
+};
+
 
 export const languageSetting = (id, key, value) => {
   return {
