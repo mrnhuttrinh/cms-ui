@@ -8,10 +8,7 @@ import AccoutDetailsComponent from '../accountDetailsComponent';
 import ConfirmationDialog from './confirmationDialog';
 
 const groupControl = {
-  display: 'block',
-  padding: '14px 33px 49px',
-  backgroundColor: '#e8e8e8',
-  boxShadow: 'rgba(0, 0, 0, 0.24) 0px 4px 4px 0px, rgba(0, 0, 0, 0.12) 0px 0px 4px 0px'
+  
 }
 
 class AccountDetails  extends React.Component  {
@@ -75,13 +72,11 @@ class AccountDetails  extends React.Component  {
     const dialogContent = this.props.t(`dialog content when account is ${this.props.account.status}`);
 
     return (
-      <div>
-        <div style={groupControl}>
+      <div className="account-detail-container">
+        <div className="group-control">
           {this.props.account.status === 'ACTIVE' ? lockButton : unLockButton}
         </div>
-        <div
-          style={{padding:'20px 100px 20px 100px'}}
-        >
+        <div className="account-detail">
           <AccoutDetailsComponent account={this.props.account} />
         </div>
         <ConfirmationDialog

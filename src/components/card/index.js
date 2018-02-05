@@ -16,6 +16,8 @@ import CardTransactionReducer from './cardTransaction/reducers';
 import CardWallet from './cardWallet';
 import CardWalletReducer from './cardWallet/reducers';
 
+import './styles.scss';
+
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
   minHeight: 'calc(100% - 56px)',

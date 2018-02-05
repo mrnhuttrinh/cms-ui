@@ -43,7 +43,9 @@ class ContentWrapper extends React.Component {
       title, iconElementRight, children, appBarDisabled, ...rest
     } = this.props;
     return (
-      <div className="content-wrapper-style">
+      <div
+        className="content-wrapper-style"
+      >
         { 
           appBarDisabled ? null : (
             <AppBar

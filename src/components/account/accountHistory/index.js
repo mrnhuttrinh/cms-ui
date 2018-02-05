@@ -111,9 +111,9 @@ class AccountHistory  extends React.Component  {
     const content = (<span>{Informations[1]} {r.createdBy? <span> {this.props.t('by')} <strong>{r.createdBy}</strong></span> : null}</span>);
     return (<Card key={key} style={{ padding: '9px 9px 0px'}}>
       <Row>
-        <Col md={1}>{icon}</Col>
-        <Col md={2}>{title}</Col>
-        <Col md={9}>{content}</Col>
+        <Col md={1} xs={2}>{icon}</Col>
+        <Col md={2} xs={4}>{title}</Col>
+        <Col md={9} xs={6}>{content}</Col>
       </Row>
     </Card>)
   }
@@ -133,7 +133,7 @@ class AccountHistory  extends React.Component  {
       historyDetail = historyDetail.concat(_.reverse(timeLine[key]));
     });
     return (
-      <div style={{padding:'20px 100px 20px 100px'}} >
+      <div className="account-history" >
         {historyDetail.length ? historyDetail : 'This account does not have any history.'}
       </div>);
   }

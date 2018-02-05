@@ -24,14 +24,12 @@ import ResetPasswordDialog from './resetPassword';
 
 import { ENUM_USER_STATUS } from '../../constants';
 
+import './styles.scss';
+
 import {
   tabStyle,
   indicatorStyle,
   titleStyle,
-  rowContainer,
-  leftColumn,
-  rightColumn,
-  groupControl,
 } from './styles';
 
 
@@ -115,8 +113,8 @@ class PrivilegeDetail  extends React.Component {
       >
         <TabTemplate inkBarStyle={indicatorStyle}>
           <Tab style={tabStyle} label={this.props.t('general information & History')} >
-            <Row style={rowContainer}>
-              <Col md={5} style={leftColumn}>
+            <Row className="privilege-detail">
+              <Col md={5} xs={12} className="left-column">
                 <CardTitle style={titleStyle}>
                   {this.props.t('Personal information')}
                 </CardTitle>
@@ -126,7 +124,7 @@ class PrivilegeDetail  extends React.Component {
                 />
                 <UserInformation />
               </Col>
-              <Col md={7} style={rightColumn}>
+              <Col md={7} xs={12} className="right-column">
                 <CardTitle style={titleStyle}>
                   {this.props.t('User Activity history')}
                 </CardTitle>
@@ -136,55 +134,39 @@ class PrivilegeDetail  extends React.Component {
                 />
                 <ActiveHistory userHistories={this.props.userHistoriesData} />
               </Col>
+              <Col md={12} className="group-control">
+                <FlatButton
+                  className="go-back"
+                  backgroundColor="#fff"
+                  labelStyle={{
+                    textTransform: 'none',
+                    color: '#747474'
+                  }}
+                  onClick={() => this.props.history.push('/permission')}
+                  label={this.props.t('Go back')} />
+                <FlatButton
+                  className="edit-button"
+                  backgroundColor="#009688"
+                  labelStyle={{color: '#fff'}}
+                  label={this.props.t('EDIT')}
+                  onClick={this.onClickUpdateUserInformation}
+                />
+                <FlatButton
+                  className="lock-button"
+                  backgroundColor="#b93221"
+                  labelStyle={{color: '#fff'}}
+                  label={this.props.t(labelLockUser)}
+                  onClick={this.onClickUpdateStatus}
+                />
+                <FlatButton
+                  className="reset-password-button"
+                  backgroundColor="#9F6000"
+                  labelStyle={{color: '#fff'}}
+                  onClick={this.onClickOpenDialog}
+                  label={this.props.t('RESET PASSWORD')}
+                />
+              </Col>
             </Row>
-            <div style={groupControl}>
-              <FlatButton
-                style={{
-                  boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
-                  float: 'left',
-                }}
-                backgroundColor="#fff"
-                labelStyle={{
-                  textTransform: 'none',
-                  color: '#747474'
-                }}
-                onClick={() => this.props.history.push('/permission')}
-                label={this.props.t('Go back')} />
-              <FlatButton
-                style={{
-                  boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
-                  float: 'right',
-                  marginLeft: 15
-                }}
-                backgroundColor="#009688"
-                labelStyle={{color: '#fff'}}
-                label={this.props.t('EDIT')}
-                onClick={this.onClickUpdateUserInformation}
-              />
-              <FlatButton
-                style={{
-                  boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
-                  float: 'right',
-                  marginRight: 15,
-                  marginLeft: 15,
-                }}
-                backgroundColor="#b93221"
-                labelStyle={{color: '#fff'}}
-                label={this.props.t(labelLockUser)}
-                onClick={this.onClickUpdateStatus}
-              />
-              <FlatButton
-                style={{
-                  boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
-                  float: 'right',
-                  marginRight: 15,
-                }}
-                backgroundColor="#9F6000"
-                labelStyle={{color: '#fff'}}
-                onClick={this.onClickOpenDialog}
-                label={this.props.t('RESET PASSWORD')}
-              />
-            </div>
             {
               this.state.openResetPasswordDialog ? (
                 <ResetPasswordDialog

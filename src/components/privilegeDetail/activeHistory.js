@@ -8,38 +8,6 @@ import moment from 'moment';
 import { HISTORY_TYPE } from './constants';
 import i18n from '../../i18n';
 
-const titleStyle = {
-  padding: '0 20px',
-  color: '#616161',
-  fontSize: 13,
-  paddingTop: 10,
-  paddingBottom: 10,
-};
-
-const milestoneStyle = {
-  fontSize: 13,
-  whiteSpace: 'nowrap',
-  paddingLeft: 10,
-  lineHeight: '32px',
-  height: '32px',
-};
-
-const iconStyle = {
-  fontSize: 20,
-  color: '#757575',
-  lineHeight: '32px',
-};
-
-const divHistoryDetail = {
-  color: 'rgba(0, 0, 0, 0.87)',
-  backgroundColor: 'rgb(255, 255, 255)',
-  transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-  boxSizing: 'border-box',
-  boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px',
-  borderRadius: '2px',
-  zIndex: '1',
-  // padding: '6px'
-}
 
 class ActiveHistory extends React.Component {
   renderMilestoneDetail(milestone) {
@@ -51,16 +19,16 @@ class ActiveHistory extends React.Component {
       textNote: '',
     };
     return (
-      <Row key={uuid()} style={milestoneStyle}>
-        <Col md={1}>
-          <FontIcon style={iconStyle} className="material-icons">
+      <Row key={uuid()} className="mile-stone">
+        <Col md={1} xs={2}>
+          <FontIcon className="material-icons">
             {historyType.icon}
           </FontIcon>
         </Col>
-        <Col md={3}>
+        <Col md={3} xs={4}>
           {this.props.t(historyType.title)}
         </Col>
-        <Col md={8}>
+        <Col md={8} xs={6}>
           {this.props.t(historyType.textNote)} <strong>{historyType.createdByText}</strong>
         </Col>
       </Row>
@@ -70,8 +38,8 @@ class ActiveHistory extends React.Component {
     if (milestones && milestones.length > 0) {
       return (
         <div key={uuid()}>
-          <p style={titleStyle}><span>{textTime}</span></p>
-          <div style={divHistoryDetail}>
+          <p className="history-title"><span>{textTime}</span></p>
+          <div className="history-detail">
             {
               _.map(milestones, milestone => this.renderMilestoneDetail(milestone))
             }
@@ -84,15 +52,15 @@ class ActiveHistory extends React.Component {
   renderEmptyHistory() {
     return (
       <div key={uuid()}>
-        <p style={titleStyle}><span></span></p>
-        <div style={divHistoryDetail}>
-          <Row key={uuid()} style={milestoneStyle}>
-            <Col md={1}>
-              <FontIcon style={iconStyle} className="material-icons">
+        <p className="history-title"><span></span></p>
+        <div className="history-detail">
+          <Row key={uuid()} className="mile-stone">
+            <Col md={1} xs={2}>
+              <FontIcon className="material-icons">
                 new_releases
               </FontIcon>
             </Col>
-            <Col md={11}>
+            <Col md={11} xs={10}>
               {this.props.t('Don\'t have history information!')}
             </Col>
           </Row>
@@ -130,8 +98,8 @@ class ActiveHistory extends React.Component {
     } = this.props;
     const histories = _.orderBy(userHistories._embedded.userHistories, history => moment(history.createdAt), ['desc']);
     return (
-      <Row style={{marginTop: '-20px'}}>
-        <Col md={12}>
+      <Row className="activity-history">
+        <Col md={12} xs={12}>
           {
             this.divideTimeLife(histories)
           }

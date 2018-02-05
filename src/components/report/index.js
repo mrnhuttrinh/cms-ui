@@ -14,6 +14,7 @@ import { Tab } from 'material-ui/Tabs';
 import { TabTemplate } from '../commons';
 import MerchantStatmentList, { reducers as MerchantStatementsListReducer } from './merchantStatementList';
 
+import './styles.scss';
 
 const tabStyle = {
   backgroundColor: 'rgb(128, 203, 196)',
@@ -78,7 +79,7 @@ class Report extends React.Component {
       <div key={idx} style={{paddingTop: '30px'}}>
         <span style={titleStyle}>{this.props.t(r.text)}</span>
           <GridList
-            cols={12}
+            cols={8}
             padding={5}
             cellHeight={56}
           >
@@ -123,7 +124,7 @@ class Report extends React.Component {
           inkBarStyle={indicatorStyle}
         >
           <Tab style={tabStyle} label={this.props.t('Synthesis Report')} >
-            <div style={{padding: '20px 100px'}}>
+            <div className="report-wrapper">
               <SearchField
                 columns={this.props.columns}
                 search={this.props.search}
@@ -135,7 +136,7 @@ class Report extends React.Component {
             </div>
           </Tab>
           <Tab style={tabStyle} label={this.props.t('Merchants Report')} >
-            <div style={{padding: '20px 100px'}}>
+            <div>
               <MerchantStatmentList />
             </div>
           </Tab>

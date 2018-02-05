@@ -22,13 +22,13 @@ class CardDetails extends React.Component {
     return (<CardHistory cardId={this.props.cardId} />);
   }
   render () {
-    return (<Row style={{padding:'20px 100px 20px 100px', minHeight: '100%'}} >
-      <Col md={4} style={{padding:'20px'}}>
-        <div  style={titleStyle}>{this.props.t('Card information')}</div>
+    return (<Row className="card-wrapper card-detail-container" >
+      <Col md={4} xs={12} className="card-detail">
+        <div style={titleStyle}>{this.props.t('Card information')}</div>
         {this.renderCard()}
       </Col>
-      <Col md={8} style={{borderLeft: '1px solid rgb(224, 224, 224)', padding:'20px'}}>
-        <div  style={titleStyle}>{this.props.t('Card history')}</div>
+      <Col md={8} xs={12} className="card-history">
+        <div style={titleStyle}>{this.props.t('Card history')}</div>
         {this.renderCardHistoy()}
       </Col>
     </Row>)
