@@ -300,6 +300,7 @@ const vi = {
     'REFUND': 'HOÀN TIỀN',
     'STORAGE': 'LƯU TRỮ',
     'PENDING': 'CHỜ',
+    'This account does not have any card.': 'Tài khoản không có thẻ.',
   }
 };
 

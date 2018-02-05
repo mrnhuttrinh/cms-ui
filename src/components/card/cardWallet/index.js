@@ -72,7 +72,7 @@ class CardWallet  extends React.Component  {
           <Col md={3}>
             <TextField
               floatingLabelText={this.props.t('Type')}
-              value={wallet.type}
+              value={this.props.t(wallet.type)}
               floatingLabelFixed={true}
               fullWidth
             />

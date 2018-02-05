@@ -9,8 +9,12 @@ import { ContentWrapper } from '../commons';
 import { translate } from 'react-i18next';
 
 const ACCOUNT_STATUS = {
-  ACTIVE: 'ĐANG HOẠT ĐỘNG',
-  INACTIVE: 'BỊ KHÓA',
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+}
+
+const CARD_TYPE = {
+  DEFAULT: 'DEFAULT',
 }
 
 class CardList extends React.Component {
@@ -60,8 +64,10 @@ CardList.defaultProps = {
       formater: (data) => _.map(_.get(data, 'customer.accounts'), account => account.accountName).join(', '),
     },
     {
-      key: 'cardType.description',
+      key: 'cardType.typeCode',
       text: 'Type',
+      type: TYPE.option,
+      options: CARD_TYPE,
     },
     {
       key: 'customer.lastName',
@@ -78,7 +84,7 @@ CardList.defaultProps = {
     },
     {
       key: 'expiryDate',
-      text: 'Expiry Date',
+      text: 'Expiry date',
       type: TYPE.date,
     },
     {

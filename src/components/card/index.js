@@ -53,7 +53,7 @@ class Card extends React.Component {
           <Tab style={tabStyle} label={this.props.t('general information & History')} >
             <CardDetails card={this.props.card} cardId={this.props.match.params.cardId} />
           </Tab>
-          <Tab style={tabStyle} label={this.props.t('wallets')} >
+          <Tab style={tabStyle} label={this.props.t('Wallets')} >
             <CardWallet cardId={this.props.match.params.cardId} />
           </Tab>
           <Tab style={tabStyle} label={this.props.t('transaction')} >
