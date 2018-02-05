@@ -12,6 +12,8 @@ import {
 } from '../commons';
 import { ENUM_USER_STATUS, ROLES } from '../../constants';
 
+import { dateTimeFormatter } from '../../utils';
+
 const validate = values => {
   const errors = {};
   // if (
@@ -128,7 +130,12 @@ const mapStateToProps = (state) => {
   const userDetail = state.PrivilegeDetailReducer.get('userDetail');
   const roleList = state.PrivilegeDetailReducer.get('roleList');
   const userData = userDetail.get('data');
+  let initialValues = null;
   if (userData) {
+    initialValues =  {
+      ...userData,
+      lastLogin: dateTimeFormatter(_.get(userData, 'lastLogin')),
+    };
     userData.status = userData.enabled ? ENUM_USER_STATUS.ACTIVE : ENUM_USER_STATUS.DEACTIVE;
     const firstRole = userData.roles[0];
     if (!_.isEmpty(firstRole)) {
@@ -136,7 +143,7 @@ const mapStateToProps = (state) => {
     }
   }
   return {
-    initialValues: userData,
+    initialValues,
     roleList: roleList.get('data'),
   };
 };
