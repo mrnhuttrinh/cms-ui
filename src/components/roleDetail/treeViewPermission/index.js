@@ -84,7 +84,7 @@ class TreeViewPermission extends React.Component {
     // group permission
     return _.map(groupPermissions, (gPer, index) => {
       return (
-        <div>
+        <div key={`div_${index}_${gPer}`}>
           <GroupPermission
             key={`${index}_${gPer}`}
             index={index}
