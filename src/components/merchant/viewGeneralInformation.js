@@ -14,19 +14,6 @@ import { AnimationGroup } from '../commons';
 
 import * as actions from './actions';
 
-const rowContainer = {
-  backgroundColor: '#fff',
-  marginLeft: 0,
-  marginRight: 0,
-  marginTop: 0,
-  marginBottom: 0,
-  paddingLeft: 120,
-  paddingRight: 120,
-  paddingTop: 20,
-  paddingBottom: 20,
-  position: 'relative',
-  height: '100%'
-};
 const titleStyle = {
   fontSize: '16px',
   color: '#00897b',
@@ -57,21 +44,21 @@ class GeneralInformation extends React.Component {
       address = {}
     } = data;
     return (
-      <Row style={rowContainer}>
+      <Row className="merchant-wrapper">
         <AnimationGroup
           loading={this.props.requesting}
           errorLoading={this.props.error ? true : false}
         />
-        <Col md={12}>
+        <Col md={12} xs={12}>
           <Row>
-            <Col md={12}>
+            <Col md={12} xs={12}>
               <CardTitle style={titleStyle}>
                 {this.props.t('Merchant information')}
               </CardTitle>
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
+            <Col md={6} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('Name')}
                 floatingLabelFixed
@@ -79,7 +66,7 @@ class GeneralInformation extends React.Component {
                 value={data.name}
               />
             </Col>
-            <Col md={6}>
+            <Col md={6} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('Phone')}
                 floatingLabelFixed
@@ -89,7 +76,7 @@ class GeneralInformation extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col md={12}>
+            <Col md={12} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('Email')}
                 floatingLabelFixed
@@ -99,7 +86,7 @@ class GeneralInformation extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
+            <Col md={6} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('Status')}
                 floatingLabelFixed
@@ -107,7 +94,7 @@ class GeneralInformation extends React.Component {
                 value={this.props.t(data.status)}
               />
             </Col>
-            <Col md={6}>
+            <Col md={6} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('Last login')}
                 floatingLabelFixed
@@ -117,14 +104,14 @@ class GeneralInformation extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col md={12}>
+            <Col md={12} xs={12}>
               <CardTitle style={titleStyle}>
               {this.props.t('Addresses')}
               </CardTitle>
             </Col>
           </Row>
           <Row>
-            <Col md={12}>
+            <Col md={12} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('Line')}
                 floatingLabelFixed
@@ -134,7 +121,7 @@ class GeneralInformation extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col md={12}>
+            <Col md={12} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('State Province')}
                 floatingLabelFixed
@@ -144,7 +131,7 @@ class GeneralInformation extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col md={12}>
+            <Col md={12} xs={12}>
               <TextField
                 floatingLabelText={this.props.t('City')}
                 floatingLabelFixed

@@ -27,14 +27,14 @@ class Application extends React.Component {
     return (
       <Card style={cardStyle}>
         <Row>
-          <Col md={12}>
+          <Col md={12} xs={12}>
             <CardTitle style={titleStyle}>
               {application.name}
             </CardTitle>
           </Col>
         </Row>
         <Row>
-          <Col md={8}>
+          <Col md={8} xs={12}>
             <TextField
               floatingLabelText={this.props.t('Code number')}
               floatingLabelFixed
@@ -42,7 +42,7 @@ class Application extends React.Component {
               value={application.id}
             />
           </Col>
-          <Col md={4}>
+          <Col md={4} xs={12}>
             <TextField
               floatingLabelText={this.props.t('Type')}
               floatingLabelFixed
@@ -52,7 +52,7 @@ class Application extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col md={12}>
+          <Col md={12} xs={12}>
             <TextField
               floatingLabelText={this.props.t('Security code')}
               floatingLabelFixed
@@ -62,7 +62,7 @@ class Application extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col md={4}>
+          <Col md={4} xs={12}>
             <TextField
               floatingLabelText={this.props.t('Status')}
               floatingLabelFixed
@@ -70,7 +70,7 @@ class Application extends React.Component {
               value={this.props.t(application.status)}
             />
           </Col>
-          <Col md={4}>
+          <Col md={4} xs={12}>
             <TextField
               floatingLabelText={this.props.t('Date of expiry')}
               floatingLabelFixed
@@ -78,7 +78,7 @@ class Application extends React.Component {
               value={dateTimeFormatter(application.pubKeyExpireDate)}
             />
           </Col>
-          <Col md={4}>
+          <Col md={4} xs={12}>
             <TextField
               floatingLabelText={this.props.t('Updated at')}
               floatingLabelFixed
@@ -88,7 +88,7 @@ class Application extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col md={12}>
+          <Col md={12} xs={12}>
             <FlatButton
             style={{
               boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',

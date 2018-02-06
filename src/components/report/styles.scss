@@ -1,0 +1,13 @@
+.report-wrapper {
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 20px 100px 20px 100px;
+  }
+  text-align: center;
+}
+
+.synthesis-report {
+  padding-top: 30px;
+}

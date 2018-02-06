@@ -25,7 +25,7 @@ export default class TabsExampleControlled extends React.Component {
     return (
       <Tabs
         inkBarStyle={indicatorStyle}
-        className="tabs-root-styles"
+        className={`tabs-root-styles ${this.props.className || ''}`}
         contentContainerClassName="content-container-className"
         tabTemplate={TabTemplate}
       >

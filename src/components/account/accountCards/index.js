@@ -15,9 +15,7 @@ import { GridList } from 'material-ui/GridList';
 import * as actions from './actions';
 
 const titleStyle = {
-  fontFamily: 'Roboto',
-  fontSize: '16px',
-  color: '#00897b',
+  
 }
 
 class AccountCard  extends React.Component {
@@ -30,9 +28,9 @@ class AccountCard  extends React.Component {
   }
   renderCard(customerCard, key) {
     return (
-      <Col md={6} className="account-detail" key={key}>
+      <Col md={6} className="account-card" key={key}>
         <Card>
-        <CardTitle style={titleStyle}>
+        <CardTitle className="title">
           {this.props.t('Card information')}
         </CardTitle>
         <CardText>
@@ -95,8 +93,8 @@ class AccountCard  extends React.Component {
     if (this.props.data) {
       const customerCards = _.map(this.props.data._embedded.cards, this.renderCard);
       return (
-        <Row style={{padding:'20px 100px 20px 100px'}}>
-          {customerCards.length ? customerCards : this.props.t('This account does not have any card.')}
+        <Row className="account-card-container">
+          {customerCards.length ? customerCards : 'This account does not have any card.'}
         </Row>);
     }
     return (

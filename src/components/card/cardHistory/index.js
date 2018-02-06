@@ -37,7 +37,10 @@ class CustomerHistory  extends React.Component  {
 
     // Create card
     if (data.type.type === 'CREATED') {
-      return [<Col md={1}><CreateIcon /></Col>,<Col md={2}>{this.props.t('CREATED')}</Col>,<Col md={9}>{this.props.t('Card has been created')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>]
+      return [
+        <Col md={1} xs={2}><CreateIcon /></Col>,
+        <Col md={2} xs={4}>{this.props.t('CREATED')}</Col>,
+        <Col md={9} xs={6}>{this.props.t('Card has been created')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>]
     }
 
     let updateObject;
@@ -55,23 +58,23 @@ class CustomerHistory  extends React.Component  {
         if (key==='status') {
           if (updateObject.next === 'ACTIVE') {
             results = results.concat([
-              <Col md={1}><EditIcon /></Col>,
-              <Col md={2}>{this.props.t('Unlock')}</Col>,
-              <Col md={9}>{this.props.t('The card has been unlocked')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>
+              <Col md={1} xs={2}><EditIcon /></Col>,
+              <Col md={2} xs={4}>{this.props.t('Unlock')}</Col>,
+              <Col md={9} xs={6}>{this.props.t('The card has been unlocked')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>
             ]);
           } else {
             results = results.concat([
-              <Col md={1}><EditIcon /></Col>,
-              <Col md={2}>{this.props.t('Lock')}</Col>,
-              <Col md={9}>{this.props.t('The card has been locked')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>
+              <Col md={1} xs={2}><EditIcon /></Col>,
+              <Col md={2} xs={4}>{this.props.t('Lock')}</Col>,
+              <Col md={9} xs={6}>{this.props.t('The card has been locked')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>
             ])
           }
         }
         if (key==='expiryDate') {
           results = results.concat([
-            <Col md={1}><AddIcon /></Col>,
-            <Col md={2}>{this.props.t('Renew')}</Col>,
-            <Col md={9}>{this.props.t('Card has been renewed')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>
+            <Col md={1} xs={2}><AddIcon /></Col>,
+            <Col md={2} xs={4}>{this.props.t('Renew')}</Col>,
+            <Col md={9} xs={6}>{this.props.t('Card has been renewed')} {data.createdBy? <span> {this.props.t('by')} <strong>{data.createdBy}</strong></span> : null}</Col>
           ]);
         }
       });

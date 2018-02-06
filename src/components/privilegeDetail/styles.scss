@@ -1,0 +1,107 @@
+.privilege-detail {
+  background-color: #fff;
+  height: 100%;
+  @media screen and (max-width: 768px) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .left-column {
+    @media screen and (max-width: 768px) {
+      padding-bottom: 15px;
+    }
+    @media screen and (min-width: 768px) {
+      border-right: 1px solid rgba(232, 232, 232, 0.5);
+      padding-bottom: 15px;
+      position: relative;
+    }
+  }
+  .right-column {
+    padding-bottom: 15px;
+    position: relative;
+    overflow-x: auto;
+    .activity-history {
+      margin-top: -20px;
+      .history-title {
+        padding: 0 20px;
+        color: #616161;
+        font-size: 13;
+        padding-top: 10;
+        padding-bottom: 10;
+      }
+      .history-detail {
+        color: rgba(0, 0, 0, 0.87);
+        background-color: rgb(255, 255, 255);
+        transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+        box-sizing: border-box;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+        border-radius: 2px;
+        z-index: 1;
+        .mile-stone {
+          font-size: 13;
+          white-space: nowrap;
+          padding-left: 10;
+          line-height: 32px;
+          height: 32px;
+          .material-icons {
+            font-size: 20;
+            color: #757575;
+            line-height: 32px;
+          }
+        }
+      }
+    }
+  }
+  .group-control {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 10px;
+    display: block;
+    background-color: #e8e8e8;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 4px 0px, rgba(0, 0, 0, 0.12) 0px 0px 4px 0px;
+
+    .go-back {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+      float: left;
+    }
+    .edit-button {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+      float: right;
+      @media screen and (max-width: 768px) {
+        margin-left: 0px !important;
+      }
+      @media screen and (min-width: 768px) {
+        margin-left: 15px !important;
+      }
+    }
+    .lock-button {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+      float: right;
+      
+      @media screen and (max-width: 768px) {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+      }
+      @media screen and (min-width: 768px) {
+        margin-right: 15px !important;
+        margin-left: 15px !important;
+      }
+    }
+    .reset-password-button {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+      float: right;
+      margin-right: 15px !important;
+      @media screen and (max-width: 768px) {
+        margin-right: 0px !important;
+      }
+      @media screen and (min-width: 768px) {
+        margin-left: 15px !important;
+      }
+    }
+  }
+}

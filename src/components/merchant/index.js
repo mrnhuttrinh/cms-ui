@@ -11,6 +11,8 @@ import Report from './viewReport';
 import History from './viewHistory';
 import { ContentWrapper } from '../commons';
 
+import './styles.scss';
+
 import MerchantDetailReducer from './reducers';
 
 const tabStyle = {
@@ -64,9 +66,9 @@ class MerchantDetail extends React.Component {
           <Tab style={tabStyle} label={this.props.t('merchant report')} value="report">
             <Report />
           </Tab>
-          <Tab style={tabStyle} label={this.props.t('history')} value="history">
+          {/* <Tab style={tabStyle} label={this.props.t('history')} value="history">
             <History />
-          </Tab>
+          </Tab> */}
         </TabTemplate>
       </ContentWrapper>
     );

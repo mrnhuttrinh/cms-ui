@@ -10,20 +10,6 @@ import { AnimationGroup } from '../../commons';
 
 import * as actions from '../actions';
 
-const rowContainer = {
-  backgroundColor: '#fff',
-  marginLeft: 0,
-  marginRight: 0,
-  marginTop: 0,
-  marginBottom: 0,
-  paddingLeft: 120,
-  paddingRight: 120,
-  paddingTop: 20,
-  paddingBottom: 20,
-  position: 'relative',
-  height: '100%'
-};
-
 class EquipmentAccessCard extends React.Component {
   componentWillMount() {
     const {
@@ -48,7 +34,7 @@ class EquipmentAccessCard extends React.Component {
           _.map(dataList, dt => {
             return (
               <Row>
-                <Col md={12}>
+                <Col md={12} xs={12}>
                   <Application application={dt} />
                 </Col>
               </Row>
@@ -60,7 +46,7 @@ class EquipmentAccessCard extends React.Component {
   }
   render() {
     return (
-      <Row style={rowContainer}>
+      <Row className="merchant-wrapper">
         <AnimationGroup
           loading={this.props.requesting}
           errorLoading={this.props.error ? true : false}

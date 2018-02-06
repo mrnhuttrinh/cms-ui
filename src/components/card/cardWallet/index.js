@@ -53,7 +53,7 @@ class CardWallet  extends React.Component  {
     return (<Row>
       <Col md={10}>
         <Row>
-          <Col md={3}>
+          <Col md={3} xs={12}>
             <TextField
               floatingLabelText={this.props.t('Wallet ID')}
               value={wallet.id}
@@ -61,7 +61,7 @@ class CardWallet  extends React.Component  {
               fullWidth
             />
           </Col>
-          <Col md={3}>
+          <Col md={3} xs={12}>
             <TextField
               floatingLabelText={this.props.t('Provider')}
               value={wallet.provider}
@@ -69,7 +69,7 @@ class CardWallet  extends React.Component  {
               fullWidth
             />
           </Col>
-          <Col md={3}>
+          <Col md={3} xs={12}>
             <TextField
               floatingLabelText={this.props.t('Type')}
               value={this.props.t(wallet.type)}
@@ -77,7 +77,7 @@ class CardWallet  extends React.Component  {
               fullWidth
             />
           </Col>
-          <Col md={3}>
+          <Col md={3} xs={12}>
             <TextField
               floatingLabelText={this.props.t('Status')}
               value={this.props.t(wallet.status)}
@@ -87,7 +87,7 @@ class CardWallet  extends React.Component  {
           </Col>
         </Row>
       </Col>
-      <Col md={2}>
+      <Col md={2} xs={12}>
         <RaisedButton
           id={wallet.id}
           label={this.props.t('Disconnect wallet')}
@@ -96,7 +96,7 @@ class CardWallet  extends React.Component  {
           onClick={this.disconnectWallet}
         />
       </Col>
-      <Col md={1}></Col>
+      <Col md={1} xs={12}></Col>
     </Row>);
   }
   render () {
@@ -113,7 +113,7 @@ class CardWallet  extends React.Component  {
               onClick={this.createNewWallet}
             />
           </div>
-          <div style={{padding:'20px 100px 20px 100px'}}>
+          <div className="card-wrapper">
             <Card>
               <CardTitle style={titleStyle}>
                 {this.props.t('Wallet information')}
