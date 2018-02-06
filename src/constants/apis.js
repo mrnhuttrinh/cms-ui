@@ -21,6 +21,7 @@ export const CARD_BY_ACCOUNT_API = '/api/accounts/{id}/cards?projection=custom';
 export const ACCOUNT_HISTORY_BY_ACCOUNT_ID_API = '/api/accounts/{id}/accountHistories?projection=custom';
 export const TRANSACTIONS_BY_ACCOUNT_ID_API = '/api/transactions?projection=custom&account.id={accountId}';
 export const UPDATE_ACCOUNT_API = '/api/account/update';
+export const DEPOSIT_AMOUNT_TO_ACCOUNT_API = '/api/deposit';
 
 // for user and related
 export const GET_USER_PROFILE_API ='/api/users?projection={id}';

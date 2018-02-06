@@ -1,10 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
+import { getFormValues, getFormSyncErrors} from 'redux-form'; 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import { translate } from 'react-i18next';
+import _ from 'lodash';
 
 class DepositDialog extends React.Component {
+  getDisabledOk() {
+    const {
+      values, errors, 
+    } = this.props;
+    if (_.isEmpty(errors)) {
+      return false;
+    }
+    return true;
+  }
   render() {
+    const {
+      depositToAccountRequesting, 
+    } = this.props;
     const actions = [
       <FlatButton
         label={this.props.t('Cancel')}
@@ -16,6 +31,7 @@ class DepositDialog extends React.Component {
         primary={true}
         keyboardFocused={true}
         onClick={this.props.handleOk}
+        disabled={this.getDisabledOk() || depositToAccountRequesting}
       />,
     ];
 
@@ -25,7 +41,6 @@ class DepositDialog extends React.Component {
         actions={actions}
         modal={false}
         open={this.props.open}
-        onRequestClose={this.props.handleCancel}
       >
         {this.props.children}
       </Dialog>
@@ -33,4 +48,16 @@ class DepositDialog extends React.Component {
   }
 }
 
-export default  translate('translations')(DepositDialog);
+const mapStateToProps = (state) => {
+  const depositToAccount = state.AccountDetailReducer.get('depositToAccount')
+  return {
+    values: getFormValues('depositToAccount')(state),
+    errors: getFormSyncErrors('depositToAccount')(state),
+    depositToAccountData: depositToAccount.get('data'),
+    depositToAccountRequesting: depositToAccount.get('requesting'),
+    depositToAccountError: depositToAccount.get('error'),
+  }
+  
+};
+
+export default connect(mapStateToProps)(translate('translations')(DepositDialog));

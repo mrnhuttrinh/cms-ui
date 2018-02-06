@@ -302,6 +302,19 @@ const en = {
     'STORAGE': 'STORAGE',
     'PENDING': 'PENDING',
     'This account does not have any card.': 'This account does not have any card.',
+     // deposit
+     'Deposit to this account': 'Deposit to this account',
+     'Amount': 'Amount',
+     'Amount not empty': 'Amount not empty',
+     'Amount not match': 'Amount not match',
+     'Sender': 'Sender',
+     'Sender not empty': 'Sender not empty',
+     'Card not empty': 'Card not empty',
+     'DEBIT': 'DEBIT',
+     'OTHER': 'OTHER',
+     'Others': 'Others',
+     'Detail other not empty': 'Detail other not empty',
+     'Detail not empty': 'Detail not empty'
   }
 };
 

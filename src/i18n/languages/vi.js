@@ -301,6 +301,19 @@ const vi = {
     'STORAGE': 'LƯU TRỮ',
     'PENDING': 'CHỜ',
     'This account does not have any card.': 'Tài khoản không có thẻ.',
+     // deposit
+     'Deposit to this account': 'Nạp tiền vào tài khoản',
+     'Amount': 'Số tiền',
+     'Amount not empty': 'Tiền không được bỏ trống',
+     'Amount not match': 'Tiền không hợp lệ',
+     'Sender': 'Người gửi',
+     'Sender not empty': 'Người gửi không được bỏ trống',
+     'Card not empty': 'Thẻ không được bỏ trống',
+     'DEBIT': 'GHI NỢ',
+     'OTHER': 'KHÁC',
+     'Others': 'Loại khác',
+     'Detail other not empty': 'Loại khác không bỏ trống',
+     'Detail not empty': 'Chi tiêt không được bỏ trống'
   }
 };
 
