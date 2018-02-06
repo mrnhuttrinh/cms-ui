@@ -6,6 +6,8 @@ import { Row, Col } from 'react-flexbox-grid';
 import moment from 'moment';
 import { translate } from 'react-i18next';
 
+import { dateTimeFormatter } from '../../utils';
+
 import { AnimationGroup } from '../commons';
 
 import * as actions from './actions';
@@ -72,7 +74,7 @@ class UserInformation extends React.Component {
                 floatingLabelFixed
                 fullWidth
                 floatingLabelStyle={{whiteSpace: 'nowrap'}}
-                value={formatDate(data.lastLogin)}
+                value={dateTimeFormatter(data.lastLogin)}
               />
             </Col>
           </Row>
