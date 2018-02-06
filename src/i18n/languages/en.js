@@ -301,6 +301,7 @@ const en = {
     'REFUND': 'REFUND',
     'STORAGE': 'STORAGE',
     'PENDING': 'PENDING',
+    'This account does not have any card.': 'This account does not have any card.',
   }
 };
 

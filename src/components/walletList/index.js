@@ -3,9 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import WalletListReducer from './reducers';
 import * as actions from './actions';
-import DataTable from '../commons/table';
+import DataTable, { TYPE } from '../commons/table';
 import { ContentWrapper } from '../commons';
 import { translate } from 'react-i18next';
+
+const WALLET_TYPE = {
+  DEFAULT: 'DEFAULT',
+}
 
 class CardList extends React.Component {
   render() {
@@ -47,6 +51,8 @@ CardList.defaultProps = {
     {
       key: 'type',
       text: 'Type',
+      type: TYPE.option,
+      options: WALLET_TYPE,
     },
     {
       key: 'card.cardCode',

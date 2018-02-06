@@ -32,7 +32,7 @@ const AccoutDetailsComponent = (props) => (
         />
         <TextField
           floatingLabelText={props.t('Type')}
-          value={props.account.accountType.description}
+          value={props.t(props.account.accountType.typeCode)}
           floatingLabelFixed={true}
           cols={4}
           fullWidth
@@ -97,7 +97,7 @@ const AccoutDetailsComponent = (props) => (
       >
         <TextField
           floatingLabelText={props.t('Name')}
-          value={props.account.plan.planType.description}
+          value={props.t(props.account.plan.planType.typeCode)}
           floatingLabelFixed={true}
           cols={1}
           fullWidth

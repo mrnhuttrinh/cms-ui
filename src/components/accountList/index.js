@@ -11,6 +11,14 @@ const ACCOUNT_STATUS = {
   DEACTIVE: 'DEACTIVE',
 }
 
+const ACCOUNT_TYPE = {
+  DEFAULT: 'DEFAULT',
+}
+
+const PLAN_TYPE = {
+  DEFAULT: 'DEFAULT',
+}
+
 class AccountList extends React.Component {
   constructor() {
     super();
@@ -55,8 +63,10 @@ AccountList.defaultProps = {
       key: 'accountName',
       text: 'Account name',
     }, {
-      key: 'accountType.description',
+      key: 'accountType.typeCode',
       text: 'Type',
+      type: TYPE.option,
+      options: ACCOUNT_TYPE,
     }, {
       key: 'customer.lastName',
       text: 'last name',
@@ -66,8 +76,10 @@ AccountList.defaultProps = {
       text: 'first name',
       formater: (data) => (data && data.customer ? `${data.customer.firstName}` : ''),
     }, {
-      key: 'plan.planType.description',
+      key: 'plan.planType.typeCode',
       text: 'Plan',
+      type: TYPE.option,
+      options: PLAN_TYPE,
     }, {
       key: 'dateOpened',
       text: 'Date opened',

@@ -40,7 +40,7 @@ class Account extends React.Component {
           <Tab style={tabStyle} label={this.props.t('general information')} >
             <AccountDetails accountId={accountId} />
           </Tab>
-          <Tab style={tabStyle} label={this.props.t('cards')} >
+          <Tab style={tabStyle} label={this.props.t('Cards')} >
             <AccountCards accountId={accountId} />
           </Tab>
           <Tab style={tabStyle} label={this.props.t('history')} >
