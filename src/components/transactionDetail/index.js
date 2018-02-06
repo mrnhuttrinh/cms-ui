@@ -5,13 +5,43 @@ import TextField from 'material-ui/TextField';
 import { Row, Col } from 'react-flexbox-grid';
 import { translate } from 'react-i18next';
 import { dateTimeFormatter } from '../../utils';
+import CanteenInvoice from './canteenInvoice';
 
 class TransactionDetail extends React.Component {
   renderDetails() {
     if (!this.props.transaction) {
       return null;
     }
-    return (<Row>
+
+    let transactionDetails = null;
+    let detailsComponent = null
+
+    try {
+      transactionDetails = JSON.parse(this.props.transaction.transactionDetail.detail);
+    } catch (err) {
+      console.log(err);
+    }
+
+    if (transactionDetails && transactionDetails.invoiceType === 'canteen_invoice') {
+      detailsComponent = (
+        <CanteenInvoice
+          details={transactionDetails.details}
+        />
+      );
+    } else {
+      detailsComponent = (
+        <Col md={12}>
+          <TextField
+            floatingLabelText={this.props.t('details')}
+            floatingLabelFixed
+            value={this.props.transaction.transactionDetail.detail}
+            fullWidth
+          />
+        </Col>
+      );
+    }
+    return [(
+      <Row key="row-1">
         <Col md={6}>
           <TextField
             floatingLabelText={this.props.t('transaction id')}
@@ -33,17 +63,15 @@ class TransactionDetail extends React.Component {
             value={this.props.transaction.amount}
           />
         </Col>
-        <Col md={12}>
-          <TextField
-            floatingLabelText={this.props.t('details')}
-            floatingLabelFixed
-            value={this.props.transaction.transactionDetail.detail}
-            fullWidth
-          />
-        </Col>
-
-    </Row>);
+    </Row>
+    ), (
+        <Row key="row-2">
+          {detailsComponent}
+        </Row>
+      )
+    ];
   }
+
   render() {
     const actions = [
       <FlatButton

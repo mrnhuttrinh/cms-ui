@@ -59,9 +59,8 @@ CardList.defaultProps = {
       sort: 'ASC',
     },
     {
-      key: 'customer',
+      key: 'account.accountName',
       text: 'account',
-      formater: (data) => _.map(_.get(data, 'customer.accounts'), account => account.accountName).join(', '),
     },
     {
       key: 'cardType.typeCode',
@@ -70,11 +69,11 @@ CardList.defaultProps = {
       options: CARD_TYPE,
     },
     {
-      key: 'customer.lastName',
+      key: 'account.customer.lastName',
       text: 'Last name',
     },
     {
-      key: 'customer.firstName',
+      key: 'account.customer.firstName',
       text: 'First name',
     },
     {
@@ -105,7 +104,7 @@ CardList.defaultProps = {
   },
   dataAccesser: (data) => (data.content),
   pageAccesser: (data) => (data),
-}
+};
 
 const mapStateToProps = (state) => ({
   page: state.CardListReducer.get('page'),
