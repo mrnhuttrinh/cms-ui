@@ -37,4 +37,8 @@ export default {
   'Add new role': 'Thêm nhóm',
   'Add new role successful': 'Thêm nhóm thành công',
   'Add new role failure': 'Thêm nhóm thất bại',
+
+  'Deposit to account': 'Nộp tiền vào tài khoản',
+  'Deposit to account successful': 'Nộp tiền vào tài khoản thành công',
+  'Deposit to account failure': 'Nộp tiền vào tài khoản thất bại'
 }

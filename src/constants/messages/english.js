@@ -37,4 +37,8 @@ export default {
   'Add new role': 'Add new role',
   'Add new role successful': 'Add new role successful',
   'Add new role failure': 'Add new role failure',
+
+  'Deposit to account': 'Deposit to account',
+  'Deposit to account successful': 'Deposit to account successful',
+  'Deposit to account failure': 'Deposit to account failure'
 };
