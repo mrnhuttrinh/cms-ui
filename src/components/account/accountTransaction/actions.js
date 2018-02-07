@@ -20,6 +20,8 @@ const updatePageSortSearch = (pageable, sort, search) => {
 
 export const getTransaction = (id, pageable, sort, search) =>
   (dispatch) => {
+
+    console.log(search);
     dispatch(updatePageSortSearch(pageable, sort, search));
     const searchParams = parseParams(pageable, sort, search);
     dispatch({

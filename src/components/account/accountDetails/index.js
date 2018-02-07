@@ -55,23 +55,23 @@ class AccountDetails  extends React.Component  {
         targetAccount: {
           category: "ACCOUNT",
           type: "DEFAULT"
-        }
-      },
-      transactionDetails: {
-        sender: values.sender,
-        teller: userLogin.user.id,
-        detail: values.detail,
-      },
-      additionalTerminalInfo: {
-        terminalId: '288816b1-369d-4d3f-8396-111111111111',
-        terminalAddress: {
-          addressType: 1,
-          details: {
-            city: 'HCM',
-            district: 'Tan Binh'
+        },
+        transactionDetails: JSON.stringify({
+          sender: values.sender,
+          teller: userLogin.user.id,
+          detail: values.detail,
+        }),
+        additionalTerminalInfo: {
+          terminalId: '288816b1-369d-4d3f-8396-111111111111',
+          terminalAddress: {
+            addressType: 1,
+            details: {
+              city: 'HCM',
+              district: 'Tan Binh'
+            }
           }
         }
-      }
+      },
     };
     this.props.actions.depositToAccount(params).then(() => {
       this.props.actions.getAccountDetails(this.props.accountId);

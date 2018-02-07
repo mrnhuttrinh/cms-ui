@@ -40,7 +40,7 @@ const validate = values => {
     }
   }
   return errors;
-}
+};
 
 class DepositForm extends React.Component {
   renderDetailOther() {
@@ -76,7 +76,7 @@ class DepositForm extends React.Component {
     const {
       cards = [],
     } = _embedded;
-    const itemsCard = _.map(cards, (card) => (<MenuItem value={card.cardNumber} primaryText={card.cardNumber} />));
+    const itemsCard = _.map(cards, (card) => (<MenuItem value={card.cardCode} primaryText={card.cardNumber} />));
     return itemsCard;
   }
   render () {
