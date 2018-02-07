@@ -103,7 +103,7 @@ TransactionByAccountList.defaultProps = {
   },
   data: null,
   size: 10,
-}
+};
 
 const mapStateToProps = (state) => ({
   page: state.AccountTransactionReducer.get('page'),

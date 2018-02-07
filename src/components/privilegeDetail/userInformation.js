@@ -96,6 +96,7 @@ class UserInformation extends React.Component {
             component={SelectField}
             label={this.props.t('Status')}
             children={itemsStatus}
+            disabled
           />
         </Col>
         <Col md={6} xs={12}>
