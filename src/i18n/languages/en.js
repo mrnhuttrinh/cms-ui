@@ -70,6 +70,7 @@ const en = {
     'GENDER.0': 'Female',
     'GENDER.1': 'Male',
     'GENDER.2': 'Other',
+    'GENDER.null': 'Unknown',
     'View details': 'View details',
     'Account information': 'Account information',
     'Plan': 'Plan',
