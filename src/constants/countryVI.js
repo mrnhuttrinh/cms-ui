@@ -251,5 +251,6 @@ export default {
   "IT":"Ý",
   "YE":"Yemen",
   "ZM":"Zambia",
-  "ZW":"Zimbabwe"
+  "ZW":"Zimbabwe",
+  "NULL":"Không xác định"
 }

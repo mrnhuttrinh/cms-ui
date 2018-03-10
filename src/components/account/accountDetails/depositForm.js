@@ -114,7 +114,7 @@ class DepositForm extends React.Component {
               name="card"
               type="text"
               component={SelectField}
-              label={this.props.t('Card')}
+              label={this.props.t('CARD')}
               children={this.getItemCard()}
               fullWidth
               errorText={this.props.t(errors.card)}
