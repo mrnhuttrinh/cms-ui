@@ -76,11 +76,19 @@ class DepositForm extends React.Component {
     const {
       cards = [],
     } = _embedded;
-    const itemsCard = _.map(cards, (card) => (<MenuItem value={card.cardCode} primaryText={card.cardNumber} />));
+    const itemsCard = _.map(_.filter(cards, {status: 'ACTIVE'}), (card) => (<MenuItem value={card.cardCode} primaryText={card.cardNumber} />));
     return itemsCard;
   }
   render () {
     const { errors = {}} = this.props;
+    const cardOptions = this.getItemCard();
+    if (cardOptions.length <= 0 ) {
+      return (
+        <div>
+          {this.props.t('warnings.0001')}
+        </div>
+      );
+    }
     this.renderDetailOther();
     
     return (
@@ -115,7 +123,7 @@ class DepositForm extends React.Component {
               type="text"
               component={SelectField}
               label={this.props.t('CARD')}
-              children={this.getItemCard()}
+              children={cardOptions}
               fullWidth
               errorText={this.props.t(errors.card)}
             />

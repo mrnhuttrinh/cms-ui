@@ -22,7 +22,7 @@ class CardDetails extends React.Component {
     return (<CardHistory cardId={this.props.cardId} />);
   }
   render () {
-    return (<Row className="card-wrapper card-detail-container" >
+    return (<Row className="card-detail-container" >
       <Col md={4} xs={12} className="card-detail">
         <div style={titleStyle}>{this.props.t('Card information')}</div>
         {this.renderCard()}
