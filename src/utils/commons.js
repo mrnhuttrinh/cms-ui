@@ -8,20 +8,14 @@ export const parseParams = (pageable, sort, search) => {
   const params = {...pageable, sort:`${sort.key},${sort.type}`};
   const searchParams = new URLSearchParams(params);
   if(search.value) {
-    if (search.key === 'date' && search.value[1]) {
-      [].concat(search.value).forEach((value, index) => {
-        let newValue = value;
-        if (index === 1) {
-          // Add end date to 1 more day
-          newValue = moment(search.value[1]).add(1, 'day').format('M/D/YYYY');
-        }
-        searchParams.append(search.key, newValue);
-      });
-    } else {
-      [].concat(search.value).forEach((value) => {
-        searchParams.append(search.key, value);
-      });
-    }
+    [].concat(search.value).forEach((value, index) => {
+      let newValue = value;
+      if (index === 1) {
+        // Add end date to 1 more day
+        newValue = moment(search.value[1]).add(1, 'day').format('M/D/YYYY');
+      }
+      searchParams.append(search.key, newValue);
+    });
   }
   return searchParams.toString();
 }
@@ -39,7 +33,7 @@ export const parseStringToObjectJson = (string) => {
   try {
     return JSON.parse(string);
   } catch (error) {
-    
+
   }
   return {};
 }
