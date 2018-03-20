@@ -56,7 +56,7 @@ CardList.defaultProps = {
     },
     {
       key: 'card.cardCode',
-      text: 'Card',
+      text: 'Card code',
     },
   ],
   sort: {
