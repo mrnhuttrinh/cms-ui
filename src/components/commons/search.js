@@ -137,7 +137,6 @@ class Search extends React.Component {
               autoOk
               formatDate={dateFormatter}
               minDate={startDate}
-              maxDate={new Date()}
             />)
           ];
         break;
