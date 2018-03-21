@@ -20,7 +20,7 @@ const updatePageAndSort = (pageable, sort, search) => {
 
 export const getCardList = (pageable, sort, search) =>
   (dispatch) => {
-    dispatch(updatePageAndSort(pageable, sort));
+    dispatch(updatePageAndSort(pageable, sort, search));
     const searchParams = parseParams(pageable, sort, search);
     dispatch({
       type: GET_WALLET_LIST,
