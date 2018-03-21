@@ -51,10 +51,6 @@ class MerchantList extends React.Component {
   }
 }
 
-const buildAddress = (address) => {
-  return `${address.line1} ${address.line2} ${address.city} ${address.country}`;
-};
-
 MerchantList.defaultProps = {
   columns: [
     {
@@ -68,9 +64,14 @@ MerchantList.defaultProps = {
       key: 'email',
       text: 'EMAIL',
     }, {
-      key: 'address',
-      text: 'Address',
-      formater: (data) => (data && data.address ? buildAddress(data.address) : ''),
+      key: 'address.line1',
+      text: 'Line',
+    }, {
+      key: 'address.line2',
+      text: 'State Province',
+    }, {
+      key: 'address.city',
+      text: 'City',
     }, {
       key: 'status',
       text: 'Status',

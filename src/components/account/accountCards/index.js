@@ -14,10 +14,6 @@ import { GridList } from 'material-ui/GridList';
 
 import * as actions from './actions';
 
-const titleStyle = {
-  
-}
-
 class AccountCard  extends React.Component {
   constructor() {
     super();

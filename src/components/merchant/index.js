@@ -8,7 +8,6 @@ import { TabTemplate } from '../commons';
 import GeneralInformation from './viewGeneralInformation';
 import EquipmentAccessCard from './viewEquipmentAccessCard';
 import Report from './viewReport';
-import History from './viewHistory';
 import { ContentWrapper } from '../commons';
 
 import './styles.scss';
