@@ -3,16 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TextField from 'material-ui/TextField';
 import { Row, Col } from 'react-flexbox-grid';
-import moment from 'moment';
 import { translate } from 'react-i18next';
 
 import { dateTimeFormatter } from '../../utils';
-
 import { AnimationGroup } from '../commons';
-
 import * as actions from './actions';
 
-const formatDate = (date) => (date ? moment(date).format('h:mm:ss DD/MM/YYYY') : 'N/A');
 class UserInformation extends React.Component {
   render () {
     const {

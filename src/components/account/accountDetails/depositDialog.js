@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { getFormValues, getFormSyncErrors} from 'redux-form'; 
+import { getFormValues, getFormSyncErrors} from 'redux-form';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import _ from 'lodash';
@@ -9,7 +9,7 @@ import _ from 'lodash';
 class DepositDialog extends React.Component {
   getDisabledOk() {
     const {
-      values, errors, 
+      errors, 
     } = this.props;
     if (_.isEmpty(errors)) {
       return false;
@@ -18,7 +18,7 @@ class DepositDialog extends React.Component {
   }
   render() {
     const {
-      depositToAccountRequesting, 
+      depositToAccountRequesting,
     } = this.props;
     const actions = [
       <FlatButton
@@ -57,7 +57,7 @@ const mapStateToProps = (state) => {
     depositToAccountRequesting: depositToAccount.get('requesting'),
     depositToAccountError: depositToAccount.get('error'),
   }
-  
+
 };
 
 export default connect(mapStateToProps)(translate('translations')(DepositDialog));

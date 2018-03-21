@@ -2,7 +2,6 @@ import React from 'react';
 import _ from 'lodash';
 import TextField from 'material-ui/TextField';
 import Subheader from 'material-ui/Subheader';
-import { CardText } from 'material-ui/Card';
 import { GridList } from 'material-ui/GridList';
 import { translate } from 'react-i18next';
 import { dateFormatter, dateTimeFormatter } from '../../utils';

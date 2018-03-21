@@ -15,7 +15,6 @@ import {
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import { dateTimeFormatter } from '../../utils';
-import { TYPE } from '../commons/table';
 
 export const formaters = {
   date: (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A'),
