@@ -242,6 +242,7 @@ const en = {
     'Update Account': 'Update Account',
     'View Card List': 'View Card List',
     'View Card Details': 'View Card Details',
+    'Update Card Detail': 'Update Card Detail',
     'Create New Wallet': 'Create New Wallet',
     'Remove Wallet': 'Remove Wallet',
     'View Wallet List': 'View Wallet List',
