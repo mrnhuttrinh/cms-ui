@@ -16,7 +16,7 @@ const Card = (props) => (<Row className="card-detail-component">
   <Col md={6} xs={6}>
     <TextField
       floatingLabelText={props.t('Type')}
-      value={props.card.cardType.description}
+      value={props.t(props.card.cardType.typeCode)}
       floatingLabelFixed={true}
       fullWidth
     />

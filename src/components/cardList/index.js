@@ -7,10 +7,12 @@ import DataTable, { TYPE } from '../commons/table';
 import { ContentWrapper } from '../commons';
 import { translate } from 'react-i18next';
 
-const ACCOUNT_STATUS = {
+const CARD_STATUS = {
   ACTIVE: 'ACTIVE',
-  INACTIVE: 'INACTIVE',
-}
+  CANCELED: 'CANCELED',
+  LOCKED: 'LOCKED',
+  VIOLATED: 'VIOLATED',
+};
 
 const CARD_TYPE = {
   DEFAULT: 'DEFAULT',
@@ -89,7 +91,7 @@ CardList.defaultProps = {
       key: 'status',
       text: 'Status',
       type: TYPE.option,
-      options: ACCOUNT_STATUS,
+      options: CARD_STATUS,
     },
   ],
   sort: {
