@@ -44,7 +44,7 @@ class AccountCard  extends React.Component {
             />
             <TextField
               floatingLabelText={this.props.t('Type')}
-              value={_.get(customerCard, 'cardType.description')}
+              value={this.props.t(_.get(customerCard, 'cardType.typeCode'))}
               floatingLabelFixed={true}
               cols={3}
               fullWidth

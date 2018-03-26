@@ -5,9 +5,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ManagePrivilegeListReducer from './reducers';
 import * as actions from './actions';
-import DataTable, { dataAccesser } from '../commons/table';
+import DataTable, { dataAccesser, TYPE } from '../commons/table';
 import { ContentWrapper } from '../commons';
 import { ENUM_USER_STATUS } from '../../constants';
+
+const USER_STATUS = {
+  true: 'ACTIVE',
+  false: 'DEACTIVE',
+};
 
 class ManagePrivilegeList extends React.Component {
   columns = [
@@ -51,11 +56,9 @@ class ManagePrivilegeList extends React.Component {
     }, {
       key: 'enabled',
       text: 'Status',
-      formater: (enabled, t) => {
-        const status = enabled ? ENUM_USER_STATUS.ACTIVE : ENUM_USER_STATUS.DEACTIVE;
-        return t(status);
-      },
-    }
+      type: TYPE.option,
+      options: USER_STATUS,
+    },
   ]
   constructor() {
     super();

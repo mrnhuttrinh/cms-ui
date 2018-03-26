@@ -7,6 +7,13 @@ import DataTable, { TYPE, dataAccesser } from '../../commons/table';
 
 import TransactionDetail from '../../transactionDetail';
 
+const TRANSACTION_TYPE = {
+  'DEPOSIT': 'DEPOSIT',
+  'EXPENSE': 'EXPENSE',
+  'PAYMENT': 'PAYMENT',
+  'REFUND': 'REFUND',
+}
+
 class TransactionByAccountList extends React.Component {
   constructor() {
     super();
@@ -78,8 +85,10 @@ TransactionByAccountList.defaultProps = {
       text: 'reference transaction',
     },
     {
-      key: 'transactionType.description',
+      key: 'transactionType.typeCode',
       text: 'transaction type',
+      type: TYPE.option,
+      options: TRANSACTION_TYPE,
     },
     {
       key: 'amount',
