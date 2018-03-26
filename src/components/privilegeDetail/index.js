@@ -58,7 +58,7 @@ class PrivilegeDetail  extends React.Component {
     this.props.actions.getUserHistories(userId);
     this.props.actions.getRoleList();
   }
-  
+
   onClickUpdateUserInformation() {
     const {
       form: {
@@ -70,14 +70,12 @@ class PrivilegeDetail  extends React.Component {
     const values = Object.assign({}, userInformation.values);
     delete values.roles;
     values.enabled = values.status === ENUM_USER_STATUS.ACTIVE ? true : false;
-
-    const roleItem = _.find(roleListData._embedded.roles, role => role.id === values.role);
-    values.roles = [ roleItem ];
+    values.roles = _.filter(roleListData._embedded.roles, role => (values.role.indexOf(role.id) > -1));
     delete values.role;
     delete values.status;
     this.props.actions.userUpdateInformation(values);
   }
-  
+
   onClickOpenDialog() {
     this.setState({openResetPasswordDialog: true});
   };
@@ -85,7 +83,7 @@ class PrivilegeDetail  extends React.Component {
   onClickCloseDialog() {
     this.setState({openResetPasswordDialog: false});
   };
-  
+
   onClickUpdateStatus() {
     const {
       match: {

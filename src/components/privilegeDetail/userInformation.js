@@ -88,6 +88,7 @@ class UserInformation extends React.Component {
             label={this.props.t('Role')}
             children={items}
             disabled={disabledRole}
+            multiple
           />
         </Col>
         <Col md={6} xs={12}>
@@ -138,10 +139,11 @@ const mapStateToProps = (state) => {
       lastLogin: dateTimeFormatter(_.get(userData, 'lastLogin')),
     };
     userData.status = userData.enabled ? ENUM_USER_STATUS.ACTIVE : ENUM_USER_STATUS.DEACTIVE;
-    const firstRole = userData.roles[0];
-    if (!_.isEmpty(firstRole)) {
-      userData.role = firstRole.id;
-    }
+    userData.role = _.map(userData.roles, (r) => r.id);
+    initialValues =  {
+      ...userData,
+      lastLogin: dateTimeFormatter(_.get(userData, 'lastLogin')),
+    };
   }
   return {
     initialValues,
