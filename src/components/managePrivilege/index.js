@@ -7,7 +7,6 @@ import ManagePrivilegeListReducer from './reducers';
 import * as actions from './actions';
 import DataTable, { dataAccesser, TYPE } from '../commons/table';
 import { ContentWrapper } from '../commons';
-import { ENUM_USER_STATUS } from '../../constants';
 
 const USER_STATUS = {
   true: 'ACTIVE',
