@@ -60,12 +60,21 @@ const fetchMiddleware = store => next => async action => {
       setTimeout(() => {
         toastr.success(i18n.t(success.title), i18n.t(success.message));
       }, 0);
-      
+
     }
     // show success existence message
   } catch (error) {
     // dispatch failed with error
-    const errorLogin = await error;
+    let errorLogin;
+    try {
+      errorLogin = await error.json();
+    } catch(e) {
+      errorLogin = {
+        code: error.status,
+        status: await error.text(),
+      }
+    }
+
     await dispatch({ type: `${type}_FAILED`, error: errorLogin });
     if (showLoading) {
       dispatch(mainLoadingError());

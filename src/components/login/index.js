@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { translate } from 'react-i18next'; 
+import { translate } from 'react-i18next';
 import {Field, reduxForm, getFormValues} from 'redux-form';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
@@ -87,7 +87,6 @@ class Login extends React.Component{
     );
   }
   render() {
-    const errorTextLoginFailed = 'Sorry, that login was invalid. Please try again.';
     return (
       <form onSubmit={(event) => this.onClickSignIn(event)} className="login-form">
         <div className="ecash-login">
@@ -116,7 +115,6 @@ class Login extends React.Component{
                   component={TextField}
                   label={this.props.t('Password')}
                   fullWidth
-                  errorText={this.props.errorLogin ? this.props.t(errorTextLoginFailed) : null}
                 />
               </div>
               <div className="remember-me">
@@ -157,6 +155,7 @@ class Login extends React.Component{
         <AlertMessage
           openAlertMessage={this.props.openAlertMessage}
           alertMessageHandleClose={this.alertMessageHandleClose}
+          message={this.props.errorLogin}
         />
       </form>
     );

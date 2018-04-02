@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate } from 'react-i18next'; 
+import { translate } from 'react-i18next';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -13,7 +13,6 @@ class AlertMessage extends React.Component {
         onClick={this.props.alertMessageHandleClose}
       />,
     ];
-
     return (
       <div>
         <Dialog
@@ -22,7 +21,7 @@ class AlertMessage extends React.Component {
           open={this.props.openAlertMessage}
           onRequestClose={this.props.alertMessageHandleClose}
         >
-          {this.props.t('You logged in from another device')}
+          {this.props.t(this.props.message)}
         </Dialog>
       </div>
     );

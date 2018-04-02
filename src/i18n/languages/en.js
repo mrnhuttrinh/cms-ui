@@ -143,7 +143,7 @@ const en = {
     'English': 'English',
     'Invalid email address': 'Invalid email address',
     'Sorry, that login was invalid. Please try again.': 'Sorry, that login was invalid. Please try again.',
-    'You logged in from another device': 'You logged in from another device',
+    'User was online.': 'You logged in from another device',
     // appbar
     'Language.long': 'Language',
     'user information': 'user information',
@@ -320,7 +320,7 @@ const en = {
     'Others': 'Others',
     'Detail other not empty': 'Detail other not empty',
     'Detail not empty': 'Detail not empty',
-    'warnings.0001': 'This account does not have any active card. Please try this feature later.'
+    'warnings.0001': 'This account does not have any active card. Please try this feature later.',
   }
 };
 

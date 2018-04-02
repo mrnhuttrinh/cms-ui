@@ -143,7 +143,7 @@ const vi = {
     'English': 'Tiếng Anh',
     'Invalid email address': 'Email không đúng',
     'Sorry, that login was invalid. Please try again.': 'Đăng nhập đó không hợp lệ. Vui lòng thử lại.',
-    'You logged in from another device': 'Bạn đã đăng nhập trên một thiết bị khác',
+    'User was online.': 'Bạn đã đăng nhập trên một thiết bị khác',
     // appbar
     'Language.long': 'Ngôn ngữ',
     'user information': 'Thông tin tài khoản',
