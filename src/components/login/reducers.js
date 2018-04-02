@@ -45,10 +45,17 @@ export default (state = initialState, action = {}) => {
         .delete('openAlertMessage');
       break;
     case `${SUBMIT_LOGIN}_FAILED`:
+      let errorLogin = 'Sorry, that login was invalid. Please try again.';
+      if (action.error.code === 401) {
+        errorLogin = 'Sorry, that login was invalid. Please try again.';
+      }
+      if (action.error.code === 500) {
+        errorLogin = action.error.status;
+      }
       newState = state
         .set('requesting', false)
         .set('data', {credential: false})
-        .set('errorLogin', action.error)
+        .set('errorLogin', errorLogin)
         .set('openAlertMessage', true);
       break;
     ///////////////////////// refresh token
