@@ -118,7 +118,6 @@ class Login extends React.Component{
                 />
               </div>
               <div className="remember-me">
-                <div className="pull-right forgot-password">{this.props.t('Forgot password')}?</div>
                 <div className="clearfix" />
               </div>
               <div className="button-sign-in">
