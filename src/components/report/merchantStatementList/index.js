@@ -137,7 +137,7 @@ MerchantStatementsList.defaultProps = {
       key: 'createdAt',
       text: 'record at',
       type: TYPE.date,
-      formater: dateTimeFormatter,
+      formater: (data) => dateTimeFormatter(data.createdAt),
     },
     {
       key: 'createdBy',
