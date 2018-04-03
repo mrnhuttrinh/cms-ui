@@ -271,6 +271,11 @@ const vi = {
     'transaction id': 'mã số giao dịch',
     'date time': 'ngày giờ',
     'details': 'chi tiết',
+    'receipt date': 'ngày nhận',
+    'Product name': 'Tên sản phẩm',
+    'Quantity': 'Số lượng',
+    'Price': 'Đơn giá',
+    'Total': 'Tổng',
     // add new user
     'User list': 'Danh Sách Người Dùng',
     'Email not empty': 'Email không để trống',
