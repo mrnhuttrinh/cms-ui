@@ -247,6 +247,7 @@ const vi = {
     'View Wallet List': 'Hiển Thị Danh Sách Ví',
     'View Merchant List': 'Hiển Thị Danh Sách Đại Lý',
     'View Merchant Details': 'Hiển Thị Chi Tiết Đại Lý',
+    'View Merchant Terminal List': 'Hiển thị danh sách ứng dụng chấp nhận thẻ',
     'View User List': 'Hiển Thị Danh Sách Người Dùng',
     'View User Details': 'Hiển Thị Chi Tiết Người Dùng',
     'Reset User Password': 'Cài Đặt Mật Khẩu Người Dùng',
@@ -324,7 +325,8 @@ const vi = {
     'Others': 'Loại khác',
     'Detail other not empty': 'Loại khác không bỏ trống',
     'Detail not empty': 'Chi tiêt không được bỏ trống',
-    'warnings.0001': 'Bạn không thể nạp tiền cho tài khoản không có thẻ đang hoạt động. Vui lòng thử lại sau.'
+    'warnings.0001': 'Bạn không thể nạp tiền cho tài khoản không có thẻ đang hoạt động. Vui lòng thử lại sau.',
+    'USER': 'Người dùng'
   }
 };
 

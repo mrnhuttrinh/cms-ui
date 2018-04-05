@@ -247,6 +247,7 @@ const en = {
     'Remove Wallet': 'Remove Wallet',
     'View Wallet List': 'View Wallet List',
     'View Merchant List': 'View Merchant List',
+    'View Merchant Terminal List': 'View Merchant Terminal List',
     'View Merchant Details': 'View Merchant Details',
     'View User List': 'View User List',
     'View User Details': 'View User Details',
