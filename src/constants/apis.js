@@ -48,10 +48,10 @@ export const CARD_HISTORY_API = '/api/cards/{id}/cardHistories?projection=custom
 export const TRANSACTIONS_BY_CARD_API = '/api/transactions?projection=custom&card.cardNumber={cardNumber}';
 
 // for wallet and related
-export const WALLET_LIST_API = '/api/wallets/search?projection=custom';
+export const WALLET_LIST_API = '/api/wallets?projection=custom&status=ACTIVE';
 export const WALLET_BY_CARD_API = '/api/cards/{id}/wallets?projection=custom';
-export const CREATE_CARD_WALLET_API = '/api/wallets';
-export const DISCONNECT_CARD_WALLET_API = '/api/wallets/{id}';
+export const CREATE_CARD_WALLET_API = '/api/createwallet';
+export const DISCONNECT_CARD_WALLET_API = '/api/deletewallet/{id}';
 
 // for role and related
 export const GET_ROLE_LIST_API = '/api/roles?projection=custom';

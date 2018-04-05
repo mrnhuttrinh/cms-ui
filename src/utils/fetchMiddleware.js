@@ -65,17 +65,17 @@ const fetchMiddleware = store => next => async action => {
     // show success existence message
   } catch (error) {
     // dispatch failed with error
-    let errorLogin;
+    let errorData;
     try {
-      errorLogin = await error.json();
+      errorData = await error.json();
     } catch(e) {
-      errorLogin = {
+      errorData = {
         code: error.status,
-        status: await error.text(),
+        status: "Bad response from server!",
       }
     }
 
-    await dispatch({ type: `${type}_FAILED`, error: errorLogin });
+    await dispatch({ type: `${type}_FAILED`, error: errorData });
     if (showLoading) {
       dispatch(mainLoadingError());
     }

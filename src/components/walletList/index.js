@@ -25,8 +25,6 @@ class CardList extends React.Component {
           getData={this.props.actions.getCardList}
           size={this.props.size}
           search={this.props.search}
-          dataAccesser={this.props.dataAccesser}
-          pageAccesser={this.props.pageAccesser}
           style={{
             height: 'calc(100% - 56px)',
             display: 'block',
@@ -68,8 +66,6 @@ CardList.defaultProps = {
   search: {
     key: 'id',
   },
-  dataAccesser: (data) => (data.content),
-  pageAccesser: (data) => (data),
 }
 
 const mapStateToProps = (state) => ({
