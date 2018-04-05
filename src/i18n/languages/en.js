@@ -272,6 +272,11 @@ const en = {
     'transaction id': 'transaction ID',
     'date time': 'date time',
     'details': 'details',
+    'receipt date': 'receipt date',
+    'Product name': 'Product name',
+    'Quantity': 'Quantity',
+    'Price': 'Price',
+    'Total': 'Total',
     // add new user
     'User list': 'User List',
     'Email not empty': 'Email not empty',
