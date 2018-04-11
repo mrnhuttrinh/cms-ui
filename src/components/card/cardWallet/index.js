@@ -57,7 +57,8 @@ class CardWallet  extends React.Component  {
             <TextField
               floatingLabelText={this.props.t('Wallet ID')}
               value={wallet.id}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               fullWidth
             />
           </Col>
@@ -65,7 +66,8 @@ class CardWallet  extends React.Component  {
             <TextField
               floatingLabelText={this.props.t('Provider')}
               value={wallet.provider}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               fullWidth
             />
           </Col>
@@ -73,7 +75,8 @@ class CardWallet  extends React.Component  {
             <TextField
               floatingLabelText={this.props.t('Type')}
               value={this.props.t(wallet.type)}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               fullWidth
             />
           </Col>
@@ -81,7 +84,8 @@ class CardWallet  extends React.Component  {
             <TextField
               floatingLabelText={this.props.t('Status')}
               value={this.props.t(wallet.status)}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               fullWidth
             />
           </Col>

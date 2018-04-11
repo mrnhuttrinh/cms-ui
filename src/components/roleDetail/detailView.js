@@ -10,13 +10,14 @@ import {
 
 class DetailView extends React.Component {
   render() {
-    const { data = {} } = this.props; 
+    const { data = {} } = this.props;
     return (
       <Row style={detailView.wrapRow}>
         <Col style={detailView.wrapCol} md={12}>
           <TextField
             floatingLabelText={this.props.t('Role Name')}
             floatingLabelFixed
+            readOnly
             fullWidth
             value={this.props.t(data.name)}
           />
@@ -25,6 +26,7 @@ class DetailView extends React.Component {
           <TextField
             floatingLabelText={this.props.t('Created date')}
             floatingLabelFixed
+            readOnly
             fullWidth
             value={dateFormatter(data.createdAt)}
           />
@@ -33,6 +35,7 @@ class DetailView extends React.Component {
           <TextField
             floatingLabelText={this.props.t('Updated at')}
             floatingLabelFixed
+            readOnly
             fullWidth
             value={dateFormatter(data.updatedAt)}
           />

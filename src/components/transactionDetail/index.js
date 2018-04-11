@@ -34,6 +34,7 @@ class TransactionDetail extends React.Component {
           <TextField
             floatingLabelText={this.props.t('details')}
             floatingLabelFixed
+            readOnly
             value={this.props.transaction.transactionDetail.detail}
             fullWidth
           />
@@ -46,6 +47,7 @@ class TransactionDetail extends React.Component {
           <TextField
             floatingLabelText={this.props.t('transaction id')}
             floatingLabelFixed
+            readOnly
             value={this.props.transaction.id}
           />
         </Col>
@@ -53,6 +55,7 @@ class TransactionDetail extends React.Component {
           <TextField
             floatingLabelText={this.props.t('date time')}
             floatingLabelFixed
+            readOnly
             value={dateTimeFormatter(this.props.transaction.date)}
           />
         </Col>
@@ -60,6 +63,7 @@ class TransactionDetail extends React.Component {
           <TextField
             floatingLabelText={this.props.t('amount')}
             floatingLabelFixed
+            readOnly
             value={this.props.transaction.amount}
           />
         </Col>

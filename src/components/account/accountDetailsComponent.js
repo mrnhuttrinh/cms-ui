@@ -26,63 +26,72 @@ const AccoutDetailsComponent = (props) => (
         <TextField
           floatingLabelText={props.t('Account ID')}
           value={props.account.id}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={8}
           fullWidth
         />
         <TextField
           floatingLabelText={props.t('Type')}
           value={props.t(props.account.accountType.typeCode)}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={4}
           fullWidth
         />
         <TextField
           floatingLabelText={props.t('Account name')}
           value={props.account.accountName}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={4}
           fullWidth
         />
         <TextField
           floatingLabelText={props.t('Date opened')}
           value={dateFormatter(props.account.dateOpened)}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={4}
           fullWidth
         />
         <TextField
           floatingLabelText={props.t('Date closed')}
           value={dateFormatter(props.account.dateClosed)}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={4}
           fullWidth
         />
         <TextField
           floatingLabelText={props.t('Currency')}
           value={props.account.currencyCode.text}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={4}
           fullWidth
         />
         <TextField
           floatingLabelText={props.t('Status')}
           value={props.t(props.account.status)}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={8}
           fullWidth
         />
         <TextField
           floatingLabelText={props.t('Current balance')}
           value={props.account.currentBalance}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={6}
           fullWidth
         />
         <TextField
           floatingLabelText={props.t('Updated at')}
           value={dateTimeFormatter(props.account.updatedAt)}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={6}
           fullWidth
         />
@@ -98,14 +107,16 @@ const AccoutDetailsComponent = (props) => (
         <TextField
           floatingLabelText={props.t('Name')}
           value={props.t(props.account.plan.planType.typeCode)}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={1}
           fullWidth
         />
         <TextField
           floatingLabelText={props.t('Detail')}
           value={props.account.plan.id}
-          floatingLabelFixed={true}
+          floatingLabelFixed
+          readOnly
           cols={1}
           fullWidth
         />

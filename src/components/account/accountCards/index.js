@@ -38,42 +38,48 @@ class AccountCard  extends React.Component {
             <TextField
               floatingLabelText={this.props.t('Card code')}
               value={customerCard.cardCode}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               cols={9}
               fullWidth
             />
             <TextField
               floatingLabelText={this.props.t('Type')}
               value={this.props.t(_.get(customerCard, 'cardType.typeCode'))}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               cols={3}
               fullWidth
             />
             <TextField
               floatingLabelText={this.props.t('Effective date')}
               value={dateFormatter(customerCard.effectiveDate)}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               cols={6}
               fullWidth
             />
             <TextField
               floatingLabelText={this.props.t('Expiry date')}
               value={dateFormatter(customerCard.expiryDate)}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               cols={6}
               fullWidth
             />
             <TextField
               floatingLabelText={this.props.t('Status')}
               value={this.props.t(customerCard.status)}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               cols={6}
               fullWidth
             />
             <TextField
               floatingLabelText={this.props.t('Updated at')}
               value={dateTimeFormatter(customerCard.updatedAt)}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               cols={6}
               fullWidth
             />
