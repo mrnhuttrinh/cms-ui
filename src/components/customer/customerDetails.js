@@ -51,76 +51,87 @@ class CustomerDetails  extends React.Component  {
                   floatingLabelText={this.props.t('Last name')}
                   cols={2}
                   value={this.props.customer.lastName}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   fullWidth
                 />
                 <TextField
                   cols={1}
                   floatingLabelText={this.props.t('First name')}
                   value={this.props.customer.firstName}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   fullWidth
                 />
                 <TextField
                   cols={1}
                   floatingLabelText={this.props.t('Birthday')}
                   value={dateFormatter(this.props.customer.dateOfBirth)}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   fullWidth
                 />
                 <TextField
                   cols={1}
                   floatingLabelText={this.props.t('Gender')}
                   value={this.props.t(`GENDER.${this.props.customer.gender}`)}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Country')}
                   value={this.props.t(`${this.props.customer.countryCode}`.toUpperCase())}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Occupation')}
                   value={this.props.customer.occupation}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Position')}
                   value={this.props.customer.position}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Title')}
                   value={this.props.customer.title}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Email')}
                   value={this.props.customer.email}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={3}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Phone1')}
                   value={this.props.customer.phone1}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Phone2')}
                   value={this.props.customer.phone2}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
@@ -136,21 +147,24 @@ class CustomerDetails  extends React.Component  {
                 <TextField
                   floatingLabelText={this.props.t('Line')}
                   value={address.line1}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={3}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('State Province')}
                   value={address.stateProvince}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={3}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('City')}
                   value={address.city}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={3}
                   fullWidth
                 />
@@ -170,28 +184,32 @@ class CustomerDetails  extends React.Component  {
                 <TextField
                   floatingLabelText={this.props.t('Number')}
                   value={indetifyCard.number}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={2}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Date of issue')}
                   value={dateFormatter(indetifyCard.dateOfIssue)}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Date of expiry')}
                   value={dateFormatter(indetifyCard.dateOfExpiry)}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Place of issue')}
                   value={indetifyCard.placeOfIssue}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={2}
                   fullWidth
                 />
@@ -211,28 +229,32 @@ class CustomerDetails  extends React.Component  {
                 <TextField
                   floatingLabelText={this.props.t('Number')}
                   value={passportCard.number}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={2}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Date of issue')}
                   value={dateFormatter(passportCard.dateOfIssue)}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Date of expiry')}
                   value={dateFormatter(passportCard.dateOfExpiry)}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
                 <TextField
                   floatingLabelText={this.props.t('Place of issue')}
                   value={passportCard.placeOfIssue}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={2}
                   fullWidth
                 />
@@ -252,7 +274,8 @@ class CustomerDetails  extends React.Component  {
                 <TextField
                   floatingLabelText={this.props.t('Status')}
                   value={this.props.t(this.props.customer.status)}
-                  floatingLabelFixed={true}
+                  floatingLabelFixed
+                  readOnly
                   cols={1}
                   fullWidth
                 />
@@ -261,6 +284,8 @@ class CustomerDetails  extends React.Component  {
                   value={dateTimeFormatter(this.props.customer.updatedAt)}
                   cols={1}
                   fullWidth
+                  floatingLabelFixed
+                  readOnly
                 />
            </GridList>
            </Col>

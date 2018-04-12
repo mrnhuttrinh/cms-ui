@@ -76,8 +76,8 @@ class Report extends React.Component {
   }
   renderDetail() {
     return _.map(rows, (r, idx) => (
-      <div key={idx} style={{paddingTop: '30px'}}>
-        <span style={titleStyle}>{this.props.t(r.text)}</span>
+      <div key={idx} style={{paddingTop: '30px', textAlign: 'left'}}>
+          <span style={titleStyle}>{this.props.t(r.text)}</span>
           <GridList
             cols={8}
             padding={5}
@@ -86,28 +86,32 @@ class Report extends React.Component {
             <TextField
               floatingLabelText={this.props.t('created')}
               value={_.get(this.props.data, `${r.key}.create`, 'N/A')}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               cols={2}
               fullWidth
             />
             <TextField
               floatingLabelText={this.props.t('locked')}
               value={_.get(this.props.data, `${r.key}.lock`, 'N/A')}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               cols={2}
               fullWidth
             />
             <TextField
               floatingLabelText={this.props.t('unlocked')}
               value={_.get(this.props.data, `${r.key}.unLock`, 'N/A')}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               cols={2}
               fullWidth
             />
             <TextField
               floatingLabelText={this.props.t('deleted')}
               value={_.get(this.props.data, `${r.key}.remove`, 'N/A')}
-              floatingLabelFixed={true}
+              floatingLabelFixed
+              readOnly
               cols={2}
               fullWidth
             />

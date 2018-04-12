@@ -38,6 +38,7 @@ class Application extends React.Component {
             <TextField
               floatingLabelText={this.props.t('Code number')}
               floatingLabelFixed
+              readOnly
               fullWidth
               value={application.id}
             />
@@ -46,6 +47,7 @@ class Application extends React.Component {
             <TextField
               floatingLabelText={this.props.t('Type')}
               floatingLabelFixed
+              readOnly
               fullWidth
               value={this.props.t('Default')}
             />
@@ -56,6 +58,7 @@ class Application extends React.Component {
             <TextField
               floatingLabelText={this.props.t('Security code')}
               floatingLabelFixed
+              readOnly
               fullWidth
               value={application.pubKey}
             />
@@ -66,6 +69,7 @@ class Application extends React.Component {
             <TextField
               floatingLabelText={this.props.t('Status')}
               floatingLabelFixed
+              readOnly
               fullWidth
               value={this.props.t(application.status)}
             />
@@ -74,6 +78,7 @@ class Application extends React.Component {
             <TextField
               floatingLabelText={this.props.t('Date of expiry')}
               floatingLabelFixed
+              readOnly
               fullWidth
               value={dateTimeFormatter(application.pubKeyExpireDate)}
             />
@@ -82,28 +87,10 @@ class Application extends React.Component {
             <TextField
               floatingLabelText={this.props.t('Updated at')}
               floatingLabelFixed
+              readOnly
               fullWidth
               value={dateTimeFormatter(application.updatedAt || application.createdAt)}
             />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12} xs={12}>
-            <FlatButton
-            style={{
-              boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24)',
-              float: 'right',
-              border: 'solid 1px #009688'
-            }}
-            backgroundColor="#fff"
-            labelStyle={{
-              textTransform: 'none',
-              fontSize: '14px',
-              fontWeight: '500',
-              letterSpacing: '0.5px',
-              color: '#009688'
-            }}
-            label={this.props.t('View details')} />
           </Col>
         </Row>
       </Card>

@@ -62,6 +62,7 @@ class GeneralInformation extends React.Component {
               <TextField
                 floatingLabelText={this.props.t('Name')}
                 floatingLabelFixed
+                readOnly
                 fullWidth
                 value={data.name}
               />
@@ -70,6 +71,7 @@ class GeneralInformation extends React.Component {
               <TextField
                 floatingLabelText={this.props.t('Phone')}
                 floatingLabelFixed
+                readOnly
                 fullWidth
                 value={data.phone}
               />
@@ -80,6 +82,7 @@ class GeneralInformation extends React.Component {
               <TextField
                 floatingLabelText={this.props.t('Email')}
                 floatingLabelFixed
+                readOnly
                 fullWidth
                 value={data.email}
               />
@@ -90,6 +93,7 @@ class GeneralInformation extends React.Component {
               <TextField
                 floatingLabelText={this.props.t('Status')}
                 floatingLabelFixed
+                readOnly
                 fullWidth
                 value={this.props.t(data.status)}
               />
@@ -98,6 +102,7 @@ class GeneralInformation extends React.Component {
               <TextField
                 floatingLabelText={this.props.t('Last login')}
                 floatingLabelFixed
+                readOnly
                 fullWidth
                 value={formatDate(data.updatedAt)}
               />
@@ -115,6 +120,7 @@ class GeneralInformation extends React.Component {
               <TextField
                 floatingLabelText={this.props.t('Line')}
                 floatingLabelFixed
+                readOnly
                 fullWidth
                 value={address.line1}
               />
@@ -125,6 +131,7 @@ class GeneralInformation extends React.Component {
               <TextField
                 floatingLabelText={this.props.t('State Province')}
                 floatingLabelFixed
+                readOnly
                 fullWidth
                 value={address.line2}
               />
@@ -135,6 +142,7 @@ class GeneralInformation extends React.Component {
               <TextField
                 floatingLabelText={this.props.t('City')}
                 floatingLabelFixed
+                readOnly
                 fullWidth
                 value={address.city}
               />

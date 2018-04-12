@@ -9,7 +9,8 @@ const Card = (props) => (<Row className="card-detail-component">
     <TextField
       floatingLabelText={props.t('Card code')}
       value={props.card.cardCode}
-      floatingLabelFixed={true}
+      floatingLabelFixed
+      readOnly
       fullWidth
     />
   </Col>
@@ -17,7 +18,8 @@ const Card = (props) => (<Row className="card-detail-component">
     <TextField
       floatingLabelText={props.t('Type')}
       value={props.t(props.card.cardType.typeCode)}
-      floatingLabelFixed={true}
+      floatingLabelFixed
+      readOnly
       fullWidth
     />
   </Col>
@@ -25,7 +27,8 @@ const Card = (props) => (<Row className="card-detail-component">
     <TextField
       floatingLabelText={props.t('Effective date')}
       value={dateFormatter(props.card.effectiveDate)}
-      floatingLabelFixed={true}
+      floatingLabelFixed
+      readOnly
       fullWidth
     />
   </Col>
@@ -33,7 +36,8 @@ const Card = (props) => (<Row className="card-detail-component">
     <TextField
       floatingLabelText={props.t('Expiry date')}
       value={dateFormatter(props.card.expiryDate)}
-      floatingLabelFixed={true}
+      floatingLabelFixed
+      readOnly
       fullWidth
     />
   </Col>
@@ -41,7 +45,8 @@ const Card = (props) => (<Row className="card-detail-component">
     <TextField
       floatingLabelText={props.t('Status')}
       value={props.t(props.card.status)}
-      floatingLabelFixed={true}
+      floatingLabelFixed
+      readOnly
       fullWidth
     />
   </Col>
@@ -49,7 +54,8 @@ const Card = (props) => (<Row className="card-detail-component">
     <TextField
       floatingLabelText={props.t('Updated at')}
       value={dateTimeFormatter(props.card.updatedAt)}
-      floatingLabelFixed={true}
+      floatingLabelFixed
+      readOnly
       fullWidth
     />
   </Col>
