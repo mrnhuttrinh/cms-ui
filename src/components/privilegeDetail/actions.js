@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import {
   USER_DETAIL_API,
   USER_HISTORY_API,
@@ -114,8 +116,18 @@ export const getRoleList = () =>
   };
 
   export const userUpdateInformation = (data) => {
+    const roles = _.map(data.roles, rl => rl.id);
+    const updateData = {
+      id: data.id,
+      username: data.username,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      roles
+    }
     return {
       type: USER_UPDATE_INFORMATION,
+      showRawErrorMessage: true,
       showMessage: {
         success: {
           title: 'Success!',
@@ -135,7 +147,7 @@ export const getRoleList = () =>
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            ...data
+            ...updateData
           }),
         },
       }
