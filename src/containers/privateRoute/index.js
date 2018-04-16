@@ -7,8 +7,9 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 import AppBarHeader from './appBarHeader';
 import LeftSideMenu from './leftSideMenu';
 import privateRouteReducers from './reducers';
-import { AnimationGroup } from '../../components';
+import { AnimationGroup, NotFound } from '../../components';
 import * as actions from './actions';
+import { UI_ROUTES_LEFT_SIDE_MENU, PATH_IGNORE } from '../../constants';
 
 import "./index.scss";
 
@@ -61,15 +62,46 @@ class PrivateRoute extends React.Component {
     } = this.props;
     return _.map(permissions, per => per.name);
   }
+  getPathAvailable() {
+    const permissions = this.getPermissions();
+     const {
+      path,
+    } = this.props;
+    if (_.find(PATH_IGNORE, p => p === path)) {
+      return true;
+    }
+    const matchPath = _.find(UI_ROUTES_LEFT_SIDE_MENU, route => _.startsWith(path, route.url));
+    if (matchPath) {
+      const matchPermission = _.find(permissions, per => per === matchPath.permission);
+      if (matchPermission) {
+        return true;
+      }
+    }
+    return false;
+  }
   render() {
     const {
       component: Component,
       leftMenuState,
       loading,
       errorLoading,
+      roleRequesting,
       ...rest
     } = this.props;
     if (this.props.data && this.props.data.credential) {
+      if (!this.getPathAvailable()) {
+        // render notfound component
+        return (
+          <Route {...rest} render={props => (
+            <div className="ec-main-container">
+              <AppBarHeader />
+              <div className="main-body">
+                {roleRequesting ? <AnimationGroup loading={roleRequesting} /> : <NotFound /> }
+              </div> 
+            </div>
+          )} />
+        );
+      }
       const leftSidebarClassName = leftMenuState ? 'column-left' : 'column-left-none-width';
       const rightContentClassName = leftMenuState ? 'column-right' : 'column-right-full-width';
       return (

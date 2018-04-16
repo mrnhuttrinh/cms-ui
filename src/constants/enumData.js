@@ -35,6 +35,7 @@ const _PERMISSIONS = {
   USER_DETAIL_RESET_PASSWORD: 'USER_DETAIL/RESET_PASSWORD',
   USER_DETAIL_LOCK_UNLOCK: 'USER_DETAIL/LOCK_UNLOCK',
   USER_DETAIL_UPDATE: 'USER_DETAIL/UPDATE',
+  ROLE_LIST_VIEW: 'ROLE_LIST/VIEW',
 }
 
 export const UI_ROUTES_LEFT_SIDE_MENU = {
@@ -91,9 +92,14 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
     text: 'Roles',
     icon: 'group_add',
     url: '/role',
+    permission: _PERMISSIONS.ROLE_LIST_VIEW,
   }
 };
 
+export const PATH_IGNORE = [
+  '/',
+  '/report'
+];
 export const PERMISSIONS = _PERMISSIONS;
 
 export const ROLES = {
