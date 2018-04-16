@@ -12,15 +12,18 @@ const EcSelectField = ({
   t,
   ...custom
 }) => (
+  <div>
+
   <SelectField
     className="cms-select"
     floatingLabelText={t(label)}
     errorText={touched && t(error)}
     {...input}
-    onChange={(event, index, value) => input.onChange(value)}
+    onChange={(event, index, value) => {input.onChange(value); input.onBlur();}}
     children={children}
     {...custom}
   />
+  </div>
 )
 
 export default translate('translations')(EcSelectField);

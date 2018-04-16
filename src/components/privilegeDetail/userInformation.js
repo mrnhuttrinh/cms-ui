@@ -9,27 +9,11 @@ import _ from 'lodash';
 import {
   TextField,
   SelectField,
+  FieldValidator,
 } from '../commons';
 import { ENUM_USER_STATUS, ROLES, PATTERN_EMAIL } from '../../constants';
 
 import { dateTimeFormatter } from '../../utils';
-
-const validate = values => {
-  const errors = {};
-  if (values.email && !PATTERN_EMAIL.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-  if (!values.email) {
-    errors.email = 'Email address not empty';
-  }
-  if (!values.firstName) {
-    errors.firstName = 'First name not empty';
-  }
-  if (!values.lastName) {
-    errors.lastName = 'Last name not empty';
-  }
-  return errors;
-}
 
 class UserInformation extends React.Component {
   render () {
@@ -59,6 +43,7 @@ class UserInformation extends React.Component {
             component={TextField}
             label={this.props.t('Last name')}
             fullWidth
+            validate={FieldValidator.required}
           />
         </Col>
         <Col md={5} xs={12}>
@@ -68,6 +53,7 @@ class UserInformation extends React.Component {
             component={TextField}
             label={this.props.t('First name')}
             fullWidth
+            validate={FieldValidator.required}
           />
         </Col>
         <Col md={7} xs={12}>
@@ -77,6 +63,7 @@ class UserInformation extends React.Component {
             component={TextField}
             label={this.props.t('Email')}
             fullWidth
+            validate={[FieldValidator.required, FieldValidator.email]}
           />
         </Col>
         <Col md={5} xs={12}>
@@ -87,6 +74,7 @@ class UserInformation extends React.Component {
             label={this.props.t('User name')}
             disabled
             fullWidth
+            validate={[FieldValidator.required, FieldValidator.alphaNumeric]}
           />
         </Col>
         <Col md={12} xs={12}>
@@ -97,6 +85,7 @@ class UserInformation extends React.Component {
             children={items}
             disabled={disabledRole}
             multiple
+            validate={FieldValidator.listRequired}
           />
         </Col>
         <Col md={6} xs={12}>
@@ -164,5 +153,4 @@ export default connect(
   mapStateToProps
 )(reduxForm({
   form: 'userInformation',
-  validate,
 })(translate('translations')(UserInformation)));

@@ -328,6 +328,8 @@ const en = {
     'Detail not empty': 'Detail not empty',
     'warnings.0001': 'This account does not have any active card. Please try this feature later.',
     'This account does not have any history.': 'This account does not have any history.',
+    'Required': 'Required',
+    'Only alphanumeric characters': 'Only alphanumeric characters',
   }
 };
 

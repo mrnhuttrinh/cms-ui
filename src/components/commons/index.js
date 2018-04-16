@@ -10,6 +10,7 @@ import AnimationGroup from './animationGroup';
 import TabTemplate from './tabTemplate';
 import RefreshButton from './refreshButton';
 import Tab from './tab';
+import FieldValidator from './fieldValidator';
 
 export {
   Checkbox,
@@ -24,4 +25,5 @@ export {
   TabTemplate,
   RefreshButton,
   Tab,
+  FieldValidator,
 };

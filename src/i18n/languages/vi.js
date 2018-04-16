@@ -328,6 +328,8 @@ const vi = {
     'warnings.0001': 'Bạn không thể nạp tiền cho tài khoản không có thẻ đang hoạt động. Vui lòng thử lại sau.',
     'USER': 'Người dùng',
     'This account does not have any history.': 'Tài khoản không có lịch sử giao dịch.',
+    'Required': 'Bắt buộc',
+    'Only alphanumeric characters': 'Chỉ ký tự chữ và số',
   }
 };
 
