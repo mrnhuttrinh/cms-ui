@@ -134,7 +134,7 @@ class AccountHistory  extends React.Component  {
     });
     return (
       <div className="account-history" >
-        {historyDetail.length ? historyDetail : 'This account does not have any history.'}
+        {historyDetail.length ? historyDetail : this.props.t('This account does not have any history.')}
       </div>);
   }
 }

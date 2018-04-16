@@ -327,6 +327,7 @@ const en = {
     'Detail other not empty': 'Detail other not empty',
     'Detail not empty': 'Detail not empty',
     'warnings.0001': 'This account does not have any active card. Please try this feature later.',
+    'This account does not have any history.': 'This account does not have any history.',
   }
 };
 

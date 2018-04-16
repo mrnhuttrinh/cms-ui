@@ -3,7 +3,6 @@ import { translate } from 'react-i18next';
 import { Row, Col } from 'react-flexbox-grid';
 import {Card, CardTitle} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
 import { dateTimeFormatter } from '../../../utils';
 
 const cardStyle = {
