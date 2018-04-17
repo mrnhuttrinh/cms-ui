@@ -319,6 +319,7 @@ const en = {
     'Amount not empty': 'Amount not empty',
     'Amount not match': 'Amount not match',
     'Sender': 'Sender',
+    'Teller': 'Teller',
     'Sender not empty': 'Sender not empty',
     'Card not empty': 'Card not empty',
     'DEBIT': 'DEBIT',

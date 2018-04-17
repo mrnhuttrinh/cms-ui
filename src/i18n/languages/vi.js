@@ -318,6 +318,7 @@ const vi = {
     'Amount not empty': 'Tiền không được bỏ trống',
     'Amount not match': 'Tiền không hợp lệ',
     'Sender': 'Người gửi',
+    'Teller': 'Giao dịch viên',
     'Sender not empty': 'Người gửi không được bỏ trống',
     'Card not empty': 'Thẻ không được bỏ trống',
     'DEBIT': 'GHI NỢ',

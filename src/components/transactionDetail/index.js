@@ -3,9 +3,11 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { Row, Col } from 'react-flexbox-grid';
+import _ from 'lodash';
 import { translate } from 'react-i18next';
 import { dateTimeFormatter } from '../../utils';
 import CanteenInvoice from './canteenInvoice';
+import { parseStringToObjectJson } from '../../utils';
 
 class TransactionDetail extends React.Component {
   renderDetails() {
@@ -29,17 +31,37 @@ class TransactionDetail extends React.Component {
         />
       );
     } else {
-      detailsComponent = (
-        <Col md={12}>
+      detailsComponent = [(
+        <Col md={6}>
           <TextField
-            floatingLabelText={this.props.t('details')}
+            floatingLabelText={this.props.t('Sender')}
             floatingLabelFixed
             readOnly
-            value={this.props.transaction.transactionDetail.detail}
+            value={_.get(transactionDetails, 'sender', '')}
             fullWidth
           />
         </Col>
-      );
+      ), (
+        <Col md={6}>
+          <TextField
+            floatingLabelText={this.props.t('Teller')}
+            floatingLabelFixed
+            readOnly
+            value={_.get(transactionDetails, 'teller', '')}
+            fullWidth
+          />
+        </Col>
+      ), (
+        <Col md={12}>
+          <TextField
+            floatingLabelText={this.props.t('Detail')}
+            floatingLabelFixed
+            readOnly
+            value={_.isEmpty(transactionDetails) ? this.props.transaction.transactionDetail.detail : _.get(transactionDetails, 'detail', '')}
+            fullWidth
+          />
+        </Col>
+      )];
     }
     return [(
       <Row key="row-1">
