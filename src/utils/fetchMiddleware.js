@@ -40,7 +40,7 @@ const fetchMiddleware = store => next => async action => {
     }
     const data = await fetch(path, params).then(async (res) => {
       // authenticate error
-      if (res.status === 403 && type !== REFRESH_TOKEN && type !== SUBMIT_LOGIN) {
+      if (res.status === 401 || res.status === 403 && type !== REFRESH_TOKEN && type !== SUBMIT_LOGIN) {
         // force redirect login
         window.location.href = '/login';
       }
