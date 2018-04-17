@@ -18,28 +18,28 @@ const validate = values => {
     errors.email = 'Invalid email address';
   }
   if (_.isEmpty(values.email)) {
-    errors.email = 'Email not empty';
+    errors.email = 'Required';
   }
   if (_.isEmpty(values.firstName)) {
-    errors.firstName = 'First name not empty';
+    errors.firstName = 'Required';
   }
   if (_.isEmpty(values.lastName)) {
-    errors.lastName = 'Last name not empty';
+    errors.lastName = 'Required';
   }
   if (_.isEmpty(values.username)) {
-    errors.username = 'Username not empty';
+    errors.username = 'Required';
   }
   if (_.isEmpty(values.role)) {
-    errors.role = 'Role not empty';
+    errors.role = 'Required';
   }
   if (values.password && values.password.length < 6) {
     errors.password = 'Password must be more than 6 characters';
   }
   if (_.isEmpty(values.password)) {
-    errors.password = 'Password not empty';
+    errors.password = 'Required';
   }
   if (_.isEmpty(values.status)) {
-    errors.status = 'Status not empty';
+    errors.status = 'Required';
   }
   return errors;
 }

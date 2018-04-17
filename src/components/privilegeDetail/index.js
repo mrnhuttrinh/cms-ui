@@ -67,6 +67,10 @@ class PrivilegeDetail  extends React.Component {
       roleListData,
     } = this.props;
 
+    if (userInformation.syncErrors) {
+      return;
+    }
+
     const values = Object.assign({}, userInformation.values);
     delete values.roles;
     values.enabled = values.status === ENUM_USER_STATUS.ACTIVE ? true : false;
