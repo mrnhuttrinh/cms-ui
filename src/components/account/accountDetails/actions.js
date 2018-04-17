@@ -23,8 +23,19 @@ export const getAccountDetails = id => {
 };
 
 export const updateAccountStatus = account => {
+  const preMessage = account.status === 'ACTIVE' ? 'Unlock' : 'Lock';
   return {
     type: UPDATE_ACCOUNT,
+    showMessage: {
+      success: {
+        title: `${preMessage} account`,
+        message: `${preMessage} account successful`,
+      },
+      error: {
+        title: `${preMessage} account`,
+        message: `${preMessage} account failure`,
+      },
+    },
     fetchConfig: {
       path: UPDATE_ACCOUNT_API,
       params: {
