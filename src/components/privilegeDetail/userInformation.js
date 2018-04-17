@@ -10,17 +10,24 @@ import {
   TextField,
   SelectField,
 } from '../commons';
-import { ENUM_USER_STATUS, ROLES } from '../../constants';
+import { ENUM_USER_STATUS, ROLES, PATTERN_EMAIL } from '../../constants';
 
 import { dateTimeFormatter } from '../../utils';
 
 const validate = values => {
   const errors = {};
-  // if (
-  //   values.email && !PATTERN_EMAIL.test(values.email)
-  // ) {
-  //   errors.email = 'Invalid email address';
-  // }
+  if (values.email && !PATTERN_EMAIL.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+  if (!values.email) {
+    errors.email = 'Email address not empty';
+  }
+  if (!values.firstName) {
+    errors.firstName = 'First name not empty';
+  }
+  if (!values.lastName) {
+    errors.lastName = 'Last name not empty';
+  }
   return errors;
 }
 
@@ -78,6 +85,7 @@ class UserInformation extends React.Component {
             type="text"
             component={TextField}
             label={this.props.t('User name')}
+            disabled
             fullWidth
           />
         </Col>

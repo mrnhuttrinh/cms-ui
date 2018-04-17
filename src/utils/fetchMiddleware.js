@@ -26,6 +26,7 @@ const fetchMiddleware = store => next => async action => {
   const path = config.path;
   const params = { ...config.params, credentials: 'include' };
   const showMessage = action.showMessage;
+  const showRawErrorMessage = action.showRawErrorMessage;
 
   // for main loading
   const showLoading = action.showLoading || false;
@@ -80,7 +81,11 @@ const fetchMiddleware = store => next => async action => {
       dispatch(mainLoadingError());
     }
     // show error existence message
-    if (showMessage) {
+    if (showRawErrorMessage) {
+      setTimeout(() => {
+        toastr.error(i18n.t(errorData.status), i18n.t(errorData.message));
+      }, 0);
+    } else if (showMessage) {
       const error = showMessage.error;
       setTimeout(() => {
         toastr.error(i18n.t(error.title), i18n.t(error.message));

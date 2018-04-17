@@ -102,6 +102,7 @@ class PrivilegeDetail  extends React.Component {
   render () {
     const {
       userData = {},
+      form
     } = this.props;
     const labelLockUser = userData.enabled ? 'LOCK USER' : 'UNLOCK USER';
     return (
@@ -148,6 +149,7 @@ class PrivilegeDetail  extends React.Component {
                   labelStyle={{color: '#fff'}}
                   label={this.props.t('EDIT')}
                   onClick={this.onClickUpdateUserInformation}
+                  disabled={!_.isEmpty(_.get(form, 'userInformation.syncErrors', {}))}
                 />
                 <FlatButton
                   className="lock-button"
