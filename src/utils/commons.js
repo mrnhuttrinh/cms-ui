@@ -8,12 +8,18 @@ export const parseParams = (pageable, sort, search) => {
   const params = {...pageable, sort:`${sort.key},${sort.type}`};
   const searchParams = new URLSearchParams(params);
   if(search.value) {
-    [].concat(search.value).forEach((value, index) => {
+    const values = [].concat(search.value);
+    values.forEach((value, index) => {
       let newValue = value;
-      if (index === 1) {
-        // Add end date to 1 more day
-        newValue = moment(search.value[1]).add(1, 'day').format('M/D/YYYY');
+      if (values.length === 2) {
+        if (index === 1) {
+          // Add 59H 59M 59S 999
+          newValue = moment(search.value[index]).toDate().getTime() + 86399999;
+        } else {
+          newValue = moment(search.value[index]).toDate().getTime();
+        }
       }
+
       searchParams.append(search.key, newValue);
     });
   }
