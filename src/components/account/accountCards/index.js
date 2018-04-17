@@ -96,7 +96,7 @@ class AccountCard  extends React.Component {
       const customerCards = _.map(this.props.data._embedded.cards, this.renderCard);
       return (
         <Row className="account-card-container">
-          {customerCards.length ? customerCards : 'This account does not have any card.'}
+          {customerCards.length ? customerCards : this.props.t('This account does not have any card.')}
         </Row>);
     }
     return (

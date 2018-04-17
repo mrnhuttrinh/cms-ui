@@ -326,7 +326,8 @@ const vi = {
     'Detail other not empty': 'Loại khác không bỏ trống',
     'Detail not empty': 'Chi tiêt không được bỏ trống',
     'warnings.0001': 'Bạn không thể nạp tiền cho tài khoản không có thẻ đang hoạt động. Vui lòng thử lại sau.',
-    'USER': 'Người dùng'
+    'USER': 'Người dùng',
+    'This account does not have any history.': 'Tài khoản không có lịch sử giao dịch.',
   }
 };
 
