@@ -40,5 +40,8 @@ export default {
 
   'Deposit to account': 'Deposit to account',
   'Deposit to account successful': 'Deposit to account successful',
-  'Deposit to account failure': 'Deposit to account failure'
+  'Deposit to account failure': 'Deposit to account failure',
+
+  'Update account status success': 'Update account status success',
+  'Update account status failure': 'Update account status failure',
 };
