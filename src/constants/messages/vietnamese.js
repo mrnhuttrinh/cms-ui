@@ -40,5 +40,8 @@ export default {
 
   'Deposit to account': 'Nộp tiền vào tài khoản',
   'Deposit to account successful': 'Nộp tiền vào tài khoản thành công',
-  'Deposit to account failure': 'Nộp tiền vào tài khoản thất bại'
+  'Deposit to account failure': 'Nộp tiền vào tài khoản thất bại',
+
+  'Update user status success': 'Cập nhật trạng thái người dùng thành công',
+  'Update user status failure': 'Cập nhật trạng thái người dùng thất bại',
 }

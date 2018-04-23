@@ -34,7 +34,7 @@ const fetchMiddleware = store => next => async action => {
 
   try {
     // dispatch start fetch
-    dispatch({ type: `${type}_START` });
+    dispatch({ type: `${type}_START`, ...action.others });
     if (showLoading) {
       dispatch(mainLoadingStart());
     }
@@ -52,7 +52,7 @@ const fetchMiddleware = store => next => async action => {
       return res.json();
     });
     // dispatch completed with data
-    await dispatch({ type: `${type}_COMPLETED`, data });
+    await dispatch({ type: `${type}_COMPLETED`, data, ...action.others });
     if (showLoading) {
       dispatch(mainLoadingEnd());
     }
@@ -76,7 +76,7 @@ const fetchMiddleware = store => next => async action => {
       }
     }
 
-    await dispatch({ type: `${type}_FAILED`, error: errorData });
+    await dispatch({ type: `${type}_FAILED`, error: errorData, ...action.others });
     if (showLoading) {
       dispatch(mainLoadingError());
     }
