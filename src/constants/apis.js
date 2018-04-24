@@ -22,6 +22,8 @@ export const ACCOUNT_HISTORY_BY_ACCOUNT_ID_API = '/api/accounts/{id}/accountHist
 export const TRANSACTIONS_BY_ACCOUNT_ID_API = '/api/transactions?projection=custom&account.id={accountId}';
 export const UPDATE_ACCOUNT_API = '/api/account/update';
 export const DEPOSIT_AMOUNT_TO_ACCOUNT_API = '/api/deposit';
+export const LOCK_ACCOUNT_STATUS_API = '/api/account/lockAccounts';
+export const UNLOCK_ACCOUNT_STATUS_API = '/api/account/unlockAccounts';
 
 // for user and related
 export const GET_USER_PROFILE_API ='/api/users?projection={id}';

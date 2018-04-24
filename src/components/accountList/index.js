@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Checkbox from 'material-ui/Checkbox';
+import CircularProgress from 'material-ui/CircularProgress';
 import AccountListReducer from './reducers';
 import * as actions from './actions';
-import DataTable, { TYPE } from '../commons/table';
+import DataTable, { dataAccesser, TYPE } from '../commons/table';
 import { ContentWrapper } from '../commons';
 
 const ACCOUNT_STATUS = {
@@ -25,7 +27,71 @@ class AccountList extends React.Component {
     this.handleCellClick = this.handleCellClick.bind(this);
   }
   handleCellClick(indexRow, column, event) {
-    this.props.history.push(`/account/${this.props.dataAccesser(this.props.data)[indexRow].id}`);
+    const account = dataAccesser(this.props.data)[indexRow];
+    const { updateAccountStatus } = this.props;
+    const accountStatus = updateAccountStatus.get(account.id);
+    if (accountStatus && accountStatus.requesting) {
+      return;
+    }
+    if (column === 7) {
+      // click checkbox
+      let status = account.status === ACCOUNT_STATUS.ACTIVE ? ACCOUNT_STATUS.DEACTIVE : ACCOUNT_STATUS.ACTIVE;
+      this.props.actions.updateAccountStatus(account);
+    } else {
+      this.props.history.push(`/account/${account.id}`);
+    }
+  }
+  columnDefine() {
+    return [
+      {
+        key: 'id',
+        text: 'account id',
+        sort: 'ASC',
+      }, {
+        key: 'accountName',
+        text: 'Account name',
+      }, {
+        key: 'accountType.typeCode',
+        text: 'Type',
+        type: TYPE.option,
+        options: ACCOUNT_TYPE,
+      }, {
+        key: 'customer.lastName',
+        text: 'last name',
+        formater: (data) => (data && data.customer ? `${data.customer.lastName}` : ''),
+      }, {
+        key: 'customer.firstName',
+        text: 'first name',
+        formater: (data) => (data && data.customer ? `${data.customer.firstName}` : ''),
+      }, {
+        key: 'plan.planType.typeCode',
+        text: 'Plan',
+        type: TYPE.option,
+        options: PLAN_TYPE,
+      }, {
+        key: 'dateOpened',
+        text: 'Date opened',
+        type: TYPE.date,
+      }, {
+        key: 'status',
+        text: 'status',
+        type: TYPE.option,
+        options: ACCOUNT_STATUS,
+        formater: (d, t) => {
+          const { updateAccountStatus } = this.props;
+          const accountStatus = updateAccountStatus.get(d.id);
+          if (accountStatus && accountStatus.requesting) {
+            return (
+              <CircularProgress size={30} thickness={3} />
+            );
+          }
+          let checked = d.status === ACCOUNT_STATUS.ACTIVE ? true : false;
+          return (
+            <Checkbox checked={checked} />
+          );
+        },
+      }
+    ];
   }
   render() {
     return (
@@ -34,7 +100,7 @@ class AccountList extends React.Component {
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable
-          columns={this.props.columns}
+          columns={this.columnDefine()}
           sort={this.props.sort}
           data={this.props.data}
           getData={this.props.actions.getAccountList}
@@ -47,6 +113,7 @@ class AccountList extends React.Component {
             height: 'calc(100% - 56px)',
             display: 'block',
           }}
+          requesting={this.props.requesting}
         />
       </ContentWrapper>
     );
@@ -54,43 +121,6 @@ class AccountList extends React.Component {
 }
 
 AccountList.defaultProps = {
-  columns: [
-    {
-      key: 'id',
-      text: 'account id',
-      sort: 'ASC',
-    }, {
-      key: 'accountName',
-      text: 'Account name',
-    }, {
-      key: 'accountType.typeCode',
-      text: 'Type',
-      type: TYPE.option,
-      options: ACCOUNT_TYPE,
-    }, {
-      key: 'customer.lastName',
-      text: 'last name',
-      formater: (data) => (data && data.customer ? `${data.customer.lastName}` : ''),
-    }, {
-      key: 'customer.firstName',
-      text: 'first name',
-      formater: (data) => (data && data.customer ? `${data.customer.firstName}` : ''),
-    }, {
-      key: 'plan.planType.typeCode',
-      text: 'Plan',
-      type: TYPE.option,
-      options: PLAN_TYPE,
-    }, {
-      key: 'dateOpened',
-      text: 'Date opened',
-      type: TYPE.date,
-    }, {
-      key: 'status',
-      text: 'status',
-      type: TYPE.option,
-      options: ACCOUNT_STATUS,
-    }
-  ],
   sort: {
     key: 'id',
     type: 'ASC',
@@ -111,6 +141,7 @@ const mapStateToProps = (state) => ({
   data: state.AccountListReducer.get('data'),
   requesting: state.AccountListReducer.get('requesting'),
   error: state.AccountListReducer.get('error'),
+  updateAccountStatus: state.AccountListReducer.get('updateAccountStatus'),
 });
 
 const mapDispatchToProps = dispatch => ({
