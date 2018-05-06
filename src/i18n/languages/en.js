@@ -68,6 +68,8 @@ const en = {
     'Place of issue': 'Place of issue',
     'Customer status': 'Customer status',
     'Status': 'Status',
+    'STATUS': 'STATUS',
+    'AGREE': 'AGREE',
     'Updated at': 'Updated at',
     'Customer': 'Customer',
     'GENDER.0': 'Female',
@@ -281,6 +283,8 @@ const en = {
     'Invoice': 'Invoice',
     'Canteen': 'Canteen',
     'Canteen Invoice': 'Canteen Invoice',
+    'Update entire user status': 'Update entire user status',
+    'Do you want to update entire user status from': 'Do you want to update entire user status from?',
     // add new user
     'User list': 'User List',
     'Email not empty': 'Email not empty',

@@ -106,30 +106,35 @@ class DataTable extends React.Component {
     </div>);
   }
   renderTable() {
-    const tableColumns = _.map(this.props.columns, (column, index) =>
-      (this.props.sort && (this.props.sort.key === column.key)) ?
-          (<TableHeaderColumn key={column.key}>
-              <FlatButton
-                id={index}
-                label={this.props.t(column.text)}
-                labelPosition="before"
-                primary={false}
-                icon={<FontIcon className="material-icons">
-                  {this.props.sort.type==='ASC'?'keyboard_arrow_down':'keyboard_arrow_up'}
-                </FontIcon>}
-                onClick={() => {this.handleSortChange(index);}}
-              />
-          </TableHeaderColumn>) :
-          <TableHeaderColumn key={column.key} id={index}>
-            <FlatButton
-              id={index}
-              label={this.props.t(column.text)}
-              labelPosition="before"
-              primary={false}
-              onClick={() => {this.handleSortChange(index);}}
-            />
-          </TableHeaderColumn>
-    );
+    const tableColumns = _.map(this.props.columns, (column, index) => {
+      if (column.headerFormatter) {
+        return column.headerFormatter(this.props.t)
+      }
+      return this.props.sort && (this.props.sort.key === column.key) ? (
+        <TableHeaderColumn key={column.key}>
+          <FlatButton
+            id={index}
+            label={this.props.t(column.text)}
+            labelPosition="before"
+            primary={false}
+            icon={<FontIcon className="material-icons">
+              {this.props.sort.type==='ASC'?'keyboard_arrow_down':'keyboard_arrow_up'}
+            </FontIcon>}
+            onClick={() => {this.handleSortChange(index);}}
+          />
+        </TableHeaderColumn>
+      ) : (
+        <TableHeaderColumn key={column.key} id={index}>
+          <FlatButton
+            id={index}
+            label={this.props.t(column.text)}
+            labelPosition="before"
+            primary={false}
+            onClick={() => {this.handleSortChange(index);}}
+          />
+        </TableHeaderColumn>
+      )
+    });
     const tableRows = this.props.data ? _.map(this.props.dataAccesser(this.props.data), (d) => (
       <TableRow>
         {_.map(this.props.columns, (column) => (

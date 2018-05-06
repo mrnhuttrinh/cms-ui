@@ -4,15 +4,18 @@ import {
   GET_ACCOUNT_LIST,
   UPDATE_PAGE_SORT_ACCOUNT_LIST,
   UPDATE_ACCOUNT_STATUS,
+  UPDATE_ACCOUNT_LIST_STATUS,
 } from './constants';
 
 const initialState = new Map({
   updateAccountStatus: new Map({}),
+  updateAccountListStatus: new Map({}),
 });
 
 export default (state = initialState, action = {}) => {
   let newState;
   let updateAccountStatus;
+  let updateAccountListStatus;
   switch (action.type) {
     case UPDATE_PAGE_SORT_ACCOUNT_LIST:
       newState = state.set('page', action.pageable.page).set('sort',action.sort).set('search',action.search);
@@ -25,6 +28,28 @@ export default (state = initialState, action = {}) => {
       break;
     case `${GET_ACCOUNT_LIST}_FAILED`:
       newState = state.set('requesting', false).delete('data').set('error', action.error);
+      break;
+    // UPDATE_ACCOUNT_LIST_STATUS
+    case `${UPDATE_ACCOUNT_LIST_STATUS}_START`:
+      updateAccountListStatus = state.get('updateAccountListStatus');
+      newState = state.set(
+        'updateAccountListStatus',
+        updateAccountListStatus.set('requesting', true).delete('error')
+      );
+      break;
+    case `${UPDATE_ACCOUNT_LIST_STATUS}_COMPLETED`:
+      updateAccountListStatus = state.get('updateAccountListStatus');
+       newState = state.set(
+        'updateAccountListStatus',
+        updateAccountListStatus.set('requesting', false).set('data', action.data)
+      );
+      break;
+    case `${UPDATE_ACCOUNT_LIST_STATUS}_FAILED`:
+      updateAccountListStatus = state.get('updateAccountListStatus');
+       newState = state.set(
+        'updateAccountListStatus',
+        updateAccountListStatus.set('requesting', false).delete('data').set('error', action.error)
+      );
       break;
     // UPDATE_ACCOUNT_STATUS
     case `${UPDATE_ACCOUNT_STATUS}_START`:

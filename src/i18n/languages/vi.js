@@ -68,6 +68,8 @@ const vi = {
     'Place of issue': 'Nơi cấp',
     'Customer status': 'Thông tin tài khoản',
     'Status': 'Trạng thái',
+    'STATUS': 'TRẠNG THÁI',
+    'AGREE': 'ĐỒNG Ý',
     'Updated at': 'Thời gian cập nhật gần nhất',
     'Customers': 'Khách hàng',
     'GENDER.0': 'Nữ',
@@ -280,6 +282,8 @@ const vi = {
     'Invoice': 'Hóa đơn',
     'Canteen': 'Căn tin',
     'Canteen Invoice': 'Hóa đơn Căn tin',
+    'Update entire user status': 'Cập nhật trạng thái tài khoản',
+    'Do you want to update entire user status from': 'Bạn có chắc chắn cập nhật toàn bộ trạng thái tài khoản từ',
     // add new user
     'User list': 'Danh Sách Người Dùng',
     'Email not empty': 'Email không để trống',
