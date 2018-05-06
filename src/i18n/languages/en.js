@@ -278,6 +278,9 @@ const en = {
     'Quantity': 'Quantity',
     'Price': 'Price',
     'Total': 'Total',
+    'Invoice': 'Invoice',
+    'Canteen': 'Canteen',
+    'Canteen Invoice': 'Canteen Invoice',
     // add new user
     'User list': 'User List',
     'Email not empty': 'Email not empty',

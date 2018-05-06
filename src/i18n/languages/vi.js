@@ -277,6 +277,9 @@ const vi = {
     'Quantity': 'Số lượng',
     'Price': 'Đơn giá',
     'Total': 'Tổng',
+    'Invoice': 'Hóa đơn',
+    'Canteen': 'Căn tin',
+    'Canteen Invoice': 'Hóa đơn Căn tin',
     // add new user
     'User list': 'Danh Sách Người Dùng',
     'Email not empty': 'Email không để trống',
