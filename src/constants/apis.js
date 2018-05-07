@@ -63,7 +63,8 @@ export const UPDATE_ROLE_PERMISSION_API = '/api/roles/update-permission/{id}';
 export const ADD_NEW_ROLE_API = '/api/role';
 
 // for permission
-export const GET_ALL_PERMISSION_API = '/api/permissions';
+// get all permissions
+export const GET_ALL_PERMISSION_API = `/api/permissions?projection=custom&size=${Math.pow(2,10)}&page=0`;
 
 // for reports
 export const GET_REPORT_API = '/api/report/general';

@@ -64,39 +64,68 @@ class TreeViewPermission extends React.Component {
     // group by first name
     const groupPermissions = _.union(_.map(permissionsData._embedded.permissions, per => {
       const firstIndexOfUnderstrike = per.name.indexOf('_');
-      const firstName = per.name.substr(0, firstIndexOfUnderstrike);
-      if (!listPermissionByGroup[firstName]) {
-        listPermissionByGroup[firstName] = [];
+      if (firstIndexOfUnderstrike > 0) {
+        const firstName = per.name.substr(0, firstIndexOfUnderstrike);
+        if (!listPermissionByGroup[firstName]) {
+          listPermissionByGroup[firstName] = [];
+        }
+        listPermissionByGroup[firstName].push(per);
+        return firstName;
       }
-      listPermissionByGroup[firstName].push(per);
-      return firstName;
+      if (!listPermissionByGroup[per.name]) {
+        listPermissionByGroup[per.name] = [];
+      }
+      listPermissionByGroup[per.name].push(per);
+      return per.name;
     }));
 
     _.each(this.state.listChecked, per => {
       const firstIndexOfUnderstrike = per.name.indexOf('_');
-      const firstName = per.name.substr(0, firstIndexOfUnderstrike);
-      if (!listChildChecked[firstName]) {
-        listChildChecked[firstName] = [];
+      if (firstIndexOfUnderstrike > 0) {
+        const firstName = per.name.substr(0, firstIndexOfUnderstrike);
+        if (!listChildChecked[firstName]) {
+          listChildChecked[firstName] = [];
+        }
+        listChildChecked[firstName].push(per);
+        return firstName;
       }
-      listChildChecked[firstName].push(per);
-      return firstName;
+      if (!listChildChecked[per.name]) {
+        listChildChecked[per.name] = [];
+      }
+      listChildChecked[per.name].push(per);
+      return per.name;
     });
+
     // group permission
     return _.map(groupPermissions, (gPer, index) => {
+      if (listPermissionByGroup[gPer]) {
+        return (
+          <div key={`div_${index}_${gPer}`}>
+            <GroupPermission
+              key={`${index}_${gPer}`}
+              index={index}
+              groupName={gPer}
+              nestedItems={listPermissionByGroup[gPer]}
+              checkedList={listChildChecked[gPer]}
+              handleCheckbox={this.handleCheckbox}
+              disabled={disabled}
+            />
+            <Divider />
+          </div>
+        );
+      }
       return (
         <div key={`div_${index}_${gPer}`}>
           <GroupPermission
             key={`${index}_${gPer}`}
             index={index}
             groupName={gPer}
-            nestedItems={listPermissionByGroup[gPer]}
-            checkedList={listChildChecked[gPer]}
-            handleCheckbox={this.handleCheckbox}
+            handleCheckbox={() => this.handleCheckbox(listChildChecked[gPer], listPermissionByGroup[gPer])}
             disabled={disabled}
           />
           <Divider />
         </div>
-      )
+      );
     });
   }
   checkboxChecked() {
