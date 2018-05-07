@@ -8,6 +8,7 @@ import {
   GET_ACCOUNT_LIST,
   UPDATE_PAGE_SORT_ACCOUNT_LIST,
   UPDATE_ACCOUNT_STATUS,
+  UPDATE_ACCOUNT_LIST_STATUS,
 } from './constants';
 
 import { parseParams } from '../../utils';
@@ -64,6 +65,36 @@ export const updateAccountStatus = (user) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify([user]),
+      },
+    }
+  };
+};
+
+export const updateAccountListStatus = (users, status) => {
+  const url = status === 'ACTIVE' ? UNLOCK_ACCOUNT_STATUS_API : LOCK_ACCOUNT_STATUS_API;
+  return {
+    showMessage: {
+      success: {
+        title: 'Success!',
+        message: 'Update account status success',
+      },
+      error: {
+        title: 'Error!',
+        message: 'Update account status failure',
+      },
+    },
+    type: UPDATE_ACCOUNT_LIST_STATUS,
+    fetchConfig: {
+      // TODO
+      // need to change api name
+      path: url,
+      params: {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(users),
       },
     }
   };

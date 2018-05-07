@@ -57,7 +57,7 @@ class TransactionDetail extends React.Component {
             floatingLabelText={this.props.t('Detail')}
             floatingLabelFixed
             readOnly
-            value={_.isEmpty(transactionDetails) ? this.props.transaction.transactionDetail.detail : _.get(transactionDetails, 'detail', '')}
+            value={_.get(transactionDetails, 'detail', '')}
             fullWidth
           />
         </Col>
