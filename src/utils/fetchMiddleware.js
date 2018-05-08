@@ -72,7 +72,7 @@ const fetchMiddleware = store => next => async action => {
     } catch(e) {
       errorData = {
         code: error.status,
-        status: "Bad response from server!",
+        status: i18n.t("Bad response from server!"),
       }
     }
 

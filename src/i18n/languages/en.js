@@ -260,6 +260,8 @@ const en = {
     'ROLE': 'ROLE',
     'SYNC': 'SYNC',
     'View Role List': 'View Role List',
+    'Create User': 'Create User',
+    'Create wallet': 'Create wallet',
     'Add Role Permission': 'Add Role Permission',
     'Create Role': 'Create Role',
     'View Transaction List': 'View Transaction List',
@@ -348,9 +350,11 @@ const en = {
     'Detail other not empty': 'Detail other not empty',
     'Detail not empty': 'Detail not empty',
     'warnings.0001': 'This account does not have any active card. Please try this feature later.',
+    'USER': 'USER',
     'This account does not have any history.': 'This account does not have any history.',
     'Required': 'Required',
     'Only alphanumeric characters': 'Only alphanumeric characters',
+    'Bad response from server!': 'Bad response from server!',
   }
 };
 
