@@ -14,51 +14,7 @@ const USER_STATUS = {
 };
 
 class ManagePrivilegeList extends React.Component {
-  columns = [
-    {
-      key: 'firstName',
-      text: 'First name',
-      sort: 'ASC',
-    }, {
-      key: 'lastName',
-      text: 'Last name',
-    }, {
-      key: 'roles',
-      text: 'Role',
-      formater: (user, t) => {
-        const {
-          roleListData: {
-            _embedded: {
-              roles,
-            },
-          },
-        } = this.props;
-        const firstRole = user.roles[0];
-        if (!_.isEmpty(firstRole)) {
-          let roleId = firstRole;
-          if (!_.isString(firstRole)) {
-            roleId = firstRole.id;
-          }
-          const item = _.find(roles, role => role.id === roleId);
-          if (item) {
-            return t(item.name);
-          }
-        }
-        return null;
-      },
-    }, {
-      key: 'email',
-      text: 'EMAIL',
-    }, {
-      key: 'username',
-      text: 'User name',
-    }, {
-      key: 'enabled',
-      text: 'Status',
-      type: TYPE.option,
-      options: USER_STATUS,
-    },
-  ]
+  
   constructor() {
     super();
     this.handleCellClick = this.handleCellClick.bind(this);
@@ -76,6 +32,58 @@ class ManagePrivilegeList extends React.Component {
   handleAddButtonClick(indexRow, column, event) {
     this.props.history.push('/permission/new-user');
   }
+  prepareColumn() {
+    const roleList = this.props.roleListData ? dataAccesser(this.props.roleListData) : [];
+    const roleOptions = {};
+    _.each(roleList, role => roleOptions[role.id] = role.name);
+    return [
+      {
+        key: 'firstName',
+        text: 'First name',
+        sort: 'ASC',
+      }, {
+        key: 'lastName',
+        text: 'Last name',
+      }, {
+        key: 'roles',
+        text: 'Role',
+        type: TYPE.option,
+        options: roleOptions,
+        formater: (user, t) => {
+          const {
+            roleListData: {
+              _embedded: {
+                roles,
+              },
+            },
+          } = this.props;
+          const firstRole = user.roles[0];
+          if (!_.isEmpty(firstRole)) {
+            let roleId = firstRole;
+            if (!_.isString(firstRole)) {
+              roleId = firstRole.id;
+            }
+            const item = _.find(roles, role => role.id === roleId);
+            if (item) {
+              return t(item.name);
+            }
+          }
+          return null;
+        },
+      }, {
+        key: 'email',
+        text: 'EMAIL',
+      }, {
+        key: 'username',
+        text: 'User name',
+      }, {
+        key: 'enabled',
+        text: 'Status',
+        type: TYPE.option,
+        options: USER_STATUS,
+      },
+    ];
+  }
   render() {
     return (
       <ContentWrapper
@@ -83,7 +91,7 @@ class ManagePrivilegeList extends React.Component {
         iconStyleLeft={{display: 'none'}}
       >
         <DataTable
-          columns={this.columns}
+          columns={this.prepareColumn()}
           sort={this.props.sort}
           data={this.props.data}
           getData={this.props.actions.getUsers}

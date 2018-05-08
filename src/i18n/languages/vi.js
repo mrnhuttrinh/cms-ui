@@ -261,6 +261,8 @@ const vi = {
     'Add Role Permission': 'Thêm Nhóm Quyền',
     'Create Role': 'Tạo Nhóm',
     'View Transaction List': 'Hiển Thị Danh Sách Giao Dịch',
+    'Create User': 'Tạo Người Dùng',
+    'Create wallet': 'Tạo Ví',
     'View Permission List': 'Hiển Thị Danh Sách Quyền',
     'View Report': 'Hiển Thị Báo Cáo',
     'Sync': 'Đồng Bộ',
@@ -346,10 +348,11 @@ const vi = {
     'Detail other not empty': 'Loại khác không bỏ trống',
     'Detail not empty': 'Chi tiêt không được bỏ trống',
     'warnings.0001': 'Bạn không thể nạp tiền cho tài khoản không có thẻ đang hoạt động. Vui lòng thử lại sau.',
-    'USER': 'Người dùng',
+    'USER': 'NGƯỜI DÙNG',
     'This account does not have any history.': 'Tài khoản không có lịch sử giao dịch.',
     'Required': 'Bắt buộc',
     'Only alphanumeric characters': 'Chỉ ký tự chữ và số',
+    'Bad response from server!': 'Yêu cầu không chính xác!',
   }
 };
 
