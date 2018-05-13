@@ -44,4 +44,7 @@ export default {
 
   'Update account status success': 'Update account status success',
   'Update account status failure': 'Update account status failure',
+
+  'Update customer status success': 'Update customer status success',
+  'Update customer status failure': 'Update customer status failure',
 };

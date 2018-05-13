@@ -26,6 +26,8 @@ import AddNewUser, { reducers as AddNewUserReducers } from './addNewUser';
 
 import AddNewRole, { reducers as AddNewRoleReducer } from './addNewRole';
 
+import AddNewCustomer, { reducers as AddNewCustomerReducer } from './addNewCustomer';
+
 import Report, { reducers as ReportReducers } from './report';
 
 import Launcher from './launcher';
@@ -58,6 +60,7 @@ export {
   AddNewUser,
   Report,
   AddNewRole,
+  AddNewCustomer,
 };
 
 export const reducers = {
@@ -79,6 +82,7 @@ export const reducers = {
   ...ReportReducers,
   ...AddNewUserReducers,
   ...AddNewRoleReducer,
+  ...AddNewCustomerReducer
 };
 
 // export commons control

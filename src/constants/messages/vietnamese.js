@@ -44,4 +44,7 @@ export default {
 
   'Update account status success': 'Cập nhật trạng thái tài khoản thành công',
   'Update account status failure': 'Cập nhật trạng thái tài khoản thất bại',
+
+  'Update customer status success': 'Cập nhật trạng thái khách hàng thành công',
+  'Update customer status failure': 'Cập nhật trạng thái khách hàng thất bại',
 }

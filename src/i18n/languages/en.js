@@ -240,6 +240,7 @@ const en = {
     'View Customer Details': 'View Customer Details',
     'View Account List': 'View Account List',
     'View Account Details': 'View Account Details',
+    'Update Customer': 'Update Customer',
     'Lock Account': 'Lock Account',
     'Update Account': 'Update Account',
     'View Card List': 'View Card List',
@@ -355,6 +356,11 @@ const en = {
     'Required': 'Required',
     'Only alphanumeric characters': 'Only alphanumeric characters',
     'Bad response from server!': 'Bad response from server!',
+    'Delete Customer': 'Delete Customer',
+    'Recovery Customer': 'Recovery Customer',
+    'Are you sure delete the customer?': 'Are you sure delete the customer?',
+    'Are you sure recovery the customer?': 'Are you sure recovery the customer?',
+    'RECOVERY': 'RECOVERY',
   }
 };
 

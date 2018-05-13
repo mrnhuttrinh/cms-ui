@@ -239,6 +239,7 @@ const vi = {
     'View Customer Details': 'Hiển Thị Chi Tiết Khách Hàng',
     'View Account List': 'Hiển Thị Danh Sách Tài Khoản',
     'View Account Details': 'Hiển Thị Chi Tiết Tài Khoản',
+    'Update Customer': 'Cập Nhật Khách Hàng',
     'Lock Account': 'Khoá Tài Khoản',
     'Update Account': 'Cập Nhật Tài Khoản',
     'View Card List': 'Hiển Thị Danh Sách Thẻ',
@@ -353,6 +354,11 @@ const vi = {
     'Required': 'Bắt buộc',
     'Only alphanumeric characters': 'Chỉ ký tự chữ và số',
     'Bad response from server!': 'Yêu cầu không chính xác!',
+    'Delete Customer': 'Xóa Khách Hàng',
+    'Recovery Customer': 'Khôi Phục Khách Hàng',
+    'Are you sure delete the customer?': 'Bạn có chắc chắn xóa khách hàng?',
+    'Are you sure recovery the customer?': 'Bạn có chắc chắn khôi phục khách hàng?',
+    'RECOVERY': 'KHÔI PHỤC',
   }
 };
 
