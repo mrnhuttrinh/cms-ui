@@ -14,6 +14,7 @@ export const IDENTIFY_DOCS_BY_CUSTOMER_API = '/api/customers/{id}/identifyDocume
 export const CUSTOMER_HISTORY_API = '/api/customers/{id}/customerHistory?projection=custom';
 export const LOCK_CUSTOMER_STATUS_API = '/api/customers/lockCustomers';
 export const UNLOCK_CUSTOMER_STATUS_API = '/api/customers/unlockCustomers';
+export const ADD_NEW_CUSTOMER_API = '/api/customers/new';
 
 // for account and related
 export const ACCOUNT_LIST_API = '/api/accounts/search?projection=custom';

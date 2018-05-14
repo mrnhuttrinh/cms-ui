@@ -76,6 +76,9 @@ const vi = {
     'GENDER.1': 'Nam',
     'GENDER.2': 'Khác',
     'GENDER.null': 'Không xác định',
+    'Female': 'Female',
+    'Male': 'Male',
+    'Other': 'Other',
     'View details': 'Xem chi tiết',
     'Account information': 'Thông tin tài khoản',
     'Account ID': 'Số tài khoản',
@@ -359,6 +362,9 @@ const vi = {
     'Are you sure delete the customer?': 'Bạn có chắc chắn xóa khách hàng?',
     'Are you sure recovery the customer?': 'Bạn có chắc chắn khôi phục khách hàng?',
     'RECOVERY': 'KHÔI PHỤC',
+    'STUDENT': 'HỌC SINH',
+    'STAFF': 'NHÂN VIÊN',
+    'Create Customer': 'Tạo Mới Khách Hàng',
   }
 };
 

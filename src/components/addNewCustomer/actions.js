@@ -1,9 +1,9 @@
 import {
-  ADD_NEW_ROLE_API
+  ADD_NEW_CUSTOMER_API
 } from '../../constants';
 
 import {
-  ADD_NEW_ROLE,
+  ADD_NEW_CUSTOMER,
   CLEAN_CACHE,
 } from './constants';
 
@@ -11,21 +11,21 @@ export const cleanCache = () =>({
   type: CLEAN_CACHE,
 });
 
-export const addNewRole = (values) => {
+export const addNewCustomer = (values) => {
   return {
-    type: ADD_NEW_ROLE,
+    type: ADD_NEW_CUSTOMER,
     showMessage: {
       success: {
-        title: 'Add new role',
-        message: 'Add new role successful',
+        title: 'Add new customer',
+        message: 'Add new customer successful',
       },
       error: {
-        title: 'Add new role',
-        message: 'Add new role failure',
+        title: 'Add new customer',
+        message: 'Add new customer failure',
       },
     },
     fetchConfig: {
-      path: ADD_NEW_ROLE_API,
+      path: ADD_NEW_CUSTOMER_API,
       params: {
         method: 'POST',
         headers: {

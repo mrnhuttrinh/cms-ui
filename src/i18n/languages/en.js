@@ -75,6 +75,9 @@ const en = {
     'GENDER.0': 'Female',
     'GENDER.1': 'Male',
     'GENDER.2': 'Other',
+    'Female': 'Female',
+    'Male': 'Male',
+    'Other': 'Other',
     'GENDER.null': 'Unknown',
     'View details': 'View details',
     'Account information': 'Account information',
@@ -361,6 +364,9 @@ const en = {
     'Are you sure delete the customer?': 'Are you sure delete the customer?',
     'Are you sure recovery the customer?': 'Are you sure recovery the customer?',
     'RECOVERY': 'RECOVERY',
+    'STUDENT': 'STUDENT',
+    'STAFF': 'STAFF',
+    'Create Customer': 'Create Customer',
   }
 };
 

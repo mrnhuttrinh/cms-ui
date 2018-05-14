@@ -1,5 +1,6 @@
 import moment from 'moment';
 import URLSearchParams from 'url-search-params';
+import { GENDER } from '../constants';
 
 export const dateFormatter = (date) => (date ? moment(date).format('DD/MM/YYYY') : 'N/A');
 export const dateTimeFormatter = (date) => (date ? moment(date).format('hh:mm:ss DD/MM/YYYY') : 'N/A');
@@ -27,11 +28,6 @@ export const parseParams = (pageable, sort, search) => {
 }
 
 export const genderFormatter = (value) => {
-  const GENDER = {
-    0: 'Nữ',
-    1: 'Nam',
-    2: 'Khác',
-  };
   return GENDER[value];
 }
 

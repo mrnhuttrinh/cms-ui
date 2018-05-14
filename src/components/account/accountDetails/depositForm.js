@@ -63,7 +63,7 @@ class DepositForm extends React.Component {
     return null;
   }
   getItemStatus() {
-    const itemsStatus = _.map(DetailsList, (key, value) => (<MenuItem value={key} primaryText={this.props.t(value)} />));
+    const itemsStatus = _.map(DetailsList, (value, key) => (<MenuItem value={key} primaryText={this.props.t(value)} />));
     return itemsStatus;
   }
   getItemCard() {
