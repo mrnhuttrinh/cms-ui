@@ -1,7 +1,6 @@
 const required = value => (value ? undefined : 'Required');
 
 const listRequired = value => {
-  console.log(value);
   return (value && (value.length > 0) ? undefined : 'Required');
 }
 

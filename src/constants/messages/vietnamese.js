@@ -44,4 +44,11 @@ export default {
 
   'Update account status success': 'Cập nhật trạng thái tài khoản thành công',
   'Update account status failure': 'Cập nhật trạng thái tài khoản thất bại',
+
+  'Update customer status success': 'Cập nhật trạng thái khách hàng thành công',
+  'Update customer status failure': 'Cập nhật trạng thái khách hàng thất bại',
+
+  'Add new customer': 'Tạo khách hàng',
+  'Add new customer successful': 'Tạo khách hàng thành công',
+  'Add new customer failure': 'Tạo khách hàng thất bại',
 }

@@ -22,6 +22,9 @@ class AddNewUser extends React.Component {
   componentDidMount() {
     this.props.actions.cleanCache();
   }
+  componentWillUnmount() {
+    this.props.actions.cleanCache();
+  }
   onHandleSubmit() {
     const {
       values,

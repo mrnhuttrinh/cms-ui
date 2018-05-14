@@ -106,3 +106,16 @@ export const ROLES = {
   USER: 'USER',
   ADMIN: 'ADMIN',
 };
+
+
+export const GENDER = {
+  0: 'Female',
+  1: 'Male',
+  2: 'Other',
+};
+
+export const CUSTOMER_TYPES = {
+  DEFAULT: 'DEFAULT',
+  STAFF: 'STAFF',
+  STUDENT: 'STUDENT',
+};

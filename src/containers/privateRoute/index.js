@@ -13,17 +13,45 @@ import { UI_ROUTES_LEFT_SIDE_MENU, PATH_IGNORE } from '../../constants';
 
 import "./index.scss";
 
+class Empty extends React.PureComponent {
+  render() {
+    return null;
+  }
+}
+
 class PrivateRoute extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       reloadChildren: true,
+      childComponent: null,
+      componentRender: Empty,
     };
     this.forceReloadContent = this.forceReloadContent.bind(this);
   }
   componentDidMount() {
     if (this.props.data && this.props.data.user && this.props.data.user.roles) {
       this.props.actions.getRoleDetail(this.props.data.user.roles[0].id);
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.parentComponent) {
+      const {
+        component: Component
+      } = nextProps;
+      const childComponent = (<Component {...nextProps}/>);
+      const componentRender = nextProps.parentComponent;
+      this.setState({
+        childComponent,
+        componentRender,
+      });
+    } else {
+      const childComponent = null;
+      const componentRender = nextProps.component;
+      this.setState({
+        childComponent,
+        componentRender,
+      });
     }
   }
   forceReloadContent() {
@@ -41,18 +69,11 @@ class PrivateRoute extends React.Component {
       forceReloadContent: this.forceReloadContent
     };
   }
-  renderChildComponent(props, Component) {
+  renderChildComponent(props) {
     const {
-      parentComponent,
-    } = this.props;
-    if (parentComponent) {
-      const ParentComponent = parentComponent;
-      return [
-        <Component {...props}/>,
-        <ParentComponent />
-      ];
-    }
-    return (<Component {...props}/>);
+      componentRender: StateComponent,
+    } = this.state;
+    return (<StateComponent {...props}/>);
   }
   getPermissions() {
     const {
@@ -122,8 +143,9 @@ class PrivateRoute extends React.Component {
                   errorLoading={errorLoading}
                 />
                 {
-                  this.state.reloadChildren ? this.renderChildComponent(props, Component) : null
+                  this.state.reloadChildren ? this.renderChildComponent(props) : null
                 }
+                {this.state.childComponent}
               </div>
             </div>
           </div>

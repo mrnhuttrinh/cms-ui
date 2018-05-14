@@ -11,7 +11,7 @@ import {
   SelectField,
   FieldValidator,
 } from '../commons';
-import { ENUM_USER_STATUS, ROLES, PATTERN_EMAIL } from '../../constants';
+import { ENUM_USER_STATUS, ROLES } from '../../constants';
 
 import { dateTimeFormatter } from '../../utils';
 

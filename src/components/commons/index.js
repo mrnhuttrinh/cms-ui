@@ -11,6 +11,7 @@ import TabTemplate from './tabTemplate';
 import RefreshButton from './refreshButton';
 import Tab from './tab';
 import FieldValidator from './fieldValidator';
+import DatePicker from './datePicker';
 
 export {
   Checkbox,
@@ -26,4 +27,5 @@ export {
   RefreshButton,
   Tab,
   FieldValidator,
+  DatePicker,
 };

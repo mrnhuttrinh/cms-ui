@@ -12,6 +12,9 @@ export const CARDS_BY_ACCOUNT_API = '/api/accounts/{id}/cards?projection=custom'
 export const ADDRESS_BY_CUSTOMER_API = '/api/customers/{id}/addresses?projection=custom';
 export const IDENTIFY_DOCS_BY_CUSTOMER_API = '/api/customers/{id}/identifyDocuments?projection=custom';
 export const CUSTOMER_HISTORY_API = '/api/customers/{id}/customerHistory?projection=custom';
+export const LOCK_CUSTOMER_STATUS_API = '/api/customers/lockCustomers';
+export const UNLOCK_CUSTOMER_STATUS_API = '/api/customers/unlockCustomers';
+export const ADD_NEW_CUSTOMER_API = '/api/customers/new';
 
 // for account and related
 export const ACCOUNT_LIST_API = '/api/accounts/search?projection=custom';

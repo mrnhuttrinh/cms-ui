@@ -4,16 +4,14 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import { Row, Col } from 'react-flexbox-grid';
 import _ from 'lodash';
-import RoleForm from './roleForm';
-import AddNewRoleReducer from './reducers';
+import AddNewCustomerReducer from './reducers';
 import * as actions from './actions';
 import { AnimationGroup } from '../commons';
 import { toastr } from 'react-redux-toastr';
+import AddCustomerForm from './addCustomerForm';
 
-
-class AddNewRole extends React.Component {
+class AddNewCustomer extends React.Component {
   constructor(props) {
     super(props);
     this.handleCanelButtonClick = this.handleCanelButtonClick.bind(this);
@@ -29,22 +27,34 @@ class AddNewRole extends React.Component {
     const {
       values,
     } = this.props;
-    this.props.actions.addNewRole(values).then(async () => {
+    // const customer = Object.assign({}, values);
+
+    // /** parse value */
+    // customer.addresses[0] = customer.address;
+    // delete customer.address;
+
+    // customer.identifyDocuments[0] = customer.indetifyCard;
+    // delete customer.indetifyCard;
+
+    // customer.identifyDocuments[1] = customer.passportCard;
+    // delete customer.passportCard;
+
+    this.props.actions.addNewCustomer(values).then(async () => {
       const {
-        newRoleError,
-        newRoleData,
+        addCustomerError,
+        addCustomerData
       } = this.props;
-      if (_.isEmpty(newRoleError) && !_.isEmpty(newRoleData)) {
+      if (_.isEmpty(addCustomerError) && !_.isEmpty(addCustomerData)) {
         this.props.actions.cleanCache();
-        this.props.history.push('/role');
+        this.props.history.push(`/customer/${addCustomerData.id}`);
       } else {
-        const errorObject = await newRoleError.json();
-        toastr.error(this.props.t('Add new role'), this.props.t(errorObject.status));
+        const errorObject = await addCustomerError.json();
+        toastr.error(this.props.t('Add new customer'), this.props.t(errorObject.status));
       }
     });
   }
   handleCanelButtonClick(indexRow, column, event) {
-    this.props.history.push('/role');
+    this.props.history.push('/customer');
   }
   render() {
     const {
@@ -67,22 +77,25 @@ class AddNewRole extends React.Component {
         disabled={_.isEmpty(values) || !_.isEmpty(syncErrors)}
       />,
     ];
+
+    const customContentStyle = {
+      width: '80%',
+      maxWidth: 'none',
+    };
     return (
       <div>
         <Dialog
-          title={this.props.t('Add New Role')}
+          title={this.props.t('Add new customer')}
           actions={actions}
           modal={true}
           open={true}
+          contentStyle={customContentStyle}
+          autoScrollBodyContent
         >
-          <Row>
-            <Col md={12} xs={12}>
-              <RoleForm />
-            </Col>
-          </Row>
           <AnimationGroup
-            loading={this.props.newRoleRequesting}
+            loading={this.props.addCustomerRequesting}
           />
+          <AddCustomerForm />
         </Dialog>
       </div>
     );
@@ -91,18 +104,18 @@ class AddNewRole extends React.Component {
 
 const mapStateToProps = (state) => {
   const {
-    addNewRole = {
+    addCustomerForm = {
       values: {},
       syncErrors: {}
     }
   } = state.form;
-  const newRole = state.AddNewRoleReducer.get('newRole');
+  const addCustomer = state.AddNewCustomerReducer.get('addCustomer');
   return {
-    values: addNewRole.values,
-    syncErrors: addNewRole.syncErrors,
-    newRoleRequesting: newRole.get('requesting'),
-    newRoleData: newRole.get('data'),
-    newRoleError: newRole.get('error'),
+    values: addCustomerForm.values,
+    syncErrors: addCustomerForm.syncErrors,
+    addCustomerRequesting: addCustomer.get('requesting'),
+    addCustomerData: addCustomer.get('data'),
+    addCustomerError: addCustomer.get('error'),
   };
 };
 
@@ -113,8 +126,8 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(translate('translations')(AddNewRole));
+)(translate('translations')(AddNewCustomer));
 
 export const reducers = {
-  AddNewRoleReducer,
+  AddNewCustomerReducer,
 };

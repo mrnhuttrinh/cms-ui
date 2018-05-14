@@ -44,4 +44,11 @@ export default {
 
   'Update account status success': 'Update account status success',
   'Update account status failure': 'Update account status failure',
+
+  'Update customer status success': 'Update customer status success',
+  'Update customer status failure': 'Update customer status failure',
+
+  'Add new customer': 'Add new customer',
+  'Add new customer successful': 'Add new customer successful',
+  'Add new customer failure': 'Add new customer failure',
 };

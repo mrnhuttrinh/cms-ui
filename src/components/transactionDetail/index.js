@@ -21,7 +21,6 @@ class TransactionDetail extends React.Component {
     try {
       transactionDetails = JSON.parse(this.props.transaction.transactionDetail.detail);
     } catch (err) {
-      console.log(err);
     }
 
     if (transactionDetails && transactionDetails.invoiceType === 'canteen_invoice') {

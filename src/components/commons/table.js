@@ -206,7 +206,7 @@ class DataTable extends React.Component {
   render() {
     return (
       <div
-        className="table-wrapper"
+        className={`table-wrapper ${this.props.className}`}
         style={this.props.style}
       >
         <div className="report-data-list" >
@@ -240,6 +240,7 @@ DataTable.propsType = {
   addButtonClick: PropsType.func,
   addButtonText: PropsType.string,
   addButtonStyles: PropsType.object,
+  className: PropsType.string,
 }
 
 DataTable.defaultProps = {
@@ -259,6 +260,7 @@ DataTable.defaultProps = {
   addButton: false,
   addButtonText: 'Add',
   addButtonStyles: {},
+  className: ''
 };
 
 export default translate('translations')(DataTable);

@@ -75,6 +75,9 @@ const en = {
     'GENDER.0': 'Female',
     'GENDER.1': 'Male',
     'GENDER.2': 'Other',
+    'Female': 'Female',
+    'Male': 'Male',
+    'Other': 'Other',
     'GENDER.null': 'Unknown',
     'View details': 'View details',
     'Account information': 'Account information',
@@ -240,6 +243,7 @@ const en = {
     'View Customer Details': 'View Customer Details',
     'View Account List': 'View Account List',
     'View Account Details': 'View Account Details',
+    'Update Customer': 'Update Customer',
     'Lock Account': 'Lock Account',
     'Update Account': 'Update Account',
     'View Card List': 'View Card List',
@@ -355,6 +359,14 @@ const en = {
     'Required': 'Required',
     'Only alphanumeric characters': 'Only alphanumeric characters',
     'Bad response from server!': 'Bad response from server!',
+    'Delete Customer': 'Delete Customer',
+    'Recovery Customer': 'Recovery Customer',
+    'Are you sure delete the customer?': 'Are you sure delete the customer?',
+    'Are you sure recovery the customer?': 'Are you sure recovery the customer?',
+    'RECOVERY': 'RECOVERY',
+    'STUDENT': 'STUDENT',
+    'STAFF': 'STAFF',
+    'Create Customer': 'Create Customer',
   }
 };
 

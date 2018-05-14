@@ -1,0 +1,22 @@
+.customer-list-table {
+  .group-controls {
+    .actions {
+      display: none;
+    }
+  }
+  tr {
+    &:hover {
+      .group-controls {
+        position: relative;
+        .actions {
+          display: block;
+          right: 0;
+          position: absolute;
+          top: -5px;
+          right: -10px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
