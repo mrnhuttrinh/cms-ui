@@ -2,12 +2,14 @@ import {
   CUSTOMER_API,
   ADDRESS_BY_CUSTOMER_API,
   IDENTIFY_DOCS_BY_CUSTOMER_API,
+  UPDATE_CUSTOMER_API
 } from '../../constants';
 
 import {
   GET_CUSTOMER,
   GET_ADDRESS_CUSTOMER,
   GET_IDENTIFY_DOCS_CUSTOMER,
+  UPDATE_CUSTOMER,
 } from './constants';
 
 export const getCustomer = id => {
@@ -45,3 +47,31 @@ export const getIdentifyDocsByCustomerId = id => {
     }
   };
 };
+
+export const updateNewCustomer = (values) => {
+  return {
+    type: UPDATE_CUSTOMER,
+    showMessage: {
+      success: {
+        title: 'Update customer',
+        message: 'Update customer successful',
+      },
+      error: {
+        title: 'Update customer',
+        message: 'Update customer failure',
+      },
+    },
+    fetchConfig: {
+      path: UPDATE_CUSTOMER_API,
+      params: {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      },
+    }
+  };
+};
+

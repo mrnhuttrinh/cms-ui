@@ -56,7 +56,7 @@ const vi = {
     'Phone': 'SĐT',
     'Phone1': 'SĐT di động',
     'Phone2': 'SĐT khác',
-    'Address': 'Địa chỉ thường trú',
+    'Address': 'Địa chỉ',
     'Line': 'Địa chỉ',
     'State Province': 'Phường (xã). Quận (Huyện)',
     'City': 'Tỉnh, Thành Phố',
@@ -365,6 +365,10 @@ const vi = {
     'STUDENT': 'HỌC SINH',
     'STAFF': 'NHÂN VIÊN',
     'Create Customer': 'Tạo Mới Khách Hàng',
+    'RESIDENT': 'ĐỊA CHỈ THƯƠNG TRÚ',
+    'TEMPORARY': 'TẠM THỜI',
+    'IDENTIFY CARD': 'CHỨNG MINH NHÂN DÂN',
+    'PASSPORT CARD': 'HỘ CHIẾU'
   }
 };
 

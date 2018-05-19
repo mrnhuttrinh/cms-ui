@@ -1,307 +1,161 @@
 import React from 'react';
-import _ from 'lodash';
-import TextField from 'material-ui/TextField';
-import Subheader from 'material-ui/Subheader';
-import { GridList } from 'material-ui/GridList';
 import { translate } from 'react-i18next';
-import { dateFormatter, dateTimeFormatter } from '../../utils';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { reduxForm, FieldArray, formValueSelector } from 'redux-form';
+import _ from 'lodash';
+import CustomerInformation from './customerInformation';
+import CustomerAddress from './customerAddress';
+import CustomerIdentity from './customerIdentity';
+import CustomerStatus from './customerStatus';
+import FlatButton from 'material-ui/FlatButton';
 
-import { Row, Col } from 'react-flexbox-grid';
-
-const titleStyle = {
-  fontFamily: 'Roboto',
-  fontSize: '16px',
-  color: '#00897b',
-  marginTop: 20,
-}
+import * as actions from './actions';
 
 class CustomerDetails  extends React.Component  {
+  constructor(props) {
+    super(props);
+    this.onHandleSubmit = this.onHandleSubmit.bind(this);
+  }
+  onHandleSubmit() {
+    const {
+      actions: {
+        updateNewCustomer,
+        getCustomer,
+        getAddressesByCustomerId,
+        getIdentifyDocsByCustomerId
+      },
+      data
+    } = this.props;
 
-  renderCard() {
-    let  address = {};
-    if (this.props.addresses && this.props.addresses._embedded.addresses.length) {
-      address = _.filter(this.props.addresses._embedded.addresses, (address) =>
-        (address.addressType.typeCode === 'RESIDENT'))[0] || this.props.addresses._embedded.addresses[0] || {};
-    }
-
-    let  indetifyCard = {};
-    if (this.props.identifyDocuments && this.props.identifyDocuments._embedded.identifyDocuments.length) {
-      indetifyCard = _.filter(this.props.identifyDocuments._embedded.identifyDocuments, (identifyDocument) =>
-        (identifyDocument.identifyDocumentType.typeCode === 'IDENTIFY_CARD'))[0] || {};
-    }
-
-    let  passportCard = {};
-    if (this.props.identifyDocuments && this.props.identifyDocuments._embedded.identifyDocuments.length) {
-      passportCard = _.filter(this.props.identifyDocuments._embedded.identifyDocuments, (identifyDocument) =>
-        (identifyDocument.identifyDocumentType.typeCode === 'PASSPORT_CARD'))[0] || {};
-    }
-
+    updateNewCustomer(data).then(() => {
+      getCustomer(data.customer.id);
+      getAddressesByCustomerId(data.customer.id);
+      getIdentifyDocsByCustomerId(data.customer.id);
+    });
+  }
+  renderInformation() {
     return (
-      <Row className="customer-detail">
-        <Col xs={12} sm={12} md={12} >
-          <Row>
-            <Col xs={12} sm={12} md={6} >
-              <GridList
-                cols={3}
-                padding={5}
-                cellHeight={56}
-              >
-                <Subheader style={titleStyle}>{this.props.t('Personal information')}</Subheader>
-                <TextField
-                  floatingLabelText={this.props.t('Last name')}
-                  cols={2}
-                  value={this.props.customer.lastName}
-                  floatingLabelFixed
-                  readOnly
-                  fullWidth
-                />
-                <TextField
-                  cols={1}
-                  floatingLabelText={this.props.t('First name')}
-                  value={this.props.customer.firstName}
-                  floatingLabelFixed
-                  readOnly
-                  fullWidth
-                />
-                <TextField
-                  cols={1}
-                  floatingLabelText={this.props.t('Birthday')}
-                  value={dateFormatter(this.props.customer.dateOfBirth)}
-                  floatingLabelFixed
-                  readOnly
-                  fullWidth
-                />
-                <TextField
-                  cols={1}
-                  floatingLabelText={this.props.t('Gender')}
-                  value={this.props.t(`GENDER.${this.props.customer.gender}`)}
-                  floatingLabelFixed
-                  readOnly
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Country')}
-                  value={this.props.t(`${this.props.customer.countryCode}`.toUpperCase())}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Occupation')}
-                  value={this.props.customer.occupation}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Position')}
-                  value={this.props.customer.position}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Title')}
-                  value={this.props.customer.title}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Email')}
-                  value={this.props.customer.email}
-                  floatingLabelFixed
-                  readOnly
-                  cols={3}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Phone1')}
-                  value={this.props.customer.phone1}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Phone2')}
-                  value={this.props.customer.phone2}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-              </GridList>
-            </Col>
-            <Col xs={12} sm={12} md={6} >
-              <GridList
-                cols={3}
-                padding={5}
-                cellHeight={56}
-              >
-                <Subheader style={titleStyle} cols={1}>{this.props.t('Address')}</Subheader>
-                <TextField
-                  floatingLabelText={this.props.t('Line')}
-                  value={address.line1}
-                  floatingLabelFixed
-                  readOnly
-                  cols={3}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('State Province')}
-                  value={address.stateProvince}
-                  floatingLabelFixed
-                  readOnly
-                  cols={3}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('City')}
-                  value={address.city}
-                  floatingLabelFixed
-                  readOnly
-                  cols={3}
-                  fullWidth
-                />
-            </GridList>
-            </Col>
-            <Col xs={12} sm={12} md={6} >
-              <GridList
-                cols={3}
-                padding={5}
-                cellHeight={56}
-              >
-                <Subheader
-                  cols={2}
-                  style={titleStyle}>
-                  {this.props.t('Indetity card')}
-                </Subheader>
-                <TextField
-                  floatingLabelText={this.props.t('Number')}
-                  value={indetifyCard.number}
-                  floatingLabelFixed
-                  readOnly
-                  cols={2}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Date of issue')}
-                  value={dateFormatter(indetifyCard.dateOfIssue)}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Date of expiry')}
-                  value={dateFormatter(indetifyCard.dateOfExpiry)}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Place of issue')}
-                  value={indetifyCard.placeOfIssue}
-                  floatingLabelFixed
-                  readOnly
-                  cols={2}
-                  fullWidth
-                />
-              </GridList>
-            </Col>
-            <Col xs={12} sm={12} md={6} >
-              <GridList
-                cols={3}
-                padding={5}
-                cellHeight={56}
-              >
-                <Subheader
-                  cols={2}
-                  style={titleStyle}>
-                  {this.props.t('Passport card')}
-                </Subheader>
-                <TextField
-                  floatingLabelText={this.props.t('Number')}
-                  value={passportCard.number}
-                  floatingLabelFixed
-                  readOnly
-                  cols={2}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Date of issue')}
-                  value={dateFormatter(passportCard.dateOfIssue)}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Date of expiry')}
-                  value={dateFormatter(passportCard.dateOfExpiry)}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Place of issue')}
-                  value={passportCard.placeOfIssue}
-                  floatingLabelFixed
-                  readOnly
-                  cols={2}
-                  fullWidth
-                />
-              </GridList>
-            </Col>
-            <Col xs={12} sm={12} md={6} >
-              <GridList
-                cols={3}
-                padding={5}
-                cellHeight={56}
-              >
-                <Subheader
-                  cols={2}
-                  style={titleStyle}>
-                  {this.props.t('Customer status')}
-                </Subheader>
-                <TextField
-                  floatingLabelText={this.props.t('Status')}
-                  value={this.props.t(this.props.customer.status)}
-                  floatingLabelFixed
-                  readOnly
-                  cols={1}
-                  fullWidth
-                />
-                <TextField
-                  floatingLabelText={this.props.t('Updated at')}
-                  value={dateTimeFormatter(this.props.customer.updatedAt)}
-                  cols={1}
-                  fullWidth
-                  floatingLabelFixed
-                  readOnly
-                />
-           </GridList>
-           </Col>
-         </Row>
-        </Col>
-      </Row>
-    )
+      <CustomerInformation />
+    );
+  }
+  renderAddresses() {
+    return (
+      <FieldArray
+        name="addresses"
+        component={CustomerAddress}
+        addresses={this.props.data.addresses}
+      />
+    );
+  }
+  renderIdentities() {
+    return (
+      <FieldArray
+        name="indetifyCards"
+        component={CustomerIdentity}
+        indetifyCards={this.props.data.indetifyCards}
+      />
+    );
+  }
+  renderStatus() {
+    return (
+      <CustomerStatus />
+    );
   }
   render () {
-    return this.props.customer ? this.renderCard() : null;
+    const { pristine, submitting, requesting, syncErrors } = this.props;
+    return (
+      <div className="customer-detail">
+        {this.renderInformation()}
+        <hr className="separate-line" />
+        {this.renderAddresses()}
+        <hr className="separate-line" />
+        {this.renderIdentities()}
+        <hr className="separate-line" />
+        {this.renderStatus()}
+        <hr className="separate-line" />
+        <FlatButton
+          label={this.props.t('ADD')}
+          primary={true}
+          backgroundColor="#009688"
+          labelStyle={{color: '#fff'}}
+          onClick={this.onHandleSubmit}
+          style={{float: 'right'}}
+          disabled={pristine || submitting || requesting || !_.isEmpty(syncErrors)}
+        />
+      </div>
+    );
   }
 }
 
-CustomerDetails.defaultProps = {
-  customer: null,
-}
+const selector = formValueSelector('updateCustomerForm');
 
+const mapStateToProps = (state) => {
+  const customerData = state.CustomerDetailReducer.get('customer');
+  const addressesData = state.CustomerDetailReducer.get('addresses');
+  const indetifyCardsData = state.CustomerDetailReducer.get('identifyDocuments');
+  /**
+   * Initilize data
+   */
+  let initialValues = null;
+  if (customerData && addressesData && indetifyCardsData) {
 
-export default translate('translations')(CustomerDetails);
+    const addresses =_.get(addressesData, '_embedded.addresses', []);
+    const indetifyCards = _.get(indetifyCardsData, '_embedded.indetifyCards', []);
+    initialValues = {
+      customer: Object.assign({}, {
+        status: 'ACTIVE',
+        countryCode: 'VN',
+        customerType: {
+          typeCode: 'DEFAULT'
+        },
+      }, customerData),
+      addresses,
+      indetifyCards,
+    };
+
+    /**
+     * Update country code
+     */
+    initialValues.customer.countryCode = initialValues.customer.countryCode ? initialValues.customer.countryCode.toLocaleUpperCase() : null;
+
+    /**
+     * Convert datetime to display datepicker
+     */
+    initialValues.customer.updatedAt = initialValues.customer.updatedAt ? new Date(initialValues.customer.updatedAt) : null;
+    initialValues.customer.dateOfBirth = initialValues.customer.dateOfBirth ? new Date(initialValues.customer.dateOfBirth) : null;
+    _.map(initialValues.indetifyCards, indetifyCard => {
+      indetifyCard.dateOfIssue = indetifyCard.dateOfIssue ? new Date(indetifyCard.dateOfIssue) : null;
+      indetifyCard.dateOfExpiry = indetifyCard.dateOfExpiry ? new Date(indetifyCard.dateOfExpiry) : null;
+    })
+  }
+
+  const {
+    updateCustomerForm = {
+      values: {},
+      syncErrors: {}
+    }
+  } = state.form;
+  return {
+    requesting: state.CustomerDetailReducer.get('updateCustomer').get('requesting'),
+    initialValues,
+    data: {
+      customer: selector(state, 'customer'),
+      addresses: selector(state, 'addresses'),
+      indetifyCards: selector(state, 'indetifyCards'),
+    },
+    syncErrors: updateCustomerForm.syncErrors,
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(reduxForm({
+  form: 'updateCustomerForm',
+})(translate('translations')(CustomerDetails)));
+

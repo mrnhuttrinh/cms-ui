@@ -1,13 +1,9 @@
 import React from 'react';
-import { translate } from 'react-i18next';
-import { connect } from 'react-redux';
-import {Field, reduxForm} from 'redux-form';
+import {Field } from 'redux-form';
 import Subheader from 'material-ui/Subheader';
-import { GridList } from 'material-ui/GridList';
-import _ from 'lodash';
+import { translate } from 'react-i18next';
 import MenuItem from 'material-ui/MenuItem';
-import { COUNTRIES, GENDER, CUSTOMER_TYPES } from '../../constants';
-
+import _ from 'lodash';
 import {
   TextField,
   FieldValidator,
@@ -15,16 +11,18 @@ import {
   SelectField
 } from '../commons';
 
+import { COUNTRIES, GENDER, CUSTOMER_TYPES } from '../../constants';
+
 import { Row, Col } from 'react-flexbox-grid';
 
 const titleStyle = {
   fontFamily: 'Roboto',
-  fontSize: '16px',
+  fontSize: '20px',
   color: '#00897b',
   marginTop: 20,
 }
 
-class AddCustomerForm  extends React.Component {
+class CustomerInformation extends React.PureComponent {
   getItemCustomerType() {
     const itemsStatus = _.map(CUSTOMER_TYPES, (value, key) => (<MenuItem value={key} primaryText={this.props.t(value)} />));
     return itemsStatus;
@@ -37,12 +35,12 @@ class AddCustomerForm  extends React.Component {
     const itemsStatus = _.map(COUNTRIES, (value, key) => (<MenuItem value={key} primaryText={this.props.t(value)} />));
     return itemsStatus;
   }
-  renderNewCustomerForm() {
+  render() {
     return (
       <div>
         <Row>
           <Col md={12}>
-            <Subheader style={titleStyle}>{this.props.t('Personal information')}</Subheader>
+            <div style={titleStyle}>{this.props.t('Personal information')}</div>
           </Col>
         </Row>
         <Row>
@@ -192,155 +190,9 @@ class AddCustomerForm  extends React.Component {
             />
           </Col>
         </Row>
-
-        <Row>
-          <Col md={12}>
-            <Subheader style={titleStyle} cols={1}>{this.props.t('Address')}</Subheader>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12}>
-            <Field
-              name="address.line1"
-              floatingLabelText={this.props.t('Line')}
-              floatingLabelFixed
-              fullWidth
-              component={TextField}
-              label={this.props.t('Line')}
-              validate={[FieldValidator.required]}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={6}>
-            <Field
-              name="address.stateProvince"
-              floatingLabelText={this.props.t('State Province')}
-              floatingLabelFixed
-              fullWidth
-              component={TextField}
-              label={this.props.t('State Province')}
-              validate={[FieldValidator.required]}
-            />
-          </Col>
-          <Col md={6}>
-            <Field
-              name="address.city"
-              floatingLabelText={this.props.t('City')}
-              floatingLabelFixed
-              fullWidth
-              component={TextField}
-              label={this.props.t('City')}
-              validate={[FieldValidator.required]}
-            />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col md={12}>
-            <Subheader
-              cols={2}
-              style={titleStyle}>
-              {this.props.t('Indetity card')}
-            </Subheader>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={6}>
-            <Field
-              name="indetifyCard.number"
-              floatingLabelText={this.props.t('Number')}
-              floatingLabelFixed
-              cols={4}
-              fullWidth
-              component={TextField}
-              label={this.props.t('Number')}
-              validate={[FieldValidator.required, FieldValidator.alphaNumeric]}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={6}>
-            <Field
-              name="indetifyCard.dateOfIssue"
-              floatingLabelText={this.props.t('Date of issue')}
-              floatingLabelFixed
-              cols={2}
-              fullWidth
-              component={DatePicker}
-              label={this.props.t('Date of issue')}
-              validate={[FieldValidator.required]}
-              autoOk
-            />
-          </Col>
-          <Col md={6}>
-            <Field
-              name="indetifyCard.dateOfExpiry"
-              floatingLabelText={this.props.t('Date of expiry')}
-              floatingLabelFixed
-              cols={2}
-              fullWidth
-              component={DatePicker}
-              label={this.props.t('Date of expiry')}
-              validate={[FieldValidator.required]}
-              autoOk
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={6}>
-            <Field
-              name="indetifyCard.placeOfIssue"
-              floatingLabelText={this.props.t('Place of issue')}
-              floatingLabelFixed
-              cols={4}
-              fullWidth
-              component={TextField}
-              label={this.props.t('Place of issue')}
-              validate={[FieldValidator.required]}
-            />
-          </Col>
-        </Row>
       </div>
     );
   }
-  render () {
-    return this.renderNewCustomerForm();
-  }
 }
 
-
-AddCustomerForm.defaultProps = {};
-
-const mapStateToProps = (state) => {
-  let initialValues = {
-    customer: {
-      status: 'ACTIVE',
-      countryCode: 'VN',
-      customerType: {
-        typeCode: CUSTOMER_TYPES.DEFAULT
-      },
-    },
-    address: {
-      status: 'ACTIVE',
-      addressType: {
-        typeCode: 'RESIDENT'
-      }
-    },
-    indetifyCard: {
-      status: 'ACTIVE',
-      identifyDocumentType: {
-        typeCode: 'IDENTIFY_CARD'
-      }
-    },
-  };
-  return {
-    initialValues,
-  };
-};
-
-export default connect(
-  mapStateToProps
-)(reduxForm({
-  form: 'addCustomerForm',
-})(translate('translations')(AddCustomerForm)));
+export default translate('translations')(CustomerInformation);
