@@ -167,7 +167,6 @@ class CustomerIdentity extends React.PureComponent {
                           fullWidth
                           component={DatePicker}
                           label={this.props.t('Date of expiry')}
-                          validate={[FieldValidator.required]}
                           autoOk
                         />
                       </Col>

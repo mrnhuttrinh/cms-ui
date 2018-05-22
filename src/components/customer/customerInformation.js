@@ -46,6 +46,21 @@ class CustomerInformation extends React.PureComponent {
         <Row>
           <Col md={6}>
             <Field
+              name="customer.scmsMemberCode"
+              floatingLabelText={this.props.t('Code')}
+              floatingLabelFixed
+              fullWidth
+              component={TextField}
+              label={this.props.t('Code')}
+              disabled
+              validate={[FieldValidator.required]}
+            />
+          </Col>
+          <Col md={6} />
+        </Row>
+        <Row>
+          <Col md={6}>
+            <Field
               name="customer.lastName"
               floatingLabelText={this.props.t('Last name')}
               floatingLabelFixed
@@ -187,6 +202,23 @@ class CustomerInformation extends React.PureComponent {
               label={this.props.t('Type')}
               children={this.getItemCustomerType()}
               validate={[FieldValidator.required]}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <div style={titleStyle} cols={1}>{this.props.t('Organization')}</div>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <Field
+              name="customer.organization.shortName"
+              floatingLabelText={this.props.t('Organization Name')}
+              floatingLabelFixed
+              fullWidth
+              component={TextField}
+              label={this.props.t('Organization Name')}
             />
           </Col>
         </Row>

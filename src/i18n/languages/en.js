@@ -371,7 +371,10 @@ const en = {
     'TEMPORARY': 'TEMPORARY',
     'IDENTIFY CARD': 'IDENTIFY',
     'PASSPORT CARD': 'PASSPORT',
-    'UPDATE': 'UPDATE'
+    'UPDATE': 'UPDATE',
+    'Organization': 'Organization',
+    'Organization Name': 'Organization Name',
+    'Code': 'Code',
   }
 };
 

@@ -2,8 +2,6 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
-import Subheader from 'material-ui/Subheader';
-import { GridList } from 'material-ui/GridList';
 import _ from 'lodash';
 import MenuItem from 'material-ui/MenuItem';
 import { COUNTRIES, GENDER, CUSTOMER_TYPES } from '../../constants';
@@ -19,7 +17,7 @@ import { Row, Col } from 'react-flexbox-grid';
 
 const titleStyle = {
   fontFamily: 'Roboto',
-  fontSize: '16px',
+  fontSize: '20px',
   color: '#00897b',
   marginTop: 20,
 }
@@ -42,8 +40,22 @@ class AddCustomerForm  extends React.Component {
       <div>
         <Row>
           <Col md={12}>
-            <Subheader style={titleStyle}>{this.props.t('Personal information')}</Subheader>
+            <div style={titleStyle}>{this.props.t('Personal information')}</div>
           </Col>
+        </Row>
+        <Row>
+          <Col md={6}>
+            <Field
+              name="customer.scmsMemberCode"
+              floatingLabelText={this.props.t('Code')}
+              floatingLabelFixed
+              fullWidth
+              component={TextField}
+              label={this.props.t('Code')}
+              validate={[FieldValidator.required]}
+            />
+          </Col>
+          <Col md={6} />
         </Row>
         <Row>
           <Col md={6}>
@@ -195,7 +207,25 @@ class AddCustomerForm  extends React.Component {
 
         <Row>
           <Col md={12}>
-            <Subheader style={titleStyle} cols={1}>{this.props.t('Address')}</Subheader>
+            <div style={titleStyle} cols={1}>{this.props.t('Organization')}</div>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <Field
+              name="organization.shortName"
+              floatingLabelText={this.props.t('Organization Name')}
+              floatingLabelFixed
+              fullWidth
+              component={TextField}
+              label={this.props.t('Organization Name')}
+            />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col md={12}>
+            <div style={titleStyle} cols={1}>{this.props.t('Address')}</div>
           </Col>
         </Row>
         <Row>
@@ -238,11 +268,11 @@ class AddCustomerForm  extends React.Component {
 
         <Row>
           <Col md={12}>
-            <Subheader
+            <div
               cols={2}
               style={titleStyle}>
               {this.props.t('Indetity card')}
-            </Subheader>
+            </div>
           </Col>
         </Row>
         <Row>
@@ -282,7 +312,6 @@ class AddCustomerForm  extends React.Component {
               fullWidth
               component={DatePicker}
               label={this.props.t('Date of expiry')}
-              validate={[FieldValidator.required]}
               autoOk
             />
           </Col>
@@ -309,12 +338,24 @@ class AddCustomerForm  extends React.Component {
   }
 }
 
+const generateNumber = (range) => {
+  const randomNumber = Math.floor((Math.random() * range) + 1);
+  if (`${randomNumber}`.length < `${range}`.length) {
+    return `0${randomNumber}`;
+  }
+  return randomNumber;
+}
+
 
 AddCustomerForm.defaultProps = {};
 
 const mapStateToProps = (state) => {
   let initialValues = {
+    organization: {
+      shortName: '',
+    },
     customer: {
+      scmsMemberCode: `snd-${generateNumber(999)}-${generateNumber(99)}-${generateNumber(9999)}`,
       status: 'ACTIVE',
       countryCode: 'VN',
       customerType: {

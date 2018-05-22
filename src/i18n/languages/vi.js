@@ -369,7 +369,10 @@ const vi = {
     'TEMPORARY': 'TẠM THỜI',
     'IDENTIFY CARD': 'CHỨNG MINH NHÂN DÂN',
     'PASSPORT CARD': 'HỘ CHIẾU',
-    'UPDATE': 'CẬP NHẬT'
+    'UPDATE': 'CẬP NHẬT',
+    'Organization': 'Tổ Chức',
+    'Organization Name': 'Tên Tổ Chức',
+    'Code': 'Mã',
   }
 };
 
