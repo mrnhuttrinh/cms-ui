@@ -370,7 +370,8 @@ const en = {
     'RESIDENT': 'RESIDENT',
     'TEMPORARY': 'TEMPORARY',
     'IDENTIFY CARD': 'IDENTIFY',
-    'PASSPORT CARD': 'PASSPORT'
+    'PASSPORT CARD': 'PASSPORT',
+    'UPDATE': 'UPDATE'
   }
 };
 

@@ -36,8 +36,8 @@ class CustomerAddress extends React.PureComponent {
     const addresses = this.props.addresses;
 
     if (
-      _.find(addresses, address => address.addressType.typeCode === 'RESIDENT') &&
-      _.find(addresses, address => address.addressType.typeCode === 'TEMPORARY')
+      _.find(addresses, address => address.addressType && address.addressType.typeCode === 'RESIDENT') &&
+      _.find(addresses, address => address.addressType && address.addressType.typeCode === 'TEMPORARY')
     ) {
       return false;
     }
@@ -47,35 +47,45 @@ class CustomerAddress extends React.PureComponent {
     const defaultAddress = {
       addressType: {
         typeCode: 'RESIDENT'
-      }
+      },
+      status: 'ACTIVE',
     };
     const defaultTemporary = {
       addressType: {
         typeCode: 'TEMPORARY'
-      }
+      },
+      status: 'ACTIVE',
     };
 
     const { fields, addresses } = this.props;
 
-    if (!_.find(addresses, address => address.addressType.typeCode === 'RESIDENT')) {
-      fields.insert(fields.length, defaultAddress);
+    if (!_.find(addresses, address => address.status === 'ACTIVE' && address.addressType.typeCode === 'RESIDENT')) {
+      fields.insert(fields.length, Object.assign({}, defaultAddress));
       return;
     }
-    if (!_.find(addresses, address => address.addressType.typeCode === 'TEMPORARY')) {
-      fields.insert(fields.length, defaultTemporary);
+    if (!_.find(addresses, address => address.status === 'ACTIVE' && address.addressType.typeCode === 'TEMPORARY')) {
+      fields.insert(fields.length, Object.assign({}, defaultTemporary));
       return;
     }
   }
   removeAddress(index) {
     const { fields } = this.props;
+
+    const address = Object.assign({}, fields.get(index));
+    address.status = 'INACTIVE';
+
     fields.remove(index);
+    if (address.id) {
+      // re-insert
+      fields.insert(index, address);
+    }
   }
   renderPlusSymbol() {
     if (this.getAddressSymbol()) {
       return (
-        <Col md={6} className="address-block">
+        <Col md={6} className="address-block plus-block">
           <div className="plus-symbol" onClick={this.addAddress}>
-            <FontIcon style={{fontSize: '100px'}} className="material-icons">add</FontIcon>
+            <FontIcon style={{fontSize: '50px'}} className="material-icons">add</FontIcon>
           </div>
         </Col>
       );
@@ -94,7 +104,8 @@ class CustomerAddress extends React.PureComponent {
         <Row>
           {
             fields.map((address, index) => {
-              if (address) {
+              const addressData = fields.get(index);
+              if (addressData && addressData.status === 'ACTIVE') {
                 return (
                   <Col md={6} className="address-block">
                     <FontIcon

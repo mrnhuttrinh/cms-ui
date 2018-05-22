@@ -368,7 +368,8 @@ const vi = {
     'RESIDENT': 'ĐỊA CHỈ THƯƠNG TRÚ',
     'TEMPORARY': 'TẠM THỜI',
     'IDENTIFY CARD': 'CHỨNG MINH NHÂN DÂN',
-    'PASSPORT CARD': 'HỘ CHIẾU'
+    'PASSPORT CARD': 'HỘ CHIẾU',
+    'UPDATE': 'CẬP NHẬT'
   }
 };
 

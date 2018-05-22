@@ -9,6 +9,7 @@ import CustomerAddress from './customerAddress';
 import CustomerIdentity from './customerIdentity';
 import CustomerStatus from './customerStatus';
 import FlatButton from 'material-ui/FlatButton';
+import { AnimationGroup } from '../commons';
 
 import * as actions from './actions';
 
@@ -74,14 +75,20 @@ class CustomerDetails  extends React.Component  {
         <hr className="separate-line" />
         {this.renderStatus()}
         <hr className="separate-line" />
-        <FlatButton
-          label={this.props.t('ADD')}
-          primary={true}
-          backgroundColor="#009688"
-          labelStyle={{color: '#fff'}}
-          onClick={this.onHandleSubmit}
-          style={{float: 'right'}}
-          disabled={pristine || submitting || requesting || !_.isEmpty(syncErrors)}
+        <div className="add-button">
+          <FlatButton
+            label={this.props.t('UPDATE')}
+            primary={true}
+            backgroundColor="#009688"
+            labelStyle={{color: '#fff'}}
+            onClick={this.onHandleSubmit}
+            style={{float: 'right'}}
+            disabled={pristine || submitting || requesting || !_.isEmpty(syncErrors)}
+          />
+        </div>
+        <AnimationGroup
+          loading={this.props.updateRequesting}
+          errorLoading={this.props.updateError ? true : false}
         />
       </div>
     );
@@ -101,7 +108,7 @@ const mapStateToProps = (state) => {
   if (customerData && addressesData && indetifyCardsData) {
 
     const addresses =_.get(addressesData, '_embedded.addresses', []);
-    const indetifyCards = _.get(indetifyCardsData, '_embedded.indetifyCards', []);
+    const indetifyCards = _.get(indetifyCardsData, '_embedded.identifyDocuments', []);
     initialValues = {
       customer: Object.assign({}, {
         status: 'ACTIVE',
@@ -113,6 +120,10 @@ const mapStateToProps = (state) => {
       addresses,
       indetifyCards,
     };
+    /**
+     * FOr value integer render to list
+     */
+    initialValues.customer.gender = initialValues.customer.gender + "";
 
     /**
      * Update country code
@@ -137,7 +148,8 @@ const mapStateToProps = (state) => {
     }
   } = state.form;
   return {
-    requesting: state.CustomerDetailReducer.get('updateCustomer').get('requesting'),
+    updateError: state.CustomerDetailReducer.get('updateCustomer').get('error'),
+    updateRequesting: state.CustomerDetailReducer.get('updateCustomer').get('requesting'),
     initialValues,
     data: {
       customer: selector(state, 'customer'),

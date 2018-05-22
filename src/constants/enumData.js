@@ -98,7 +98,8 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
 
 export const PATH_IGNORE = [
   '/',
-  '/report'
+  '/report',
+  '/user-profile',
 ];
 export const PERMISSIONS = _PERMISSIONS;
 

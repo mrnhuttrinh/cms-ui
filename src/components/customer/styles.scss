@@ -20,6 +20,14 @@
     margin: 0px;
     min-height: 250px;
     position: relative;
+    
+  }
+  .plus-block {
+    padding: 0px;
+    border: 1px solid #CCCCCC;
+    margin: 0px;
+    min-height: 250px;
+    position: relative;
     .plus-symbol {
       display: flex;
       height: 100%;
@@ -34,5 +42,10 @@
         cursor: pointer;
       }
     }
+  }
+  .add-button {
+    width: 100%;
+    height: 40px;
+    display: block;
   }
 }
