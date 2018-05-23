@@ -6,4 +6,46 @@
   @media screen and (min-width: 768px) {
     padding: 20px 100px 20px 100px;
   }
+
+  .separate-line {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    margin-left: -100px;
+    margin-right: -100px;
+  }
+  .address-block,
+  .identity-block {
+    border: 1px solid #CCCCCC;
+    padding: 15px;
+    margin: 0px;
+    min-height: 250px;
+    position: relative;
+    
+  }
+  .plus-block {
+    padding: 0px;
+    border: 1px solid #CCCCCC;
+    margin: 0px;
+    min-height: 250px;
+    position: relative;
+    .plus-symbol {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        cursor: pointer;
+        background-color: #CCCCCC;
+      }
+      span.material-icons {
+        cursor: pointer;
+      }
+    }
+  }
+  .add-button {
+    width: 100%;
+    height: 40px;
+    display: block;
+  }
 }

@@ -42,12 +42,8 @@ class Customer extends React.Component {
       >
         <TabTemplate inkBarStyle={indicatorStyle}>
           <Tab style={tabStyle} label={this.props.t('general information')} >
-            <CustomerDetails
-              customer={this.props.customer}
-              addresses={this.props.addresses}
-              identifyDocuments={this.props.identifyDocuments}
-            />
             <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+              <CustomerDetails />
               <AnimationGroup
                 loading={this.props.requesting}
                 errorLoading={this.props.error ? true : false}

@@ -98,7 +98,8 @@ export const UI_ROUTES_LEFT_SIDE_MENU = {
 
 export const PATH_IGNORE = [
   '/',
-  '/report'
+  '/report',
+  '/user-profile',
 ];
 export const PERMISSIONS = _PERMISSIONS;
 
@@ -118,4 +119,15 @@ export const CUSTOMER_TYPES = {
   DEFAULT: 'DEFAULT',
   STAFF: 'STAFF',
   STUDENT: 'STUDENT',
+};
+
+export const ADDRESS_TYPES  = {
+  DEFAULT: 'DEFAULT',
+  RESIDENT: 'RESIDENT',
+  TEMPORARY: 'TEMPORARY'
+};
+
+export const IDENTITY_TYPES = {
+  IDENTIFY_CARD: 'IDENTIFY CARD',
+  PASSPORT_CARD: 'PASSPORT CARD'
 };

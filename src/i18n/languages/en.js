@@ -367,6 +367,14 @@ const en = {
     'STUDENT': 'STUDENT',
     'STAFF': 'STAFF',
     'Create Customer': 'Create Customer',
+    'RESIDENT': 'RESIDENT',
+    'TEMPORARY': 'TEMPORARY',
+    'IDENTIFY CARD': 'IDENTIFY',
+    'PASSPORT CARD': 'PASSPORT',
+    'UPDATE': 'UPDATE',
+    'Organization': 'Organization',
+    'Organization Name': 'Organization Name',
+    'Code': 'Code',
   }
 };
 

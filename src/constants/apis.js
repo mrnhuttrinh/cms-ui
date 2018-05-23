@@ -15,6 +15,7 @@ export const CUSTOMER_HISTORY_API = '/api/customers/{id}/customerHistory?project
 export const LOCK_CUSTOMER_STATUS_API = '/api/customers/lockCustomers';
 export const UNLOCK_CUSTOMER_STATUS_API = '/api/customers/unlockCustomers';
 export const ADD_NEW_CUSTOMER_API = '/api/customers/new';
+export const UPDATE_CUSTOMER_API = '/api/customers/update';
 
 // for account and related
 export const ACCOUNT_LIST_API = '/api/accounts/search?projection=custom';
