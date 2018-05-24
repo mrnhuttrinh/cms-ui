@@ -16,9 +16,21 @@ const alphaNumeric = value =>
     ? 'Only alphanumeric characters'
     : undefined;
 
+const pattern = (pattern, errorText) => value =>
+  value && !pattern.test(value) ? (errorText ? errorText : 'Field do not match') : undefined;
+
+const length = (long, errorText) => value =>
+  value && value.length < long ? (errorText ? errorText : `Field must be more than ${long} characters`) : undefined;
+
+const compare = (compareValue, errorText) => value =>
+  value && compareValue !== value ? (errorText ? errorText : 'Field do not match') : undefined;
+
 export default {
   required,
   alphaNumeric,
   email,
   listRequired,
+  pattern,
+  length,
+  compare
 };

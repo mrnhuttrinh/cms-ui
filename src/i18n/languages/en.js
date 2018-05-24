@@ -375,6 +375,8 @@ const en = {
     'Organization': 'Organization',
     'Organization Name': 'Organization Name',
     'Code': 'Code',
+    'Username do not match': 'Username do not match',
+    'Field do not match': 'Field do not match',
   }
 };
 

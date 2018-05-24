@@ -94,10 +94,6 @@ TransactionByAccountList.defaultProps = {
       text: 'amount',
     },
     {
-      key: 'transactionDetail.detail',
-      text: 'Detail',
-    },
-    {
       key: 'createdAt',
       text: 'transaction created at',
       type: TYPE.date,

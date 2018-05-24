@@ -373,6 +373,8 @@ const vi = {
     'Organization': 'Tổ Chức',
     'Organization Name': 'Tên Tổ Chức',
     'Code': 'Mã',
+    'Username do not match': 'Tên đăng nhập không đúng',
+    'Field do not match': 'Trường không đúng',
   }
 };
 

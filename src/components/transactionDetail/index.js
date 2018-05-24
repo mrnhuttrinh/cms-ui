@@ -113,6 +113,7 @@ class TransactionDetail extends React.Component {
           modal={false}
           open={this.props.open}
           onRequestClose={this.props.handleClose}
+          autoScrollBodyContent
         >
         {this.renderDetails()}
       </Dialog>

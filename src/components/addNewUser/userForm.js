@@ -9,40 +9,9 @@ import _ from 'lodash';
 import {
   TextField,
   SelectField,
+  FieldValidator,
 } from '../commons';
 import { ENUM_USER_STATUS, ROLES, PATTERN_EMAIL } from '../../constants';
-
-const validate = values => {
-  const errors = {};
-  if (values.email && !PATTERN_EMAIL.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-  if (_.isEmpty(values.email)) {
-    errors.email = 'Required';
-  }
-  if (_.isEmpty(values.firstName)) {
-    errors.firstName = 'Required';
-  }
-  if (_.isEmpty(values.lastName)) {
-    errors.lastName = 'Required';
-  }
-  if (_.isEmpty(values.username)) {
-    errors.username = 'Required';
-  }
-  if (_.isEmpty(values.role)) {
-    errors.role = 'Required';
-  }
-  if (values.password && values.password.length < 6) {
-    errors.password = 'Password must be more than 6 characters';
-  }
-  if (_.isEmpty(values.password)) {
-    errors.password = 'Required';
-  }
-  if (_.isEmpty(values.status)) {
-    errors.status = 'Required';
-  }
-  return errors;
-}
 
 class UserForm extends React.Component {
   render () {
@@ -72,6 +41,7 @@ class UserForm extends React.Component {
             component={TextField}
             label={this.props.t('Last name')}
             fullWidth
+            validate={FieldValidator.required}
           />
         </Col>
         <Col md={5} xs={12}>
@@ -81,6 +51,7 @@ class UserForm extends React.Component {
             component={TextField}
             label={this.props.t('First name')}
             fullWidth
+            validate={FieldValidator.required}
           />
         </Col>
         <Col md={7} xs={12}>
@@ -90,6 +61,7 @@ class UserForm extends React.Component {
             component={TextField}
             label={this.props.t('Email')}
             fullWidth
+            validate={[FieldValidator.required, FieldValidator.email]}
           />
         </Col>
         <Col md={6} xs={12}>
@@ -99,6 +71,12 @@ class UserForm extends React.Component {
             component={TextField}
             label={this.props.t('User name')}
             fullWidth
+            validate={
+              [
+                FieldValidator.required,
+                FieldValidator.pattern(/^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i, 'Username do not match')
+              ]
+            }
           />
         </Col>
         <Col md={6} xs={12}>
@@ -108,6 +86,7 @@ class UserForm extends React.Component {
             component={TextField}
             label={this.props.t('Password')}
             fullWidth
+            validate={[FieldValidator.required, FieldValidator.length(6, 'Password must be more than 6 characters')]}
           />
         </Col>
         <Col md={6} xs={12}>
@@ -118,6 +97,7 @@ class UserForm extends React.Component {
             children={items}
             disabled={disabledRole}
             fullWidth
+            validate={FieldValidator.required}
           />
         </Col>
         <Col md={6} xs={12}>
@@ -127,6 +107,7 @@ class UserForm extends React.Component {
             label={this.props.t('Status')}
             children={itemsStatus}
             fullWidth
+            validate={FieldValidator.required}
           />
         </Col>
       </Row>
@@ -162,5 +143,4 @@ export default connect(
   mapStateToProps
 )(reduxForm({
   form: 'addNewUser',
-  validate,
 })(translate('translations')(UserForm)));

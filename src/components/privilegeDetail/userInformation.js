@@ -74,7 +74,7 @@ class UserInformation extends React.Component {
             label={this.props.t('User name')}
             disabled
             fullWidth
-            validate={[FieldValidator.required, FieldValidator.alphaNumeric]}
+            validate={[FieldValidator.required, FieldValidator.pattern(/^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i, 'Password must be more than 6 characters')]}
           />
         </Col>
         <Col md={12} xs={12}>
